@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>DAWLY OS — Personal Operating System</title>
+<meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="theme-color" content="#070709">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -37,6 +38,15 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-
 body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.04) 2px,rgba(0,0,0,.04) 4px);pointer-events:none;z-index:9999;}
 .app{max-width:440px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;position:relative;}
 @media(min-width:768px){.app{max-width:860px;}}
+
+/* ── LOCK SCREEN ── */
+.lock{position:fixed;inset:0;background:var(--bg);z-index:100000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;}
+.lock-logo{font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:6px;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 14px rgba(212,168,67,.4));}
+.lock-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);letter-spacing:3px;text-transform:uppercase;}
+.lock-in{width:220px;padding:13px;background:var(--s1);border:1.5px solid var(--border2);border-radius:10px;font-family:'DM Mono',monospace;font-size:22px;font-weight:600;color:var(--text);outline:none;text-align:center;letter-spacing:8px;}
+.lock-in:focus{border-color:var(--gold);}
+.lock-btn{width:220px;padding:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:10px;font-family:'Outfit',sans-serif;font-weight:900;font-size:13px;cursor:pointer;letter-spacing:1px;box-shadow:0 0 14px rgba(212,168,67,.3);}
+.lock-msg{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:1px;min-height:14px;}
 
 /* ── HEADER ── */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 11px;position:sticky;top:0;background:rgba(7,7,9,.96);backdrop-filter:blur(20px);z-index:50;border-bottom:1px solid transparent;transition:border-color .3s;}
@@ -326,6 +336,16 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 </style>
 </head>
 <body>
+
+<!-- LOCK SCREEN -->
+<div class="lock" id="lock">
+  <div class="lock-logo">DAWLY</div>
+  <div class="lock-sub">Private System · Enter PIN</div>
+  <input class="lock-in" id="lock-in" type="password" inputmode="numeric" autocomplete="off" placeholder="••••">
+  <button class="lock-btn" onclick="pinSubmit()">UNLOCK</button>
+  <div class="lock-msg" id="lock-msg"></div>
+</div>
+
 <div class="app">
 <!-- HEADER -->
 <header class="hdr" id="hdr">
@@ -770,7 +790,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 </div>
 
 <!-- ════════════════════════════════════════
-     ⑥ ATHLETE — tennis · gym · fuel · recovery
+     ⑥ ATHLETE — tennis · gym · engine · fuel · recovery
 ════════════════════════════════════════ -->
 <div class="pg" id="pg-ath">
   <div class="hero">
@@ -1058,6 +1078,23 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 
 <div class="toast" id="toast"></div>
 <script>
+// ═══════════ PIN LOCK ═══════════
+(function(){
+  const msg=document.getElementById('lock-msg');
+  const inp=document.getElementById('lock-in');
+  if(!localStorage.getItem('dawly_pin'))msg.textContent='FIRST TIME — CHOOSE YOUR SECRET PIN';
+  window.pinSubmit=function(){
+    const v=inp.value.trim();
+    if(v.length<4){msg.textContent='PIN MUST BE 4+ CHARACTERS';return;}
+    const saved=localStorage.getItem('dawly_pin');
+    if(!saved){localStorage.setItem('dawly_pin',v);document.getElementById('lock').style.display='none';}
+    else if(v===saved){document.getElementById('lock').style.display='none';}
+    else{msg.textContent='WRONG PIN';inp.value='';}
+  };
+  inp.addEventListener('keydown',e=>{if(e.key==='Enter')pinSubmit();});
+  setTimeout(()=>inp.focus(),300);
+})();
+
 // ═══════════ STATE ═══════════
 const S = JSON.parse(localStorage.getItem('dawly_os') || '{}');
 if(!S.checks)S.checks={};
@@ -1080,6 +1117,7 @@ if(!S.tennisLog||!Array.isArray(S.tennisLog))S.tennisLog=[];
 if(!S.gymLog||!Array.isArray(S.gymLog))S.gymLog=[];
 if(!S.revLog||!Array.isArray(S.revLog))S.revLog=[];
 if(!S.exoDel)S.exoDel={};
+if(!S.deadlines||!Array.isArray(S.deadlines))S.deadlines=[];
 const USER_AGE=20;
 const sv=()=>{S._ts=Date.now();localStorage.setItem('dawly_os',JSON.stringify(S));schedulePush();};
 const DKEY=()=>new Date().toDateString();
@@ -1341,7 +1379,6 @@ function renderSched(){
 }
 function chk(i){const dk=DKEY();if(!S.checks[dk])S.checks[dk]={};S.checks[dk][i]=!S.checks[dk][i];sv();renderSched();toast(S.checks[dk][i]?'✅ Done!':'↩ Cleared');}
 function setDT(t){S.dt=t;sv();renderSched();}
-
 // ═══════════ QUICK LOG ═══════════
 function renderQuick(){
   const t=qToday();
@@ -1391,13 +1428,13 @@ function getNextAction(){
   const t=q(DKEY());const h=new Date().getHours();
   const sch=getSch();const cur=sch[getCur(sch)];
   const del=S.exoDel[currentWeekMonday()];
-  if(!del||!del.text)return{title:'Define Monday\'s ExoGuard deliverable',why:'2 minutes in the Exo tab. A week without a named deliverable is a week that ships nothing. Everything else waits for this.'};
+  if(!del||!del.text)return{title:'Define NEXT Monday\'s ExoGuard deliverable',why:'You define it days ahead — that\'s the Monday Contract. 2 minutes in the Exo tab: name what you\'ll bring to the next supervisor meeting. A week without a named deliverable is a week that ships nothing.'};
   if((t.deep||0)<2&&h>=8&&h<22)return{title:'ExoGuard deep work block — 50 min minimum',why:`Deep blocks today: ${t.deep||0}/2. Phone in the other room, open the CAD file, timer on. Monday's deliverable: "${del.text}".`};
   if((t.out||0)<10&&h>=10)return{title:`Send ${10-(t.out||0)} more outreach messages`,why:`Outreach: ${t.out||0}/10. You're graded on inputs — replies are not your department. Log each send with the stepper.`};
   const avg=S.scores.length?Math.round(S.scores.slice(-3).reduce((a,b)=>a+b,0)/Math.min(3,S.scores.length)):0;
   if(avg<70&&h>=14&&h<23&&S.scores.length>0)return{title:'Salesforce drill — 45 minutes',why:`Recent mock avg: ${avg}%. Trigger fires at 70×2 — then the exam books itself. One weak topic, wrong-answer notebook open.`};
   if(S.scores.length===0&&h>=14&&h<23)return{title:'Take a Salesforce baseline mock',why:'Zero scores logged. You can\'t aim without a baseline. 60 questions, timed, log the result — even a bad score starts the engine.'};
-  if(!t.train&&h>=17)return{title:'Train — '+(cur&&cur.c==='tennis'?'tennis tonight':'gym session (full body)'),why:'Training not logged today. Sessions are scheduled — go execute, then flip the toggle.'};
+  if(!t.train&&h>=17)return{title:'Train — '+(cur&&cur.c==='tennis'?'tennis tonight':'gym session (your split)'),why:'Training not logged today. Sessions are scheduled — go execute, then flip the toggle.'};
   if(cur)return{title:'On the clock: '+cur.n,why:cur.s+' — the schedule already decided. No decisions needed, just execution.'};
   return{title:'Shutdown ritual',why:'Everything critical is logged. Daily Log, tomorrow\'s ONE thing, phone parks outside the room, bed by 12:00.'};
 }
@@ -1717,7 +1754,6 @@ function addDrTask(){
 }
 
 // ═══════════ DEADLINES — live countdown ═══════════
-if(!S.deadlines||!Array.isArray(S.deadlines))S.deadlines=[];
 function renderDeadlines(){
   const list=document.getElementById('dl-list');if(!list)return;
   const today=new Date();today.setHours(0,0,0,0);
@@ -1752,7 +1788,7 @@ function fmt$(v){return '$'+(Math.round(v*100)/100).toLocaleString();}
 const HU_ASSETS=[
   {name:'Payoneer account verified',sub:'do this FIRST — verification takes days'},
   {name:'Pick your niche (ONE only)',sub:'dentists · barbers · restaurants · plumbers'},
-  {name:'Demo site #1 built + deployed',sub:'Claude Code → Vercel, free'},
+  {name:'Demo site #1 built + deployed',sub:'Claude Code → GitHub Pages, free'},
   {name:'Demo site #2 built + deployed',sub:'same niche, different style'},
   {name:'Demo site #3 built + deployed',sub:'the showpiece'},
   {name:'Outreach template written',sub:'short · personal · mockup screenshot attached'},
@@ -2036,7 +2072,6 @@ function renderReview(){
     {l:'Wins logged',v:S.wins.length,c:'c-gold'},
   ];
   kg.innerHTML=kpis.map(k=>`<div class="stile"><div class="st-lbl">${k.l}</div><div class="st-val ${k.c}" style="font-size:26px;">${k.v}</div></div>`).join('');
-  // 30-day dots from quick log
   const cats=[
     {id:'sleep',cls:'ogg',fn:d=>!!d.sleep,ct:'ct-sleep'},
     {id:'fajr',cls:'og',fn:d=>!!d.fajr,ct:'ct-fajr'},
@@ -2054,12 +2089,10 @@ function renderReview(){
     document.getElementById('dr-'+c.id).innerHTML=html;
     document.getElementById(c.ct).textContent=n+'/30';
   });
-  // wins
   document.getElementById('wins-list').innerHTML=S.wins.slice(0,15).map((w,i)=>{
     const d=new Date(w.date);
     return`<div class="log-row"><span class="log-date">${d.getDate()}/${d.getMonth()+1}</span><span class="log-txt">🏆 ${w.text}</span><span class="log-x" onclick="rmWin(${i})">✕</span></div>`;
   }).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">Empty ledger. First entry: "Built my OS and started."</div>';
-  // reviews
   document.getElementById('rev-list').innerHTML=S.revLog.slice(0,8).map((r,i)=>{
     const d=new Date(r.date);
     return`<div class="log-row"><span class="log-date">${d.getDate()}/${d.getMonth()+1}</span><span class="log-txt">${r.text}</span><span class="log-x" onclick="rmReview(${i})">✕</span></div>`;
