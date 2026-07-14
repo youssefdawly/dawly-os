@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DAWLY OS — Personal Operating System</title>
+<meta name="theme-color" content="#070709">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="DAWLY OS">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --bg:#070709;
+  --s1:#0e0e12;
+  --s2:#141418;
+  --s3:#1c1c22;
+  --border:#222228;
+  --border2:#2e2e38;
+  --text:#eeedf0;
+  --muted:#44444f;
+  --muted2:#7a7a8a;
+  --gold:#d4a843;
+  --gold2:#f0c060;
+  --blue:#3d8ef0;
+  --blue2:#5aa8ff;
+  --green:#2ec97a;
+  --red:#f05555;
+  --purple:#a47cf0;
+  --cyan:#29d4e0;
+  --r:12px;--rs:8px;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-height:100vh;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.04) 2px,rgba(0,0,0,.04) 4px);pointer-events:none;z-index:9999;}
+.app{max-width:440px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;position:relative;}
+@media(min-width:768px){.app{max-width:860px;}}
+
+/* ── HEADER ── */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 11px;position:sticky;top:0;background:rgba(7,7,9,.96);backdrop-filter:blur(20px);z-index:50;border-bottom:1px solid transparent;transition:border-color .3s;}
+.hdr.on{border-color:var(--border);}
+.logo-area{display:flex;align-items:center;gap:10px;}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:5px;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 10px rgba(212,168,67,.4));}
+.logo-sub{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;border-left:1px solid var(--border2);padding-left:10px;}
+.hdr-r{display:flex;align-items:center;gap:8px;}
+.clk{font-family:'DM Mono',monospace;font-size:11px;color:var(--muted2);background:var(--s1);border:1px solid var(--border);padding:4px 10px;border-radius:20px;}
+.streak-pill{font-size:11px;font-weight:700;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;padding:4px 11px;border-radius:20px;letter-spacing:.5px;box-shadow:0 0 14px rgba(212,168,67,.35);}
+.season-pill{font-family:'DM Mono',monospace;font-size:8px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 10px;border-radius:20px;background:rgba(41,212,224,.12);color:var(--cyan);border:1px solid rgba(41,212,224,.25);}
+
+/* ── PAGES ── */
+.pages{flex:1;overflow-y:auto;overflow-x:hidden;scrollbar-width:none;}
+.pages::-webkit-scrollbar{display:none;}
+.pg{display:none;padding:0 18px 130px;animation:pgIn .22s ease;}
+.pg.active{display:block;}
+@keyframes pgIn{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+/* ── BOTTOM NAV ── */
+.bnav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:440px;background:rgba(7,7,9,.97);backdrop-filter:blur(24px);border-top:1px solid var(--border);display:flex;padding:8px 2px 22px;z-index:100;gap:1px;}
+@media(min-width:768px){.bnav{max-width:860px;}}
+.nb{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:7px 2px;border-radius:var(--rs);cursor:pointer;border:none;background:none;color:var(--muted);font-family:'DM Mono',monospace;font-size:7.5px;font-weight:500;letter-spacing:.4px;text-transform:uppercase;transition:all .2s;}
+.nb .ic{font-size:16px;line-height:1;}
+.nb:hover{color:var(--text);}
+.nb.active{color:var(--gold);background:rgba(212,168,67,.07);}
+
+/* ── STAGGER ── */
+.fu{opacity:0;transform:translateY(10px);animation:fu .38s ease forwards;}
+@keyframes fu{to{opacity:1;transform:translateY(0);}}
+.fu:nth-child(1){animation-delay:.04s;}.fu:nth-child(2){animation-delay:.08s;}
+.fu:nth-child(3){animation-delay:.12s;}.fu:nth-child(4){animation-delay:.16s;}
+.fu:nth-child(5){animation-delay:.20s;}.fu:nth-child(6){animation-delay:.24s;}
+.fu:nth-child(7){animation-delay:.28s;}.fu:nth-child(8){animation-delay:.32s;}
+.fu:nth-child(9){animation-delay:.36s;}.fu:nth-child(10){animation-delay:.40s;}
+.fu:nth-child(11){animation-delay:.44s;}.fu:nth-child(12){animation-delay:.48s;}
+
+/* ── SHARED ── */
+.section-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted2);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px;}
+.section-lbl::after{content:'';flex:1;height:1px;background:linear-gradient(90deg,var(--border2),transparent);}
+.card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:16px 18px;margin-bottom:8px;}
+.card-sm{background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);padding:13px 15px;margin-bottom:7px;}
+.addbtn{padding:9px 16px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:var(--rs);font-family:'Outfit',sans-serif;font-weight:800;font-size:12px;cursor:pointer;transition:opacity .2s;white-space:nowrap;box-shadow:0 0 10px rgba(212,168,67,.25);}
+.addbtn:hover{opacity:.85;}
+.inp{flex:1;padding:9px 13px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--rs);font-family:'Outfit',sans-serif;font-size:14px;font-weight:600;color:var(--text);outline:none;transition:border-color .2s;}
+.inp:focus{border-color:var(--gold);}
+.inp::placeholder{color:var(--muted);}
+.inp-row{display:flex;gap:7px;margin-top:10px;}
+.sec-ttl{font-size:12px;font-weight:700;margin-bottom:11px;display:flex;align-items:center;gap:7px;}
+.callout{border-radius:var(--rs);padding:13px 15px;margin-bottom:14px;font-size:11px;line-height:1.65;}
+.callout.tip{background:rgba(41,212,224,.07);border:1px solid rgba(41,212,224,.2);color:var(--text);}
+.callout.go{background:rgba(46,201,122,.07);border:1px solid rgba(46,201,122,.2);color:var(--text);}
+.callout.money{background:rgba(164,124,240,.07);border:1px solid rgba(164,124,240,.25);color:var(--text);}
+.callout.warn{background:rgba(240,85,85,.07);border:1px solid rgba(240,85,85,.25);color:var(--text);}
+
+/* ── COMMAND / NEXT ACTION ── */
+.next-card{background:linear-gradient(135deg,rgba(212,168,67,.14),rgba(212,168,67,.04));border:1.5px solid rgba(212,168,67,.4);border-radius:var(--r);padding:18px;margin-bottom:12px;box-shadow:0 0 24px rgba(212,168,67,.12);}
+.next-kicker{font-family:'DM Mono',monospace;font-size:8px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;}
+.next-title{font-size:18px;font-weight:800;line-height:1.3;margin-bottom:6px;}
+.next-why{font-size:11px;color:var(--muted2);line-height:1.6;margin-bottom:12px;}
+.next-btn{width:100%;padding:11px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:var(--rs);font-family:'Outfit',sans-serif;font-weight:900;font-size:13px;cursor:pointer;letter-spacing:.5px;box-shadow:0 0 12px rgba(212,168,67,.3);}
+.next-btn:hover{opacity:.88;}
+
+/* quick log */
+.ql-grid{display:flex;flex-direction:column;gap:6px;}
+.ql-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 13px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);}
+.ql-lbl{font-size:12px;font-weight:700;display:flex;align-items:center;gap:8px;}
+.ql-sub{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted2);letter-spacing:.5px;display:block;margin-top:1px;font-weight:400;}
+.tgl{width:44px;height:24px;border-radius:14px;background:var(--s3);border:1px solid var(--border2);position:relative;cursor:pointer;transition:all .2s;flex-shrink:0;}
+.tgl::after{content:'';position:absolute;top:2px;left:2px;width:18px;height:18px;border-radius:50%;background:var(--muted2);transition:all .2s;}
+.tgl.on{background:rgba(46,201,122,.25);border-color:var(--green);}
+.tgl.on::after{left:22px;background:var(--green);}
+.stepper{display:flex;align-items:center;gap:8px;}
+.step-b{width:28px;height:26px;border-radius:7px;border:1px solid var(--border2);background:var(--s2);color:var(--text);font-size:14px;font-weight:800;cursor:pointer;line-height:1;}
+.step-b:hover{border-color:var(--gold);color:var(--gold);}
+.step-v{font-family:'Bebas Neue',sans-serif;font-size:22px;min-width:26px;text-align:center;color:var(--gold);}
+.streak-row{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px;}
+.streak-cell{background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);padding:11px 8px;text-align:center;}
+.streak-v{font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1;margin-bottom:2px;}
+.streak-l{font-family:'DM Mono',monospace;font-size:7px;color:var(--muted2);letter-spacing:1px;text-transform:uppercase;}
+
+/* collapsibles */
+details.cbox{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);margin-bottom:8px;overflow:hidden;}
+details.cbox summary{padding:14px 16px;cursor:pointer;font-size:12px;font-weight:800;list-style:none;display:flex;align-items:center;gap:8px;}
+details.cbox summary::-webkit-details-marker{display:none;}
+details.cbox summary::after{content:'+';margin-left:auto;color:var(--gold);font-size:16px;font-weight:700;}
+details.cbox[open] summary::after{content:'–';}
+details.cbox .cbody{padding:0 16px 15px;font-size:11px;color:var(--muted2);line-height:1.7;}
+details.cbox .cbody strong{color:var(--text);}
+details.cbox.gold{border-color:rgba(212,168,67,.3);}
+details.cbox.red{border-color:rgba(240,85,85,.25);}
+
+/* ── IDENTITY bits ── */
+.id-date{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted);letter-spacing:3px;margin-bottom:12px;text-transform:uppercase;}
+.daily-quote{background:linear-gradient(135deg,rgba(212,168,67,.1),rgba(212,168,67,.03));border:1px solid rgba(212,168,67,.18);border-radius:var(--r);padding:16px 18px;margin-bottom:12px;position:relative;overflow:hidden;}
+.dq-text{font-size:14px;font-weight:700;line-height:1.45;margin-bottom:7px;position:relative;}
+.dq-author{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+.law{display:flex;gap:13px;background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);padding:13px 15px;margin-bottom:7px;transition:border-color .2s;}
+.law:hover{border-color:var(--border2);}
+.law-n{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);min-width:18px;padding-top:1px;}
+.law-t{font-size:12px;font-weight:700;margin-bottom:1px;}
+.law-d{font-size:10px;color:var(--muted2);line-height:1.6;}
+
+/* ── TODAY / SCHEDULE ── */
+.td-big{font-family:'Bebas Neue',sans-serif;font-size:52px;letter-spacing:2px;line-height:.95;margin-bottom:14px;text-shadow:0 0 30px rgba(212,168,67,.12);}
+.td-big span{color:var(--gold);}
+.prog-hero{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:14px;}
+.ph-info{flex:1;}
+.ph-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:2px;margin-bottom:7px;text-transform:uppercase;}
+.ph-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.ph-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;transition:width .5s ease;}
+.ph-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--gold);line-height:1;}
+.ph-tasks{font-size:10px;color:var(--muted2);margin-top:3px;font-family:'DM Mono',monospace;}
+.chip-row{display:flex;gap:5px;margin-bottom:12px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+.chip-row::-webkit-scrollbar{display:none;}
+.chip{padding:5px 12px;border-radius:20px;font-size:10px;font-weight:700;background:var(--s1);border:1.5px solid var(--border);cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0;color:var(--muted2);}
+.chip.active{background:var(--gold);color:#000;border-color:var(--gold);}
+.chip:hover:not(.active){border-color:var(--border2);color:var(--text);}
+.sched{display:flex;flex-direction:column;gap:4px;}
+.si{display:flex;align-items:center;gap:10px;padding:11px 13px;background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);cursor:pointer;transition:all .18s;position:relative;overflow:hidden;}
+.si::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;}
+.si.prayer::after{background:var(--gold);}
+.si.study::after{background:var(--blue);}
+.si.tennis::after{background:var(--red);}
+.si.gym::after{background:var(--green);}
+.si.hustle::after{background:var(--purple);}
+.si.now{background:var(--s2);border-color:var(--gold);box-shadow:0 0 16px rgba(212,168,67,.18);}
+.si.done{opacity:.28;}
+.si.done .si-name{text-decoration:line-through;}
+.si:hover:not(.done){border-color:var(--border2);}
+.si-time{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);min-width:40px;}
+.si-em{font-size:14px;flex-shrink:0;}
+.si-info{flex:1;min-width:0;}
+.si-name{font-size:12px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.si-law{font-family:'DM Mono',monospace;font-size:7px;color:var(--gold);background:rgba(212,168,67,.12);padding:2px 6px;border-radius:6px;margin-left:6px;letter-spacing:.5px;white-space:nowrap;}
+.si-sub{font-size:9px;color:var(--muted2);margin-top:1px;}
+.si-chk{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:8px;flex-shrink:0;transition:all .2s;}
+.si.done .si-chk{background:var(--green);border-color:var(--green);color:#000;}
+.now-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:blink 1.4s infinite;flex-shrink:0;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+/* ── TILES / TRACK ── */
+.s2{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:9px;}
+.stile{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:14px;transition:transform .15s,border-color .2s;}
+.stile:hover{transform:translateY(-2px);border-color:var(--border2);}
+.st-lbl{font-family:'DM Mono',monospace;font-size:7px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;}
+.st-val{font-family:'Bebas Neue',sans-serif;font-size:34px;line-height:1;letter-spacing:1px;margin-bottom:1px;}
+.st-sub{font-size:9px;color:var(--muted2);}
+.c-blue{color:var(--blue);}.c-green{color:var(--green);}.c-red{color:var(--red);}.c-gold{color:var(--gold);}.c-purple{color:var(--purple);}.c-cyan{color:var(--cyan);}
+.sf-row{display:flex;align-items:center;gap:8px;margin-bottom:6px;}
+.sf-n{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);min-width:14px;}
+.sf-bg{flex:1;height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
+.sf-fill{height:100%;border-radius:2px;transition:width .6s ease;}
+.sf-pct{font-family:'DM Mono',monospace;font-size:9px;min-width:34px;text-align:right;}
+.tr-sec{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:13px 15px;margin-bottom:8px;}
+.tr-hd{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.tr-nm{font-size:12px;font-weight:700;}
+.tr-ct{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+.dot-row{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;}
+.d{aspect-ratio:1;border-radius:3px;background:var(--border);transition:all .12s;border:1.5px solid transparent;}
+.d.og{background:var(--gold);}.d.ob{background:var(--blue);}
+.d.ogg{background:var(--green);}.d.or{background:var(--red);}
+.d.op{background:var(--purple);}
+.d.td{border-color:rgba(255,255,255,.25);}
+
+/* ── HERO ── */
+.hero{padding:22px 0 14px;}
+.hero-kicker{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:3px;margin-bottom:8px;text-transform:uppercase;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:56px;letter-spacing:2px;line-height:.9;margin-bottom:6px;}
+.hero-sub{font-size:12px;color:var(--muted2);line-height:1.7;margin-bottom:14px;}
+
+/* ── TABS ── */
+.stabs{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px;}
+.stabs::-webkit-scrollbar{display:none;}
+.stab{padding:5px 13px;border-radius:20px;font-size:10px;font-weight:700;background:var(--s1);border:1.5px solid var(--border);cursor:pointer;white-space:nowrap;transition:all .2s;flex-shrink:0;color:var(--muted2);}
+.stab.active{background:var(--cyan);color:#000;border-color:var(--cyan);}
+.stab:hover:not(.active){border-color:var(--border2);color:var(--text);}
+.spanel{display:none;}
+.spanel.active{display:block;}
+
+/* ── PHASE / SKILL / FUND blocks ── */
+.phase-block{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:15px 17px;margin-bottom:8px;}
+.phase-block.current-phase{border-color:var(--cyan);background:rgba(41,212,224,.04);}
+.phase-head{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;}
+.phase-title{font-size:13px;font-weight:800;margin-bottom:2px;}
+.phase-sub{font-size:10px;color:var(--muted2);}
+.phase-badge{font-family:'DM Mono',monospace;font-size:8px;padding:3px 9px;border-radius:10px;font-weight:700;flex-shrink:0;}
+.pb-now{background:rgba(41,212,224,.15);color:var(--cyan);}
+.phase-tasks{display:flex;flex-direction:column;gap:5px;}
+.pt{display:flex;gap:9px;align-items:flex-start;font-size:11px;color:var(--muted2);line-height:1.5;}
+.pt::before{content:'→';color:var(--cyan);flex-shrink:0;margin-top:1px;}
+
+/* ── MODULES / CHECKLISTS ── */
+.module-grid{display:grid;gap:7px;margin-bottom:16px;}
+.mod-item{background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);padding:12px 14px;display:flex;align-items:center;gap:11px;cursor:pointer;transition:all .18s;}
+.mod-item:hover{border-color:var(--border2);}
+.mod-item.done-mod{opacity:.45;}
+.mod-item.done-mod .mod-name{text-decoration:line-through;}
+.mod-check{width:18px;height:18px;border-radius:5px;border:1.5px solid var(--border2);display:flex;align-items:center;justify-content:center;font-size:9px;flex-shrink:0;transition:all .2s;background:transparent;}
+.mod-item.done-mod .mod-check{background:var(--blue);border-color:var(--blue);color:#fff;}
+.mod-info{flex:1;min-width:0;}
+.mod-name{font-size:12px;font-weight:700;margin-bottom:1px;}
+.mod-pct{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);}
+.mod-weight{font-family:'DM Mono',monospace;font-size:9px;color:var(--blue);background:rgba(61,142,240,.1);padding:2px 7px;border-radius:10px;flex-shrink:0;}
+.tip-card{background:var(--s1);border:1px solid var(--border);border-left:3px solid var(--blue);border-radius:var(--rs);padding:12px 14px;margin-bottom:7px;}
+.tip-title{font-size:11px;font-weight:700;color:var(--blue2);margin-bottom:4px;}
+.tip-body{font-size:11px;color:var(--muted2);line-height:1.65;}
+.tip-card.hu{border-left-color:var(--purple);}
+.tip-card.hu .tip-title{color:var(--purple);}
+.tip-card.cy{border-left-color:var(--cyan);}
+.tip-card.cy .tip-title{color:var(--cyan);}
+.tip-card.gr{border-left-color:var(--green);}
+.tip-card.gr .tip-title{color:var(--green);}
+.tip-card.rd{border-left-color:var(--red);}
+.tip-card.rd .tip-title{color:var(--red);}
+.week-block{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:15px 17px;margin-bottom:8px;}
+.week-title{font-size:13px;font-weight:800;margin-bottom:3px;}
+.week-focus{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);margin-bottom:10px;letter-spacing:.5px;}
+.week-tasks{display:flex;flex-direction:column;gap:6px;}
+.week-task{display:flex;gap:9px;align-items:flex-start;font-size:11px;color:var(--muted2);line-height:1.5;}
+.week-task::before{content:'→';color:var(--blue);flex-shrink:0;margin-top:1px;}
+.week-block.hu .week-task::before{color:var(--purple);}
+.week-block.cy .week-task::before{color:var(--cyan);}
+
+/* ── COUNTDOWN ── */
+.countdown-card{background:linear-gradient(135deg,rgba(41,212,224,.12),rgba(41,212,224,.04));border:1px solid rgba(41,212,224,.25);border-radius:var(--r);padding:16px 18px;margin-bottom:14px;display:flex;align-items:center;justify-content:space-between;}
+.cd-label{font-family:'DM Mono',monospace;font-size:9px;color:var(--cyan);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;}
+.cd-days{font-family:'Bebas Neue',sans-serif;font-size:56px;color:var(--cyan);line-height:1;}
+.cd-sub{font-size:11px;color:var(--muted2);}
+.countdown-card.blue{background:linear-gradient(135deg,rgba(61,142,240,.12),rgba(61,142,240,.04));border-color:rgba(61,142,240,.25);}
+.countdown-card.blue .cd-label{color:var(--blue);}
+.countdown-card.blue .cd-days{color:var(--blue2);}
+.cd-edit{background:var(--s2);border:1px solid var(--border);border-radius:var(--rs);padding:5px 11px;font-size:11px;color:var(--muted2);cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s;}
+.cd-edit:hover{border-color:var(--blue);color:var(--blue2);}
+
+/* ── PIPELINE / INCOME ── */
+.pipe-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:8px;}
+.pipe-cell{background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);padding:11px 6px;text-align:center;}
+.pipe-val{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;margin-bottom:2px;}
+.pipe-lbl{font-family:'DM Mono',monospace;font-size:7px;color:var(--muted2);letter-spacing:1px;text-transform:uppercase;margin-bottom:7px;}
+.pipe-btns{display:flex;gap:4px;justify-content:center;}
+.pipe-b{width:24px;height:22px;border-radius:6px;border:1px solid var(--border2);background:var(--s2);color:var(--text);font-size:12px;font-weight:800;cursor:pointer;line-height:1;}
+.pipe-b:hover{border-color:var(--purple);color:var(--purple);}
+.inc-row{display:flex;align-items:center;gap:9px;padding:9px 12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);margin-bottom:5px;font-size:11px;}
+.inc-amt{font-family:'DM Mono',monospace;font-weight:700;color:var(--green);min-width:60px;}
+.inc-src{flex:1;color:var(--muted2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.inc-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);}
+.inc-x{color:var(--muted2);cursor:pointer;font-size:13px;padding:0 2px;}
+
+/* ── LOG ROWS (tennis/gym/wins) ── */
+.log-row{display:flex;align-items:center;gap:9px;padding:9px 12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);margin-bottom:5px;font-size:11px;}
+.log-date{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);min-width:38px;}
+.log-txt{flex:1;color:var(--text);line-height:1.4;}
+.log-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);}
+.log-x{color:var(--muted2);cursor:pointer;font-size:13px;padding:0 2px;}
+
+/* ── KPI ── */
+.kpi-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:14px;}
+@media(min-width:768px){.kpi-grid{grid-template-columns:repeat(4,1fr);}}
+
+/* ── HEALTH ── */
+.gauge-row{display:flex;gap:10px;margin-bottom:14px;}
+.gauge-card{flex:1;background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:16px 10px;display:flex;flex-direction:column;align-items:center;}
+.gauge-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted2);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;}
+.gauge-wrap{position:relative;width:108px;height:108px;display:flex;align-items:center;justify-content:center;}
+.gauge-num{position:absolute;font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;}
+.gauge-zone{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;margin-top:4px;font-weight:700;}
+.health-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px;}
+.insight-line{background:linear-gradient(135deg,rgba(61,142,240,.1),rgba(61,142,240,.03));border:1px solid rgba(61,142,240,.2);border-radius:var(--rs);padding:12px 15px;margin-bottom:14px;font-size:11px;line-height:1.6;color:var(--text);}
+.session-row{display:flex;align-items:center;gap:9px;padding:8px 11px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);margin-bottom:5px;font-size:11px;}
+.session-row .sr-x{margin-left:auto;color:var(--muted2);cursor:pointer;font-size:13px;}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:10px;}
+.field-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted2);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;display:block;}
+
+/* TOAST + MODAL */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(12px);background:var(--s2);border:1px solid var(--border);color:var(--text);padding:9px 17px;border-radius:24px;font-size:11px;font-weight:600;opacity:0;transition:all .25s;z-index:300;white-space:nowrap;pointer-events:none;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:200;display:none;align-items:center;justify-content:center;}
+.modal-backdrop.show{display:flex;}
+.modal{background:var(--s2);border:1px solid var(--border2);border-radius:var(--r);padding:24px;width:280px;max-width:90%;}
+.modal-title{font-size:15px;font-weight:700;margin-bottom:14px;}
+.modal-inp{width:100%;padding:10px 13px;background:var(--bg);border:1.5px solid var(--border);border-radius:var(--rs);font-family:'Outfit',sans-serif;font-size:16px;font-weight:600;color:var(--text);outline:none;transition:border-color .2s;margin-bottom:12px;}
+.modal-inp:focus{border-color:var(--blue);}
+.modal-btns{display:flex;gap:8px;}
+.mbtn-cancel{flex:1;padding:9px;background:var(--s3);color:var(--text);border:1px solid var(--border);border-radius:var(--rs);font-family:'Outfit',sans-serif;font-weight:700;font-size:12px;cursor:pointer;}
+.mbtn-save{flex:1;padding:9px;background:var(--blue);color:#fff;border:none;border-radius:var(--rs);font-family:'Outfit',sans-serif;font-weight:800;font-size:12px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="app">
+<!-- HEADER -->
+<header class="hdr" id="hdr">
+  <div class="logo-area">
+    <div class="logo">DAWLY</div>
+    <div class="logo-sub">Personal OS</div>
+  </div>
+  <div class="hdr-r">
+    <div class="season-pill" id="season-pill">—</div>
+    <div class="clk" id="clk">--:--</div>
+    <div class="streak-pill">🔥 <span id="str-num">0</span></div>
+  </div>
+</header>
+
+<div class="pages" id="pages">
+
+<!-- ════════════════════════════════════════
+     ① COMMAND — the COO screen
+════════════════════════════════════════ -->
+<div class="pg active" id="pg-cmd">
+  <div style="padding:20px 0 0;">
+    <div class="id-date fu" id="id-date">--</div>
+
+    <!-- NEXT ACTION ENGINE -->
+    <div class="next-card fu">
+      <div class="next-kicker">⚡ NEXT ACTION — YOUR COO HAS DECIDED</div>
+      <div class="next-title" id="na-title">Loading…</div>
+      <div class="next-why" id="na-why">…</div>
+      <button class="next-btn" onclick="renderNextAction(true)">DONE — WHAT'S NEXT?</button>
+    </div>
+
+    <!-- streaks -->
+    <div class="streak-row fu">
+      <div class="streak-cell"><div class="streak-v c-gold" id="sk-deep">0</div><div class="streak-l">Deep Work Streak</div></div>
+      <div class="streak-cell"><div class="streak-v c-purple" id="sk-out">0</div><div class="streak-l">Outreach Streak</div></div>
+      <div class="streak-cell"><div class="streak-v c-green" id="sk-sleep">0</div><div class="streak-l">Sleep Streak</div></div>
+    </div>
+
+    <!-- QUICK LOG — the only data entry of the day -->
+    <div class="card fu">
+      <div class="sec-ttl">📥 Daily Log <span style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);font-weight:400;">— under 2 minutes, this runs the whole OS</span></div>
+      <div class="ql-grid">
+        <div class="ql-row">
+          <div class="ql-lbl">🕌 Fajr prayed<span class="ql-sub">the anchor</span></div>
+          <div class="tgl" id="ql-fajr" onclick="qlToggle('fajr',this)"></div>
+        </div>
+        <div class="ql-row">
+          <div class="ql-lbl">🌙 Slept on time last night<span class="ql-sub">in bed by 12:00</span></div>
+          <div class="tgl" id="ql-sleep" onclick="qlToggle('sleep',this)"></div>
+        </div>
+        <div class="ql-row">
+          <div class="ql-lbl">🧠 Deep work blocks<span class="ql-sub">50+ min · phone in other room</span></div>
+          <div class="stepper"><button class="step-b" onclick="qlStep('deep',-1)">−</button><div class="step-v" id="ql-deep">0</div><button class="step-b" onclick="qlStep('deep',1)">+</button></div>
+        </div>
+        <div class="ql-row">
+          <div class="ql-lbl">💰 Outreach sent<span class="ql-sub">target 10 · every day</span></div>
+          <div class="stepper"><button class="step-b" onclick="qlStep('out',-1)">−</button><div class="step-v" id="ql-out">0</div><button class="step-b" onclick="qlStep('out',1)">+</button></div>
+        </div>
+        <div class="ql-row">
+          <div class="ql-lbl">🏋️ Trained<span class="ql-sub">gym or tennis — either counts</span></div>
+          <div class="tgl" id="ql-train" onclick="qlToggle('train',this)"></div>
+        </div>
+        <div class="ql-row" id="ql-weight-row" style="display:none;">
+          <div class="ql-lbl">⚖️ Friday weigh-in (kg)<span class="ql-sub">same time · after bathroom · before food</span></div>
+          <div style="display:flex;gap:6px;align-items:center;">
+            <input class="inp" type="number" step="0.1" id="ql-weight" placeholder="60.0" style="width:76px;flex:none;">
+            <button class="step-b" style="width:auto;padding:0 10px;" onclick="qlWeight()">✓</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEADLINES — live countdown, recomputed every open -->
+    <div class="card fu">
+      <div class="sec-ttl">⏳ Deadlines <span style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);font-weight:400;">— counts down automatically every day</span></div>
+      <div id="dl-list"></div>
+      <div class="inp-row">
+        <input class="inp" id="dl-text" placeholder="What's due — e.g. CAD design approval" maxlength="60">
+        <input class="inp" type="date" id="dl-date" style="flex:0 0 130px;">
+        <button class="addbtn" onclick="addDeadline()">+ Add</button>
+      </div>
+    </div>
+
+    <!-- NORTH STAR -->
+    <details class="cbox gold fu">
+      <summary>🌟 North Star — read when you want to quit</summary>
+      <div class="cbody">
+        My parents watching me graduate as a mechanical engineer. Then seeing ExoGuard become a real company instead of just a university project. Seeing me become financially independent. Seeing that all the sacrifices they made for me weren't wasted.<br><br>
+        <strong>I want them to look at me and genuinely feel proud of the man I became — not because of money alone, but because I worked hard, stayed disciplined, never gave up, and built something meaningful that helps people.</strong>
+      </div>
+    </details>
+
+    <!-- daily quote -->
+    <div class="daily-quote fu">
+      <div class="dq-text" id="dq-text">Loading...</div>
+      <div class="dq-author" id="dq-author">—</div>
+    </div>
+
+    <!-- LAWS -->
+    <div class="section-lbl fu">The Laws</div>
+    <div class="law fu"><div class="law-n">01</div><div><div class="law-t">I start before I feel ready.</div><div class="law-d">Confidence is built by doing, not by waiting. Action first. Always.</div></div></div>
+    <div class="law fu"><div class="law-n">02</div><div><div class="law-t">Overwhelmed? Shrink the step.</div><div class="law-d">When frozen: 3 breaths → open the file → 10 minutes only. Momentum kills overwhelm; the phone feeds it.</div></div></div>
+    <div class="law fu"><div class="law-n">03</div><div><div class="law-t">One thing at a time. Trust the OS.</div><div class="law-d">The Next Action card decides. My only job is executing what's in front of me.</div></div></div>
+    <div class="law fu"><div class="law-n">04</div><div><div class="law-t">Outreach before output.</div><div class="law-d">10 messages a day before anything feels "ready". Selling is the job — the website is the deliverable.</div></div></div>
+    <div class="law fu"><div class="law-n">05</div><div><div class="law-t">Sleep is a training session.</div><div class="law-d">In bed by 12:00, up at 8:00, every day. Muscle, focus, and tennis are all built in bed.</div></div></div>
+    <div class="law fu"><div class="law-n">06</div><div><div class="law-t">A bad day never becomes a bad week.</div><div class="law-d">Missed a day? Run the Reset Protocol. Zero guilt, minimum day, back in the game. Streaks bend — they don't break.</div></div></div>
+
+    <!-- PROTOCOLS -->
+    <div class="section-lbl fu" style="margin-top:14px;">Protocols — run these, don't improvise</div>
+    <details class="cbox red fu">
+      <summary>🚨 Overwhelm Protocol</summary>
+      <div class="cbody">
+        Triggered the second you notice freeze or the urge to escape into the phone.<br><br>
+        1. <strong>Stand up.</strong> Physically. Walk to another room.<br>
+        2. <strong>3 slow breaths</strong> (4s in, 6s out) — this settles the gut too.<br>
+        3. Ask ONE question: <strong>"What is the smallest next physical action?"</strong> (open the CAD file, write one sentence, send one message)<br>
+        4. Do it for <strong>10 minutes only</strong>. Permission to stop after. You almost never will.<br>
+        5. Phone goes to the other room BEFORE step 4, not after.
+      </div>
+    </details>
+    <details class="cbox red fu">
+      <summary>🔄 Reset Protocol (after 2+ missed days)</summary>
+      <div class="cbody">
+        The old you abandoned systems here. The new you runs this instead:<br><br>
+        1. <strong>No guilt audit.</strong> Don't review what you missed. Delete the mental debt.<br>
+        2. Declare a <strong>Minimum Day</strong>: one 30-min deep work block + 5 outreach + sleep on time. That's a full win.<br>
+        3. Two Minimum Days in a row → resume normal days.<br>
+        4. Write one line in the Wins Ledger: "Came back on [date]." Coming back IS the elite skill.
+      </div>
+    </details>
+    <details class="cbox fu">
+      <summary>🧠 Deep Work SOP</summary>
+      <div class="cbody">
+        1. Phone in another room (non-negotiable — this is 80% of the system).<br>
+        2. One tab, one file, one task written on paper before starting.<br>
+        3. 50 min on / 10 min off. Off means stand, water, look far away — not screens.<br>
+        4. Log the block in the Daily Log immediately — the streak is the reward.<br>
+        5. Sharpest hours are your evening — guard 6 PM–10 PM like tennis court time.
+      </div>
+    </details>
+    <details class="cbox fu">
+      <summary>📅 Sunday Review SOP (20 min, every week)</summary>
+      <div class="cbody">
+        Open the Review tab → score the week → read the wins ledger → set ONE priority per domain for next week → check ExoGuard Monday deliverable is defined → done. 20 minutes. This meeting with yourself is the difference between a system and a poster.
+      </div>
+    </details>
+
+    <!-- DEVICE SYNC -->
+    <details class="cbox fu" id="sync-box">
+      <summary>☁️ Device Sync — iPhone · Tab · MacBook</summary>
+      <div class="cbody">
+        One-time setup per device: create a free account at <strong>jsonbin.io</strong> → create a bin containing just <strong>{}</strong> → copy the <strong>Bin ID</strong> (from the bin's URL) and your <strong>X-Master-Key</strong> (API Keys page) → paste both below on EVERY device. After that, every checkmark, log, and streak syncs automatically — newest data always wins.
+        <div class="inp-row" style="margin-top:12px;">
+          <input class="inp" id="sync-bin" placeholder="Bin ID — e.g. 66a1b2c3d4e5f6a7b8c9d0e1">
+        </div>
+        <div class="inp-row" style="margin-top:7px;">
+          <input class="inp" id="sync-key" placeholder="X-Master-Key — $2a$10$...">
+        </div>
+        <div class="inp-row" style="margin-top:7px;">
+          <button class="addbtn" style="flex:1;" onclick="saveSyncConfig()">Save & Connect</button>
+          <button class="addbtn" style="flex:1;background:var(--s3);color:var(--text);box-shadow:none;border:1px solid var(--border2);" onclick="pullSync(true)">Sync Now</button>
+        </div>
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);margin-top:9px;" id="sync-status">Not connected — data stays on this device only.</div>
+        <div class="inp-row" style="margin-top:10px;">
+          <button class="addbtn" style="flex:1;background:var(--s3);color:var(--text);box-shadow:none;border:1px solid var(--border2);" onclick="exportBackup()">⬇ Export Backup</button>
+          <button class="addbtn" style="flex:1;background:var(--s3);color:var(--text);box-shadow:none;border:1px solid var(--border2);" onclick="document.getElementById('import-file').click()">⬆ Import Backup</button>
+          <input type="file" id="import-file" accept=".json" style="display:none;" onchange="importBackup(this)">
+        </div>
+      </div>
+    </details>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     ② TODAY — season-aware schedule
+════════════════════════════════════════ -->
+<div class="pg" id="pg-today">
+  <div style="padding:20px 0 12px;">
+    <div class="id-date" id="greet">GOOD MORNING, DAWLY</div>
+    <div class="td-big">LET'S<br><span id="td-day">WIN.</span></div>
+  </div>
+  <div class="prog-hero">
+    <div class="ph-info">
+      <div class="ph-lbl">Today's Progress</div>
+      <div class="ph-bar"><div class="ph-fill" id="ph-fill" style="width:0%"></div></div>
+      <div class="ph-tasks" id="ph-tasks">0 of 0 blocks done</div>
+    </div>
+    <div><div class="ph-num" id="ph-pct">0%</div></div>
+  </div>
+  <div class="callout tip fu" id="td-directive" style="margin-bottom:10px;">Loading today's directive…</div>
+  <div class="chip-row">
+    <div class="chip active" id="chip-auto" onclick="setDT('auto')">Auto</div>
+    <div class="chip" id="chip-grind" onclick="setDT('grind')">🔥 Grind</div>
+    <div class="chip" id="chip-tennisday" onclick="setDT('tennisday')">🎾 Tennis Day</div>
+    <div class="chip" id="chip-friday" onclick="setDT('friday')">🕌 Friday</div>
+    <div class="chip" id="chip-uniday" onclick="setDT('uniday')">🎓 Uni Day</div>
+    <div class="chip" id="chip-unitennis" onclick="setDT('unitennis')">🎓🎾 Uni+Tennis</div>
+    <div class="chip" id="chip-ramadan" onclick="setDT('ramadan')">🌙 Ramadan</div>
+    <div class="chip" id="chip-rest" onclick="setDT('rest')">🌅 Rest</div>
+  </div>
+  <div class="sched" id="sched"></div>
+</div>
+<!-- ════════════════════════════════════════
+     ③ EXOGUARD — solo execution system
+════════════════════════════════════════ -->
+<div class="pg" id="pg-exo">
+  <div class="hero">
+    <div class="hero-kicker fu" style="color:var(--cyan);">GRADUATION PROJECT · SOLO BUILD · PHASE 2</div>
+    <div class="hero-title fu" style="text-shadow:0 0 30px rgba(41,212,224,.15);">EXO<span style="color:var(--cyan);">GUARD.</span></div>
+    <div class="hero-sub fu">Smart industrial back exoskeleton with AI injury prevention. You build this alone — so the system supplies the accountability a team would. Every Monday, your supervisor is the deadline.</div>
+  </div>
+
+  <div class="stabs fu" id="exo-tabs">
+    <div class="stab active" onclick="showExoTab('exec',this)">⚡ Execute</div>
+    <div class="stab" onclick="showExoTab('phases',this)">🗺 Phases</div>
+    <div class="stab" onclick="showExoTab('super',this)">👨‍🏫 Supervisor</div>
+    <div class="stab" onclick="showExoTab('play',this)">📚 Playbook</div>
+  </div>
+
+  <div class="spanel active" id="exos-exec">
+  <!-- Monday countdown -->
+  <div class="countdown-card fu">
+    <div>
+      <div class="cd-label">Supervisor Meeting In</div>
+      <div class="cd-days" id="exo-cd">—</div>
+      <div class="cd-sub">every Monday · the deliverable ships whether it's perfect or not</div>
+    </div>
+    <div style="text-align:right;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:30px;color:var(--green);" id="exo-del-streak">0</div>
+      <div style="font-family:'DM Mono',monospace;font-size:7px;color:var(--muted2);letter-spacing:1px;">DELIVERABLE STREAK</div>
+    </div>
+  </div>
+
+  <!-- this week's deliverable -->
+  <div class="card fu">
+    <div class="sec-ttl">🎯 This Monday's Deliverable</div>
+    <div id="exo-del-current"></div>
+    <div class="inp-row">
+      <input class="inp" id="exo-del-in" placeholder="e.g. Complete CAD assembly — frame + hip joint" maxlength="90" onkeydown="if(event.key==='Enter')setDeliverable()">
+      <button class="addbtn" onclick="setDeliverable()">Set</button>
+    </div>
+  </div>
+
+  <div class="callout go fu">
+    <strong>Standing order — Order-Same-Day Rule:</strong> the day your design gets supervisor approval, the component order goes in that evening. Local Cairo suppliers (RAM Electronics / Future Electronics, Nasr City) — no shipping delay excuse exists in Egypt. ESP32, MPU-6050 ×3, 18650 cells + BMS, solenoid, MOSFETs. Design first ✓ — but approval day = order day.
+  </div>
+
+  <!-- current phase -->
+  <div class="phase-block current-phase fu">
+    <div class="phase-head">
+      <div><div class="phase-title">Current Phase <span style="font-size:9px;color:var(--muted2);font-weight:400;">(tap to edit)</span></div></div>
+      <div class="phase-badge pb-now">LIVE</div>
+    </div>
+    <input id="exo-phase-name" class="modal-inp" style="margin-bottom:8px;font-size:14px;" placeholder="Phase 2 — CAD Design & Procurement" oninput="saveExoPhase()">
+    <input id="exo-phase-dates" class="modal-inp" style="margin-bottom:0;font-size:11px;color:var(--muted2);" placeholder="target dates" oninput="saveExoPhase()">
+  </div>
+
+  <!-- focus list -->
+  <div class="tr-sec fu">
+    <div class="tr-hd"><div class="tr-nm">🎯 Today's ExoGuard Focus</div><div class="tr-ct" id="exo-focus-ct">0/3</div></div>
+    <div id="exo-focus-list" style="display:flex;flex-direction:column;gap:4px;margin-bottom:8px;"></div>
+    <div class="inp-row" style="margin-top:0;">
+      <input class="inp" id="exo-focus-in" placeholder="Add today's top action…" maxlength="80" onkeydown="if(event.key==='Enter')addExoFocus()">
+      <button class="addbtn" onclick="addExoFocus()">+ Add</button>
+    </div>
+  </div>
+
+  <!-- solo builder system -->
+  <div class="section-lbl fu" style="margin-top:14px;">Solo Builder System</div>
+  <div class="tip-card cy fu">
+    <div class="tip-title">📅 The Monday Contract</div>
+    <div class="tip-body">Every Sunday review, define ONE concrete deliverable for Monday's meeting. Bring it even at 80% quality. A solo project dies from "almost ready" — the supervisor meeting is your ship date, not your show-off date.</div>
+  </div>
+  <div class="tip-card cy fu">
+    <div class="tip-title">📓 Build Journal (5 lines/day)</div>
+    <div class="tip-body">End of every ExoGuard block, write in one note: what I did · what broke · next action. When you return tomorrow you start in 30 seconds instead of 15 minutes of "where was I?" — this is the #1 solo-builder retention tool.</div>
+  </div>
+  <div class="tip-card cy fu">
+    <div class="tip-title">🧪 Prototype over polish</div>
+    <div class="tip-body">Phase ladder: CAD approved → parts ordered same day → breadboard test → V1 frame → dataset → AI → V2. Each rung only needs to be good enough to stand on. Perfection at any rung delays every rung above it.</div>
+  </div>
+  <div class="tip-card cy fu">
+    <div class="tip-title">🏭 The Mantrac card</div>
+    <div class="tip-body">A factory pilot (even 2 weeks, 5 workers) turns a grad project into a company story: real data, a named customer, a photo at a Caterpillar dealership. Ask for access, not money. Send the request once V1 exists.</div>
+  </div>
+  </div><!-- /exec -->
+
+  <!-- PHASES — full project timeline, fused from ExoGuard Command Dashboard -->
+  <div class="spanel" id="exos-phases">
+    <div class="prog-hero" style="margin-bottom:12px;">
+      <div class="ph-info">
+        <div class="ph-lbl">Overall Project — Jun 2026 → Apr 2027</div>
+        <div class="ph-bar"><div class="ph-fill" id="exo-all-fill" style="width:0%"></div></div>
+        <div class="ph-tasks" id="exo-all-tasks">0 tasks done</div>
+      </div>
+      <div><div class="ph-num" id="exo-all-pct">0%</div></div>
+    </div>
+    <div class="callout tip">Your full phase plan lives here now — one OS, one place. Checkmarks from your old ExoGuard dashboard carry over automatically. Tap a phase to open it, tap tasks to check them off.</div>
+    <div id="exo-phases-list"></div>
+  </div>
+
+  <!-- SUPERVISOR -->
+  <div class="spanel" id="exos-super">
+    <div class="callout tip">Tasks assigned by / promised to your supervisor. Tap the status badge to cycle: To Do → In Progress → Done. Bring this list to every Monday meeting.</div>
+    <div class="s2" id="dr-stats"></div>
+    <div id="dr-list"></div>
+    <div class="inp-row">
+      <input class="inp" id="dr-in" placeholder="New supervisor task…" maxlength="90" onkeydown="if(event.key==='Enter')addDrTask()">
+      <button class="addbtn" onclick="addDrTask()">+ Add</button>
+    </div>
+  </div>
+
+  <!-- PLAYBOOK -->
+  <div class="spanel" id="exos-play">
+    <div class="section-lbl">Skills — in build order</div>
+    <div class="tip-card cy"><div class="tip-title">Inventor — dynamic simulation (NOW)</div><div class="tip-body">Model the spring-assist mechanism before fabricating — stress analysis on the frame, spring/torque curves. Saves you from building the wrong stiffness.</div></div>
+    <div class="tip-card cy"><div class="tip-title">ESP32 + Arduino IDE (~3 hrs to learn)</div><div class="tip-body">Same ecosystem as Arduino, adds WiFi/BT. randomnerdtutorials.com — WiFi HTTP POST, I2C with MPU-6050, deep sleep.</div></div>
+    <div class="tip-card cy"><div class="tip-title">Python + ML pipeline (Phase 3–4)</div><div class="tip-body">IMU CSV processing → TensorFlow on Colab → Flask dashboard. CS50P then fast.ai, both free. Complementary filter: Phillip Salmony on YouTube.</div></div>
+    <div class="tip-card cy"><div class="tip-title">TFLite Micro + PCB (Phase 4)</div><div class="tip-body">Train → .tflite → ESP32 (Pete Warden's TinyML). PCB: EasyEDA + JLCPCB (5 boards ~$20 to Cairo). Order boards ~3 weeks before Phase 4 needs them.</div></div>
+    <div class="section-lbl" style="margin-top:14px;">Funding & Sponsors</div>
+    <div class="tip-card gr"><div class="tip-title">Mantrac Egypt — ask for access, not money</div><div class="tip-body">2-week pilot, 5 workers, in exchange for a free safety data report. Real validation data + named customer + Caterpillar photo.</div></div>
+    <div class="tip-card gr"><div class="tip-title">TIEC — 10k–50k EGP grants</div><div class="tip-body">Government fund for student engineering innovation. Apply once a working prototype exists (Phase 3+). Grantee status unlocks credibility everywhere else.</div></div>
+    <div class="tip-card gr"><div class="tip-title">Orange Digital Center (Smart Village)</div><div class="tip-body">Free maker space, 3D printing, components. Cuts your 15k EGP budget pressure hard. orangedigitalcenters.com/country/egypt.</div></div>
+    <div class="tip-card gr"><div class="tip-title">Siemens Egypt + AWS/GCP credits</div><div class="tip-body">Siemens CSR loves Industry 4.0 projects — LinkedIn outreach. AWS Educate free credits now; Google for Startups ($200k GCP) after GAFI registration.</div></div>
+    <div class="tip-card gr"><div class="tip-title">Sponsorship tiers</div><div class="tip-body">🥉 5,000 EGP: logo on expo poster + acknowledgment. 🥈 15,000: + exclusive demo + pilot access. 🥇 30,000+: + co-branded press release. Send a 1-page brief with one device photo + one dashboard screenshot, on TKH letterhead. Follow up once after 10 days, then move on.</div></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     ④ HUSTLE — income engine
+════════════════════════════════════════ -->
+<div class="pg" id="pg-hustle">
+  <div class="hero">
+    <div class="hero-kicker fu" style="color:var(--purple);">INCOME ENGINE · US/UK CLIENTS · BUDGET 1,000 EGP/MO</div>
+    <div class="hero-title fu" style="text-shadow:0 0 30px rgba(164,124,240,.18);">HUSTLE<span style="color:var(--purple);">.</span></div>
+    <div class="hero-sub fu"><strong style="color:var(--text);">Two engines:</strong> AI-built websites for businesses with no site (Engine 1, primary) + Salesforce services once certified (Engine 2). Geo-arbitrage: earn USD, live in EGP. The pipeline below IS the business.</div>
+  </div>
+
+  <!-- money stats -->
+  <div class="s2 fu">
+    <div class="stile"><div class="st-lbl">Total Earned</div><div class="st-val c-green" id="hu-total">$0</div><div class="st-sub">all time</div></div>
+    <div class="stile"><div class="st-lbl">This Month</div><div class="st-val c-purple" id="hu-month">$0</div><div class="st-sub" id="hu-target-sub">target: first client</div></div>
+    <div class="stile"><div class="st-lbl">Recurring / mo</div><div class="st-val c-gold" id="hu-mrr">$0</div><div class="st-sub">care plans — the real business</div></div>
+    <div class="stile"><div class="st-lbl">Clients Won</div><div class="st-val c-blue" id="hu-clients">0</div><div class="st-sub">from pipeline</div></div>
+  </div>
+
+  <div class="callout money fu"><strong>The honest ramp (your $1k/month, real timeline):</strong> Month 1 — assets built, 300 touches, first client ($300–500). Months 2–3 — $500–1,000/mo. Month 4+ — $1k+/mo with care plans stacking. You control inputs, not replies. The OS grades you on inputs only: 10/day, every day.</div>
+
+  <!-- pipeline -->
+  <div class="section-lbl fu">Pipeline — This Week</div>
+  <div class="pipe-grid fu">
+    <div class="pipe-cell"><div class="pipe-val c-purple" id="pv-sent">0</div><div class="pipe-lbl">Sent</div><div class="pipe-btns"><button class="pipe-b" onclick="bumpPipe('sent',-1)">−</button><button class="pipe-b" onclick="bumpPipe('sent',1)">+</button></div></div>
+    <div class="pipe-cell"><div class="pipe-val c-blue" id="pv-replies">0</div><div class="pipe-lbl">Replies</div><div class="pipe-btns"><button class="pipe-b" onclick="bumpPipe('replies',-1)">−</button><button class="pipe-b" onclick="bumpPipe('replies',1)">+</button></div></div>
+    <div class="pipe-cell"><div class="pipe-val c-gold" id="pv-calls">0</div><div class="pipe-lbl">Calls</div><div class="pipe-btns"><button class="pipe-b" onclick="bumpPipe('calls',-1)">−</button><button class="pipe-b" onclick="bumpPipe('calls',1)">+</button></div></div>
+    <div class="pipe-cell"><div class="pipe-val c-green" id="pv-clients">0</div><div class="pipe-lbl">Clients</div><div class="pipe-btns"><button class="pipe-b" onclick="bumpPipe('clients',-1)">−</button><button class="pipe-b" onclick="bumpPipe('clients',1)">+</button></div></div>
+  </div>
+  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:14px;" class="fu">Healthy funnel: 100 sent → ~5 replies → ~2 calls → 1 client. Below that? Fix the message, not the effort.</div>
+
+  <!-- income log -->
+  <div class="card fu">
+    <div class="sec-ttl">💵 Income Log <span style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);font-weight:400;">USD</span></div>
+    <div id="hu-income-list"></div>
+    <div class="inp-row">
+      <input class="inp" type="number" id="hu-amt" placeholder="$" style="flex:0 0 80px;">
+      <input class="inp" id="hu-src" placeholder="Source — e.g. site build, care plan, Upwork" maxlength="60">
+      <button class="addbtn" onclick="addIncome()">+ Log</button>
+    </div>
+    <div class="inp-row" style="margin-top:7px;">
+      <input class="inp" type="number" id="hu-mrr-in" placeholder="Monthly recurring $ (care plans total)">
+      <button class="addbtn" onclick="setMRR()">Set MRR</button>
+    </div>
+  </div>
+
+  <!-- launch assets -->
+  <div class="section-lbl fu" style="margin-top:14px;">Launch Assets — build once, sell forever</div>
+  <div class="module-grid fu" id="hu-assets"></div>
+
+  <!-- stack + payments (his questions answered) -->
+  <div class="section-lbl fu">The Stack — decided for you</div>
+  <div class="tip-card hu fu">
+    <div class="tip-title">🛠 Build stack</div>
+    <div class="tip-body"><strong>Claude Code → static site → deploy free on Vercel/Netlify.</strong> You have Claude Pro — that's your dev team. Framer free tier as backup for visual clients. No WordPress (maintenance trap at your scale). Client pays for their own domain (~$12/yr) — zero hosting cost to you.</div>
+  </div>
+  <div class="tip-card hu fu">
+    <div class="tip-title">💳 Getting paid in Egypt</div>
+    <div class="tip-body"><strong>Payoneer</strong> (works in Egypt, receives USD/GBP, withdraws to EGP bank) + <strong>Wise</strong> as backup + Upwork pays into Payoneer directly. Set up this week — it takes days to verify and you don't want a client waiting on it.</div>
+  </div>
+  <div class="tip-card hu fu">
+    <div class="tip-title">💰 Budget: 1,000 EGP/month</div>
+    <div class="tip-body">Reserve it. Month 1 spend ≈ 0 (all tools free). First client money buys: your own domain + portfolio site. Never spend ahead of revenue — the business must pay for itself from client #1.</div>
+  </div>
+  <div class="tip-card hu fu">
+    <div class="tip-title">📦 Packages (quote in USD, always)</div>
+    <div class="tip-body"><strong>Starter $350:</strong> 3-page site, 72h delivery. <strong>Pro $600:</strong> 5 pages + Google Business setup + basic SEO. <strong>Care Plan $40/mo:</strong> hosting mgmt, edits, updates, priority support — attach to EVERY deal. After 3 testimonials, raise everything 50%.</div>
+  </div>
+</div>
+<!-- ════════════════════════════════════════
+     ⑤ SALESFORCE
+════════════════════════════════════════ -->
+<div class="pg" id="pg-sf">
+  <div class="hero">
+    <div class="hero-kicker fu" style="color:var(--blue);">ENGINE 2 · CERTIFICATION FIRST</div>
+    <div class="hero-title fu" style="text-shadow:0 0 30px rgba(61,142,240,.15);">SALES<span style="color:var(--blue2);">FORCE.</span></div>
+    <div class="hero-sub fu">Cert → credibility → $15/hr floor that becomes $40/hr consulting. Status: <strong style="color:var(--red);">exam not booked</strong> — the OS books it for you via the trigger rule below.</div>
+  </div>
+
+  <div class="callout warn fu" id="sf-trigger">
+    <strong>🔒 The Booking Trigger (automatic, no negotiation):</strong> the day you score <strong>70%+ on two consecutive mocks</strong>, you book the exam for 10 days later. Not "when ready" — readiness is a feeling, 70×2 is a fact. The OS watches your scores and fires the alert.
+  </div>
+
+  <div class="sf-stats fu" style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px;">
+    <div class="stile" style="text-align:center;"><div class="st-lbl">Mocks Taken</div><div class="st-val c-blue" id="sf-mocks-done" style="font-size:26px;">0</div></div>
+    <div class="stile" style="text-align:center;"><div class="st-lbl">Best Score</div><div class="st-val c-green" id="sf-best" style="font-size:26px;">—</div></div>
+    <div class="stile" style="text-align:center;"><div class="st-lbl">Modules</div><div class="st-val c-purple" id="sf-mods-done" style="font-size:26px;">0/14</div></div>
+  </div>
+
+  <div class="card fu">
+    <div class="sec-ttl">💻 Mock Scores <span style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);font-weight:400;">65% passes · book at 70×2</span></div>
+    <div id="sf-bars"><div style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace">No scores yet — take a mock today and get a baseline.</div></div>
+    <div class="inp-row">
+      <input class="inp" type="number" id="sf-in" placeholder="Score % — e.g. 61" min="0" max="100">
+      <button class="addbtn" onclick="logScore()">+ Log</button>
+    </div>
+  </div>
+
+  <div class="section-lbl fu">Exam Topics — mark what you've mastered</div>
+  <div class="module-grid fu" id="module-grid"></div>
+
+  <div class="section-lbl fu" style="margin-top:14px;">Protocol</div>
+  <div class="tip-card fu">
+    <div class="tip-title">⏰ Your Salesforce dose: 45–60 min/day, no more</div>
+    <div class="tip-body">ExoGuard owns your deep hours. SF gets one drill block: half-mock or one weak topic + wrong-answer notebook. Slow and daily beats cramming — and it leaves room for the two priorities above it.</div>
+  </div>
+  <div class="tip-card fu">
+    <div class="tip-title">📓 Wrong-Answer Notebook</div>
+    <div class="tip-body">After every mock: topic, what you chose, correct answer, one sentence WHY. Read it before each new mock. This notebook outperforms any course.</div>
+  </div>
+  <div class="tip-card fu">
+    <div class="tip-title">💰 The day you pass</div>
+    <div class="tip-body">Same day: Upwork headline becomes "Certified Salesforce Administrator", rate $15/hr, apply to 3 jobs. The cert is inventory — inventory on a shelf earns nothing.</div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     ⑥ ATHLETE — tennis · gym · fuel · recovery
+════════════════════════════════════════ -->
+<div class="pg" id="pg-ath">
+  <div class="hero">
+    <div class="hero-kicker fu" style="color:var(--red);">TENNIS · STRENGTH · FUEL · RECOVERY — ONE MACHINE</div>
+    <div class="hero-title fu" style="text-shadow:0 0 30px rgba(240,85,85,.15);">ATH<span style="color:var(--red);">LETE.</span></div>
+    <div class="hero-sub fu">Target: national ranking + club team. The path: 3 court sessions, your 5-day split, an aerobic engine, 3,000 calories, daily stretching, and 8 hours of sleep — every week, boring and repeatable.</div>
+  </div>
+
+  <div class="stabs fu" id="ath-tabs">
+    <div class="stab active" onclick="showAthTab('tennis',this)">🎾 Tennis</div>
+    <div class="stab" onclick="showAthTab('gym',this)">🏋️ Gym</div>
+    <div class="stab" onclick="showAthTab('engine',this)">🏃 Engine</div>
+    <div class="stab" onclick="showAthTab('fuel',this)">🍚 Fuel</div>
+    <div class="stab" onclick="showAthTab('recovery',this)">💓 Recovery</div>
+  </div>
+
+  <!-- TENNIS -->
+  <div class="spanel active" id="ath-tennis">
+    <div class="callout tip">
+      <strong>The two weaknesses, attacked directly:</strong> ① Serve consistency — 30 serves with targets before EVERY session (ask the coach for 10 minutes of court time early; second-serve spin focus). ② Match mentality — one practice match per week minimum + a fixed between-points routine: turn away, breathe, racket strings check, next point only. Confidence follows reps, not talent.
+    </div>
+    <div class="card">
+      <div class="sec-ttl">🎾 Session Log — one goal per session</div>
+      <div id="tn-log"></div>
+      <div class="inp-row">
+        <input class="inp" id="tn-goal" placeholder="Session goal — e.g. 60% first serves in" maxlength="60">
+        <input class="inp" type="number" id="tn-rate" placeholder="1–5" min="1" max="5" style="flex:0 0 60px;">
+        <button class="addbtn" onclick="addTennis()">+ Log</button>
+      </div>
+    </div>
+    <div class="week-block">
+      <div class="week-title" style="color:var(--red);">Path to Ranking</div>
+      <div class="week-focus">beginner→intermediate→ranked · 12-month arc</div>
+      <div class="week-tasks">
+        <div class="week-task">Now–3 months: serve % + rally depth. Ask coach to score you monthly on both.</div>
+        <div class="week-task">3–6 months: first internal academy matches — the goal is losing well, learning the nerves.</div>
+        <div class="week-task">6–12 months: register for federation ranking events + club team tryout.</div>
+        <div class="week-task">Every session logged above with ONE goal — sessions without a goal are just cardio.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- GYM -->
+  <div class="spanel" id="ath-gym">
+    <div class="callout go">
+      <strong>Your split, kept.</strong> You love it, you've been consistent 3 months — that beats any "optimal" program you'd abandon. Three upgrades that cost nothing: ① <strong>double days</strong> — on tennis days, gym goes in the MORNING (75 min, save the legs), court at night. ② <strong>progressive overload inside 4×12</strong> — the day you hit 12 clean reps on all 4 sets, add 2.5 kg next session. Same split, now it builds. ③ <strong>Legs day lands on Saturday</strong> — furthest from Monday's court, so your footwork never pays for your squats.
+    </div>
+    <div class="week-block">
+      <div class="week-title" style="color:var(--green);">The 5-Day Split — your rotation</div>
+      <div class="week-focus">4×12 · rest 60–90s · add 2.5 kg when all sets hit 12</div>
+      <div class="week-tasks">
+        <div class="week-task"><strong>Day 1 — Chest + Triceps</strong> (tennis-day AM friendly)</div>
+        <div class="week-task"><strong>Day 2 — Back + Biceps</strong></div>
+        <div class="week-task"><strong>Day 3 — Shoulders</strong> — go easy on overhead volume the day before private lessons; your serve rents those shoulders</div>
+        <div class="week-task"><strong>Day 4 — Arms</strong> (lightest day — perfect for tennis-day mornings)</div>
+        <div class="week-task"><strong>Day 5 — Legs (Saturday)</strong> — heavy, no court for 48h after</div>
+        <div class="week-task"><strong>Every session ends with:</strong> 5-min stretch of what you trained. Non-negotiable — it's in the schedule now.</div>
+      </div>
+    </div>
+    <div class="card">
+      <div class="sec-ttl">🏋️ Lift Log — top set only</div>
+      <div id="gym-log"></div>
+      <div class="inp-row">
+        <input class="inp" id="gym-note" placeholder="e.g. Chest — Bench 50kg 4×12 (+2.5 next)" maxlength="60">
+        <button class="addbtn" onclick="addGym()">+ Log</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ENGINE — running · footwork · breathing · stretching -->
+  <div class="spanel" id="ath-engine">
+    <div class="callout tip">
+      <strong>The Engine tab exists because tennis matches are won in the third set.</strong> Aerobic base = faster recovery between points, calmer breathing under pressure, sharper footwork when tired. This is the invisible 20% that beats players with prettier forehands.
+    </div>
+    <div class="week-block">
+      <div class="week-title" style="color:var(--cyan);">🏃 Running — 2–3×/week</div>
+      <div class="week-focus">never the morning before an evening match/lesson at full intensity</div>
+      <div class="week-tasks">
+        <div class="week-task"><strong>Zone-2 run (2×/wk, 25–30 min):</strong> conversational pace, nasal breathing only. If you can't breathe through your nose, slow down. This builds the between-points recovery engine.</div>
+        <div class="week-task"><strong>Intervals (1×/wk, optional):</strong> 8–10 × 20s hard / 60s walk — or shuttle sprints on court lines. Match-speed conditioning + footwork under fatigue.</div>
+        <div class="week-task"><strong>Rule:</strong> runs live on grind-day mornings. Easy jog is fine on gym days; never intervals + legs day together.</div>
+      </div>
+    </div>
+    <div class="week-block">
+      <div class="week-title" style="color:var(--cyan);">👣 Footwork & Agility — 10 min, 3×/week</div>
+      <div class="week-focus">before gym or as morning starter — tiny time, huge court payoff</div>
+      <div class="week-tasks">
+        <div class="week-task">Jump rope 3×2 min (the cheapest footwork coach on earth)</div>
+        <div class="week-task">Ladder drills or line hops — 2 min (in-in-out-out, lateral shuffle)</div>
+        <div class="week-task">Lateral bounds 3×6/side + split-step practice against a wall</div>
+        <div class="week-task">Track it by feel: your Wed session should feel lighter on your feet than Mon. That's the KPI.</div>
+      </div>
+    </div>
+    <div class="week-block">
+      <div class="week-title" style="color:var(--cyan);">🫁 Breathing — free performance</div>
+      <div class="week-tasks">
+        <div class="week-task"><strong>Between points:</strong> turn away → one long exhale → strings check → next point. Already your match-mentality ritual.</div>
+        <div class="week-task"><strong>Box breathing (4-4-4-4, 2 min):</strong> before matches, before mocks, before sleep. Also your IBS's best friend — calm mind, calm gut.</div>
+        <div class="week-task"><strong>Nasal breathing on all Zone-2 runs</strong> — trains CO₂ tolerance, directly improves late-match composure.</div>
+      </div>
+    </div>
+    <div class="week-block">
+      <div class="week-title" style="color:var(--gold);">🧘 Stretching & Mobility — daily, built into the schedule</div>
+      <div class="week-focus">10 min nightly + 5 min post-training · flexibility is injury insurance</div>
+      <div class="week-tasks">
+        <div class="week-task"><strong>Nightly 10-min routine (in your wind-down block):</strong> hamstrings 60s/side · hip flexor lunge 60s/side · figure-4 glutes 45s/side · chest doorway 45s · shoulder cross-body + forearm stretch 45s · child's pose 60s.</div>
+        <div class="week-task"><strong>Post-gym:</strong> 5 min on the muscles trained. <strong>Post-tennis:</strong> shoulders, forearms, hips, calves — while you're still warm.</div>
+        <div class="week-task"><strong>Morning (2 min):</strong> world's greatest stretch ×3/side + arm circles. Wakes up the hips before a day at the desk.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FUEL -->
+  <div class="spanel" id="ath-fuel">
+    <div class="callout warn">
+      <strong>The real bottleneck.</strong> 182 cm / ~60 kg — every goal in this OS (serve power, muscle, energy, even focus) is gated by eating. Target: <strong>+0.25–0.5 kg/week → 68–70 kg by next summer.</strong> No supplements — food only, as agreed. IBS rules: regular meal times, eat calm and slow, limit spice and coffee, and remember your gut flares with anxiety — the Overwhelm Protocol protects digestion too.
+    </div>
+    <div class="s2">
+      <div class="stile"><div class="st-lbl">Current Weight</div><div class="st-val c-gold" id="fu-now">—</div><div class="st-sub">last Friday weigh-in</div></div>
+      <div class="stile"><div class="st-lbl">4-Week Trend</div><div class="st-val c-green" id="fu-trend">—</div><div class="st-sub">target +1–2 kg/month</div></div>
+    </div>
+    <div class="card">
+      <div class="sec-ttl">⚖️ Weight Log <span style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);font-weight:400;">auto-fills from Friday Daily Log</span></div>
+      <div id="wt-bars"><div style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace">No weigh-ins yet — first one this Friday morning.</div></div>
+    </div>
+    <div class="week-block">
+      <div class="week-title" style="color:var(--gold);">The Daily Plate (~2,900–3,100 kcal, food only)</div>
+      <div class="week-focus">4 meals + 2 liquid snacks · IBS-friendly · family kitchen</div>
+      <div class="week-tasks">
+        <div class="week-task"><strong>Breakfast:</strong> 3–4 eggs + bread/oats + honey + banana. Never skipped — it's 25% of the bulk.</div>
+        <div class="week-task"><strong>Lunch (family meal):</strong> double the rice/pasta/potatoes portion + normal protein. The carb double-scoop is the easiest +400 kcal in Egypt.</div>
+        <div class="week-task"><strong>Liquid snack ×2:</strong> blender — banana, oats, peanut butter, honey, milk or yogurt (test lactose gently — if the gut complains, switch to lactose-free or yogurt only). ~600 kcal each, zero chewing fatigue.</div>
+        <div class="week-task"><strong>Dinner:</strong> normal family dinner + extra bread. Post-tennis nights: add dates + milk/yogurt.</div>
+        <div class="week-task"><strong>IBS guardrails:</strong> same meal times daily · no big spicy meals · coffee max 1, before noon · eat slow on stressful days.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECOVERY -->
+  <div class="spanel" id="ath-recovery">
+    <div class="gauge-row">
+      <div class="gauge-card"><div class="gauge-lbl">Recovery</div><div id="gauge-recovery"></div><div class="gauge-zone" id="recovery-zone-lbl">—</div></div>
+      <div class="gauge-card"><div class="gauge-lbl">Strain</div><div id="gauge-strain"></div><div class="gauge-zone" id="strain-zone-lbl" style="color:var(--blue2)">—</div></div>
+    </div>
+    <div class="health-stats">
+      <div class="stile"><div class="st-lbl">Recovery Age</div><div class="st-val c-green" id="hl-age" style="font-size:26px;">—</div><div class="st-sub">vs. 20 actual</div></div>
+      <div class="stile"><div class="st-lbl">7-Day Avg</div><div class="st-val c-gold" id="hl-avgrec" style="font-size:26px;">—</div><div class="st-sub">recovery</div></div>
+      <div class="stile"><div class="st-lbl">Sessions</div><div class="st-val c-blue" id="hl-sessions" style="font-size:26px;">0</div><div class="st-sub">today</div></div>
+    </div>
+    <div class="insight-line" id="hl-insight">Log today's Apple Watch data below to unlock your insight.</div>
+    <div class="card">
+      <div class="sec-ttl">⌚ Apple Watch Data</div>
+      <div class="field-grid">
+        <div><span class="field-lbl">Resting HR</span><input class="inp" style="width:100%" type="number" id="hl-rhr" placeholder="58"></div>
+        <div><span class="field-lbl">HRV (ms)</span><input class="inp" style="width:100%" type="number" id="hl-hrv" placeholder="72"></div>
+        <div><span class="field-lbl">Sleep (hrs)</span><input class="inp" style="width:100%" type="number" step="0.1" id="hl-sleep" placeholder="7.5"></div>
+        <div><span class="field-lbl">Sleep Eff. (%)</span><input class="inp" style="width:100%" type="number" id="hl-sleepeff" placeholder="88"></div>
+      </div>
+      <button class="addbtn" style="width:100%;margin-top:10px;" onclick="saveHealthEntry()">Save Recovery Data</button>
+    </div>
+    <div class="card">
+      <div class="sec-ttl">🔥 Log Workout (adds strain)</div>
+      <div id="hl-sessions-list"></div>
+      <div class="inp-row">
+        <input class="inp" type="number" id="hl-wo-hr" placeholder="Avg HR" style="flex:1">
+        <input class="inp" type="number" id="hl-wo-min" placeholder="Minutes" style="flex:1">
+        <button class="addbtn" onclick="addWorkoutSession()">+ Log</button>
+      </div>
+    </div>
+    <div class="tr-sec">
+      <div class="tr-hd"><div class="tr-nm">📈 7-Day Recovery</div><div class="tr-ct" id="hl-7d-ct"></div></div>
+      <div id="hl-7d-bars"></div>
+    </div>
+  </div>
+</div>
+<!-- ════════════════════════════════════════
+     ⑦ REVIEW — KPIs · weekly · monthly · wins · failure map
+════════════════════════════════════════ -->
+<div class="pg" id="pg-rev">
+  <div class="hero">
+    <div class="hero-kicker fu" style="color:var(--gold);">THE BOARDROOM · MEASURED LIFE</div>
+    <div class="hero-title fu">RE<span style="color:var(--gold);">VIEW.</span></div>
+    <div class="hero-sub fu">KPIs auto-computed from your 2-minute daily logs. Sunday: 20-minute weekly review. Month-end: CEO review. Evidence, not feelings.</div>
+  </div>
+
+  <div class="section-lbl fu">KPIs — Last 7 Days</div>
+  <div class="kpi-grid fu" id="kpi-grid"></div>
+
+  <div class="section-lbl fu">Last 30 Days — auto-filled from Daily Log</div>
+  <div class="tr-sec fu"><div class="tr-hd"><div class="tr-nm">🌙 Sleep on time</div><div class="tr-ct" id="ct-sleep">0/30</div></div><div class="dot-row" id="dr-sleep"></div></div>
+  <div class="tr-sec fu"><div class="tr-hd"><div class="tr-nm">🕌 Fajr</div><div class="tr-ct" id="ct-fajr">0/30</div></div><div class="dot-row" id="dr-fajr"></div></div>
+  <div class="tr-sec fu"><div class="tr-hd"><div class="tr-nm">🧠 2+ deep work blocks</div><div class="tr-ct" id="ct-deep">0/30</div></div><div class="dot-row" id="dr-deep"></div></div>
+  <div class="tr-sec fu"><div class="tr-hd"><div class="tr-nm">💰 10 outreach sent</div><div class="tr-ct" id="ct-out">0/30</div></div><div class="dot-row" id="dr-out"></div></div>
+  <div class="tr-sec fu"><div class="tr-hd"><div class="tr-nm">🏋️ Trained</div><div class="tr-ct" id="ct-train">0/30</div></div><div class="dot-row" id="dr-train"></div></div>
+
+  <!-- WINS LEDGER -->
+  <div class="card fu" style="border-color:rgba(46,201,122,.3);">
+    <div class="sec-ttl">🏆 Wins Ledger <span style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);font-weight:400;">— evidence the vision is real</span></div>
+    <div style="font-size:10px;color:var(--muted2);margin-bottom:9px;line-height:1.6;">Your doubt is a bookkeeping problem. Every win — first reply, CAD approved, PR in the gym, clean week — gets a line here. Read it during the Sunday review. Belief follows evidence.</div>
+    <div id="wins-list"></div>
+    <div class="inp-row">
+      <input class="inp" id="win-in" placeholder="Log a win…" maxlength="80" onkeydown="if(event.key==='Enter')addWin()">
+      <button class="addbtn" onclick="addWin()">+ Win</button>
+    </div>
+  </div>
+
+  <!-- WEEKLY REVIEW -->
+  <details class="cbox gold fu">
+    <summary>📅 Sunday Weekly Review — 20 min</summary>
+    <div class="cbody">
+      Score each 1–5, one line each. Then set ONE priority per domain for next week.<br><br>
+      1. <strong>ExoGuard:</strong> did Monday's deliverable ship? Next Monday's deliverable defined?<br>
+      2. <strong>Hustle:</strong> outreach days hit? Funnel numbers vs last week?<br>
+      3. <strong>Salesforce:</strong> mock trend up? Trigger rule close?<br>
+      4. <strong>Body:</strong> 3 lifts + 3 tennis + weight trend?<br>
+      5. <strong>Sleep:</strong> how many of 7 nights on time?<br>
+      6. Read the Wins Ledger out loud. Yes, out loud.<br>
+      7. Write next week's ONE thing per domain in the box below — then close the OS and rest.
+      <div class="inp-row" style="margin-top:12px;">
+        <input class="inp" id="rev-in" placeholder="Week summary — e.g. 'Shipped CAD, 58 outreach, 61% mock, +0.4kg'" maxlength="120" onkeydown="if(event.key==='Enter')addReview()">
+        <button class="addbtn" onclick="addReview()">Save</button>
+      </div>
+      <div id="rev-list" style="margin-top:10px;"></div>
+    </div>
+  </details>
+
+  <!-- MONTHLY CEO REVIEW -->
+  <details class="cbox gold fu">
+    <summary>🏛 Monthly CEO Review — last Sunday of the month</summary>
+    <div class="cbody">
+      Answer in writing, 30 minutes, coffee optional (before noon):<br><br>
+      1. Revenue this month vs last? Recurring vs one-off?<br>
+      2. ExoGuard: which phase milestone moved? On schedule for expo?<br>
+      3. Deliverable streak — how many Mondays hit out of 4/5?<br>
+      4. Body: weight trend, lift PRs, tennis coach's monthly verdict on serve %?<br>
+      5. Sleep adherence % for the month?<br>
+      6. Which system in the OS did I ignore? Kill it or fix it — dead weight is forbidden.<br>
+      7. What would the 5-years-from-now me tell this month's me to STOP doing?<br>
+      8. Season check: does next month need a different mode (exam sprint, Ramadan, finals)?
+    </div>
+  </details>
+
+  <!-- FAILURE MAP -->
+  <div class="section-lbl fu" style="margin-top:14px;">The Failure Map — predicted before it happens</div>
+  <div class="tip-card rd fu">
+    <div class="tip-title">Failure #1 — The Week-3 Abandonment (probability: highest)</div>
+    <div class="tip-body">History says you abandon systems around week 2–3 when novelty fades and one bad day breaks the chain. <strong>Prevention:</strong> Law 06 + Reset Protocol + Minimum Days. The OS is designed so a bad day costs 2 minutes to recover from, not a restart.</div>
+  </div>
+  <div class="tip-card rd fu">
+    <div class="tip-title">Failure #2 — Outreach dies after 10 silent days</div>
+    <div class="tip-body">Zero replies for two weeks is STATISTICALLY NORMAL at your volume — but it will feel like proof it doesn't work. <strong>Prevention:</strong> you're graded on inputs only; the funnel card tells you 100 sent → 1 client is healthy. Re-read it on silent days.</div>
+  </div>
+  <div class="tip-card rd fu">
+    <div class="tip-title">Failure #3 — Final year eats everything (mid-Sept)</div>
+    <div class="tip-body">Campus 5 days/week + ExoGuard + everything else. The temptation: quietly drop outreach and gym. <strong>Prevention:</strong> Uni Day schedule pre-built with protected evening blocks; if truly overloaded, the OS drops SF first, then gym to 2×, NEVER outreach or sleep. That priority order is pre-decided — no negotiating with a tired brain.</div>
+  </div>
+  <div class="tip-card rd fu">
+    <div class="tip-title">Failure #4 — The exam that never gets booked</div>
+    <div class="tip-body">"Still studying" can last forever — it's avoidance wearing a study costume. <strong>Prevention:</strong> the 70×2 trigger rule. The decision is already made; your only job is logging mocks honestly.</div>
+  </div>
+  <div class="tip-card rd fu">
+    <div class="tip-title">Failure #5 — The bulk that never happens</div>
+    <div class="tip-body">Eating 3,000 kcal is boring and IBS makes big meals scary, so weight stays 60 kg while training hard. <strong>Prevention:</strong> liquid calories (2×/day), Friday weigh-in ritual, and the 4-week trend tile — if trend is flat for 3 weeks, add one smoothie. Mechanical, not motivational.</div>
+  </div>
+  <div class="tip-card rd fu">
+    <div class="tip-title">Failure #6 — ExoGuard perfectionism (solo builder disease)</div>
+    <div class="tip-body">No teammates = no one to say "that's good enough, ship it." Weeks vanish polishing CAD fillets. <strong>Prevention:</strong> Monday Contract — the supervisor meeting ships whatever exists at 80%. Deliverable streak counter makes shipping the metric, not perfection.</div>
+  </div>
+</div>
+
+</div><!-- /pages -->
+
+<!-- BOTTOM NAV -->
+<nav class="bnav">
+  <button class="nb active" onclick="nav('cmd',this)"><span class="ic">🔥</span>Command</button>
+  <button class="nb" onclick="nav('today',this)"><span class="ic">⚡</span>Today</button>
+  <button class="nb" onclick="nav('exo',this)"><span class="ic">🦾</span>Exo</button>
+  <button class="nb" onclick="nav('hustle',this)"><span class="ic">💰</span>Hustle</button>
+  <button class="nb" onclick="nav('sf',this)"><span class="ic">💻</span>SF</button>
+  <button class="nb" onclick="nav('ath',this)"><span class="ic">🎾</span>Athlete</button>
+  <button class="nb" onclick="nav('rev',this)"><span class="ic">📊</span>Review</button>
+</nav>
+
+</div><!-- /app -->
+
+<div class="toast" id="toast"></div>
+<script>
+// ═══════════ STATE ═══════════
+const S = JSON.parse(localStorage.getItem('dawly_os') || '{}');
+if(!S.checks)S.checks={};
+if(!S.scores||!Array.isArray(S.scores))S.scores=[];
+if(!S.mods)S.mods={};
+if(!S.dt||!['auto','grind','tennisday','friday','uniday','unitennis','ramadan','rest'].includes(S.dt))S.dt='auto';
+if(!S.exoPhaseName)S.exoPhaseName='Phase 2 — CAD Design & Procurement';
+if(!S.exoPhaseDates)S.exoPhaseDates='Design due Monday → order parts same day as approval';
+if(!S.exoFocus||!Array.isArray(S.exoFocus))S.exoFocus=[];
+if(!S.health)S.health={};
+if(!S.hustle)S.hustle={};
+if(!S.hustle.income||!Array.isArray(S.hustle.income))S.hustle.income=[];
+if(!S.hustle.pipe)S.hustle.pipe={sent:0,replies:0,calls:0,clients:0};
+if(!S.hustle.assets)S.hustle.assets={};
+if(S.hustle.mrr==null)S.hustle.mrr=0;
+if(!S.quick)S.quick={};
+if(!S.weights||!Array.isArray(S.weights))S.weights=[];
+if(!S.wins||!Array.isArray(S.wins))S.wins=[];
+if(!S.tennisLog||!Array.isArray(S.tennisLog))S.tennisLog=[];
+if(!S.gymLog||!Array.isArray(S.gymLog))S.gymLog=[];
+if(!S.revLog||!Array.isArray(S.revLog))S.revLog=[];
+if(!S.exoDel)S.exoDel={};
+const USER_AGE=20;
+const sv=()=>{S._ts=Date.now();localStorage.setItem('dawly_os',JSON.stringify(S));schedulePush();};
+const DKEY=()=>new Date().toDateString();
+function dkOffset(n){const d=new Date();d.setDate(d.getDate()-n);return d.toDateString();}
+function q(dk){return S.quick[dk]||{};}
+function qToday(){if(!S.quick[DKEY()])S.quick[DKEY()]={fajr:false,sleep:false,deep:0,out:0,train:false};return S.quick[DKEY()];}
+
+// ═══════════ SEASON ENGINE ═══════════
+function getSeason(){
+  const n=new Date();
+  const ram0=new Date('2027-02-08'),ram1=new Date('2027-03-10');
+  if(n>=ram0&&n<ram1)return'RAMADAN';
+  if(n<new Date('2026-09-15'))return'SUMMER GRIND';
+  if(n>=new Date('2027-06-15')&&n<new Date('2027-09-15'))return'SUMMER';
+  return'FINAL YEAR';
+}
+
+// ═══════════ QUOTES ═══════════
+const QUOTES=[
+  {t:"The man who wakes up with a plan beats the man who woke up earlier without one.",a:"On discipline"},
+  {t:"You don't need motivation. You need identity. Be the person who shows up.",a:"On identity"},
+  {t:"Ten outreach messages a day is boring. So is compound interest — until it isn't.",a:"On the hustle"},
+  {t:"The version of you that has everything you want is built one logged day at a time.",a:"On becoming"},
+  {t:"Champions don't wait to feel ready. They build readiness through reps.",a:"On tennis"},
+  {t:"Nobody pays you for the website. They pay you for finding them. Sell first.",a:"On selling"},
+  {t:"ExoGuard won't build itself. Two focused hours a day compound into a machine you can wear.",a:"On ExoGuard"},
+  {t:"A bad day costs 2 minutes to recover from. Only quitting is expensive.",a:"On resets"},
+  {t:"Sleep is a training session. Meals are training sessions. Act like it.",a:"On the body"},
+  {t:"Evidence beats belief. Log the win, read the ledger, doubt starves.",a:"On confidence"},
+  {t:"The internship of life pays in skills. The night shift pays in equity.",a:"On the double life"},
+  {t:"Your gut calms when your mind does. Three breaths before every meal on hard days.",a:"On the engine"},
+  {t:"Unstoppable doesn't mean never tired. It means you run the protocol anyway.",a:"On resilience"},
+  {t:"Your parents sacrificed quietly for years. Discipline is how you say thank you loudly.",a:"On family"},
+  {t:"The serve you practice alone at 7:30 PM wins the match nobody watched you prepare for.",a:"On the unseen work"},
+  {t:"A solo builder's superpower: no meetings. A solo builder's enemy: no witnesses. The Monday Contract is your witness.",a:"On shipping"},
+  {t:"Egypt is not a limitation. It's a margin advantage the competition doesn't have.",a:"On geography"},
+  {t:"You don't rise to your goals. You fall to your systems. Yours are written down now.",a:"On systems"},
+  {t:"Overwhelm is a signal, not a sentence. Shrink the step, start the timer.",a:"On the freeze"},
+  {t:"One rep more than last week. One message more than yesterday. That's the whole strategy.",a:"On progression"},
+  {t:"The exam gets booked at 70 twice. Not when it feels safe. Feelings don't hold certificates.",a:"On the trigger"},
+  {t:"Every meal you finish is a set completed. The kitchen is your second gym.",a:"On the bulk"},
+  {t:"Nobody remembers the week you rested. Everybody sees the year you compounded.",a:"On patience"},
+  {t:"The phone in the other room is worth more than any productivity app ever built.",a:"On focus"},
+  {t:"First client, then confidence. It never arrives in the other order.",a:"On proof"},
+  {t:"A national ranking starts with 30 serves before practice, today.",a:"On the ladder"},
+  {t:"Streaks bend. They don't break. Run the Reset Protocol and keep the ledger honest.",a:"On coming back"},
+  {t:"Your future company is watching how you handle this Monday's deliverable.",a:"On ExoGuard"},
+  {t:"Twenty years from now, 'I had potential' is the most expensive sentence in the world. Don't buy it.",a:"On the mission"},
+];
+function setQuote(){
+  const now=new Date();
+  const start=new Date(now.getFullYear(),0,0);
+  const doy=Math.floor((now-start)/86400000);
+  const qt=QUOTES[doy%QUOTES.length];
+  document.getElementById('dq-text').textContent=qt.t;
+  document.getElementById('dq-author').textContent=qt.a;
+}
+
+// ═══════════ CLOCK ═══════════
+function tick(){
+  const n=new Date();
+  document.getElementById('clk').textContent=n.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',hour12:true});
+  const h=n.getHours();
+  const g=h<12?'GOOD MORNING, DAWLY':h<17?'GOOD AFTERNOON, DAWLY':'GOOD EVENING, DAWLY';
+  const gel=document.getElementById('greet');if(gel)gel.textContent=g;
+  const days=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  const months=['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  const del=document.getElementById('id-date');
+  if(del)del.textContent=`${days[n.getDay()]} · ${n.getDate()} ${months[n.getMonth()]} ${n.getFullYear()}`;
+  const tdel=document.getElementById('td-day');
+  if(tdel)tdel.textContent=days[n.getDay()].toUpperCase()+'.';
+  document.getElementById('season-pill').textContent=getSeason();
+}
+setInterval(tick,1000);tick();
+document.getElementById('pages').addEventListener('scroll',function(){document.getElementById('hdr').classList.toggle('on',this.scrollTop>8);});
+
+// ═══════════ NAV ═══════════
+function nav(name,btn){
+  document.querySelectorAll('.pg').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nb').forEach(b=>b.classList.remove('active'));
+  document.getElementById('pg-'+name).classList.add('active');
+  if(btn)btn.classList.add('active');
+  document.getElementById('pages').scrollTop=0;
+  if(name==='cmd'){renderQuick();renderNextAction();renderStreaks();renderDeadlines();setQuote();}
+  if(name==='today')renderSched();
+  if(name==='exo')renderExo();
+  if(name==='hustle')renderHustle();
+  if(name==='sf')renderSFPage();
+  if(name==='ath'){renderAth();renderHealth();}
+  if(name==='rev')renderReview();
+}
+
+// ═══════════ SCHEDULES ═══════════
+const SCH={
+  grind:[
+    {t:'4:30 AM',n:'Fajr — then back to bed',s:'Pray · straight back to sleep · the anchor holds',e:'🕌',c:'prayer'},
+    {t:'8:00 AM',n:'Wake + Water + 2-min Stretch',s:'Glass of water · world\'s greatest stretch ×3/side',e:'🌅',c:'rest'},
+    {t:'8:10 AM',n:'Engine Run (Zone 2)',s:'25 min easy pace · nasal breathing only · or jump rope + footwork 10 min',e:'🏃',c:'gym'},
+    {t:'8:45 AM',n:'BIG Breakfast',s:'Eggs, oats, honey, banana · 25% of the bulk lives here',e:'🍳',c:'rest',law:5},
+    {t:'9:15 AM',n:'ExoGuard Deep Work I',s:'2.5 hrs · hardest CAD task first · phone in other room',e:'🦾',c:'study',law:1},
+    {t:'11:45 AM',n:'Walk + Smoothie #1',s:'15 min outside · banana-oats-PB-honey blend',e:'🥤',c:'rest'},
+    {t:'12:15 PM',n:'ExoGuard Deep Work II',s:'90 min · simulation · build journal at the end',e:'🦾',c:'study',law:3},
+    {t:'1:45 PM',n:'Dhuhr + Lunch (double carbs)',s:'Pray · double the rice — easiest +400 kcal in Egypt',e:'🕌',c:'prayer'},
+    {t:'3:00 PM',n:'HUSTLE — Outreach',s:'10 messages · 3 proposals · reply to every lead',e:'💰',c:'hustle',law:4},
+    {t:'4:15 PM',n:'HUSTLE — Build',s:'Demo sites · client work · portfolio',e:'🛠️',c:'hustle'},
+    {t:'5:30 PM',n:'SF Drill',s:'45–60 min · one weak topic or half-mock',e:'💻',c:'study'},
+    {t:'6:45 PM',n:'Maghrib + Dinner',s:'Pray · eat well · you earned it',e:'🕌',c:'prayer'},
+    {t:'7:30 PM',n:'FIFA / Free',s:'Earned downtime · zero guilt',e:'🎮',c:'rest'},
+    {t:'9:00 PM',n:'GYM — Your Split',s:'Sat = Legs day · 4×12 · all sets hit 12 → +2.5kg · end with 5-min stretch',e:'🏋️',c:'gym'},
+    {t:'10:30 PM',n:'Smoothie #2 + Shower',s:'Post-workout fuel · wind down begins',e:'🥤',c:'rest'},
+    {t:'11:30 PM',n:'Shutdown + 10-min Stretch',s:'Nightly routine (Engine tab) · Daily Log · tomorrow\'s ONE thing · phone parks outside',e:'🧘',c:'rest',law:6},
+    {t:'12:00 AM',n:'Sleep',s:'8 hours · non-negotiable',e:'🌙',c:'rest',law:5},
+  ],
+  tennisday:[
+    {t:'4:30 AM',n:'Fajr — then back to bed',s:'Pray · straight back to sleep',e:'🕌',c:'prayer'},
+    {t:'8:00 AM',n:'Wake + BIG Breakfast',s:'Double day: gym AM, court PM — fuel accordingly',e:'🌅',c:'rest',law:5},
+    {t:'9:00 AM',n:'GYM (AM) — Your Split',s:'75 min · upper-body day (chest/back/shoulders/arms) · NEVER legs · 5-min stretch after',e:'🏋️',c:'gym'},
+    {t:'10:45 AM',n:'ExoGuard Deep Work',s:'2 hrs · CAD · phone in other room',e:'🦾',c:'study',law:1},
+    {t:'12:45 PM',n:'HUSTLE — Outreach',s:'10 messages before lunch · then it\'s done for the day',e:'💰',c:'hustle',law:4},
+    {t:'1:45 PM',n:'Dhuhr + Lunch (double carbs)',s:'Pray · carb up for tonight',e:'🕌',c:'prayer'},
+    {t:'3:00 PM',n:'SF Drill',s:'45 min · weak topics · wrong-answer notebook',e:'💻',c:'study'},
+    {t:'4:00 PM',n:'HUSTLE — Build',s:'Demo sites · client work · 75 min',e:'🛠️',c:'hustle'},
+    {t:'5:15 PM',n:'Rest + Smoothie #2',s:'Feet up · hydrate hard · double day needs it',e:'🥤',c:'rest'},
+    {t:'6:00 PM',n:'Maghrib + Light Dinner',s:'Pray · light-ish — heavy meals kill court speed',e:'🕌',c:'prayer'},
+    {t:'7:30 PM',n:'Travel + Serve Ritual',s:'Arrive early: 30 serves with targets BEFORE session',e:'⚡',c:'rest'},
+    {t:'8:30 PM',n:'TENNIS (Untouchable)',s:'ONE goal per session · between points: turn, breathe, next',e:'🎾',c:'tennis'},
+    {t:'10:15 PM',n:'Shower + Post-Court Stretch',s:'Shoulders, forearms, hips, calves while warm · dates + yogurt',e:'🧘',c:'rest'},
+    {t:'11:00 PM',n:'Replies Only + Shutdown',s:'20 min lead replies · Daily Log · phone parks outside',e:'📵',c:'rest',law:6},
+    {t:'12:00 AM',n:'Sleep',s:'Double day complete · sleep rebuilds everything',e:'🌙',c:'rest',law:5},
+  ],
+  friday:[
+    {t:'4:30 AM',n:'Fajr — stay up if fresh',s:'Optional golden hour · otherwise back to bed, no guilt',e:'🕌',c:'prayer'},
+    {t:'8:00 AM',n:'Wake + WEIGH-IN',s:'Friday ritual: bathroom → scale → log it → breakfast',e:'⚖️',c:'rest',law:5},
+    {t:'9:00 AM',n:'ExoGuard Deep Work',s:'2.5 hrs · finish the Monday deliverable TODAY, not Sunday night',e:'🦾',c:'study',law:1},
+    {t:'11:45 AM',n:'Prep for Jumu\'ah',s:'Shower · best clothes · early to the mosque',e:'🕌',c:'prayer'},
+    {t:'12:30 PM',n:'Jumu\'ah + Family Lunch',s:'Pray · eat with family · be present',e:'🕌',c:'prayer'},
+    {t:'2:30 PM',n:'HUSTLE — Outreach + Funnel Check',s:'10 messages + weekly numbers: sent→replies→calls',e:'💰',c:'hustle',law:4},
+    {t:'4:00 PM',n:'Free / Family / Friends',s:'Real life · recharge fully',e:'🌳',c:'rest'},
+    {t:'6:45 PM',n:'Maghrib + Dinner',s:'Pray · fuel for private training',e:'🕌',c:'prayer'},
+    {t:'8:15 PM',n:'Travel + Serve Ritual',s:'Arrive early · 30 serves · one weakness in mind',e:'⚡',c:'rest'},
+    {t:'9:00 PM',n:'PRIVATE TENNIS (Untouchable)',s:'9–10 PM · your biggest weakness gets fixed here',e:'🎾',c:'tennis'},
+    {t:'10:30 PM',n:'Shower + Post-Court Stretch',s:'Shoulders, forearms, hips, calves while warm · dates + yogurt',e:'🧘',c:'rest'},
+    {t:'11:30 PM',n:'Shutdown Ritual',s:'Daily Log · plan tomorrow · phone parks outside',e:'📵',c:'rest',law:6},
+    {t:'12:00 AM',n:'Sleep',s:'Tomorrow is a grind day',e:'🌙',c:'rest',law:5},
+  ],
+  uniday:[
+    {t:'6:45 AM',n:'Wake + Fajr + Breakfast',s:'Pray · big breakfast · no scrolling',e:'🕌',c:'prayer'},
+    {t:'7:45 AM',n:'Commute → Campus',s:'SF flashcards or a podcast · dead time = study time',e:'🚗',c:'study'},
+    {t:'8:30 AM',n:'CAMPUS',s:'Lectures + labs · use free gaps for SF drills & grad project admin',e:'🎓',c:'rest',law:1},
+    {t:'4:30 PM',n:'Commute Home + Smoothie',s:'Decompress · queue tonight\'s ExoGuard task mentally',e:'🚗',c:'rest'},
+    {t:'6:00 PM',n:'Maghrib + Dinner',s:'Pray · eat big · your shift starts now',e:'🕌',c:'prayer'},
+    {t:'6:45 PM',n:'ExoGuard Deep Work',s:'2 hrs · phone in other room · build journal at the end',e:'🦾',c:'study',law:1},
+    {t:'8:45 PM',n:'HUSTLE — Outreach',s:'10 messages · replies · 45 min hard stop',e:'💰',c:'hustle',law:4},
+    {t:'9:30 PM',n:'GYM (Flex — even late)',s:'Your split · 60 min · OR swap with SF drill on rest days · 5-min stretch after',e:'🏋️',c:'gym'},
+    {t:'11:00 PM',n:'Shutdown + 10-min Stretch',s:'Nightly routine · Daily Log · smoothie · tomorrow\'s ONE thing',e:'🧘',c:'rest',law:6},
+    {t:'11:30 PM',n:'Sleep',s:'Uni season: 11:30–6:45 · protect it',e:'🌙',c:'rest',law:5},
+  ],
+  unitennis:[
+    {t:'6:45 AM',n:'Wake + Fajr + Breakfast',s:'Pray · fuel up · court tonight',e:'🕌',c:'prayer'},
+    {t:'7:45 AM',n:'Commute → Campus',s:'SF flashcards on the way',e:'🚗',c:'study'},
+    {t:'8:30 AM',n:'CAMPUS',s:'Leave on time — tennis is tonight',e:'🎓',c:'rest',law:1},
+    {t:'4:30 PM',n:'Commute Home + Smoothie',s:'Hydrate early',e:'🚗',c:'rest'},
+    {t:'6:00 PM',n:'Maghrib + Light Dinner',s:'Pray · light meal before court',e:'🕌',c:'prayer'},
+    {t:'6:45 PM',n:'ExoGuard Sprint',s:'ONE task · 60 min · timer on',e:'🦾',c:'study',law:1},
+    {t:'7:50 PM',n:'Travel + Serve Ritual',s:'30 serves before session',e:'⚡',c:'rest'},
+    {t:'8:30 PM',n:'TENNIS (Untouchable)',s:'ONE goal · no gym today',e:'🎾',c:'tennis'},
+    {t:'10:15 PM',n:'Shower + Recovery Fuel',s:'Dates + yogurt',e:'🥤',c:'rest'},
+    {t:'10:45 PM',n:'Replies + Shutdown',s:'20 min lead replies · Daily Log',e:'📵',c:'rest',law:6},
+    {t:'11:30 PM',n:'Sleep',s:'Recovery is the program',e:'🌙',c:'rest',law:5},
+  ],
+  ramadan:[
+    {t:'3:30 AM',n:'Suhoor + Fajr',s:'Oats, eggs, yogurt, dates, WATER · pray · sleep after',e:'🕌',c:'prayer'},
+    {t:'4:30 AM',n:'Sleep Block',s:'Main sleep · dark room · no phone',e:'🌙',c:'rest',law:5},
+    {t:'10:30 AM',n:'Wake + ExoGuard Deep I',s:'Fasted deep work is elite — 2 hrs before the dip',e:'🦾',c:'study',law:1},
+    {t:'12:45 PM',n:'Dhuhr + Rest',s:'Pray · light admin only',e:'🕌',c:'prayer'},
+    {t:'1:30 PM',n:'HUSTLE — Outreach',s:'10 messages · low energy is fine, sending is sending',e:'💰',c:'hustle',law:4},
+    {t:'2:30 PM',n:'Nap',s:'45 min · the Ramadan secret weapon',e:'😴',c:'rest'},
+    {t:'3:45 PM',n:'SF Drill / Light Study',s:'45 min · easy mode',e:'💻',c:'study'},
+    {t:'5:00 PM',n:'Asr + Qur\'an',s:'Pray · this month is for this too',e:'🕌',c:'prayer'},
+    {t:'6:10 PM',n:'IFTAR + Family',s:'Break fast gently — dates + water first, IBS thanks you',e:'🌙',c:'prayer'},
+    {t:'8:00 PM',n:'Taraweeh',s:'Pray · presence over speed',e:'🕌',c:'prayer'},
+    {t:'9:45 PM',n:'ExoGuard Deep II / Build',s:'90 min · second wind after taraweeh',e:'🦾',c:'study'},
+    {t:'11:15 PM',n:'GYM (light) or Walk',s:'Optional · maintenance mode · hydrate',e:'🏋️',c:'gym'},
+    {t:'12:30 AM',n:'Wind Down + Eat Again',s:'Second meal · prep suhoor · Daily Log',e:'🥤',c:'rest',law:6},
+    {t:'1:15 AM',n:'Sleep until Suhoor',s:'First sleep block',e:'🌙',c:'rest'},
+  ],
+  rest:[
+    {t:'9:30 AM',n:'Slow Morning',s:'Wake · shower · big breakfast · slower pace',e:'🌅',c:'rest'},
+    {t:'10:30 AM',n:'Sunday Review (if Sunday)',s:'20 min · Review tab · score the week · set next week',e:'📋',c:'rest',law:6},
+    {t:'11:30 AM',n:'Light ExoGuard',s:'One small task · 45 min max · no pressure',e:'🦾',c:'rest'},
+    {t:'1:00 PM',n:'Dhuhr + Family Lunch',s:'Pray · be present',e:'🕌',c:'prayer'},
+    {t:'2:00 PM',n:'Replies Only',s:'Leads get answers · no new outreach · 30 min',e:'💰',c:'hustle'},
+    {t:'2:30 PM',n:'Free Time',s:'Friends · family · FIFA · full recharge',e:'🌳',c:'rest'},
+    {t:'6:00 PM',n:'Maghrib + Isha',s:'Pray · gratitude',e:'🕌',c:'prayer'},
+    {t:'11:00 PM',n:'Early-ish Sleep',s:'Big week starts tomorrow',e:'🌙',c:'rest',law:5},
+  ]
+};
+function getAuto(){
+  const d=new Date().getDay();const s=getSeason();
+  if(s==='RAMADAN')return'ramadan';
+  if(s==='FINAL YEAR'){
+    if(d===5)return'friday';
+    if(d===6)return'grind';
+    if(d===1||d===3)return'unitennis';
+    return'uniday';
+  }
+  if(d===5)return'friday';
+  if(d===1||d===3)return'tennisday';
+  return'grind';
+}
+function getSch(){return SCH[S.dt==='auto'?getAuto():S.dt]||SCH.grind;}
+function getDirective(){
+  const type=S.dt==='auto'?getAuto():S.dt;
+  const msgs={
+    grind:"Full grind day. ExoGuard gets the morning brain, money gets the afternoon, iron at night. Boring and repeatable wins.",
+    tennisday:"Double day: gym in the morning (upper body only — the legs belong to the court), tennis at night. Outreach before lunch, light dinner, 30 serves before the session.",
+    friday:"Weigh-in → deep work → Jumu'ah → funnel check → private training at 9. The full Friday.",
+    uniday:"Campus by day. Your real shift: 6:45 PM. Two hours of ExoGuard, ten messages, then iron. Nobody owns your evening.",
+    unitennis:"Campus, then court. One ExoGuard sprint between dinner and travel. No gym — tennis is the work.",
+    ramadan:"Ramadan mode: fasted deep work late morning, nap, gentle iftar, taraweeh, second wind at night. Different rhythm, same standards.",
+    rest:"Recovery day. Recover like it's your job — because this day is why next week works.",
+  };
+  let base=msgs[type]||"Show up. That's the whole job.";
+  const dq=q(DKEY());
+  if((dq.out||0)<10&&new Date().getHours()>=18)base+=` ⚠️ Outreach at ${dq.out||0}/10 — close the gap before shutdown.`;
+  return base;
+}
+function toMins(s){let[t,p]=s.split(' ');let[h,m]=t.split(':').map(Number);if(p==='PM'&&h!==12)h+=12;if(p==='AM'&&h===12)h=0;return h*60+m;}
+function getCur(sch){
+  const base=toMins(sch[0].t);
+  const n=new Date();let c=n.getHours()*60+n.getMinutes();
+  if(c<base)c+=1440;
+  let i=0;
+  for(let j=0;j<sch.length;j++){let m=toMins(sch[j].t);if(m<base)m+=1440;if(c>=m)i=j;}
+  return i;
+}
+function renderSched(){
+  const dk=DKEY();
+  if(!S.checks[dk])S.checks[dk]={};
+  const sch=getSch();const ci=getCur(sch);
+  ['auto','grind','tennisday','friday','uniday','unitennis','ramadan','rest'].forEach(t=>{const el=document.getElementById('chip-'+t);if(el)el.classList.toggle('active',S.dt===t);});
+  const dirEl=document.getElementById('td-directive');if(dirEl)dirEl.textContent=getDirective();
+  const list=document.getElementById('sched');if(!list)return;
+  list.innerHTML=sch.map((b,i)=>{
+    const done=!!S.checks[dk][i];const isNow=i===ci&&!done;
+    const lawBadge=b.law?`<span class="si-law">LAW 0${b.law}</span>`:'';
+    return`<div class="si ${b.c}${done?' done':''}${isNow?' now':''}" onclick="chk(${i})">
+      <div class="si-time">${b.t}</div><div class="si-em">${b.e}</div>
+      <div class="si-info"><div style="display:flex;align-items:center;min-width:0;"><div class="si-name" style="flex:1;min-width:0;">${b.n}</div>${lawBadge}</div><div class="si-sub">${b.s}</div></div>
+      ${isNow?'<div class="now-dot"></div>':''}
+      <div class="si-chk">${done?'✓':''}</div>
+    </div>`;
+  }).join('');
+  const done=Object.values(S.checks[dk]).filter(Boolean).length;
+  const pct=Math.round(done/sch.length*100);
+  document.getElementById('ph-fill').style.width=pct+'%';
+  document.getElementById('ph-pct').textContent=pct+'%';
+  document.getElementById('ph-tasks').textContent=`${done} of ${sch.length} blocks done`;
+}
+function chk(i){const dk=DKEY();if(!S.checks[dk])S.checks[dk]={};S.checks[dk][i]=!S.checks[dk][i];sv();renderSched();toast(S.checks[dk][i]?'✅ Done!':'↩ Cleared');}
+function setDT(t){S.dt=t;sv();renderSched();}
+
+// ═══════════ QUICK LOG ═══════════
+function renderQuick(){
+  const t=qToday();
+  document.getElementById('ql-fajr').classList.toggle('on',!!t.fajr);
+  document.getElementById('ql-sleep').classList.toggle('on',!!t.sleep);
+  document.getElementById('ql-train').classList.toggle('on',!!t.train);
+  document.getElementById('ql-deep').textContent=t.deep||0;
+  document.getElementById('ql-out').textContent=t.out||0;
+  document.getElementById('ql-weight-row').style.display=new Date().getDay()===5?'flex':'none';
+}
+function qlToggle(k,el){const t=qToday();t[k]=!t[k];sv();el.classList.toggle('on',!!t[k]);renderStreaks();renderNextAction();toast(t[k]?'✅ Logged':'↩ Cleared');}
+function qlStep(k,d){const t=qToday();const key=k==='deep'?'deep':'out';t[key]=Math.max(0,(t[key]||0)+d);sv();document.getElementById('ql-'+k).textContent=t[key];renderStreaks();renderNextAction();if(k==='out'&&t[key]===10)toast('🎯 10/10 outreach — quota hit!');if(k==='deep'&&d>0)toast('🧠 Deep block logged.');}
+function qlWeight(){
+  const v=parseFloat(document.getElementById('ql-weight').value);
+  if(isNaN(v)||v<40||v>120)return;
+  S.weights.push({date:new Date().toISOString(),kg:v});sv();
+  document.getElementById('ql-weight').value='';
+  toast('⚖️ '+v+' kg logged — trend updates in Athlete → Fuel.');
+}
+function streakOf(fn){
+  let n=0;
+  for(let i=0;i<90;i++){
+    const dq=q(dkOffset(i));
+    if(fn(dq))n++;
+    else{if(i===0)continue;break;}
+  }
+  return n;
+}
+function renderStreaks(){
+  const deep=streakOf(d=>(d.deep||0)>=2);
+  const out=streakOf(d=>(d.out||0)>=10);
+  const slp=streakOf(d=>!!d.sleep);
+  document.getElementById('sk-deep').textContent=deep;
+  document.getElementById('sk-out').textContent=out;
+  document.getElementById('sk-sleep').textContent=slp;
+  document.getElementById('str-num').textContent=deep;
+}
+
+// ═══════════ NEXT ACTION ENGINE ═══════════
+function currentWeekMonday(){
+  const d=new Date();const day=d.getDay();
+  const diff=(1-day+7)%7;
+  const m=new Date(d);m.setDate(d.getDate()+diff);
+  return m.toDateString();
+}
+function getNextAction(){
+  const t=q(DKEY());const h=new Date().getHours();
+  const sch=getSch();const cur=sch[getCur(sch)];
+  const del=S.exoDel[currentWeekMonday()];
+  if(!del||!del.text)return{title:'Define Monday\'s ExoGuard deliverable',why:'2 minutes in the Exo tab. A week without a named deliverable is a week that ships nothing. Everything else waits for this.'};
+  if((t.deep||0)<2&&h>=8&&h<22)return{title:'ExoGuard deep work block — 50 min minimum',why:`Deep blocks today: ${t.deep||0}/2. Phone in the other room, open the CAD file, timer on. Monday's deliverable: "${del.text}".`};
+  if((t.out||0)<10&&h>=10)return{title:`Send ${10-(t.out||0)} more outreach messages`,why:`Outreach: ${t.out||0}/10. You're graded on inputs — replies are not your department. Log each send with the stepper.`};
+  const avg=S.scores.length?Math.round(S.scores.slice(-3).reduce((a,b)=>a+b,0)/Math.min(3,S.scores.length)):0;
+  if(avg<70&&h>=14&&h<23&&S.scores.length>0)return{title:'Salesforce drill — 45 minutes',why:`Recent mock avg: ${avg}%. Trigger fires at 70×2 — then the exam books itself. One weak topic, wrong-answer notebook open.`};
+  if(S.scores.length===0&&h>=14&&h<23)return{title:'Take a Salesforce baseline mock',why:'Zero scores logged. You can\'t aim without a baseline. 60 questions, timed, log the result — even a bad score starts the engine.'};
+  if(!t.train&&h>=17)return{title:'Train — '+(cur&&cur.c==='tennis'?'tennis tonight':'gym session (full body)'),why:'Training not logged today. Sessions are scheduled — go execute, then flip the toggle.'};
+  if(cur)return{title:'On the clock: '+cur.n,why:cur.s+' — the schedule already decided. No decisions needed, just execution.'};
+  return{title:'Shutdown ritual',why:'Everything critical is logged. Daily Log, tomorrow\'s ONE thing, phone parks outside the room, bed by 12:00.'};
+}
+function renderNextAction(fromBtn){
+  const na=getNextAction();
+  document.getElementById('na-title').textContent=na.title;
+  document.getElementById('na-why').textContent=na.why;
+  if(fromBtn)toast('🎯 Next action loaded.');
+}
+
+// ═══════════ EXOGUARD ═══════════
+function daysToMonday(){const d=new Date().getDay();return(1-d+7)%7;}
+function renderExo(){
+  const dm=daysToMonday();
+  document.getElementById('exo-cd').textContent=dm===0?'TODAY':dm+'d';
+  document.getElementById('exo-phase-name').value=S.exoPhaseName;
+  document.getElementById('exo-phase-dates').value=S.exoPhaseDates;
+  const wk=currentWeekMonday();
+  const del=S.exoDel[wk];
+  const cont=document.getElementById('exo-del-current');
+  if(del&&del.text){
+    cont.innerHTML=`<div class="mod-item${del.done?' done-mod':''}" onclick="togDeliverable()" style="margin-bottom:4px;">
+      <div class="mod-check" style="${del.done?'background:var(--green);border-color:var(--green);':''}">${del.done?'✓':''}</div>
+      <div class="mod-info"><div class="mod-name">${del.text}</div><div class="mod-pct">${del.done?'SHIPPED ✓':'due Monday — tap when shipped'}</div></div>
+    </div>`;
+  }else{
+    cont.innerHTML='<div style="font-size:11px;color:var(--red);font-family:\'DM Mono\',monospace;margin-bottom:4px;">⚠ No deliverable defined for this Monday. Define it NOW — 30 seconds.</div>';
+  }
+  let streak=0;
+  for(let w=1;w<60;w++){
+    const m=new Date(currentWeekMonday());m.setDate(m.getDate()-7*w);
+    const e=S.exoDel[m.toDateString()];
+    if(e&&e.done)streak++;else break;
+  }
+  if(del&&del.done)streak++;
+  document.getElementById('exo-del-streak').textContent=streak;
+  renderExoFocus();
+}
+function setDeliverable(){
+  const v=document.getElementById('exo-del-in').value.trim();
+  if(!v)return;
+  S.exoDel[currentWeekMonday()]={text:v,done:false};sv();
+  document.getElementById('exo-del-in').value='';
+  renderExo();renderNextAction();
+  toast('🎯 Monday contract signed.');
+}
+function togDeliverable(){
+  const wk=currentWeekMonday();
+  if(!S.exoDel[wk])return;
+  S.exoDel[wk].done=!S.exoDel[wk].done;sv();renderExo();
+  if(S.exoDel[wk].done)toast('🚢 SHIPPED. That\'s how companies get built.');
+}
+function saveExoPhase(){S.exoPhaseName=document.getElementById('exo-phase-name').value;S.exoPhaseDates=document.getElementById('exo-phase-dates').value;sv();}
+function renderExoFocus(){
+  const list=document.getElementById('exo-focus-list');if(!list)return;
+  list.innerHTML=S.exoFocus.map((f,i)=>`<div class="si${f.done?' done':''}" style="cursor:pointer;" onclick="toggleExoFocus(${i})">
+    <div class="si-em">🦾</div><div class="si-info"><div class="si-name">${f.text}</div></div>
+    <div class="si-chk">${f.done?'✓':''}</div>
+    <div style="font-size:13px;color:var(--muted2);padding:0 4px;" onclick="event.stopPropagation();removeExoFocus(${i})">✕</div>
+  </div>`).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">Add your top 1–3 ExoGuard actions for today.</div>';
+  document.getElementById('exo-focus-ct').textContent=S.exoFocus.filter(f=>f.done).length+'/'+S.exoFocus.length;
+}
+function addExoFocus(){const inp=document.getElementById('exo-focus-in');const v=inp.value.trim();if(!v||S.exoFocus.length>=5)return;S.exoFocus.push({text:v,done:false});sv();inp.value='';renderExoFocus();}
+function toggleExoFocus(i){S.exoFocus[i].done=!S.exoFocus[i].done;sv();renderExoFocus();}
+function removeExoFocus(i){S.exoFocus.splice(i,1);sv();renderExoFocus();}
+
+// ═══════════ EXO TABS ═══════════
+function showExoTab(id,btn){
+  document.querySelectorAll('#pg-exo .spanel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#exo-tabs .stab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('exos-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+  if(id==='phases')renderPhases();
+  if(id==='super')renderDrTasks();
+}
+
+// ═══════════ EXOGUARD PHASES (fused from Command Dashboard — same storage, checks carry over) ═══════════
+const EXO_PHASES=[
+  {id:0,name:"Phase 0 — SF Exam Sprint",color:"var(--gold)",start:"2026-06-15",end:"2026-07-06",goal:"Salesforce sprint + ExoGuard reading. (History — done period.)",weeks:[
+    {label:"Weeks 1–3",tasks:[
+      {id:"p0_t1",text:"Complete Trailhead 94% → 100%"},
+      {id:"p0_t2",text:"1 Salesforce mock exam per day"},
+      {id:"p0_t3",text:"Read 1 exoskeleton paper daily (30 min max)"},
+      {id:"p0_t5",text:"Set up Zotero — first 5 papers"},
+      {id:"p0_t7",text:"Submit internship applications"},
+    ]},
+  ]},
+  {id:1,name:"Phase 1 — Research & Requirements",color:"var(--cyan)",start:"2026-07-07",end:"2026-08-03",goal:"20 papers read. Mantrac visit. Supervisor commitment. Formal requirements doc.",weeks:[
+    {label:"Weeks 1–2 — Literature + Foundation",tasks:[
+      {id:"p1_t1",text:"Read 10 papers (passive exoskeletons + AI ergonomics)"},
+      {id:"p1_t2",text:"Build Research Gap Map: existing → gap → ExoGuard fills"},
+      {id:"p1_t3",text:"Zotero library with citation export"},
+      {id:"p1_t1b",text:"Complete system mind map — all 15 subsystems"},
+      {id:"p1_t1c",text:"Competitor comparison: Exia, Apex 2, Paexo, EksoVest, Guardian XO"},
+    ]},
+    {label:"Week 3 — Mantrac Visit",tasks:[
+      {id:"p1_t5",text:"Email Mantrac HSE Manager: factory visit request"},
+      {id:"p1_t6",text:"Observation checklist: lift frequency, weights, postures"},
+      {id:"p1_t7",text:"Interview 5–10 workers — pain points, posture habits"},
+      {id:"p1_t8",text:"Photograph factory floor (with permission)"},
+      {id:"p1_t9",text:"Ask HSE manager: ISO 45001 compliance pain points"},
+    ]},
+    {label:"Week 4 — Supervisor Meeting",tasks:[
+      {id:"p1_t10",text:"Print lit review summary (2 pages, 20 papers)"},
+      {id:"p1_t11",text:"System block diagram: IMU → ESP32 → solenoid → dashboard"},
+      {id:"p1_t12",text:"Sketch semi-active mechanism: spring + solenoid damper at hip"},
+      {id:"p1_t13",text:"Secure supervisor sign-off on design direction"},
+      {id:"p1_t14",text:"Formal requirements doc: 8 key specs with justifications"},
+    ]},
+  ]},
+  {id:2,name:"Phase 2 — CAD Design & Procurement",color:"var(--green)",start:"2026-08-04",end:"2026-09-14",goal:"Full Inventor CAD complete. All components ordered (local Cairo suppliers). Electronics architecture finalized.",weeks:[
+    {label:"Order (day of design approval — local suppliers)",tasks:[
+      {id:"p2_t1",text:"BUY: MPU-6050 (GY-521) ×3 — RAM/Future Electronics"},
+      {id:"p2_t2",text:"BUY: ESP32 DevKit V1 ×2"},
+      {id:"p2_t3",text:"BUY: Li-Ion 18650 (3S1P 2600mAh) + 3S BMS board"},
+      {id:"p2_t4",text:"BUY: Solenoid 12V push-pull ×2 + vibration motor ×3"},
+      {id:"p2_t5",text:"BUY: IRLZ44N MOSFET, 1N4007 diodes, resistors, breadboard"},
+      {id:"p2_t6",text:"Source aluminium extrusion 20×20 + 20×40mm locally"},
+      {id:"p2_t7b",text:"Source torsion springs — 10th of Ramadan manufacturer"},
+    ]},
+    {label:"Electronics Architecture",tasks:[
+      {id:"p2_e1",text:"IMU comparison (MPU-6050 vs MPU-9250 vs BNO055) — document selection"},
+      {id:"p2_e2",text:"ESP32 pin map: GPIO 21/22 I2C · 25 solenoid · 26 vibration"},
+      {id:"p2_e3",text:"Power budget: 218mA avg → 3S 2600mAh ≈ 12hr runtime"},
+      {id:"p2_e4",text:"Wire single MPU-6050 — verify pitch/roll (Wokwi + serial)"},
+      {id:"p2_e5",text:"Dual MPU-6050 (0x68 + 0x69) — trunk flexion = upper − lower"},
+      {id:"p2_e6",text:"Solenoid driver test: GPIO → IRLZ44N → solenoid + flyback diode"},
+    ]},
+    {label:"CAD in Inventor",tasks:[
+      {id:"p2_t7",text:"Human mannequin from GrabCAD (STEP)"},
+      {id:"p2_t8",text:"Skeleton assembly — spine centerline + hip joint"},
+      {id:"p2_t9",text:"Back plate: 20×40mm extrusion, adjustable 400–500mm"},
+      {id:"p2_t10",text:"Bilateral hip brackets — revolute joint at L5/S1"},
+      {id:"p2_t11",text:"Torsion spring cassette: k = 19–32 Nm/rad"},
+      {id:"p2_t12",text:"Solenoid damper mount at hip joint"},
+      {id:"p2_t13",text:"Electronics enclosure 120×80×35mm (PETG, 3D print)"},
+      {id:"p2_t14",text:"Shoulder harness cross-bar (adjustable 340–440mm)"},
+      {id:"p2_t15",text:"Thigh levers 250–300mm + neoprene cuffs"},
+      {id:"p2_t15b",text:"Aesthetic pass — German Bionic sleek industrial look"},
+    ]},
+    {label:"Analysis + Buffer",tasks:[
+      {id:"p2_t16",text:"Static stress analysis (40kg load, 45° flexion)"},
+      {id:"p2_t17",text:"Euler buckling check on spine bar"},
+      {id:"p2_t18",text:"Verify all components arrived + functional"},
+      {id:"p2_t19",text:"Real hardware breadboard: ESP32 + MPU-6050 vs Wokwi results"},
+    ]},
+  ]},
+  {id:3,name:"Phase 3 — V1 Build + Dataset",color:"#ff7b2e",start:"2026-09-15",end:"2026-11-09",goal:"Working V1 prototype. 3,000+ labelled Egyptian worker lift samples.",weeks:[
+    {label:"Weeks 1–3 — V1 Fabrication",tasks:[
+      {id:"p3_t1",text:"Fabricate V1 aluminium frame (university workshop)"},
+      {id:"p3_t2",text:"Assemble solenoid + spring mechanism at hip hinge"},
+      {id:"p3_t3",text:"Complementary filter — stable pitch/roll @100Hz"},
+      {id:"p3_t4",text:"Solenoid trigger latency <10ms (oscilloscope)"},
+      {id:"p3_t5",text:"Wear V1 — document every failure for V2 list"},
+      {id:"p3_t5b",text:"Wi-Fi logging: ESP32 → JSON → laptop"},
+    ]},
+    {label:"Weeks 4–6 — Dataset at Mantrac",tasks:[
+      {id:"p3_t6",text:"Return to Mantrac with sensor rig (2 IMUs on harness)"},
+      {id:"p3_t7",text:"Record 10–15 workers: safe / risky / twisted / fatigue"},
+      {id:"p3_t8",text:"Label every recording (safe/warning/dangerous)"},
+      {id:"p3_t9",text:"Target: 3,000+ labelled samples — the core dataset"},
+    ]},
+    {label:"Weeks 7–8 — Early AI + Buffer",tasks:[
+      {id:"p3_t10",text:"Python env: TensorFlow + Keras + scikit-learn"},
+      {id:"p3_t11",text:"CNN+LSTM in Keras (Conv1D → LSTM → Dense softmax)"},
+      {id:"p3_t12",text:"Train on first 1,000 samples — validate pipeline early"},
+      {id:"p3_t13",text:"Fix all V1 hardware issues — write V2 list"},
+    ]},
+  ]},
+  {id:4,name:"Phase 4 — AI + V2 + Dashboard",color:"var(--purple)",start:"2026-11-10",end:"2027-01-04",goal:"85%+ F1 CNN/LSTM on ESP32. V2 frame. Flask dashboard with ISO 45001 export.",weeks:[
+    {label:"Weeks 1–3 — AI Training + Deploy",tasks:[
+      {id:"p4_t1",text:"Train final CNN/LSTM on full dataset (Colab GPU)"},
+      {id:"p4_t2",text:"Target 85%+ F1 across Safe/Warning/Dangerous"},
+      {id:"p4_t3",text:"Convert TensorFlow → TFLite"},
+      {id:"p4_t3b",text:"Quantize int8 — fits ~400KB"},
+      {id:"p4_t4",text:"Deploy TFLite Micro on ESP32 (C byte array)"},
+      {id:"p4_t5",text:"Benchmark full inference <200ms"},
+      {id:"p4_t6",text:"V2 redesign in Inventor — all V1 lessons"},
+    ]},
+    {label:"Weeks 4–6 — V2 Build + Dashboard",tasks:[
+      {id:"p4_t8",text:"Fabricate V2 — powder-coat/spray finish"},
+      {id:"p4_t9",text:"Mount electronics in ExoGuard housing"},
+      {id:"p4_t10",text:"Clean cable management — messy wires lose expo points"},
+      {id:"p4_t11",text:"Flask backend: ESP32 JSON → SQLite every 5s"},
+      {id:"p4_t12",text:"Chart.js real-time per-worker risk display"},
+      {id:"p4_t13",text:"ReportLab ISO 45001 PDF export — one click"},
+    ]},
+    {label:"Weeks 7–8 — Integration [HIGH RISK]",tasks:[
+      {id:"p4_t14",text:"Full pipeline: wear → classify → solenoid → dashboard"},
+      {id:"p4_t15",text:"50 complete lift cycles without failure"},
+      {id:"p4_t17",text:"End-to-end latency <200ms verified"},
+      {id:"p4_t18",text:"Confusion matrix on held-out test set"},
+      {id:"p4_t19",text:"Battery discharge test under load"},
+      {id:"p4_t20",text:"Comfort rating after 4-hour wear"},
+    ]},
+  ]},
+  {id:5,name:"Phase 5 — Thesis & Documentation",color:"var(--blue)",start:"2027-01-05",end:"2027-02-01",goal:"Complete graduation thesis/report written and reviewed.",weeks:[
+    {label:"Week 1 — Intro + Background",tasks:[
+      {id:"p5_t2",text:"Introduction: injury stats → Egypt gap → 3 contributions"},
+      {id:"p5_t3",text:"Background: 3 themes × 5 papers, end each with ExoGuard's gap"},
+      {id:"p5_t4",text:"Supervisor review of Week 1 draft"},
+    ]},
+    {label:"Week 2 — System Design + Methodology",tasks:[
+      {id:"p5_t5",text:"Design chapter: frame, solenoid, spring torque, materials"},
+      {id:"p5_t6",text:"Methods: IMU placement, filter, dataset description"},
+      {id:"p5_t7",text:"AI chapter: CNN/LSTM architecture + deployment"},
+      {id:"p5_t8",text:"Supervisor reviews every equation"},
+    ]},
+    {label:"Weeks 3–4 — Results + Finish",tasks:[
+      {id:"p5_t9",text:"Results: confusion matrix, F1, latency, battery"},
+      {id:"p5_t10",text:"Cost comparison vs German Bionic + HeroWear"},
+      {id:"p5_t11",text:"Discussion: honest limitations"},
+      {id:"p5_t14",text:"Full grammar + format pass, citations via Zotero"},
+    ]},
+  ]},
+  {id:6,name:"Phase 6 — Expo, Startup & Launch",color:"var(--red)",start:"2027-02-02",end:"2027-04-30",goal:"V3 expo prototype. 30+ pitch rehearsals. Startup registered. Expo 1st place.",weeks:[
+    {label:"Weeks 1–2 — V3 + Startup",tasks:[
+      {id:"p6_t1",text:"V3 expo prototype: professionally finished frame"},
+      {id:"p6_t2",text:"PCB in 3D-printed ExoGuard-branded housing"},
+      {id:"p6_t3",text:"A0 technical poster — professional print"},
+      {id:"p6_t4",text:"Second monitor for live dashboard at expo"},
+      {id:"p6_t5",text:"Register ExoGuard SPC via GAFI (~4,000 EGP)"},
+      {id:"p6_t6",text:"Apply to TIEC development grant"},
+      {id:"p6_t7",text:"Sponsor outreach: Mantrac, Hassan Allam, Orascom, ITIDA"},
+    ]},
+    {label:"Weeks 3–4 — Pitch",tasks:[
+      {id:"p6_t8",text:"3-minute pitch ×30 with stopwatch"},
+      {id:"p6_t9",text:"Film every rehearsal — fix 3 weakest moments weekly"},
+      {id:"p6_t10",text:"30-sec judge demo: wear → bend → live risk score"},
+      {id:"p6_t11",text:"Invite Mantrac HSE Manager (4 weeks ahead)"},
+    ]},
+    {label:"Expo Day (April 2027)",tasks:[
+      {id:"p6_t13",text:"Arrive 90 min early — 5 test cycles"},
+      {id:"p6_t14",text:"Spares: 2 batteries, ESP32, backup demo video"},
+      {id:"p6_t16",text:"Email every interested judge within 24h"},
+    ]},
+  ]},
+];
+const EXOT=JSON.parse(localStorage.getItem('exoguard_tasks_v2')||'{}');
+const svExo=()=>{localStorage.setItem('exoguard_tasks_v2',JSON.stringify(EXOT));S._ts=Date.now();localStorage.setItem('dawly_os',JSON.stringify(S));schedulePush();};
+function exoCurrentPhase(){
+  const n=new Date();
+  for(const p of EXO_PHASES){if(n>=new Date(p.start)&&n<=new Date(p.end+'T23:59:59'))return p.id;}
+  return n<new Date(EXO_PHASES[0].start)?0:EXO_PHASES.length-1;
+}
+function renderPhases(){
+  const cur=exoCurrentPhase();
+  let allDone=0,allTotal=0;
+  const html=EXO_PHASES.map(p=>{
+    const tasks=p.weeks.flatMap(w=>w.tasks);
+    const done=tasks.filter(t=>EXOT[t.id]).length;
+    allDone+=done;allTotal+=tasks.length;
+    const pct=tasks.length?Math.round(done/tasks.length*100):0;
+    const isCur=p.id===cur;
+    const s=new Date(p.start),e=new Date(p.end);
+    const fmt=d=>d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+    const dleft=Math.ceil((e-new Date())/86400000);
+    const badge=isCur?`<span style="font-family:'DM Mono',monospace;font-size:8px;color:${p.color};">● LIVE — ${dleft>=0?dleft+'d left':'overtime'}</span>`:(new Date()>e?'<span style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--muted);">PAST</span>':'<span style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--muted2);">AHEAD</span>');
+    return`<details class="cbox"${isCur?' open style="border-color:'+p.color+';"':''}>
+      <summary><span style="color:${p.color};">${p.name}</span><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);margin-left:auto;padding-right:8px;">${done}/${tasks.length}</span>${badge}</summary>
+      <div class="cbody">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);margin-bottom:6px;">${fmt(s)} → ${fmt(e)} · ${p.goal}</div>
+        <div class="ph-bar" style="margin-bottom:10px;"><div class="ph-fill" style="width:${pct}%;background:${p.color};"></div></div>
+        ${p.weeks.map(w=>`
+          <div style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted2);letter-spacing:1px;text-transform:uppercase;margin:10px 0 6px;">${w.label}</div>
+          ${w.tasks.map(t=>`<div class="mod-item${EXOT[t.id]?' done-mod':''}" style="margin-bottom:4px;padding:9px 11px;" onclick="togPhaseTask('${t.id}')">
+            <div class="mod-check" style="${EXOT[t.id]?'background:'+p.color+';border-color:'+p.color+';color:#000;':''}">${EXOT[t.id]?'✓':''}</div>
+            <div class="mod-info"><div class="mod-name" style="font-size:11px;">${t.text}</div></div>
+          </div>`).join('')}
+        `).join('')}
+      </div>
+    </details>`;
+  }).join('');
+  document.getElementById('exo-phases-list').innerHTML=html;
+  const pctAll=allTotal?Math.round(allDone/allTotal*100):0;
+  document.getElementById('exo-all-fill').style.width=pctAll+'%';
+  document.getElementById('exo-all-pct').textContent=pctAll+'%';
+  document.getElementById('exo-all-tasks').textContent=allDone+' of '+allTotal+' tasks done';
+}
+function togPhaseTask(id){EXOT[id]=!EXOT[id];svExo();renderPhases();toast(EXOT[id]?'✅ Task done!':'↩ Cleared');}
+
+// ═══════════ SUPERVISOR (DR) TASKS — same storage as old dashboard ═══════════
+const DR_DEFAULTS=[
+  {id:"dr_1",text:"Complete system mind map covering all 15 subsystems",status:"done"},
+  {id:"dr_2",text:"Initial design — 3 concepts, Pugh matrix, ergonomics, CAD",status:"done"},
+  {id:"dr_3",text:"Electronics & IMU architecture — wiring, power budget, Wokwi sim",status:"done"},
+  {id:"dr_4",text:"Neural network research — FNN/CNN/RNN/LSTM comparison",status:"done"},
+  {id:"dr_5",text:"Battery selection — Li-Ion vs LiPo vs LiFePO4 vs NiMH",status:"done"},
+  {id:"dr_6",text:"Material selection — comparison matrix + recommendation",status:"in-progress"},
+];
+let DRT;
+try{DRT=JSON.parse(localStorage.getItem('exoguard_dr_tasks'))||DR_DEFAULTS;}catch{DRT=DR_DEFAULTS;}
+const svDr=()=>{localStorage.setItem('exoguard_dr_tasks',JSON.stringify(DRT));S._ts=Date.now();localStorage.setItem('dawly_os',JSON.stringify(S));schedulePush();};
+const DR_STATUS={"todo":{c:'var(--red)',l:'TO DO'},"in-progress":{c:'var(--gold)',l:'IN PROGRESS'},"done":{c:'var(--green)',l:'DONE'}};
+function renderDrTasks(){
+  const done=DRT.filter(t=>t.status==='done').length;
+  const prog=DRT.filter(t=>t.status==='in-progress').length;
+  const todo=DRT.filter(t=>t.status==='todo').length;
+  document.getElementById('dr-stats').innerHTML=
+    `<div class="stile" style="text-align:center;"><div class="st-lbl">Done</div><div class="st-val c-green" style="font-size:28px;">${done}</div></div>
+     <div class="stile" style="text-align:center;"><div class="st-lbl">Active / To Do</div><div class="st-val c-gold" style="font-size:28px;">${prog} / ${todo}</div></div>`;
+  document.getElementById('dr-list').innerHTML=DRT.map((t,i)=>{
+    const st=DR_STATUS[t.status]||DR_STATUS.todo;
+    return`<div class="log-row" style="align-items:flex-start;">
+      <span class="log-txt" style="${t.status==='done'?'opacity:.4;text-decoration:line-through;':''}">${t.text}</span>
+      <span style="font-family:'DM Mono',monospace;font-size:8px;font-weight:700;color:${st.c};border:1px solid ${st.c};padding:3px 8px;border-radius:10px;cursor:pointer;white-space:nowrap;" onclick="cycleDr(${i})">${st.l}</span>
+      <span class="log-x" onclick="rmDr(${i})">✕</span>
+    </div>`;
+  }).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">No supervisor tasks. Add what Monday\'s meeting expects.</div>';
+}
+function cycleDr(i){const order={"todo":"in-progress","in-progress":"done","done":"todo"};DRT[i].status=order[DRT[i].status]||"todo";svDr();renderDrTasks();}
+function rmDr(i){DRT.splice(i,1);svDr();renderDrTasks();}
+function addDrTask(){
+  const inp=document.getElementById('dr-in');const v=inp.value.trim();
+  if(!v)return;
+  DRT.unshift({id:'dr_'+Date.now(),text:v,status:'todo'});svDr();inp.value='';renderDrTasks();toast('👨‍🏫 Supervisor task added.');
+}
+
+// ═══════════ DEADLINES — live countdown ═══════════
+if(!S.deadlines||!Array.isArray(S.deadlines))S.deadlines=[];
+function renderDeadlines(){
+  const list=document.getElementById('dl-list');if(!list)return;
+  const today=new Date();today.setHours(0,0,0,0);
+  const items=S.deadlines.slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
+  list.innerHTML=items.map(dl=>{
+    const i=S.deadlines.indexOf(dl);
+    const d=new Date(dl.date+'T00:00:00');
+    const left=Math.round((d-today)/86400000);
+    const col=left<0?'var(--muted)':left<=3?'var(--red)':left<=7?'var(--gold)':'var(--green)';
+    const lbl=left<0?Math.abs(left)+'d overdue':left===0?'TODAY':left+'d left';
+    return`<div class="log-row">
+      <span style="font-family:'DM Mono',monospace;font-size:10px;font-weight:700;color:${col};min-width:74px;">${lbl}</span>
+      <span class="log-txt" style="${left<0?'opacity:.5;':''}">${dl.text}</span>
+      <span class="inc-date">${d.getDate()}/${d.getMonth()+1}</span>
+      <span class="log-x" onclick="rmDeadline(${i})">✕</span>
+    </div>`;
+  }).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">No deadlines. Add one — it counts down by itself every day.</div>';
+}
+function addDeadline(){
+  const t=document.getElementById('dl-text').value.trim();
+  const d=document.getElementById('dl-date').value;
+  if(!t||!d)return;
+  S.deadlines.push({text:t,date:d});sv();
+  document.getElementById('dl-text').value='';document.getElementById('dl-date').value='';
+  renderDeadlines();toast('⏳ Deadline locked in — counting down.');
+}
+function rmDeadline(i){S.deadlines.splice(i,1);sv();renderDeadlines();}
+// ═══════════ HUSTLE ═══════════
+function incomeTotal(){return S.hustle.income.reduce((a,e)=>a+(e.amt||0),0);}
+function incomeMonth(){const n=new Date();const m=n.getMonth(),y=n.getFullYear();return S.hustle.income.reduce((a,e)=>{const d=new Date(e.date);return(d.getMonth()===m&&d.getFullYear()===y)?a+(e.amt||0):a;},0);}
+function fmt$(v){return '$'+(Math.round(v*100)/100).toLocaleString();}
+const HU_ASSETS=[
+  {name:'Payoneer account verified',sub:'do this FIRST — verification takes days'},
+  {name:'Pick your niche (ONE only)',sub:'dentists · barbers · restaurants · plumbers'},
+  {name:'Demo site #1 built + deployed',sub:'Claude Code → Vercel, free'},
+  {name:'Demo site #2 built + deployed',sub:'same niche, different style'},
+  {name:'Demo site #3 built + deployed',sub:'the showpiece'},
+  {name:'Outreach template written',sub:'short · personal · mockup screenshot attached'},
+  {name:'Lead list: 100 businesses',sub:'Google Maps · US/UK cities · no/bad website'},
+  {name:'Upwork profile live',sub:'portfolio linked · SF cert added when passed'},
+  {name:'Fiverr gig live',sub:'"Business website in 72 hours"'},
+  {name:'Care plan one-pager',sub:'$40/mo — attach to every deal'},
+];
+function renderHustle(){
+  document.getElementById('hu-total').textContent=fmt$(incomeTotal());
+  document.getElementById('hu-month').textContent=fmt$(incomeMonth());
+  document.getElementById('hu-mrr').textContent=fmt$(S.hustle.mrr||0);
+  document.getElementById('hu-clients').textContent=S.hustle.pipe.clients;
+  const tot=incomeTotal();
+  document.getElementById('hu-target-sub').textContent=tot===0?'target: first client ($300–500)':tot<1500?'target: $1k/mo by month 3–4':'target: raise prices + stack MRR';
+  ['sent','replies','calls','clients'].forEach(k=>{document.getElementById('pv-'+k).textContent=S.hustle.pipe[k];});
+  const list=document.getElementById('hu-income-list');
+  list.innerHTML=S.hustle.income.map((e,i)=>{
+    const d=new Date(e.date);
+    return`<div class="inc-row"><span class="inc-amt">${fmt$(e.amt)}</span><span class="inc-src">${e.src}</span><span class="inc-date">${d.getDate()}/${d.getMonth()+1}</span><span class="inc-x" onclick="removeIncome(${i})">✕</span></div>`;
+  }).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">Nothing yet. The first $1 is the hardest — go get it.</div>';
+  const grid=document.getElementById('hu-assets');
+  grid.innerHTML=HU_ASSETS.map((a,i)=>{
+    const done=!!S.hustle.assets['a_'+i];
+    return`<div class="mod-item${done?' done-mod':''}" onclick="togAsset(${i})">
+      <div class="mod-check" style="${done?'background:var(--purple);border-color:var(--purple);':''}">${done?'✓':''}</div>
+      <div class="mod-info"><div class="mod-name">${a.name}</div><div class="mod-pct">${a.sub}</div></div>
+    </div>`;
+  }).join('');
+}
+function togAsset(i){const k='a_'+i;S.hustle.assets[k]=!S.hustle.assets[k];sv();renderHustle();toast(S.hustle.assets[k]?'✅ Asset ready!':'↩ Cleared');}
+function bumpPipe(k,d){S.hustle.pipe[k]=Math.max(0,(S.hustle.pipe[k]||0)+d);sv();renderHustle();if(k==='clients'&&d>0)toast('🏆 CLIENT WON! Log the income + add the win to the ledger.');}
+function addIncome(){
+  const amt=parseFloat(document.getElementById('hu-amt').value);
+  const src=document.getElementById('hu-src').value.trim()||'Unspecified';
+  if(isNaN(amt)||amt<=0)return;
+  S.hustle.income.unshift({amt,src,date:new Date().toISOString()});sv();
+  document.getElementById('hu-amt').value='';document.getElementById('hu-src').value='';
+  renderHustle();
+  toast('💵 '+fmt$(amt)+' logged. More where that came from.');
+}
+function removeIncome(i){S.hustle.income.splice(i,1);sv();renderHustle();}
+function setMRR(){const v=parseFloat(document.getElementById('hu-mrr-in').value);if(isNaN(v)||v<0)return;S.hustle.mrr=v;sv();document.getElementById('hu-mrr-in').value='';renderHustle();toast('🔁 MRR updated — this is the real business.');}
+
+// ═══════════ SALESFORCE ═══════════
+const SF_MODULES=[
+  {name:'Configuration & Setup',weight:'20%'},
+  {name:'Object Manager & Lightning App Builder',weight:'20%'},
+  {name:'Sales & Marketing Applications',weight:'12%'},
+  {name:'Service & Support Applications',weight:'11%'},
+  {name:'Productivity & Collaboration',weight:'7%'},
+  {name:'Data & Analytics Management',weight:'14%'},
+  {name:'Workflow/Process Automation',weight:'16%'},
+  {name:'Security & Access',weight:'10%'},
+  {name:'Accounts & Contacts',weight:'11%'},
+  {name:'Cases & Solutions',weight:'9%'},
+  {name:'Activities & Chatter',weight:'3%'},
+  {name:'Reports & Dashboards',weight:'13%'},
+  {name:'Mobile Administration',weight:'3%'},
+  {name:'AppExchange & Sandbox',weight:'2%'},
+];
+function sfTriggerFired(){const s=S.scores;return s.length>=2&&s[s.length-1]>=70&&s[s.length-2]>=70;}
+function renderSFPage(){
+  document.getElementById('sf-mocks-done').textContent=S.scores.length;
+  document.getElementById('sf-best').textContent=S.scores.length?Math.max(...S.scores)+'%':'—';
+  const doneMods=Object.values(S.mods).filter(Boolean).length;
+  document.getElementById('sf-mods-done').textContent=doneMods+'/'+SF_MODULES.length;
+  const trig=document.getElementById('sf-trigger');
+  if(sfTriggerFired()){
+    trig.className='callout go fu';
+    trig.innerHTML='<strong>🔥 TRIGGER FIRED — 70%+ twice in a row.</strong> The decision was already made: book the exam TODAY for 10 days from now. Not next week. Today. Then tell the Wins Ledger.';
+  }
+  const cont=document.getElementById('sf-bars');
+  if(!S.scores.length){cont.innerHTML='<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">No scores yet — take a mock today and get a baseline.</div>';}
+  else{cont.innerHTML=S.scores.map((s,i)=>`<div class="sf-row"><div class="sf-n">${i+1}</div><div class="sf-bg"><div class="sf-fill" style="width:${s}%;background:${s>=70?'var(--green)':s>=65?'var(--gold)':'var(--red)'}"></div></div><div class="sf-pct" style="color:${s>=70?'var(--green)':s>=65?'var(--gold)':'var(--red)'}">${s}%</div></div>`).join('');}
+  const grid=document.getElementById('module-grid');if(!grid)return;
+  grid.innerHTML=SF_MODULES.map((m,i)=>{
+    const done=!!S.mods['mod_'+i];
+    return`<div class="mod-item${done?' done-mod':''}" onclick="togMod(${i})">
+      <div class="mod-check">${done?'✓':''}</div>
+      <div class="mod-info"><div class="mod-name">${m.name}</div><div class="mod-pct">Exam weight</div></div>
+      <div class="mod-weight">${m.weight}</div>
+    </div>`;
+  }).join('');
+}
+function logScore(){
+  const v=parseInt(document.getElementById('sf-in').value);
+  if(isNaN(v)||v<0||v>100)return;
+  S.scores.push(v);sv();
+  document.getElementById('sf-in').value='';
+  renderSFPage();
+  if(sfTriggerFired())toast('🔥 TRIGGER FIRED — book the exam TODAY.');
+  else toast(v>=70?`💪 ${v}% — one more like this and the trigger fires.`:v>=65?`📈 ${v}% — passing zone, push to 70.`:`📚 ${v}% — review every wrong answer now.`);
+}
+function togMod(i){const k='mod_'+i;S.mods[k]=!S.mods[k];sv();renderSFPage();toast(S.mods[k]?'✅ Topic mastered!':'↩ Cleared');}
+
+// ═══════════ ATHLETE ═══════════
+function showAthTab(id,btn){
+  document.querySelectorAll('#pg-ath .spanel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#ath-tabs .stab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('ath-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+}
+function renderAth(){
+  const tl=document.getElementById('tn-log');
+  tl.innerHTML=S.tennisLog.slice(0,10).map((e,i)=>{
+    const d=new Date(e.date);
+    return`<div class="log-row"><span class="log-date">${d.getDate()}/${d.getMonth()+1}</span><span class="log-txt">${e.goal}</span><span class="log-meta">${'★'.repeat(e.rate||0)}</span><span class="log-x" onclick="rmTennis(${i})">✕</span></div>`;
+  }).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">No sessions logged. Next session: set ONE goal before you leave home.</div>';
+  const gl=document.getElementById('gym-log');
+  gl.innerHTML=S.gymLog.slice(0,10).map((e,i)=>{
+    const d=new Date(e.date);
+    return`<div class="log-row"><span class="log-date">${d.getDate()}/${d.getMonth()+1}</span><span class="log-txt">${e.note}</span><span class="log-x" onclick="rmGym(${i})">✕</span></div>`;
+  }).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">No lifts logged. Rule: beat last week by a rep or 2.5 kg.</div>';
+  renderFuel();
+}
+function addTennis(){
+  const goal=document.getElementById('tn-goal').value.trim();
+  const rate=parseInt(document.getElementById('tn-rate').value)||0;
+  if(!goal)return;
+  S.tennisLog.unshift({goal,rate:Math.min(5,Math.max(0,rate)),date:new Date().toISOString()});sv();
+  document.getElementById('tn-goal').value='';document.getElementById('tn-rate').value='';
+  renderAth();toast('🎾 Session logged.');
+}
+function rmTennis(i){S.tennisLog.splice(i,1);sv();renderAth();}
+function addGym(){
+  const note=document.getElementById('gym-note').value.trim();
+  if(!note)return;
+  S.gymLog.unshift({note,date:new Date().toISOString()});sv();
+  document.getElementById('gym-note').value='';
+  renderAth();toast('🏋️ Logged — beat it next week.');
+}
+function rmGym(i){S.gymLog.splice(i,1);sv();renderAth();}
+function renderFuel(){
+  const w=S.weights;
+  document.getElementById('fu-now').textContent=w.length?w[w.length-1].kg+' kg':'—';
+  let trend='—';
+  if(w.length>=2){
+    const last=w[w.length-1].kg;
+    const idx=Math.max(0,w.length-5);
+    const base=w[idx].kg;
+    const d=Math.round((last-base)*10)/10;
+    trend=(d>=0?'+':'')+d+' kg';
+  }
+  document.getElementById('fu-trend').textContent=trend;
+  const bars=document.getElementById('wt-bars');
+  if(!w.length){bars.innerHTML='<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">No weigh-ins yet — first one this Friday morning.</div>';return;}
+  const vals=w.slice(-10);
+  const min=Math.min(...vals.map(x=>x.kg))-1,max=Math.max(...vals.map(x=>x.kg))+1;
+  bars.innerHTML=vals.map(x=>{
+    const pct=Math.round(((x.kg-min)/(max-min))*100);
+    const d=new Date(x.date);
+    return`<div class="sf-row"><div class="sf-n" style="min-width:34px;">${d.getDate()}/${d.getMonth()+1}</div><div class="sf-bg"><div class="sf-fill" style="width:${pct}%;background:var(--gold)"></div></div><div class="sf-pct" style="color:var(--gold);min-width:44px;">${x.kg} kg</div></div>`;
+  }).join('');
+}
+
+// ═══════════ HEALTH ENGINE ═══════════
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
+function healthEntry(daysAgo){return S.health[dkOffset(daysAgo)]||null;}
+function getHealthBaseline(field,daysBack=14,excludeToday=true){
+  const vals=[];
+  for(let i=excludeToday?1:0;i<=daysBack;i++){
+    const e=S.health[dkOffset(i)];
+    if(e&&e[field]!=null&&!isNaN(e[field]))vals.push(e[field]);
+  }
+  if(!vals.length)return null;
+  return vals.reduce((a,b)=>a+b,0)/vals.length;
+}
+function computeRecovery(entry,daysAgo=0){
+  if(!entry)return null;
+  const parts=[];
+  if(entry.hrv!=null){const base=getHealthBaseline('hrv',14,daysAgo===0)||entry.hrv;parts.push({score:clamp(50+((entry.hrv-base)/base)*150,0,100),weight:.45});}
+  if(entry.rhr!=null){const base=getHealthBaseline('rhr',14,daysAgo===0)||entry.rhr;parts.push({score:clamp(50-((entry.rhr-base)/base)*150,0,100),weight:.30});}
+  if(entry.sleepHrs!=null){const dur=clamp((entry.sleepHrs/8)*100,0,115);const eff=entry.sleepEff!=null?entry.sleepEff:82;parts.push({score:clamp(dur*0.7+eff*0.3,0,100),weight:.25});}
+  if(!parts.length)return null;
+  const tw=parts.reduce((a,p)=>a+p.weight,0);
+  return Math.round(clamp(parts.reduce((a,p)=>a+p.score*p.weight,0)/tw,0,100));
+}
+function computeStrain(entry){
+  if(!entry||!entry.sessions||!entry.sessions.length)return 0;
+  const maxHR=220-USER_AGE;let total=0;
+  entry.sessions.forEach(s=>{if(!s.hr||!s.min)return;const it=Math.min(s.hr/maxHR,1.15);total+=s.min*Math.pow(it,2.2);});
+  return Math.round(clamp(21*(1-Math.exp(-total/72)),0,21)*10)/10;
+}
+function recZone(rec){
+  if(rec==null)return{label:'NO DATA',color:'var(--muted2)'};
+  if(rec>=67)return{label:'GREEN · PRIMED',color:'var(--green)'};
+  if(rec>=34)return{label:'YELLOW · MODERATE',color:'var(--gold)'};
+  return{label:'RED · REST',color:'var(--red)'};
+}
+function ringSVG(value,max,color,size,sw){
+  const r=(size-sw)/2,c=2*Math.PI*r,pct=clamp((value||0)/max,0,1),off=c*(1-pct);
+  return`<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+    <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="var(--border)" stroke-width="${sw}"/>
+    <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${color}" stroke-width="${sw}" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}" transform="rotate(-90 ${size/2} ${size/2})" style="transition:stroke-dashoffset .5s ease"/>
+  </svg>`;
+}
+function todayHealth(){const k=DKEY();if(!S.health[k])S.health[k]={sessions:[]};return S.health[k];}
+function renderHealth(){
+  const entry=healthEntry(0);
+  const rec=computeRecovery(entry,0);
+  const strain=computeStrain(entry);
+  const zone=recZone(rec);
+  document.getElementById('gauge-recovery').innerHTML=`<div class="gauge-wrap">${ringSVG(rec,100,zone.color,108,10)}<div class="gauge-num" style="color:${zone.color}">${rec==null?'—':rec}</div></div>`;
+  document.getElementById('gauge-strain').innerHTML=`<div class="gauge-wrap">${ringSVG(strain,21,'var(--blue2)',108,10)}<div class="gauge-num" style="color:var(--blue2)">${strain||0}</div></div>`;
+  document.getElementById('recovery-zone-lbl').textContent=zone.label;
+  document.getElementById('recovery-zone-lbl').style.color=zone.color;
+  document.getElementById('strain-zone-lbl').textContent=strain>=14?'ALL OUT':strain>=8?'STRENUOUS':strain>0?'MODERATE':'RESTING';
+  if(entry){
+    if(entry.rhr!=null)document.getElementById('hl-rhr').value=entry.rhr;
+    if(entry.hrv!=null)document.getElementById('hl-hrv').value=entry.hrv;
+    if(entry.sleepHrs!=null)document.getElementById('hl-sleep').value=entry.sleepHrs;
+    if(entry.sleepEff!=null)document.getElementById('hl-sleepeff').value=entry.sleepEff;
+  }
+  const last7=[];for(let i=0;i<7;i++){const e=healthEntry(i);const r=computeRecovery(e,i);if(r!=null)last7.push(r);}
+  const avg7=last7.length?Math.round(last7.reduce((a,b)=>a+b,0)/last7.length):null;
+  document.getElementById('hl-avgrec').textContent=avg7!=null?avg7:'—';
+  const age=avg7!=null?(USER_AGE+(avg7>=80?-2:avg7>=65?-1:avg7>=45?0:avg7>=25?2:4)):null;
+  document.getElementById('hl-age').textContent=age!=null?age:'—';
+  document.getElementById('hl-sessions').textContent=(entry&&entry.sessions)?entry.sessions.length:0;
+  const insightEl=document.getElementById('hl-insight');
+  if(rec==null){insightEl.textContent='Log resting HR, HRV, or sleep to unlock your Recovery score.';}
+  else if(rec>=67){insightEl.textContent=`🟢 Recovery ${rec}% — primed. Green light for a heavy lift, a hard court session, or your toughest deep work.`;}
+  else if(rec>=34){insightEl.textContent=`🟡 Recovery ${rec}% — moderate. Train with control: technique day on court, moderate loads in the gym.`;}
+  else{insightEl.textContent=`🔴 Recovery ${rec}% — rest. Skip the gym (never the sleep). Tomorrow resets if tonight is clean.`;}
+  const sList=document.getElementById('hl-sessions-list');
+  const sess=(entry&&entry.sessions)?entry.sessions:[];
+  sList.innerHTML=sess.map((s,i)=>`<div class="session-row"><span>💓 ${s.hr} bpm avg</span><span>·</span><span>${s.min} min</span><span class="sr-x" onclick="removeSession(${i})">✕</span></div>`).join('');
+  const days=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  let barsHtml='';
+  for(let i=6;i>=0;i--){
+    const e=healthEntry(i);const r=computeRecovery(e,i);
+    const z=recZone(r);
+    const d=new Date();d.setDate(d.getDate()-i);
+    barsHtml+=`<div class="sf-row"><div class="sf-n" style="min-width:26px;">${days[d.getDay()]}</div><div class="sf-bg"><div class="sf-fill" style="width:${r||0}%;background:${z.color}"></div></div><div class="sf-pct" style="color:${z.color}">${r==null?'—':r+'%'}</div></div>`;
+  }
+  document.getElementById('hl-7d-bars').innerHTML=barsHtml;
+  document.getElementById('hl-7d-ct').textContent=last7.length+'/7 logged';
+}
+function saveHealthEntry(){
+  const e=todayHealth();
+  const num=id=>{const v=document.getElementById(id).value;return v===''?null:parseFloat(v);};
+  e.rhr=num('hl-rhr');e.hrv=num('hl-hrv');e.sleepHrs=num('hl-sleep');e.sleepEff=num('hl-sleepeff');
+  sv();renderHealth();toast('💓 Recovery data saved!');
+}
+function addWorkoutSession(){
+  const hr=parseFloat(document.getElementById('hl-wo-hr').value);
+  const min=parseFloat(document.getElementById('hl-wo-min').value);
+  if(!hr||!min)return;
+  const e=todayHealth();if(!e.sessions)e.sessions=[];
+  e.sessions.push({hr,min});sv();
+  document.getElementById('hl-wo-hr').value='';document.getElementById('hl-wo-min').value='';
+  renderHealth();toast('🔥 Session logged — strain updated.');
+}
+function removeSession(i){const e=todayHealth();e.sessions.splice(i,1);sv();renderHealth();}
+
+// ═══════════ REVIEW / KPIs ═══════════
+function sum7(fn){let s=0;for(let i=0;i<7;i++)s+=fn(q(dkOffset(i)))?1:0;return s;}
+function tot7(field){let s=0;for(let i=0;i<7;i++)s+=(q(dkOffset(i))[field]||0);return s;}
+function renderReview(){
+  const kg=document.getElementById('kpi-grid');
+  const mockAvg=S.scores.length?Math.round(S.scores.slice(-3).reduce((a,b)=>a+b,0)/Math.min(3,S.scores.length)):null;
+  let wtd='—';
+  if(S.weights.length>=2){const l=S.weights[S.weights.length-1].kg,b=S.weights[Math.max(0,S.weights.length-5)].kg;const d=Math.round((l-b)*10)/10;wtd=(d>=0?'+':'')+d+'kg';}
+  let delStreak=0;
+  {const wk=currentWeekMonday();const del=S.exoDel[wk];
+   for(let w=1;w<60;w++){const m=new Date(wk);m.setDate(m.getDate()-7*w);const e=S.exoDel[m.toDateString()];if(e&&e.done)delStreak++;else break;}
+   if(del&&del.done)delStreak++;}
+  const kpis=[
+    {l:'Sleep on time',v:sum7(d=>!!d.sleep)+'/7',c:'c-green'},
+    {l:'Fajr',v:sum7(d=>!!d.fajr)+'/7',c:'c-gold'},
+    {l:'Deep blocks',v:tot7('deep'),c:'c-blue'},
+    {l:'Outreach sent',v:tot7('out'),c:'c-purple'},
+    {l:'Training days',v:sum7(d=>!!d.train)+'/7',c:'c-red'},
+    {l:'Mock avg (last 3)',v:mockAvg==null?'—':mockAvg+'%',c:'c-blue'},
+    {l:'Weight trend',v:wtd,c:'c-gold'},
+    {l:'Income MTD',v:fmt$(incomeMonth()),c:'c-green'},
+    {l:'Recurring MRR',v:fmt$(S.hustle.mrr||0),c:'c-purple'},
+    {l:'Deliverable streak',v:delStreak+'w',c:'c-cyan'},
+    {l:'Clients won',v:S.hustle.pipe.clients,c:'c-green'},
+    {l:'Wins logged',v:S.wins.length,c:'c-gold'},
+  ];
+  kg.innerHTML=kpis.map(k=>`<div class="stile"><div class="st-lbl">${k.l}</div><div class="st-val ${k.c}" style="font-size:26px;">${k.v}</div></div>`).join('');
+  // 30-day dots from quick log
+  const cats=[
+    {id:'sleep',cls:'ogg',fn:d=>!!d.sleep,ct:'ct-sleep'},
+    {id:'fajr',cls:'og',fn:d=>!!d.fajr,ct:'ct-fajr'},
+    {id:'deep',cls:'ob',fn:d=>(d.deep||0)>=2,ct:'ct-deep'},
+    {id:'out',cls:'op',fn:d=>(d.out||0)>=10,ct:'ct-out'},
+    {id:'train',cls:'or',fn:d=>!!d.train,ct:'ct-train'},
+  ];
+  cats.forEach(c=>{
+    let html='',n=0;
+    for(let i=29;i>=0;i--){
+      const on=c.fn(q(dkOffset(i)));
+      if(on)n++;
+      html+=`<div class="d${on?' '+c.cls:''}${i===0?' td':''}"></div>`;
+    }
+    document.getElementById('dr-'+c.id).innerHTML=html;
+    document.getElementById(c.ct).textContent=n+'/30';
+  });
+  // wins
+  document.getElementById('wins-list').innerHTML=S.wins.slice(0,15).map((w,i)=>{
+    const d=new Date(w.date);
+    return`<div class="log-row"><span class="log-date">${d.getDate()}/${d.getMonth()+1}</span><span class="log-txt">🏆 ${w.text}</span><span class="log-x" onclick="rmWin(${i})">✕</span></div>`;
+  }).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">Empty ledger. First entry: "Built my OS and started."</div>';
+  // reviews
+  document.getElementById('rev-list').innerHTML=S.revLog.slice(0,8).map((r,i)=>{
+    const d=new Date(r.date);
+    return`<div class="log-row"><span class="log-date">${d.getDate()}/${d.getMonth()+1}</span><span class="log-txt">${r.text}</span><span class="log-x" onclick="rmReview(${i})">✕</span></div>`;
+  }).join('');
+}
+function addWin(){
+  const v=document.getElementById('win-in').value.trim();
+  if(!v)return;
+  S.wins.unshift({text:v,date:new Date().toISOString()});sv();
+  document.getElementById('win-in').value='';
+  renderReview();toast('🏆 Evidence recorded.');
+}
+function rmWin(i){S.wins.splice(i,1);sv();renderReview();}
+function addReview(){
+  const v=document.getElementById('rev-in').value.trim();
+  if(!v)return;
+  S.revLog.unshift({text:v,date:new Date().toISOString()});sv();
+  document.getElementById('rev-in').value='';
+  renderReview();toast('📅 Week closed. New week, clean slate.');
+}
+function rmReview(i){S.revLog.splice(i,1);sv();renderReview();}
+
+// ═══════════ DEVICE SYNC (jsonbin.io) ═══════════
+let SYNC={};
+try{SYNC=JSON.parse(localStorage.getItem('dawly_sync')||'{}');}catch{SYNC={};}
+function syncConfigured(){return !!(SYNC.binId&&SYNC.key);}
+function setSyncStatus(msg){const el=document.getElementById('sync-status');if(el)el.textContent=msg;}
+let pushTimer=null;
+function schedulePush(){
+  if(!syncConfigured())return;
+  clearTimeout(pushTimer);
+  pushTimer=setTimeout(pushSync,2500);
+}
+async function pushSync(){
+  if(!syncConfigured())return;
+  try{
+    const payload={ts:S._ts||Date.now(),S:S,EXOT:EXOT,DRT:DRT};
+    const r=await fetch('https://api.jsonbin.io/v3/b/'+SYNC.binId,{
+      method:'PUT',
+      headers:{'Content-Type':'application/json','X-Master-Key':SYNC.key},
+      body:JSON.stringify(payload)
+    });
+    if(!r.ok)throw new Error(r.status);
+    setSyncStatus('☁️ Synced · '+new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'}));
+  }catch(e){
+    setSyncStatus('⚠️ Push failed — will retry on next change. Check internet / keys.');
+  }
+}
+async function pullSync(manual){
+  if(!syncConfigured()){if(manual)setSyncStatus('Not connected — paste Bin ID + key first.');return;}
+  try{
+    if(manual)setSyncStatus('⏳ Checking cloud…');
+    const r=await fetch('https://api.jsonbin.io/v3/b/'+SYNC.binId+'/latest',{headers:{'X-Master-Key':SYNC.key}});
+    if(!r.ok)throw new Error(r.status);
+    const j=await r.json();
+    const rec=j.record;
+    if(rec&&rec.ts&&rec.S&&rec.ts>(S._ts||0)){
+      localStorage.setItem('dawly_os',JSON.stringify(rec.S));
+      if(rec.EXOT)localStorage.setItem('exoguard_tasks_v2',JSON.stringify(rec.EXOT));
+      if(rec.DRT)localStorage.setItem('exoguard_dr_tasks',JSON.stringify(rec.DRT));
+      location.reload();
+    }else{
+      if(manual)setSyncStatus('✓ Up to date · this device has the newest data.');
+      if(!rec||!rec.ts)pushSync();
+    }
+  }catch(e){
+    if(manual)setSyncStatus('⚠️ Pull failed — check Bin ID, key, and internet.');
+  }
+}
+function saveSyncConfig(){
+  const bin=document.getElementById('sync-bin').value.trim();
+  const key=document.getElementById('sync-key').value.trim();
+  if(!bin||!key){setSyncStatus('Both fields are required.');return;}
+  SYNC={binId:bin,key:key};
+  localStorage.setItem('dawly_sync',JSON.stringify(SYNC));
+  setSyncStatus('🔗 Connected — checking cloud…');
+  pullSync(true);
+  toast('☁️ Sync connected on this device.');
+}
+function renderSyncBox(){
+  if(SYNC.binId)document.getElementById('sync-bin').value=SYNC.binId;
+  if(SYNC.key)document.getElementById('sync-key').value=SYNC.key;
+  if(syncConfigured())setSyncStatus('🔗 Connected — syncs automatically on every change.');
+}
+function exportBackup(){
+  const payload={ts:Date.now(),S:S,EXOT:EXOT,DRT:DRT};
+  const blob=new Blob([JSON.stringify(payload,null,1)],{type:'application/json'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='dawly_os_backup_'+new Date().toISOString().slice(0,10)+'.json';
+  a.click();
+  toast('⬇ Backup downloaded.');
+}
+function importBackup(inp){
+  const f=inp.files[0];if(!f)return;
+  const rd=new FileReader();
+  rd.onload=()=>{
+    try{
+      const rec=JSON.parse(rd.result);
+      if(!rec.S)throw new Error('bad file');
+      localStorage.setItem('dawly_os',JSON.stringify(rec.S));
+      if(rec.EXOT)localStorage.setItem('exoguard_tasks_v2',JSON.stringify(rec.EXOT));
+      if(rec.DRT)localStorage.setItem('exoguard_dr_tasks',JSON.stringify(rec.DRT));
+      location.reload();
+    }catch{toast('⚠️ Invalid backup file.');}
+  };
+  rd.readAsText(f);
+}
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)pullSync(false);});
+
+// ═══════════ TOAST + INIT ═══════════
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2300);}
+setQuote();
+renderQuick();
+renderStreaks();
+renderNextAction();
+renderDeadlines();
+renderSched();
+renderExo();
+renderPhases();
+renderDrTasks();
+renderHustle();
+renderSFPage();
+renderAth();
+renderHealth();
+renderReview();
+renderSyncBox();
+pullSync(false);
+setInterval(()=>{renderSched();renderNextAction();renderDeadlines();},60000);
+</script>
+</body>
+</html>
