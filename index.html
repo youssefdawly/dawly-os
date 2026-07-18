@@ -1680,7 +1680,7 @@ function exoCurrentPhase(){
   for(const p of EXO_PHASES){if(n>=new Date(p.start)&&n<=new Date(p.end+'T23:59:59'))return p.id;}
   return n<new Date(EXO_PHASES[0].start)?0:EXO_PHASES.length-1;
 }
-function renderPhases(){
+let EXO_OPEN={};try{EXO_OPEN=JSON.parse(localStorage.getItem('dawly_exo_open')||'{}');}catch{EXO_OPEN={};}function exoOpenTog(id,o){EXO_OPEN[id]=o;localStorage.setItem('dawly_exo_open',JSON.stringify(EXO_OPEN));}function renderPhases(){
   const cur=exoCurrentPhase();
   let allDone=0,allTotal=0;
   const html=EXO_PHASES.map(p=>{
@@ -1693,7 +1693,7 @@ function renderPhases(){
     const fmt=d=>d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
     const dleft=Math.ceil((e-new Date())/86400000);
     const badge=isCur?`<span style="font-family:'DM Mono',monospace;font-size:8px;color:${p.color};">● LIVE — ${dleft>=0?dleft+'d left':'overtime'}</span>`:(new Date()>e?'<span style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--muted);">PAST</span>':'<span style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--muted2);">AHEAD</span>');
-    return`<details class="cbox"${isCur?' open style="border-color:'+p.color+';"':''}>
+    const so=EXO_OPEN[p.id]!==undefined?EXO_OPEN[p.id]:isCur;return`<details class="cbox" ontoggle="exoOpenTog(${p.id},this.open)"${so?' open':''}${isCur?' style="border-color:'+p.color+';"':''}>
       <summary><span style="color:${p.color};">${p.name}</span><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);margin-left:auto;padding-right:8px;">${done}/${tasks.length}</span>${badge}</summary>
       <div class="cbody">
         <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);margin-bottom:6px;">${fmt(s)} → ${fmt(e)} · ${p.goal}</div>
@@ -2084,7 +2084,7 @@ function renderReview(){
     for(let i=29;i>=0;i--){
       const on=c.fn(q(dkOffset(i)));
       if(on)n++;
-      html+=`<div class="d${on?' '+c.cls:''}${i===0?' td':''}"></div>`;
+      html+=`<div class="d${on?' '+c.cls:''}${i===0?' td':''}" style="cursor:pointer;" onclick="revDotTog('${c.id}',${i})"></div>`;
     }
     document.getElementById('dr-'+c.id).innerHTML=html;
     document.getElementById(c.ct).textContent=n+'/30';
@@ -2098,7 +2098,7 @@ function renderReview(){
     return`<div class="log-row"><span class="log-date">${d.getDate()}/${d.getMonth()+1}</span><span class="log-txt">${r.text}</span><span class="log-x" onclick="rmReview(${i})">✕</span></div>`;
   }).join('');
 }
-function addWin(){
+function revDotTog(cat,off){const dk=dkOffset(off);if(!S.quick[dk])S.quick[dk]={fajr:false,sleep:false,deep:0,out:0,train:false};const t=S.quick[dk];if(cat==='sleep')t.sleep=!t.sleep;if(cat==='fajr')t.fajr=!t.fajr;if(cat==='deep')t.deep=(t.deep||0)>=2?0:2;if(cat==='out')t.out=(t.out||0)>=10?0:10;if(cat==='train')t.train=!t.train;sv();renderReview();renderStreaks();renderQuick();toast('Day updated');}function addWin(){
   const v=document.getElementById('win-in').value.trim();
   if(!v)return;
   S.wins.unshift({text:v,date:new Date().toISOString()});sv();
