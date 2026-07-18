@@ -1306,11 +1306,11 @@ const SCH={
   ],
   rest:[
     {t:'9:30 AM',n:'Slow Morning',s:'Wake · shower · big breakfast · slower pace',e:'🌅',c:'rest'},
-    {t:'10:30 AM',n:'Sunday Review (if Sunday)',s:'20 min · Review tab · score the week · set next week',e:'📋',c:'rest',law:6},
+    {t:'10:30 AM',n:'Sunday Review + Monday Deliverable',s:'20 min · Review tab · score the week · set next week',e:'📋',c:'rest',law:6},
     {t:'11:30 AM',n:'Light ExoGuard',s:'One small task · 45 min max · no pressure',e:'🦾',c:'rest'},
     {t:'1:00 PM',n:'Dhuhr + Family Lunch',s:'Pray · be present',e:'🕌',c:'prayer'},
     {t:'2:00 PM',n:'Replies Only',s:'Leads get answers · no new outreach · 30 min',e:'💰',c:'hustle'},
-    {t:'2:30 PM',n:'Free Time',s:'Friends · family · FIFA · full recharge',e:'🌳',c:'rest'},
+    {t:'2:30 PM',n:'RECOVERY MODE',s:'Sauna · jacuzzi · movie · Barca match · family · zero guilt',e:'🌳',c:'rest'},
     {t:'6:00 PM',n:'Maghrib + Isha',s:'Pray · gratitude',e:'🕌',c:'prayer'},
     {t:'11:00 PM',n:'Early-ish Sleep',s:'Big week starts tomorrow',e:'🌙',c:'rest',law:5},
   ]
@@ -1325,7 +1325,7 @@ function getAuto(){
     return'uniday';
   }
   if(d===5)return'friday';
-  if(d===1||d===3)return'tennisday';
+  if(d===0)return'rest';if(d===1||d===3)return'tennisday';
   return'grind';
 }
 function getSch(){return SCH[S.dt==='auto'?getAuto():S.dt]||SCH.grind;}
