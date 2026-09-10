@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v3 · FINAL YEAR · built 10 Sep 2026 -->
+<!-- DAWLY OS v3.1 · FINAL YEAR · built 10 Sep 2026 -->
 <title>DAWLY OS — Personal Operating System</title>
 <meta name="theme-color" content="#070709">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -1701,13 +1701,23 @@ const PRE_DAYS={
    extra:{t:'9:00 AM',n:'🎒 SEMESTER PREP',s:'Desk set up · bag packed · lunchbox system sorted · tennis kit bag ready · bus route confirmed · uniform of the week decided',e:'🎒',c:'hustle',law:6},
    gym:'Chest / Back',tn:'academy'},
 };
+function addMin(t,m){
+  const p=t.trim().split(' ');let[h,mm]=p[0].split(':').map(Number);
+  const ap=(p[1]||'AM').toUpperCase();
+  if(ap==='PM'&&h!==12)h+=12; if(ap==='AM'&&h===12)h=0;
+  let tot=h*60+mm+m; tot=((tot%1440)+1440)%1440;
+  const H=Math.floor(tot/60),M=tot%60;
+  const suf=H>=12?'PM':'AM'; let h12=H%12; if(h12===0)h12=12;
+  return h12+':'+String(M).padStart(2,'0')+' '+suf;
+}
 function buildPre(k){
   const d=PRE_DAYS[k];if(!d)return null;
   const a=[];
   a.push({t:d.wake,n:'Wake — sleep ramp',s:'Bed tonight by '+d.bed+' · every day shifts 20–30 min toward the 6:15 uni wake',e:'🌅',c:'rest',law:5});
-  a.push({t:'Breakfast',n:'Breakfast',s:'Real one — no bus to catch yet',e:'🍳',c:'rest'});
-  if(d.extra&&d.extra.t==='9:00 AM')a.push(d.extra);
-  if(d.tv)a.push({t:'9:00 AM',n:'TRAVIS — '+d.tvT,s:d.tv,e:'🤖',c:'study',law:1});
+  a.push({t:addMin(d.wake,25),n:'Breakfast',s:'Real one — no bus to catch yet',e:'🍳',c:'rest'});
+  const tvStart=addMin(d.wake,75);
+  if(d.extra&&d.extra.t==='9:00 AM'){const x=Object.assign({},d.extra);x.t=tvStart;a.push(x);}
+  if(d.tv)a.push({t:tvStart,n:'TRAVIS — '+d.tvT,s:d.tv,e:'🤖',c:'study',law:1});
   a.push({t:'12:45 PM',n:'Lunch',s:'Then the ExoGuard block',e:'🍽️',c:'rest'});
   if(d.ex)a.push({t:'2:00 PM',n:'EXOGUARD',s:d.ex,e:'🦾',c:'study',law:1});
   if(d.extra&&d.extra.t!=='9:00 AM')a.push(d.extra);
