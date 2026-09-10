@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- DAWLY OS v3 · FINAL YEAR · built 10 Sep 2026 -->
 <title>DAWLY OS — Personal Operating System</title>
-<meta name="robots" content="noindex, nofollow, noarchive">
 <meta name="theme-color" content="#070709">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
@@ -38,15 +38,6 @@ body{background:var(--bg);color:var(--text);font-family:'Outfit',sans-serif;min-
 body::after{content:'';position:fixed;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,.04) 2px,rgba(0,0,0,.04) 4px);pointer-events:none;z-index:9999;}
 .app{max-width:440px;margin:0 auto;min-height:100vh;display:flex;flex-direction:column;position:relative;}
 @media(min-width:768px){.app{max-width:860px;}}
-
-/* ── LOCK SCREEN ── */
-.lock{position:fixed;inset:0;background:var(--bg);z-index:100000;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;}
-.lock-logo{font-family:'Bebas Neue',sans-serif;font-size:44px;letter-spacing:6px;background:linear-gradient(135deg,var(--gold),var(--gold2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;filter:drop-shadow(0 0 14px rgba(212,168,67,.4));}
-.lock-sub{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);letter-spacing:3px;text-transform:uppercase;}
-.lock-in{width:220px;padding:13px;background:var(--s1);border:1.5px solid var(--border2);border-radius:10px;font-family:'DM Mono',monospace;font-size:22px;font-weight:600;color:var(--text);outline:none;text-align:center;letter-spacing:8px;}
-.lock-in:focus{border-color:var(--gold);}
-.lock-btn{width:220px;padding:12px;background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;border-radius:10px;font-family:'Outfit',sans-serif;font-weight:900;font-size:13px;cursor:pointer;letter-spacing:1px;box-shadow:0 0 14px rgba(212,168,67,.3);}
-.lock-msg{font-family:'DM Mono',monospace;font-size:10px;color:var(--muted2);letter-spacing:1px;min-height:14px;}
 
 /* ── HEADER ── */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:14px 18px 11px;position:sticky;top:0;background:rgba(7,7,9,.96);backdrop-filter:blur(20px);z-index:50;border-bottom:1px solid transparent;transition:border-color .3s;}
@@ -156,6 +147,28 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 .prog-hero{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:12px;display:flex;align-items:center;gap:14px;}
 .ph-info{flex:1;}
 .ph-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:2px;margin-bottom:7px;text-transform:uppercase;}
+/* ── utilities added for Uni / Travis / Bus tabs ── */
+.ph{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);padding:14px 16px;margin-bottom:12px;}
+.ph-top{display:flex;align-items:baseline;justify-content:space-between;gap:10px;margin-bottom:9px;}
+.ph-t{font-size:13px;font-weight:800;letter-spacing:.06em;}
+.ph-s{font-family:'DM Mono',monospace;font-size:9.5px;color:var(--gold);white-space:nowrap;}
+.ph-meta{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-top:7px;}
+.c-hd{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--gold);margin-bottom:10px;text-transform:uppercase;}
+.hint{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);line-height:1.6;font-weight:400;}
+.row{display:flex;gap:7px;align-items:center;}
+.btn{padding:9px 15px;background:var(--s2);border:1px solid var(--border2);border-radius:var(--rs);color:var(--text);font-family:'Outfit',sans-serif;font-weight:700;font-size:11.5px;cursor:pointer;white-space:nowrap;transition:all .2s;}
+.btn:hover{border-color:var(--gold);color:var(--gold);}
+.btn.sm{padding:8px 13px;font-size:11px;}
+.btn.go{background:linear-gradient(135deg,var(--gold),var(--gold2));color:#000;border:none;font-weight:800;}
+.grid2{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:12px;}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:12px;}
+.mrow{display:flex;align-items:center;gap:9px;padding:10px 12px;background:var(--bg);border:1px solid var(--border);border-radius:var(--rs);margin-bottom:5px;font-size:11px;}
+.mrow.due{border-color:rgba(240,85,85,.4);background:rgba(240,85,85,.05);}
+.mrow.ok{border-color:rgba(46,201,122,.3);}
+.pill{font-family:'DM Mono',monospace;font-size:7.5px;padding:2px 6px;border-radius:6px;background:var(--s3);color:var(--muted2);letter-spacing:.5px;white-space:nowrap;}
+.pill.ct{background:rgba(240,85,85,.15);color:#f05555;}
+.pill.ce{background:rgba(46,201,122,.15);color:var(--green);}
+.pill.pd{background:rgba(41,212,224,.15);color:var(--cyan);}
 .ph-bar{height:4px;background:var(--border);border-radius:2px;overflow:hidden;}
 .ph-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;transition:width .5s ease;}
 .ph-num{font-family:'Bebas Neue',sans-serif;font-size:40px;color:var(--gold);line-height:1;}
@@ -336,16 +349,6 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 </style>
 </head>
 <body>
-
-<!-- LOCK SCREEN -->
-<div class="lock" id="lock">
-  <div class="lock-logo">DAWLY</div>
-  <div class="lock-sub">Private System · Enter PIN</div>
-  <input class="lock-in" id="lock-in" type="password" inputmode="numeric" autocomplete="off" placeholder="••••">
-  <button class="lock-btn" onclick="pinSubmit()">UNLOCK</button>
-  <div class="lock-msg" id="lock-msg"></div>
-</div>
-
 <div class="app">
 <!-- HEADER -->
 <header class="hdr" id="hdr">
@@ -538,13 +541,17 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
   <div class="callout tip fu" id="td-directive" style="margin-bottom:10px;">Loading today's directive…</div>
   <div class="chip-row">
     <div class="chip active" id="chip-auto" onclick="setDT('auto')">Auto</div>
+    <div class="chip" id="chip-uniSun" onclick="setDT('uniSun')">🎓 Sun · Prof Dev</div>
+    <div class="chip" id="chip-uniMon" onclick="setDT('uniMon')">🎓🎾 Mon · 9-to-5</div>
+    <div class="chip" id="chip-deskTue" onclick="setDT('deskTue')">🔥 Tue · Desk Day</div>
+    <div class="chip" id="chip-uniWed" onclick="setDT('uniWed')">📚 Wed · Library+Legs</div>
+    <div class="chip" id="chip-uniThu" onclick="setDT('uniThu')">🔬 Thu · Lab</div>
+    <div class="chip" id="chip-preRest" onclick="setDT('preRest')">🧖 Recovery</div>
+    <div class="chip" id="chip-buildSat" onclick="setDT('buildSat')">🛠️ Sat · Build</div>
+    <div class="chip" id="chip-examDay" onclick="setDT('examDay')">📝 Exam Week</div>
     <div class="chip" id="chip-grind" onclick="setDT('grind')">🔥 Grind</div>
     <div class="chip" id="chip-tennisday" onclick="setDT('tennisday')">🎾 Tennis Day</div>
-    <div class="chip" id="chip-friday" onclick="setDT('friday')">🕌 Friday</div>
-    <div class="chip" id="chip-uniday" onclick="setDT('uniday')">🎓 Uni Day</div>
-    <div class="chip" id="chip-unitennis" onclick="setDT('unitennis')">🎓🎾 Uni+Tennis</div>
     <div class="chip" id="chip-ramadan" onclick="setDT('ramadan')">🌙 Ramadan</div>
-    <div class="chip" id="chip-rest" onclick="setDT('rest')">🌅 Rest</div>
   </div>
   <div class="sched" id="sched"></div>
 </div>
@@ -677,120 +684,253 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 <!-- ════════════════════════════════════════
      ④ HUSTLE — income engine
 ════════════════════════════════════════ -->
-<div class="pg" id="pg-hustle">
-  <div class="hero">
-    <div class="hero-kicker fu" style="color:var(--purple);">INCOME ENGINE · US/UK CLIENTS · BUDGET 1,000 EGP/MO</div>
-    <div class="hero-title fu" style="text-shadow:0 0 30px rgba(164,124,240,.18);">HUSTLE<span style="color:var(--purple);">.</span></div>
-    <div class="hero-sub fu"><strong style="color:var(--text);">Two engines:</strong> AI-built websites for businesses with no site (Engine 1, primary) + Salesforce services once certified (Engine 2). Geo-arbitrage: earn USD, live in EGP. The pipeline below IS the business.</div>
+<div class="pg" id="pg-uni">
+  <div class="ph">
+    <div class="ph-top"><div class="ph-t">🎓 UNIVERSITY</div><div class="ph-s" id="uni-week">—</div></div>
+    <div class="ph-bar"><div class="ph-fill" id="uni-fill"></div></div>
+    <div class="ph-meta"><span id="uni-sub">Semester 1 · 60 credits · 20 Sep → 10 Dec 2026</span></div>
   </div>
 
-  <!-- money stats -->
-  <div class="s2 fu">
-    <div class="stile"><div class="st-lbl">Total Earned</div><div class="st-val c-green" id="hu-total">$0</div><div class="st-sub">all time</div></div>
-    <div class="stile"><div class="st-lbl">This Month</div><div class="st-val c-purple" id="hu-month">$0</div><div class="st-sub" id="hu-target-sub">target: first client</div></div>
-    <div class="stile"><div class="st-lbl">Recurring / mo</div><div class="st-val c-gold" id="hu-mrr">$0</div><div class="st-sub">care plans — the real business</div></div>
-    <div class="stile"><div class="st-lbl">Clients Won</div><div class="st-val c-blue" id="hu-clients">0</div><div class="st-sub">from pipeline</div></div>
+  <div class="stabs fu" id="uni-tabs">
+    <div class="stab active" onclick="showUniTab('mods',this)">📘 Modules</div>
+    <div class="stab" onclick="showUniTab('study',this)">📖 Two-Pass</div>
+    <div class="stab" onclick="showUniTab('queue',this)">🔄 Review Queue</div>
+    <div class="stab" onclick="showUniTab('wrong',this)">❌ Wrong Answers</div>
+    <div class="stab" onclick="showUniTab('dl',this)">📅 Deadlines</div>
   </div>
 
-  <div class="callout money fu"><strong>The honest ramp (your $1k/month, real timeline):</strong> Month 1 — assets built, 300 touches, first client ($300–500). Months 2–3 — $500–1,000/mo. Month 4+ — $1k+/mo with care plans stacking. You control inputs, not replies. The OS grades you on inputs only: 10/day, every day.</div>
-
-  <!-- pipeline -->
-  <div class="section-lbl fu">Pipeline — This Week</div>
-  <div class="pipe-grid fu">
-    <div class="pipe-cell"><div class="pipe-val c-purple" id="pv-sent">0</div><div class="pipe-lbl">Sent</div><div class="pipe-btns"><button class="pipe-b" onclick="bumpPipe('sent',-1)">−</button><button class="pipe-b" onclick="bumpPipe('sent',1)">+</button></div></div>
-    <div class="pipe-cell"><div class="pipe-val c-blue" id="pv-replies">0</div><div class="pipe-lbl">Replies</div><div class="pipe-btns"><button class="pipe-b" onclick="bumpPipe('replies',-1)">−</button><button class="pipe-b" onclick="bumpPipe('replies',1)">+</button></div></div>
-    <div class="pipe-cell"><div class="pipe-val c-gold" id="pv-calls">0</div><div class="pipe-lbl">Calls</div><div class="pipe-btns"><button class="pipe-b" onclick="bumpPipe('calls',-1)">−</button><button class="pipe-b" onclick="bumpPipe('calls',1)">+</button></div></div>
-    <div class="pipe-cell"><div class="pipe-val c-green" id="pv-clients">0</div><div class="pipe-lbl">Clients</div><div class="pipe-btns"><button class="pipe-b" onclick="bumpPipe('clients',-1)">−</button><button class="pipe-b" onclick="bumpPipe('clients',1)">+</button></div></div>
-  </div>
-  <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:14px;" class="fu">Healthy funnel: 100 sent → ~5 replies → ~2 calls → 1 client. Below that? Fix the message, not the effort.</div>
-
-  <!-- income log -->
-  <div class="card fu">
-    <div class="sec-ttl">💵 Income Log <span style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);font-weight:400;">USD</span></div>
-    <div id="hu-income-list"></div>
-    <div class="inp-row">
-      <input class="inp" type="number" id="hu-amt" placeholder="$" style="flex:0 0 80px;">
-      <input class="inp" id="hu-src" placeholder="Source — e.g. site build, care plan, Upwork" maxlength="60">
-      <button class="addbtn" onclick="addIncome()">+ Log</button>
+  <!-- MODULES -->
+  <div class="spanel active" id="uni-mods">
+    <div class="callout tip">
+      <strong>Target: 15 hrs/week of self-study, weighted 6 / 4 / 2.</strong> Thermo-fluids gets the most because CFD compounds — week 10 is built on week 3. Clean Energy is breadth and argument, not derivation. Professional Dev you exploit: point every deliverable at ExoGuard and do the work once for two grades.
     </div>
-    <div class="inp-row" style="margin-top:7px;">
-      <input class="inp" type="number" id="hu-mrr-in" placeholder="Monthly recurring $ (care plans total)">
-      <button class="addbtn" onclick="setMRR()">Set MRR</button>
+    <div id="uni-modlist"></div>
+  </div>
+
+  <!-- TWO-PASS STUDY TRACKER -->
+  <div class="spanel" id="uni-study">
+    <div class="callout tip">
+      <strong>Your method, tracked.</strong> Pass 1 = same-day skim, ends with 3 questions written BOOK CLOSED. Pass 2 = Tue (Sun+Mon material) or Sat (Wed+Thu material) with real notes and solved problems. The gap between them is what makes it stick — don't collapse them into one day.
+    </div>
+    <div class="grid2">
+      <div class="stile"><div class="st-lbl">Skims this week</div><div class="st-val c-gold" id="uni-skimct">0</div><div class="st-sub">same-day passes</div></div>
+      <div class="stile"><div class="st-lbl">Deep passes</div><div class="st-val c-green" id="uni-deepct">0</div><div class="st-sub">Tue + Sat</div></div>
+    </div>
+    <div class="card">
+      <div class="c-hd">① SAME-DAY SKIM — today</div>
+      <div class="hint" style="margin-bottom:9px;">Read notes → write notes → close the book → write 3 questions from memory. That last step is the whole upgrade.</div>
+      <div id="uni-skimrow"></div>
+    </div>
+    <div class="card">
+      <div class="c-hd">② DEEP PASS — today</div>
+      <div class="hint" style="margin-bottom:9px;">Real note-taking + solve questions + log what you got wrong. Tuesday covers Sun/Mon, Saturday covers Wed/Thu.</div>
+      <div id="uni-deeprow"></div>
+    </div>
+    <div class="card">
+      <div class="c-hd">📊 LAST 14 DAYS</div>
+      <div id="uni-hist"></div>
     </div>
   </div>
 
-  <!-- launch assets -->
-  <div class="section-lbl fu" style="margin-top:14px;">Launch Assets — build once, sell forever</div>
-  <div class="module-grid fu" id="hu-assets"></div>
+  <!-- ROLLING REVIEW QUEUE -->
+  <div class="spanel" id="uni-queue">
+    <div class="callout warn">
+      <strong>This is the hole in your method.</strong> Two passes hold one week's content. By week 8, week 1 is gone. Add ONE old topic to the front of every deep session — 10 minutes. The app picks it so you never decide.
+    </div>
+    <div class="card" id="uni-duecard">
+      <div class="c-hd">🔄 DUE NOW</div>
+      <div id="uni-due"></div>
+    </div>
+    <div class="card">
+      <div class="c-hd">➕ ADD A TOPIC</div>
+      <div class="hint" style="margin-bottom:8px;">Add each topic as you cover it. Intervals: 1 → 3 → 7 → 16 → 35 days.</div>
+      <div class="row">
+        <select class="inp" id="uni-tmod" style="flex:0 0 108px;">
+          <option value="CT">Thermo-fluids</option>
+          <option value="CE">Clean Energy</option>
+          <option value="PD">Prof Dev</option>
+        </select>
+        <input class="inp" id="uni-tname" placeholder="Topic — e.g. Mesh independence" maxlength="52">
+        <button class="btn sm" onclick="uniAddTopic()">Add</button>
+      </div>
+    </div>
+    <div class="card">
+      <div class="c-hd">📚 ALL TOPICS</div>
+      <div id="uni-topics"></div>
+    </div>
+  </div>
 
-  <!-- stack + payments (his questions answered) -->
-  <div class="section-lbl fu">The Stack — decided for you</div>
-  <div class="tip-card hu fu">
-    <div class="tip-title">🛠 Build stack</div>
-    <div class="tip-body"><strong>Claude Code → static site → deploy free on Vercel/Netlify.</strong> You have Claude Pro — that's your dev team. Framer free tier as backup for visual clients. No WordPress (maintenance trap at your scale). Client pays for their own domain (~$12/yr) — zero hosting cost to you.</div>
+  <!-- WRONG ANSWER LOG -->
+  <div class="spanel" id="uni-wrong">
+    <div class="callout tip">
+      <strong>The questions you get wrong are worth 10× the ones you get right.</strong> By December this log <em>is</em> your revision material — you will not re-read twelve weeks of slides.
+    </div>
+    <div class="card">
+      <div class="c-hd">➕ LOG A MISS</div>
+      <div class="row" style="margin-bottom:6px;">
+        <select class="inp" id="uni-wmod" style="flex:0 0 108px;">
+          <option value="CT">Thermo-fluids</option>
+          <option value="CE">Clean Energy</option>
+          <option value="PD">Prof Dev</option>
+        </select>
+        <input class="inp" id="uni-wq" placeholder="The question / problem" maxlength="70">
+      </div>
+      <div class="row" style="margin-bottom:6px;"><input class="inp" id="uni-wwhy" placeholder="WHY I got it wrong (be honest)" maxlength="70"></div>
+      <div class="row"><input class="inp" id="uni-wrule" placeholder="The rule / correction to remember" maxlength="70"><button class="btn sm" onclick="uniAddWrong()">Log</button></div>
+    </div>
+    <div class="card">
+      <div class="c-hd">❌ THE LOG <span class="hint" id="uni-wct"></span></div>
+      <div id="uni-wlist"></div>
+    </div>
   </div>
-  <div class="tip-card hu fu">
-    <div class="tip-title">💳 Getting paid in Egypt</div>
-    <div class="tip-body"><strong>Payoneer</strong> (works in Egypt, receives USD/GBP, withdraws to EGP bank) + <strong>Wise</strong> as backup + Upwork pays into Payoneer directly. Set up this week — it takes days to verify and you don't want a client waiting on it.</div>
-  </div>
-  <div class="tip-card hu fu">
-    <div class="tip-title">💰 Budget: 1,000 EGP/month</div>
-    <div class="tip-body">Reserve it. Month 1 spend ≈ 0 (all tools free). First client money buys: your own domain + portfolio site. Never spend ahead of revenue — the business must pay for itself from client #1.</div>
-  </div>
-  <div class="tip-card hu fu">
-    <div class="tip-title">📦 Packages (quote in USD, always)</div>
-    <div class="tip-body"><strong>Starter $350:</strong> 3-page site, 72h delivery. <strong>Pro $600:</strong> 5 pages + Google Business setup + basic SEO. <strong>Care Plan $40/mo:</strong> hosting mgmt, edits, updates, priority support — attach to EVERY deal. After 3 testimonials, raise everything 50%.</div>
+
+  <!-- DEADLINES -->
+  <div class="spanel" id="uni-dl">
+    <div class="callout warn">
+      <strong>Finals for Clean Energy and Thermo-fluids land week 12–13 (early–mid December).</strong> The app auto-switches to FINALS RAMP on 15 November — your Tue/Sat deep passes become revision and past papers instead of new material, and Travis/ExoGuard step back. No decision needed from you.
+    </div>
+    <div class="card">
+      <div class="c-hd">➕ ADD A DEADLINE</div>
+      <div class="row" style="margin-bottom:6px;">
+        <select class="inp" id="uni-dmod" style="flex:0 0 108px;">
+          <option value="CT">Thermo-fluids</option>
+          <option value="CE">Clean Energy</option>
+          <option value="PD">Prof Dev</option>
+        </select>
+        <input class="inp" id="uni-dtitle" placeholder="e.g. Lab report 1 / Midterm / Portfolio" maxlength="52">
+      </div>
+      <div class="row"><input class="inp" type="date" id="uni-ddate"><button class="btn sm" onclick="uniAddDl()">Add</button></div>
+    </div>
+    <div class="card">
+      <div class="c-hd">📅 UPCOMING</div>
+      <div id="uni-dllist"></div>
+    </div>
   </div>
 </div>
+
 <!-- ════════════════════════════════════════
-     ⑤ SALESFORCE
+     TRAVIS — workbench AI · expo April 2027
 ════════════════════════════════════════ -->
-<div class="pg" id="pg-sf">
+<div class="pg" id="pg-travis">
   <div class="hero">
-    <div class="hero-kicker fu" style="color:var(--blue);">ENGINE 2 · CERTIFICATION FIRST</div>
-    <div class="hero-title fu" style="text-shadow:0 0 30px rgba(61,142,240,.15);">SALES<span style="color:var(--blue2);">FORCE.</span></div>
-    <div class="hero-sub fu">Cert → credibility → $15/hr floor that becomes $40/hr consulting. Status: <strong style="color:var(--red);">exam not booked</strong> — the OS books it for you via the trigger rule below.</div>
+    <div class="hero-kicker fu" style="color:var(--cyan);">WORKBENCH AI · 10 SEP 2026 → EXPO APRIL 2027</div>
+    <div class="hero-title fu" style="text-shadow:0 0 30px rgba(41,212,224,.15);">TRA<span style="color:var(--cyan);">VIS.</span></div>
+    <div class="hero-sub fu">Seven calendar months, six working — March belongs entirely to ExoGuard. Voice, then eyes, then knowledge, then light on the real bench. Built because you needed it, not to pitch it.</div>
   </div>
 
-  <div class="callout warn fu" id="sf-trigger">
-    <strong>🔒 The Booking Trigger (automatic, no negotiation):</strong> the day you score <strong>70%+ on two consecutive mocks</strong>, you book the exam for 10 days later. Not "when ready" — readiness is a feeling, 70×2 is a fact. The OS watches your scores and fires the alert.
+  <div class="ph">
+    <div class="ph-top"><div class="ph-t">🤖 ROADMAP PROGRESS</div><div class="ph-s" id="tv-overall">0 / 0</div></div>
+    <div class="ph-bar"><div class="ph-fill" id="tv-fill" style="background:linear-gradient(90deg,var(--cyan),var(--green));"></div></div>
+    <div class="ph-meta" id="tv-meta">—</div>
   </div>
 
-  <div class="sf-stats fu" style="display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin-bottom:14px;">
-    <div class="stile" style="text-align:center;"><div class="st-lbl">Mocks Taken</div><div class="st-val c-blue" id="sf-mocks-done" style="font-size:26px;">0</div></div>
-    <div class="stile" style="text-align:center;"><div class="st-lbl">Best Score</div><div class="st-val c-green" id="sf-best" style="font-size:26px;">—</div></div>
-    <div class="stile" style="text-align:center;"><div class="st-lbl">Modules</div><div class="st-val c-purple" id="sf-mods-done" style="font-size:26px;">0/14</div></div>
+  <div class="stabs fu" id="tv-tabs">
+    <div class="stab active" onclick="showTvTab('phases',this)">🚀 Phases</div>
+    <div class="stab" onclick="showTvTab('week',this)">🔁 Weekly</div>
+    <div class="stab" onclick="showTvTab('fail',this)">🧪 Failure Dataset</div>
+    <div class="stab" onclick="showTvTab('money',this)">💸 Budget</div>
+    <div class="stab" onclick="showTvTab('rules',this)">🚨 Hard Rules</div>
   </div>
 
-  <div class="card fu">
-    <div class="sec-ttl">💻 Mock Scores <span style="font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);font-weight:400;">65% passes · book at 70×2</span></div>
-    <div id="sf-bars"><div style="font-size:11px;color:var(--muted);font-family:'DM Mono',monospace">No scores yet — take a mock today and get a baseline.</div></div>
-    <div class="inp-row">
-      <input class="inp" type="number" id="sf-in" placeholder="Score % — e.g. 61" min="0" max="100">
-      <button class="addbtn" onclick="logScore()">+ Log</button>
+  <div class="spanel active" id="tv-phases">
+    <div class="callout tip">
+      <strong>Phase 0 is written once and never rewritten.</strong> Everything after it is adding tools to a machine that already runs. Get the shell right and the next four phases are additions, not rebuilds.
     </div>
+    <div id="tv-phaselist"></div>
   </div>
 
-  <div class="section-lbl fu">Exam Topics — mark what you've mastered</div>
-  <div class="module-grid fu" id="module-grid"></div>
+  <div class="spanel" id="tv-week">
+    <div class="callout tip">
+      <strong>Four things, every week, for six months.</strong> The weekly session on the ExoGuard bench is the whole trick — Travis learns the task you were already doing, so the work counts twice.
+    </div>
+    <div class="card"><div class="c-hd">THIS WEEK</div><div id="tv-weeklist"></div></div>
+  </div>
 
-  <div class="section-lbl fu" style="margin-top:14px;">Protocol</div>
-  <div class="tip-card fu">
-    <div class="tip-title">⏰ Your Salesforce dose: 45–60 min/day, no more</div>
-    <div class="tip-body">ExoGuard owns your deep hours. SF gets one drill block: half-mock or one weak topic + wrong-answer notebook. Slow and daily beats cramming — and it leaves room for the two priorities above it.</div>
+  <div class="spanel" id="tv-fail">
+    <div class="callout warn">
+      <strong>This is the moat.</strong> Phase 2 needs 100 entries as symptom → cause → fix. Nobody can copy this because nobody else is logging your bench. Start now, not in November — every ExoGuard debugging session is free data.
+    </div>
+    <div class="grid2">
+      <div class="stile"><div class="st-lbl">Entries</div><div class="st-val c-gold" id="tv-failct">0</div><div class="st-sub">target 100 by 15 Dec</div></div>
+      <div class="stile"><div class="st-lbl">Progress</div><div class="st-val c-green" id="tv-failpct">0%</div><div class="st-sub">to the moat</div></div>
+    </div>
+    <div class="card">
+      <div class="c-hd">➕ LOG A FAILURE</div>
+      <div class="row" style="margin-bottom:6px;"><input class="inp" id="tv-fs" placeholder="SYMPTOM — what went wrong" maxlength="70"></div>
+      <div class="row" style="margin-bottom:6px;"><input class="inp" id="tv-fc" placeholder="CAUSE — why it happened" maxlength="70"></div>
+      <div class="row"><input class="inp" id="tv-ff" placeholder="FIX — what solved it" maxlength="70"><button class="btn sm go" onclick="tvAddFail()">Log</button></div>
+    </div>
+    <div class="card"><div class="c-hd">🧪 THE DATASET</div><div id="tv-faillist"></div></div>
   </div>
-  <div class="tip-card fu">
-    <div class="tip-title">📓 Wrong-Answer Notebook</div>
-    <div class="tip-body">After every mock: topic, what you chose, correct answer, one sentence WHY. Read it before each new mock. This notebook outperforms any course.</div>
+
+  <div class="spanel" id="tv-money">
+    <div class="callout tip">
+      <strong>~9,000–22,000 EGP total, spread across four months, never at once.</strong> Two purchases matter and both have lead times in Egypt — order early, not on the deadline.
+    </div>
+    <div class="card"><div class="c-hd">💸 BUDGET BY MONTH</div><div id="tv-budget"></div></div>
   </div>
-  <div class="tip-card fu">
-    <div class="tip-title">💰 The day you pass</div>
-    <div class="tip-body">Same day: Upwork headline becomes "Certified Salesforce Administrator", rate $15/hr, apply to 3 jobs. The cert is inventory — inventory on a shelf earns nothing.</div>
+
+  <div class="spanel" id="tv-rules">
+    <div class="callout warn"><strong>These four rules are what stop Travis from eating your graduation project.</strong></div>
+    <div class="law fu"><div class="law-n">01</div><div><div class="law-t">Never run Travis and Inventor at the same time.</div><div class="law-d">They fight over the same 4GB of video memory. One or the other — check before you launch.</div></div></div>
+    <div class="law fu"><div class="law-n">02</div><div><div class="law-t">Models live on D:, never C:</div><div class="law-d">The SSD is small and Windows needs the room. OLLAMA_MODELS gets set BEFORE Ollama is installed.</div></div></div>
+    <div class="law fu"><div class="law-n">03</div><div><div class="law-t">ExoGuard wins every time conflict. Without discussion.</div><div class="law-d">Travis is the expo piece. ExoGuard is the degree. When they collide, there is no debate to have.</div></div></div>
+    <div class="law fu"><div class="law-n">04</div><div><div class="law-t">No new features after 28 February. Only reliability.</div><div class="law-d">Ten clean demo runs converts a pilot. A twelfth feature does not. Freeze means freeze.</div></div></div>
+    <div class="callout warn" style="margin-top:12px;">
+      <strong>🔒 MARCH 2027 — TRAVIS FROZEN.</strong> ExoGuard working-prototype deadline. Zero Travis work that month: no features, no fixes, no "quick" changes. This is the rule that protects your graduation, and it is not negotiable.
+    </div>
   </div>
 </div>
 
 <!-- ════════════════════════════════════════
-     ⑥ ATHLETE — tennis · gym · engine · fuel · recovery
+     BUS — one 30-minute card, then sleep
+════════════════════════════════════════ -->
+<div class="pg" id="pg-bus">
+  <div class="ph">
+    <div class="ph-top"><div class="ph-t">🚌 THE BUS SESSION</div><div class="ph-s" id="bus-streak">0 day streak</div></div>
+    <div class="ph-meta">7:05 → 8:45 AM · one card, 30 minutes, then sleep with a clear conscience</div>
+  </div>
+
+  <div class="callout tip">
+    <strong>Thirty minutes, one task, no decisions.</strong> The app picks. You do it, tap done, then sleep for the rest of the ride — that nap is part of the plan, not a failure. Sixteen hours a week on that bus; this turns ~2½ of them into progress without costing you a single minute of desk time.
+  </div>
+
+  <div class="card" id="bus-card" style="border-color:rgba(212,168,67,.35);">
+    <div class="c-hd">⚡ TODAY'S CARD</div>
+    <div id="bus-body"></div>
+  </div>
+
+  <div class="row" style="margin-bottom:14px;">
+    <button class="btn go" style="flex:1;" onclick="busDone()">✓ DONE — NOW SLEEP</button>
+    <button class="btn" onclick="busSwap()">↻ Something else</button>
+  </div>
+
+  <div class="grid3">
+    <div class="stile"><div class="st-lbl">Spanish</div><div class="st-val c-gold" id="bus-n-es" style="font-size:26px;">0</div><div class="st-sub">sessions</div></div>
+    <div class="stile"><div class="st-lbl">Salesforce</div><div class="st-val c-blue" id="bus-n-sf" style="font-size:26px;">0</div><div class="st-sub">sessions</div></div>
+    <div class="stile"><div class="st-lbl">Total</div><div class="st-val c-green" id="bus-n-all" style="font-size:26px;">0</div><div class="st-sub">all cards</div></div>
+  </div>
+
+  <div class="card">
+    <div class="c-hd">📚 THE DECK</div>
+    <div class="hint" style="margin-bottom:10px;">Rotates automatically. Salesforce is still on the list — it's just no longer a daily obligation.</div>
+    <div id="bus-deck"></div>
+  </div>
+
+  <div class="card">
+    <div class="c-hd">🇪🇸 SPANISH — WHERE YOU ARE</div>
+    <div id="bus-es"></div>
+    <div class="inp-row"><input class="inp" id="bus-esnote" placeholder="New words / phrases learned today" maxlength="70"><button class="btn sm" onclick="busAddEs()">Save</button></div>
+  </div>
+
+  <div class="card">
+    <div class="c-hd">🕗 LAST 14 DAYS</div>
+    <div id="bus-hist"></div>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     ⑥ ATHLETE — tennis · gym · fuel · recovery
 ════════════════════════════════════════ -->
 <div class="pg" id="pg-ath">
   <div class="hero">
@@ -836,27 +976,40 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
   <!-- GYM -->
   <div class="spanel" id="ath-gym">
     <div class="callout go">
-      <strong>Your split, kept.</strong> You love it, you've been consistent 3 months — that beats any "optimal" program you'd abandon. Three upgrades that cost nothing: ① <strong>double days</strong> — on tennis days, gym goes in the MORNING (75 min, save the legs), court at night. ② <strong>progressive overload inside 4×12</strong> — the day you hit 12 clean reps on all 4 sets, add 2.5 kg next session. Same split, now it builds. ③ <strong>Legs day lands on Saturday</strong> — furthest from Monday's court, so your footwork never pays for your squats.
+      <strong>Your split, kept — 5 days, semester-mapped.</strong> Sun · Tue · Wed · Thu · Sat. <strong>Legs land on Wednesday</strong> — three clear days before Saturday's academy, so your footwork never pays for your squats. Never legs on Mon, Tue or Sat. The exercises below are editable: fix them once to match what you actually do and the logger takes over from there.
     </div>
-    <div class="week-block">
-      <div class="week-title" style="color:var(--green);">The 5-Day Split — your rotation</div>
-      <div class="week-focus">4×12 · rest 60–90s · add 2.5 kg when all sets hit 12</div>
-      <div class="week-tasks">
-        <div class="week-task"><strong>Day 1 — Chest + Triceps</strong> (tennis-day AM friendly)</div>
-        <div class="week-task"><strong>Day 2 — Back + Biceps</strong></div>
-        <div class="week-task"><strong>Day 3 — Shoulders</strong> — go easy on overhead volume the day before private lessons; your serve rents those shoulders</div>
-        <div class="week-task"><strong>Day 4 — Arms</strong> (lightest day — perfect for tennis-day mornings)</div>
-        <div class="week-task"><strong>Day 5 — Legs (Saturday)</strong> — heavy, no court for 48h after</div>
-        <div class="week-task"><strong>Every session ends with:</strong> 5-min stretch of what you trained. Non-negotiable — it's in the schedule now.</div>
-      </div>
+
+    <div class="ph">
+      <div class="ph-top"><div class="ph-t" id="gy-dayname">—</div><div class="ph-s" id="gy-daytag">—</div></div>
+      <div class="ph-bar"><div class="ph-fill" id="gy-fill"></div></div>
+      <div class="ph-meta" id="gy-meta">—</div>
     </div>
+
+    <div class="card" style="border-color:rgba(212,168,67,.35);">
+      <div class="c-hd">🏋️ TODAY'S SESSION — LOG EVERY SET</div>
+      <div class="hint" style="margin-bottom:10px;">Last week's numbers sit under each exercise. Beat one of them. When all sets hit the target reps, the app tells you to add 2.5 kg.</div>
+      <div id="gy-today"></div>
+    </div>
+
     <div class="card">
-      <div class="sec-ttl">🏋️ Lift Log — top set only</div>
-      <div id="gym-log"></div>
-      <div class="inp-row">
-        <input class="inp" id="gym-note" placeholder="e.g. Chest — Bench 50kg 4×12 (+2.5 next)" maxlength="60">
-        <button class="addbtn" onclick="addGym()">+ Log</button>
+      <div class="c-hd">⚙️ EDIT THE SPLIT</div>
+      <div class="hint" style="margin-bottom:9px;">Change exercises, sets or target reps to match your real program. Saves instantly, syncs to every device.</div>
+      <div class="row" style="margin-bottom:8px;">
+        <select class="inp" id="gy-editday" onchange="renderGymEdit()"></select>
+        <button class="btn sm" onclick="gyAddEx()">+ Exercise</button>
       </div>
+      <div id="gy-edit"></div>
+    </div>
+
+    <div class="card">
+      <div class="c-hd">📈 PROGRESSION — LAST 8 SESSIONS</div>
+      <div id="gy-prog"></div>
+    </div>
+
+    <div class="card">
+      <div class="c-hd">💪 UNI GYM — TENNIS ARMOUR · THURSDAY 3 PM</div>
+      <div class="hint" style="margin-bottom:9px;">The injury-prevention session. Nothing else in your week does this. Bench + dumbbells + leg machines + mats + balcony pull-up bar is plenty.</div>
+      <div id="gy-armour"></div>
     </div>
   </div>
 
@@ -901,6 +1054,31 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
         <div class="week-task"><strong>Morning (2 min):</strong> world's greatest stretch ×3/side + arm circles. Wakes up the hips before a day at the desk.</div>
       </div>
     </div>
+    <div class="card" style="border-color:rgba(41,212,224,.3);">
+      <div class="c-hd">📍 YOUR THREE CONDITIONING SESSIONS — ON CAMPUS, FREE HOURS</div>
+      <div class="hint" style="margin-bottom:10px;">These cost you zero desk time. Uni has treadmills (one hits real top speed), a track, mats, dumbbells and a balcony pull-up bar — plenty for all three.</div>
+      <div id="en-sessions"></div>
+    </div>
+
+    <div class="card">
+      <div class="c-hd">🫁 NASAL BREATHING HOLD — the progression that matters</div>
+      <div class="hint" style="margin-bottom:9px;">Exhale normally, then hold and time it until the FIRST strong urge to breathe (not to failure). Do it once a week, same conditions, seated and rested. It rises as your aerobic base builds — this is the number that predicts third-set calm.</div>
+      <div class="grid2">
+        <div class="stile"><div class="st-lbl">Latest</div><div class="st-val c-gold" id="en-bh-now" style="font-size:28px;">—</div><div class="st-sub">seconds</div></div>
+        <div class="stile"><div class="st-lbl">Best</div><div class="st-val c-green" id="en-bh-best" style="font-size:28px;">—</div><div class="st-sub">seconds</div></div>
+      </div>
+      <div class="inp-row"><input class="inp" type="number" id="en-bh-in" placeholder="Seconds held"><button class="addbtn" onclick="enAddBH()">+ Log</button></div>
+      <div id="en-bh-list" style="margin-top:10px;"></div>
+    </div>
+
+    <div class="card">
+      <div class="c-hd">🏃 ENGINE LOG</div>
+      <div id="en-log"></div>
+      <div class="inp-row">
+        <input class="inp" id="en-note" placeholder="e.g. Zone 2 · 28 min · nasal all the way" maxlength="60">
+        <button class="addbtn" onclick="enAdd()">+ Log</button>
+      </div>
+    </div>
   </div>
 
   <!-- FUEL -->
@@ -926,6 +1104,53 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
         <div class="week-task"><strong>Dinner:</strong> normal family dinner + extra bread. Post-tennis nights: add dates + milk/yogurt.</div>
         <div class="week-task"><strong>IBS guardrails:</strong> same meal times daily · no big spicy meals · coffee max 1, before noon · eat slow on stressful days.</div>
       </div>
+    </div>
+    <div class="card" style="border-color:rgba(212,168,67,.35);">
+      <div class="c-hd">🥩 PROTEIN — TODAY</div>
+      <div class="hint" style="margin-bottom:9px;">The single highest-leverage nutrition number for someone lifting 5×/week. Target ≈ 1.6 g per kg bodyweight. Tap each portion as you eat it — no calorie counting, no weighing.</div>
+      <div class="grid2">
+        <div class="stile"><div class="st-lbl">Today</div><div class="st-val c-gold" id="fu-p-now" style="font-size:28px;">0g</div><div class="st-sub" id="fu-p-tgt">target —</div></div>
+        <div class="stile"><div class="st-lbl">7-day avg</div><div class="st-val c-green" id="fu-p-avg" style="font-size:28px;">—</div><div class="st-sub">hit rate <span id="fu-p-rate">—</span></div></div>
+      </div>
+      <div id="fu-p-chips"></div>
+    </div>
+
+    <div class="card" id="fu-timing-card">
+      <div class="c-hd">⏰ MEAL TIMING vs TRAINING</div>
+      <div id="fu-timing"></div>
+    </div>
+
+    <div class="card">
+      <div class="c-hd">💊 SUPPLEMENTS — YOUR SCHEDULE</div>
+      <div id="fu-supps"></div>
+      <div class="callout warn" style="margin:11px 0 0;">
+        <strong>⚠️ The magnesium.</strong> Yours is oxide 400 mg + gluconate 100 mg — so predominantly <strong>oxide</strong>, which is both the worst-absorbed form and the strongest osmotic laxative of the common ones. With IBS that is worth testing, not assuming. Switch to <strong>magnesium glycinate</strong> for three weeks and log your gut below every day. If nothing changes you have learned it was never the magnesium and you can stop wondering. Confirm the dose with a pharmacist — you are taking a fairly high amount.
+      </div>
+      <div class="callout tip" style="margin:8px 0 0;">
+        <strong>Two other notes.</strong> ① <strong>Omega-3 belongs WITH dinner</strong>, never before bed on an empty stomach — it needs dietary fat to absorb, and empty-stomach fish oil is the classic cause of reflux and fishy burps. ② <strong>Vitamin E</strong> — worth asking why you take it. Deficiency is rare in anyone eating normally and large trials found no benefit from supplementing it. ③ Optional add: <strong>creatine monohydrate 3–5 g/day with food</strong> — the most evidence-backed performance supplement there is, and it helps both heavy lifting and repeated-sprint recovery, which is exactly tennis. Start at 3 g given the IBS. None of this is medical advice — run doses past a pharmacist.
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="c-hd">🌀 IBS TRIGGER LOG</div>
+      <div class="hint" style="margin-bottom:9px;">Rate your gut, note what you ate. After a few weeks the app surfaces YOUR triggers — worth far more than any generic FODMAP list, because it is your data.</div>
+      <div class="row" style="margin-bottom:6px;">
+        <select class="inp" id="fu-ibs-r" style="flex:0 0 118px;">
+          <option value="5">😀 Perfect</option>
+          <option value="4">🙂 Fine</option>
+          <option value="3">😐 Ok-ish</option>
+          <option value="2">😖 Bad</option>
+          <option value="1">🤢 Very bad</option>
+        </select>
+        <input class="inp" id="fu-ibs-n" placeholder="What you ate / anything unusual" maxlength="70">
+        <button class="btn sm" onclick="fuAddIbs()">Log</button>
+      </div>
+      <div class="grid2" style="margin-top:10px;">
+        <div class="stile"><div class="st-lbl">7-day gut avg</div><div class="st-val c-green" id="fu-ibs-avg" style="font-size:28px;">—</div><div class="st-sub">out of 5</div></div>
+        <div class="stile"><div class="st-lbl">Bad days (30d)</div><div class="st-val c-red" id="fu-ibs-bad" style="font-size:28px;">0</div><div class="st-sub">rated 1–2</div></div>
+      </div>
+      <div id="fu-ibs-dots" style="margin-bottom:10px;"></div>
+      <div id="fu-ibs-list"></div>
     </div>
   </div>
 
@@ -1065,11 +1290,12 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 
 <!-- BOTTOM NAV -->
 <nav class="bnav">
-  <button class="nb active" onclick="nav('cmd',this)"><span class="ic">🔥</span>Command</button>
+  <button class="nb active" onclick="nav('cmd',this)"><span class="ic">🔥</span>Cmd</button>
   <button class="nb" onclick="nav('today',this)"><span class="ic">⚡</span>Today</button>
+  <button class="nb" onclick="nav('uni',this)"><span class="ic">🎓</span>Uni</button>
   <button class="nb" onclick="nav('exo',this)"><span class="ic">🦾</span>Exo</button>
-  <button class="nb" onclick="nav('hustle',this)"><span class="ic">💰</span>Hustle</button>
-  <button class="nb" onclick="nav('sf',this)"><span class="ic">💻</span>SF</button>
+  <button class="nb" onclick="nav('travis',this)"><span class="ic">🤖</span>Travis</button>
+  <button class="nb" onclick="nav('bus',this)"><span class="ic">🚌</span>Bus</button>
   <button class="nb" onclick="nav('ath',this)"><span class="ic">🎾</span>Athlete</button>
   <button class="nb" onclick="nav('rev',this)"><span class="ic">📊</span>Review</button>
 </nav>
@@ -1078,38 +1304,16 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 
 <div class="toast" id="toast"></div>
 <script>
-// ═══════════ PIN LOCK ═══════════
-(function(){
-  const msg=document.getElementById('lock-msg');
-  const inp=document.getElementById('lock-in');
-  if(!localStorage.getItem('dawly_pin'))msg.textContent='FIRST TIME — CHOOSE YOUR SECRET PIN';
-  window.pinSubmit=function(){
-    const v=inp.value.trim();
-    if(v.length<4){msg.textContent='PIN MUST BE 4+ CHARACTERS';return;}
-    const saved=localStorage.getItem('dawly_pin');
-    if(!saved){localStorage.setItem('dawly_pin',v);document.getElementById('lock').style.display='none';}
-    else if(v===saved){document.getElementById('lock').style.display='none';}
-    else{msg.textContent='WRONG PIN';inp.value='';}
-  };
-  inp.addEventListener('keydown',e=>{if(e.key==='Enter')pinSubmit();});
-  setTimeout(()=>inp.focus(),300);
-})();
-
 // ═══════════ STATE ═══════════
 const S = JSON.parse(localStorage.getItem('dawly_os') || '{}');
 if(!S.checks)S.checks={};
 if(!S.scores||!Array.isArray(S.scores))S.scores=[];
 if(!S.mods)S.mods={};
-if(!S.dt||!['auto','grind','tennisday','friday','uniday','unitennis','ramadan','rest'].includes(S.dt))S.dt='auto';
+if(!S.dt||!['auto','uniSun','uniMon','deskTue','uniWed','uniThu','preRest','buildSat','examDay','grind','tennisday','ramadan','friday','rest'].includes(S.dt))S.dt='auto';
 if(!S.exoPhaseName)S.exoPhaseName='Phase 2 — CAD Design & Procurement';
 if(!S.exoPhaseDates)S.exoPhaseDates='Design due Monday → order parts same day as approval';
 if(!S.exoFocus||!Array.isArray(S.exoFocus))S.exoFocus=[];
 if(!S.health)S.health={};
-if(!S.hustle)S.hustle={};
-if(!S.hustle.income||!Array.isArray(S.hustle.income))S.hustle.income=[];
-if(!S.hustle.pipe)S.hustle.pipe={sent:0,replies:0,calls:0,clients:0};
-if(!S.hustle.assets)S.hustle.assets={};
-if(S.hustle.mrr==null)S.hustle.mrr=0;
 if(!S.quick)S.quick={};
 if(!S.weights||!Array.isArray(S.weights))S.weights=[];
 if(!S.wins||!Array.isArray(S.wins))S.wins=[];
@@ -1117,7 +1321,6 @@ if(!S.tennisLog||!Array.isArray(S.tennisLog))S.tennisLog=[];
 if(!S.gymLog||!Array.isArray(S.gymLog))S.gymLog=[];
 if(!S.revLog||!Array.isArray(S.revLog))S.revLog=[];
 if(!S.exoDel)S.exoDel={};
-if(!S.deadlines||!Array.isArray(S.deadlines))S.deadlines=[];
 const USER_AGE=20;
 const sv=()=>{S._ts=Date.now();localStorage.setItem('dawly_os',JSON.stringify(S));schedulePush();};
 const DKEY=()=>new Date().toDateString();
@@ -1128,12 +1331,24 @@ function qToday(){if(!S.quick[DKEY()])S.quick[DKEY()]={fajr:false,sleep:false,de
 // ═══════════ SEASON ENGINE ═══════════
 function getSeason(){
   const n=new Date();
-  const ram0=new Date('2027-02-08'),ram1=new Date('2027-03-10');
-  if(n>=ram0&&n<ram1)return'RAMADAN';
-  if(n<new Date('2026-09-15'))return'SUMMER GRIND';
-  if(n>=new Date('2027-06-15')&&n<new Date('2027-09-15'))return'SUMMER';
-  return'FINAL YEAR';
+  if(n<new Date('2026-09-20'))return'PRE-SEASON';
+  if(n<new Date('2026-11-15'))return'FINAL YEAR';
+  if(n<new Date('2026-12-13'))return'FINALS RAMP';
+  if(n<new Date('2026-12-18'))return'EXAM WEEK';
+  if(n>=new Date('2027-02-08')&&n<new Date('2027-03-01'))return'RAMADAN';
+  if(n<new Date('2027-03-01'))return'WINTER BUILD';
+  if(n<new Date('2027-04-01'))return'EXOGUARD MARCH';
+  if(n<new Date('2027-05-01'))return'EXPO';
+  return'SUMMER';
 }
+// semester week number (1-13), 0 if outside
+function uniWeek(){
+  const a=new Date('2026-09-20'),n=new Date();
+  if(n<a)return 0;
+  const w=Math.floor((n-a)/6048e5)+1;
+  return w>13?0:w;
+}
+function daysTo(ds){return Math.ceil((new Date(ds)-new Date())/864e5);}
 
 // ═══════════ QUOTES ═══════════
 const QUOTES=[
@@ -1189,7 +1404,8 @@ function tick(){
   if(del)del.textContent=`${days[n.getDay()]} · ${n.getDate()} ${months[n.getMonth()]} ${n.getFullYear()}`;
   const tdel=document.getElementById('td-day');
   if(tdel)tdel.textContent=days[n.getDay()].toUpperCase()+'.';
-  document.getElementById('season-pill').textContent=getSeason();
+  (function(){const w=uniWeek();const el=document.getElementById('season-pill');
+  if(el)el.textContent=getSeason()+(w?' · WK '+w+'/13':'');})();
 }
 setInterval(tick,1000);tick();
 document.getElementById('pages').addEventListener('scroll',function(){document.getElementById('hdr').classList.toggle('on',this.scrollTop>8);});
@@ -1204,8 +1420,9 @@ function nav(name,btn){
   if(name==='cmd'){renderQuick();renderNextAction();renderStreaks();renderDeadlines();setQuote();}
   if(name==='today')renderSched();
   if(name==='exo')renderExo();
-  if(name==='hustle')renderHustle();
-  if(name==='sf')renderSFPage();
+  if(name==='uni')renderUni();
+  if(name==='travis')renderTravis();
+  if(name==='bus')renderBus();
   if(name==='ath'){renderAth();renderHealth();}
   if(name==='rev')renderReview();
 }
@@ -1306,43 +1523,261 @@ const SCH={
   ],
   rest:[
     {t:'9:30 AM',n:'Slow Morning',s:'Wake · shower · big breakfast · slower pace',e:'🌅',c:'rest'},
-    {t:'10:30 AM',n:'Sunday Review + Monday Deliverable',s:'20 min · Review tab · score the week · set next week',e:'📋',c:'rest',law:6},
+    {t:'10:30 AM',n:'Sunday Review (if Sunday)',s:'20 min · Review tab · score the week · set next week',e:'📋',c:'rest',law:6},
     {t:'11:30 AM',n:'Light ExoGuard',s:'One small task · 45 min max · no pressure',e:'🦾',c:'rest'},
     {t:'1:00 PM',n:'Dhuhr + Family Lunch',s:'Pray · be present',e:'🕌',c:'prayer'},
     {t:'2:00 PM',n:'Replies Only',s:'Leads get answers · no new outreach · 30 min',e:'💰',c:'hustle'},
-    {t:'2:30 PM',n:'RECOVERY MODE',s:'Sauna · jacuzzi · movie · Barca match · family · zero guilt',e:'🌳',c:'rest'},
+    {t:'2:30 PM',n:'Free Time',s:'Friends · family · FIFA · full recharge',e:'🌳',c:'rest'},
     {t:'6:00 PM',n:'Maghrib + Isha',s:'Pray · gratitude',e:'🕌',c:'prayer'},
     {t:'11:00 PM',n:'Early-ish Sleep',s:'Big week starts tomorrow',e:'🌙',c:'rest',law:5},
+  ],
+  // ══════════ FINAL YEAR — SUNDAY (Professional Dev + Push) ══════════
+  uniSun:[
+    {t:'6:15 AM',n:'Wake',s:'Water · 2-min stretch · the ramp starts now',e:'🌅',c:'rest',law:5},
+    {t:'6:25 AM',n:'Quick sandwich',s:'Small and fast — the real food is in the lunchbox',e:'🥪',c:'rest'},
+    {t:'6:45 AM',n:'Leave for the pick-up point',s:'Bag packed last night · lunchbox in',e:'🚗',c:'rest'},
+    {t:'7:05 AM',n:'BUS — one 30-min card, then sleep',s:'Open the Bus tab · do the ONE card · then sleep guilt-free',e:'🚌',c:'study'},
+    {t:'9:00 AM',n:'Professional Dev & Project Planning',s:'Building B · Room 304 · Sameh F.S. Eid · 9:00–12:55',e:'🎓',c:'study',law:1},
+    {t:'1:00 PM',n:'Lunch + friends',s:'Protected. This is the reset, not a waste of time',e:'🍽️',c:'rest'},
+    {t:'2:15 PM',n:'TRACK — Engine',s:'Zone 2 25 min nasal-only · rope 5 min · ladder footwork 10 min',e:'🏃',c:'gym'},
+    {t:'3:15 PM',n:'Friends / reset',s:'Free. You are famous here — enjoy it',e:'👥',c:'rest'},
+    {t:'4:30 PM',n:'Bus home — sleep',s:'Eat the rest of the lunchbox · then out',e:'🚌',c:'rest'},
+    {t:'6:15 PM',n:'Home + quick eat',s:'Small pre-gym feed — never train empty (IBS)',e:'🏠',c:'rest'},
+    {t:'6:45 PM',n:'GYM — Chest + Triceps',s:'Log every set in the Athlete tab · beat last week by one rep',e:'🏋️',c:'gym'},
+    {t:'8:15 PM',n:'Big meal',s:'The largest meal of the day lands here',e:'🍚',c:'rest',law:5},
+    {t:'9:00 PM',n:'ExoGuard — desk block',s:'75 min · phone in the other room · one clear task',e:'🦾',c:'study',law:1},
+    {t:'10:15 PM',n:'Same-day skim — Prof Dev',s:'Read notes → write notes → 3 questions BOOK CLOSED',e:'📖',c:'study',law:3},
+    {t:'10:50 PM',n:'Daily log + shutdown',s:'2 min · 10-min stretch · phone parks outside',e:'📥',c:'rest',law:6},
+    {t:'11:15 PM',n:'Sleep',s:'7 hrs + bus naps · school night',e:'🌙',c:'rest',law:5},
+  ],
+  // ══════════ FINAL YEAR — MONDAY (9-to-5 + Academy) ══════════
+  uniMon:[
+    {t:'6:15 AM',n:'Wake — PACK THE TENNIS KIT',s:'Kit in the bag NOW or you play in jeans',e:'🌅',c:'rest',law:5},
+    {t:'6:25 AM',n:'Quick sandwich',s:'Plus extra food for the 5 PM bus — long day',e:'🥪',c:'rest'},
+    {t:'7:05 AM',n:'BUS — one 30-min card, then sleep',s:'Longest day of the week. Bank the sleep',e:'🚌',c:'study'},
+    {t:'9:00 AM',n:'Clean Energy — LECTURE',s:'Building B · Room 217 · Mennatallah Fouad · 9:00–10:55',e:'🎓',c:'study'},
+    {t:'11:00 AM',n:'Clean Energy — TUTORIAL',s:'Building B · Room 217 · Ossama Abousaima · 11:00–12:55',e:'📐',c:'study'},
+    {t:'1:00 PM',n:'Lunch + friends',s:'You have a 3-hour lab next. Eat properly',e:'🍽️',c:'rest'},
+    {t:'2:00 PM',n:'Clean Energy — LAB',s:'Building B · Room 407 · Kareem El Safty · 2:00–4:55',e:'🔬',c:'study'},
+    {t:'5:00 PM',n:'Bus — eat the packed food',s:'This IS dinner #1. Tennis in 2 hrs',e:'🚌',c:'rest'},
+    {t:'6:30 PM',n:'Point → straight to the academy',s:'Do not go home. Kit is already with you',e:'⚡',c:'gym'},
+    {t:'7:30 PM',n:'TENNIS ACADEMY',s:'ONE goal for the session · between points: turn, breathe, next',e:'🎾',c:'gym',law:1},
+    {t:'9:45 PM',n:'Big meal',s:'Home · shower · eat properly',e:'🍚',c:'rest',law:5},
+    {t:'10:30 PM',n:'Quick skim — Clean Energy',s:'Short version · 25 min · slides only · Tuesday does the real pass',e:'📖',c:'study'},
+    {t:'11:15 PM',n:'Free — no uni tomorrow',s:'Earned. Zero guilt',e:'🎮',c:'rest'},
+    {t:'12:00 AM',n:'Sleep — long one',s:'Wake 9:30. Monday earns it',e:'🌙',c:'rest',law:5},
+  ],
+  // ══════════ FINAL YEAR — TUESDAY (Desk Day + Private Lesson) ══════════
+  deskTue:[
+    {t:'9:30 AM',n:'Wake — you earned the lie-in',s:'9.5 hrs after the 9-to-5 + court. This is by design',e:'🌅',c:'rest',law:5},
+    {t:'9:50 AM',n:'Breakfast — a real one',s:'No bus today. Eggs, oats, honey, banana',e:'🍳',c:'rest'},
+    {t:'10:15 AM',n:'EXOGUARD DEEP WORK — 2¾ hrs',s:'Hardest CAD task FIRST · phone in another room · best brain of the week',e:'🦾',c:'study',law:1},
+    {t:'1:00 PM',n:'Lunch',s:'Then gym. Do not skip the food',e:'🍽️',c:'rest'},
+    {t:'2:00 PM',n:'GYM — Pull',s:'Unrushed session. No time pressure today',e:'🏋️',c:'gym'},
+    {t:'3:30 PM',n:'DEEP STUDY PASS #1 — 3 hrs',s:'Sun + Mon material · REAL notes · solve questions · wrong-answer log · +10 min rolling review',e:'📚',c:'study',law:3},
+    {t:'6:30 PM',n:'Pre-tennis meal',s:'Eat now — you play at 8',e:'🍚',c:'rest'},
+    {t:'7:45 PM',n:'Leave + 30-serve ritual',s:'Arrive early. 30 serves with targets before the coach starts',e:'⚡',c:'gym'},
+    {t:'8:00 PM',n:'PRIVATE LESSON',s:'Bring Monday\'s broken shot. Fix it while it is fresh',e:'🎾',c:'gym',law:1},
+    {t:'10:00 PM',n:'Home · shower · light meal',s:'Nothing heavy this late',e:'🚿',c:'rest'},
+    {t:'10:50 PM',n:'Daily log + shutdown',s:'Log the tennis session in the Athlete tab too',e:'📥',c:'rest',law:6},
+    {t:'11:15 PM',n:'Sleep',s:'Uni tomorrow · 6:15 wake',e:'🌙',c:'rest',law:5},
+  ],
+  // ══════════ FINAL YEAR — WEDNESDAY (Library + LEG DAY) ══════════
+  uniWed:[
+    {t:'6:15 AM',n:'Wake',s:'Water · stretch',e:'🌅',c:'rest',law:5},
+    {t:'6:25 AM',n:'Quick sandwich',s:'Lunchbox packed',e:'🥪',c:'rest'},
+    {t:'7:05 AM',n:'BUS — one 30-min card, then sleep',s:'Library block coming — arrive rested',e:'🚌',c:'study'},
+    {t:'9:00 AM',n:'LIBRARY STUDY — 2 hrs',s:'THE EXPERIMENT. Uni work only. If this works you unlock 2 hrs/week',e:'📚',c:'study',law:1},
+    {t:'11:00 AM',n:'Friends / play / reset',s:'Your biggest social window. Use it properly',e:'👥',c:'rest'},
+    {t:'12:00 PM',n:'Lunch + friends',s:'3-hour lecture next. Fuel up',e:'🍽️',c:'rest'},
+    {t:'1:00 PM',n:'Study — continue',s:'Notes, wrong-answer log, or last week\'s Thermo problems',e:'📖',c:'study'},
+    {t:'2:00 PM',n:'Computational Thermo-fluids — LECTURE',s:'Building B · Room 211 · 2:00–4:55 · YOUR HARDEST MODULE',e:'🎓',c:'study',law:1},
+    {t:'5:00 PM',n:'Bus home',s:'Sleep or review',e:'🚌',c:'rest'},
+    {t:'6:45 PM',n:'Home + quick eat',s:'Leg day next. Do NOT train empty',e:'🏠',c:'rest'},
+    {t:'7:15 PM',n:'GYM — 🦵 LEG DAY',s:'3 clear days before Saturday\'s academy. This is the only slot legs fit',e:'🏋️',c:'gym'},
+    {t:'9:00 PM',n:'Big meal',s:'Post-leg-day. Eat like it',e:'🍚',c:'rest',law:5},
+    {t:'9:45 PM',n:'Same-day skim — Thermo-fluids',s:'PROTECT THIS ONE. Read → write → 3 questions BOOK CLOSED. CFD compounds',e:'📖',c:'study',law:3},
+    {t:'10:50 PM',n:'Daily log + shutdown',s:'2 min · stretch · phone out',e:'📥',c:'rest',law:6},
+    {t:'11:15 PM',n:'Sleep',s:'School night',e:'🌙',c:'rest',law:5},
+  ],
+  // ══════════ FINAL YEAR — THURSDAY (Lab + Travis) ══════════
+  uniThu:[
+    {t:'6:15 AM',n:'Wake',s:'Water · stretch',e:'🌅',c:'rest',law:5},
+    {t:'6:25 AM',n:'Quick sandwich',s:'Lunchbox packed',e:'🥪',c:'rest'},
+    {t:'7:05 AM',n:'BUS — one 30-min card, then sleep',s:'Lab day',e:'🚌',c:'study'},
+    {t:'9:00 AM',n:'Thermo-fluids LAB — slot 1',s:'Building B · Room 406 · 9:00–10:55',e:'🔬',c:'study'},
+    {t:'11:00 AM',n:'Thermo-fluids LAB — slot 2',s:'Building B · Room 406 · 11:00–12:55',e:'🔬',c:'study'},
+    {t:'1:00 PM',n:'Lunch + friends',s:'Protected',e:'🍽️',c:'rest'},
+    {t:'2:00 PM',n:'Lab write-up WHILE FRESH',s:'Shallow work — just transcribe what happened. Saves hours later',e:'✍️',c:'study'},
+    {t:'3:00 PM',n:'UNI GYM — Tennis Armour',s:'Ext. rotations · face pulls · balcony pull-ups · wrist/forearm · ankle · anti-rotation core · t-spine',e:'💪',c:'gym'},
+    {t:'4:30 PM',n:'Bus home — sleep',s:'Finish the lunchbox',e:'🚌',c:'rest'},
+    {t:'6:15 PM',n:'Home + quick eat',s:'Pre-gym feed',e:'🏠',c:'rest'},
+    {t:'6:45 PM',n:'GYM — Shoulders + forearms',s:'Best shoulder slot in the week — 2 full days before you serve on Saturday',e:'🏋️',c:'gym'},
+    {t:'8:15 PM',n:'Big meal',s:'Protein target — check the Athlete tab',e:'🍚',c:'rest',law:5},
+    {t:'9:00 PM',n:'TRAVIS — desk block',s:'60 min · one roadmap checkbox · log any failure to the dataset',e:'🤖',c:'study'},
+    {t:'10:00 PM',n:'Same-day skim — Thermo lab',s:'Read → write → 3 questions BOOK CLOSED',e:'📖',c:'study',law:3},
+    {t:'10:50 PM',n:'Daily log + shutdown',s:'2 min · stretch · phone out',e:'📥',c:'rest',law:6},
+    {t:'11:15 PM',n:'Sleep',s:'Recovery day tomorrow — sleep in',e:'🌙',c:'rest',law:5},
+  ],
+  // ══════════ FINAL YEAR — SATURDAY (Build Day + Academy) ══════════
+  buildSat:[
+    {t:'9:00 AM',n:'Wake',s:'No bus. No alarm panic',e:'🌅',c:'rest'},
+    {t:'9:20 AM',n:'Breakfast',s:'Real one — two sessions today',e:'🍳',c:'rest',law:5},
+    {t:'10:00 AM',n:'SPEED — intervals',s:'6 × 20s hard / 90s walk · treadmill max-speed or track shuttles',e:'🏃',c:'gym'},
+    {t:'10:45 AM',n:'GYM — Back + Biceps',s:'Pulling only — back work does not touch the serve. Never legs',e:'🏋️',c:'gym'},
+    {t:'12:15 PM',n:'Lunch',s:'Big study block next',e:'🍽️',c:'rest'},
+    {t:'1:00 PM',n:'DEEP STUDY PASS #2 — 3½ hrs',s:'Wed + Thu material · Thermo-fluids heavy · solve questions · wrong-answer log · +10 min rolling review',e:'📚',c:'study',law:3},
+    {t:'4:45 PM',n:'TRAVIS PHASE WORK + FILM IT',s:'90 min · move a roadmap checkbox · film whatever you built',e:'🤖',c:'study',law:1},
+    {t:'6:20 PM',n:'Pre-tennis meal',s:'Academy at 7:30',e:'🍚',c:'rest'},
+    {t:'7:00 PM',n:'30-serve ritual',s:'Targets. Second-serve spin. Before anyone else arrives',e:'⚡',c:'gym'},
+    {t:'7:30 PM',n:'TENNIS ACADEMY',s:'ONE goal · match play · log the session after',e:'🎾',c:'gym',law:1},
+    {t:'9:45 PM',n:'Big meal',s:'Shower first · then eat properly',e:'🍚',c:'rest',law:5},
+    {t:'11:00 PM',n:'Daily log',s:'Log the tennis session + tomorrow is a 6:15 wake',e:'📥',c:'rest',law:6},
+    {t:'11:30 PM',n:'Sleep',s:'Uni tomorrow',e:'🌙',c:'rest',law:5},
+  ],
+  // ══════════ EXAM WEEK — 13–17 Dec 2026 ══════════
+  examDay:[
+    {t:'7:30 AM',n:'Wake',s:'Same wake time all week. Do not let it drift',e:'🌅',c:'rest',law:5},
+    {t:'8:00 AM',n:'Breakfast',s:'Eat properly — the brain runs on this',e:'🍳',c:'rest'},
+    {t:'8:45 AM',n:'REVISION BLOCK 1 — 2 hrs',s:'Past papers under time pressure. Not re-reading',e:'📚',c:'study',law:1},
+    {t:'11:00 AM',n:'Break + walk',s:'20 min outside. Non-negotiable',e:'🚶',c:'rest'},
+    {t:'11:30 AM',n:'WRONG-ANSWER LOG REVIEW',s:'Your own mistakes are the highest-yield revision material you own',e:'❌',c:'study',law:3},
+    {t:'12:30 PM',n:'Lunch',s:'',e:'🍽️',c:'rest'},
+    {t:'1:30 PM',n:'REVISION BLOCK 2 — 2 hrs',s:'Weakest topic. The one you have been avoiding',e:'📚',c:'study',law:1},
+    {t:'3:45 PM',n:'GYM — keep it light',s:'Maintenance only. Movement clears the head; failure sets do not',e:'🏋️',c:'gym'},
+    {t:'5:15 PM',n:'Big meal',s:'',e:'🍚',c:'rest',law:5},
+    {t:'6:30 PM',n:'REVISION BLOCK 3 — 90 min',s:'Rolling review — everything the queue says is due',e:'🔄',c:'study'},
+    {t:'8:15 PM',n:'STOP. Hard stop.',s:'No cramming past 8:15. Sleep beats one more hour, every time',e:'🛑',c:'rest'},
+    {t:'10:30 PM',n:'Sleep — 9 hrs',s:'Memory consolidates in deep sleep. Cramming instead of sleeping is a net loss',e:'🌙',c:'rest',law:5},
+  ],
+  // ══════════ PRE-SEASON — recovery day (Fri 11 & 18 Sep) ══════════
+  preRest:[
+    {t:'9:00 AM',n:'Wake naturally',s:'No alarm. Recovery is a training session',e:'🌅',c:'rest'},
+    {t:'9:30 AM',n:'Breakfast',s:'Unhurried',e:'🍳',c:'rest'},
+    {t:'10:00 AM',n:'WEEKLY REVIEW — 20 min',s:'Review tab · score the week · set the ExoGuard deliverable · read the Wins Ledger',e:'📅',c:'rest',law:6},
+    {t:'10:20 AM',n:'Weigh-in',s:'Log it · trend not noise',e:'⚖️',c:'rest'},
+    {t:'12:00 PM',n:'Jummah',s:'',e:'🕌',c:'prayer'},
+    {t:'1:00 PM',n:'Lunch with family',s:'Be present. Phone away',e:'🍽️',c:'rest'},
+    {t:'2:00 PM',n:'RECOVERY MODE',s:'Sauna · jacuzzi · movie · Barça · family · ZERO GUILT',e:'🧖',c:'rest'},
+    {t:'8:00 PM',n:'Big meal',s:'',e:'🍚',c:'rest'},
+    {t:'11:00 PM',n:'Daily log',s:'Plus the sleep ramp — check tonight\'s target',e:'📥',c:'rest',law:6},
+    {t:'12:00 AM',n:'Sleep',s:'',e:'🌙',c:'rest',law:5},
   ]
 };
+// ══════════ PRE-SEASON BRIDGE · 10 → 19 Sep 2026 ══════════
+// Travis mornings · ExoGuard afternoons · training evenings · sleep ramp to 6:15
+const PRE_DAYS={
+ '2026-09-10':{wake:'9:00 AM',bed:'12:00 AM',tvT:'Ollama on the 1TB drive',
+   tv:'Set OLLAMA_MODELS → D:/1TB drive FIRST, *then* install Ollama · pull the model · run `ollama ps` and confirm it says GPU, not CPU',
+   ex:'ExoGuard checkpoint — where does it actually stand? Write it down',
+   extra:{t:'5:00 PM',n:'⚠️ ORDER THE WEBCAM TODAY',s:'Phase 1 needs it by 1 Oct · 1,500–3,500 EGP · shipping in Egypt is slow',e:'📦',c:'hustle'},
+   gym:'Shoulders / Arms',tn:null},
+ '2026-09-12':{wake:'9:00 AM',bed:'12:00 AM',tvT:'Python + venv + packages',
+   tv:'Python 3.11 installed · venv created at C:\\travis · install packages (faster-whisper, ollama, TTS)',
+   ex:'ExoGuard deep work — 2.5 hrs',
+   eng:'SPEED — 6 × 20s intervals',gym:'Chest / Back',tn:'academy'},
+ '2026-09-13':{wake:'9:00 AM',bed:'12:00 AM',tvT:'VOICE LOOP v1',
+   tv:'travis.py: mic → STT → Ollama → TTS → speaker. Get ONE spoken question answered out loud. Ugly is fine',
+   ex:'ExoGuard deep work — 2.5 hrs',
+   gym:'Push',tn:null},
+ '2026-09-14':{wake:'9:00 AM',bed:'12:00 AM',tvT:'HARDWARE day',
+   tv:'Laptop fans cleaned · thermal paste redone · cooling pad in use. Travis will run this GPU hot for 7 months',
+   ex:'ExoGuard deep work — 2.5 hrs',
+   gym:null,tn:'academy'},
+ '2026-09-15':{wake:'8:45 AM',bed:'11:45 PM',tvT:'VOICE LOOP v2',
+   tv:'Latency down · handle interruptions · make it feel like talking, not waiting. Log every failure',
+   ex:'ExoGuard deep work — 2.5 hrs',
+   gym:'Pull',tn:'private'},
+ '2026-09-16':{wake:'8:15 AM',bed:'11:30 PM',tvT:'TOOL CALLING — the hard part',
+   tv:'Register get_time as a tool · get the local model to call it UNPROMPTED when asked the time. This is the real Phase 0 skill',
+   ex:'ExoGuard deep work — 2.5 hrs',
+   gym:'Legs',tn:null},
+ '2026-09-17':{wake:'7:45 AM',bed:'11:30 PM',tvT:'PHASE 0 EXIT TEST',
+   tv:'Five-turn spoken conversation with at least ONE correct tool call. FILM IT. Then tick Phase 0 in the Travis tab — 13 days early',
+   ex:'ExoGuard deep work — 2.5 hrs',
+   gym:'Shoulders / Arms',tn:null},
+ '2026-09-19':{wake:'6:45 AM',bed:'11:00 PM',tvT:null,tv:null,
+   ex:'ExoGuard — define Monday\'s deliverable + send the supervisor update. Enter the semester ahead',
+   extra:{t:'9:00 AM',n:'🎒 SEMESTER PREP',s:'Desk set up · bag packed · lunchbox system sorted · tennis kit bag ready · bus route confirmed · uniform of the week decided',e:'🎒',c:'hustle',law:6},
+   gym:'Chest / Back',tn:'academy'},
+};
+function buildPre(k){
+  const d=PRE_DAYS[k];if(!d)return null;
+  const a=[];
+  a.push({t:d.wake,n:'Wake — sleep ramp',s:'Bed tonight by '+d.bed+' · every day shifts 20–30 min toward the 6:15 uni wake',e:'🌅',c:'rest',law:5});
+  a.push({t:'Breakfast',n:'Breakfast',s:'Real one — no bus to catch yet',e:'🍳',c:'rest'});
+  if(d.extra&&d.extra.t==='9:00 AM')a.push(d.extra);
+  if(d.tv)a.push({t:'9:00 AM',n:'TRAVIS — '+d.tvT,s:d.tv,e:'🤖',c:'study',law:1});
+  a.push({t:'12:45 PM',n:'Lunch',s:'Then the ExoGuard block',e:'🍽️',c:'rest'});
+  if(d.ex)a.push({t:'2:00 PM',n:'EXOGUARD',s:d.ex,e:'🦾',c:'study',law:1});
+  if(d.extra&&d.extra.t!=='9:00 AM')a.push(d.extra);
+  if(d.eng)a.push({t:'5:00 PM',n:'ENGINE',s:d.eng,e:'🏃',c:'gym'});
+  if(d.gym)a.push({t:d.tn?'5:30 PM':'6:30 PM',n:'GYM — '+d.gym,s:'Log every set in the Athlete tab',e:'🏋️',c:'gym'});
+  if(d.tn==='academy'){
+    a.push({t:'6:45 PM',n:'Pre-tennis meal + 30-serve ritual',s:'Eat, then targets before anyone arrives',e:'⚡',c:'rest'});
+    a.push({t:'7:30 PM',n:'TENNIS ACADEMY',s:'ONE goal per session · log it after',e:'🎾',c:'gym',law:1});
+  }
+  if(d.tn==='private'){
+    a.push({t:'6:45 PM',n:'Pre-tennis meal + 30-serve ritual',s:'Bring one weakness to fix',e:'⚡',c:'rest'});
+    a.push({t:'8:00 PM',n:'PRIVATE LESSON',s:'The technical fix session',e:'🎾',c:'gym',law:1});
+  }
+  a.push({t:d.tn?'9:45 PM':'8:00 PM',n:'Big meal',s:'Protein target — check the Athlete tab',e:'🍚',c:'rest',law:5});
+  a.push({t:'10:45 PM',n:'Daily log + 10-min stretch',s:'2 min · phone parks outside the room',e:'📥',c:'rest',law:6});
+  a.push({t:d.bed,n:'Sleep — ramp target',s:'This is the whole point of the 10 days: arrive at 20 Sep already adapted',e:'🌙',c:'rest',law:5});
+  return a;
+}
 function getAuto(){
-  const d=new Date().getDay();const s=getSeason();
+  const n=new Date();const d=n.getDay();const s=getSeason();
+  if(s==='PRE-SEASON'){
+    const k=n.getFullYear()+'-'+String(n.getMonth()+1).padStart(2,'0')+'-'+String(n.getDate()).padStart(2,'0');
+    if(PRE_DAYS[k])return'pre:'+k;
+    return'preRest';
+  }
   if(s==='RAMADAN')return'ramadan';
-  if(s==='FINAL YEAR'){
-    if(d===5)return'friday';
-    if(d===6)return'grind';
-    if(d===1||d===3)return'unitennis';
-    return'uniday';
+  if(s==='EXAM WEEK')return'examDay';
+  if(s==='FINAL YEAR'||s==='FINALS RAMP')
+    return['uniSun','uniMon','deskTue','uniWed','uniThu','preRest','buildSat'][d];
+  if(s==='WINTER BUILD'||s==='EXOGUARD MARCH'||s==='EXPO'){
+    if(d===5)return'preRest';
+    if(d===1||d===2||d===6)return'tennisday';
+    return'grind';
   }
   if(d===5)return'friday';
-  if(d===0)return'rest';if(d===1||d===3)return'tennisday';
+  if(d===0)return'preRest';
+  if(d===1||d===3)return'tennisday';
   return'grind';
 }
-function getSch(){return SCH[S.dt==='auto'?getAuto():S.dt]||SCH.grind;}
+function getSch(){
+  const t=S.dt==='auto'?getAuto():S.dt;
+  if(t&&t.slice(0,4)==='pre:')return buildPre(t.slice(4))||SCH.grind;
+  return SCH[t]||SCH.grind;
+}
 function getDirective(){
   const type=S.dt==='auto'?getAuto():S.dt;
   const msgs={
-    grind:"Full grind day. ExoGuard gets the morning brain, money gets the afternoon, iron at night. Boring and repeatable wins.",
-    tennisday:"Double day: gym in the morning (upper body only — the legs belong to the court), tennis at night. Outreach before lunch, light dinner, 30 serves before the session.",
-    friday:"Weigh-in → deep work → Jumu'ah → funnel check → private training at 9. The full Friday.",
-    uniday:"Campus by day. Your real shift: 6:45 PM. Two hours of ExoGuard, ten messages, then iron. Nobody owns your evening.",
-    unitennis:"Campus, then court. One ExoGuard sprint between dinner and travel. No gym — tennis is the work.",
+    uniSun:"Prof Dev 9–1, then the track at 2:15. Real work starts at 9 PM — 75 min of ExoGuard and the same-day skim. That's the whole day.",
+    uniMon:"The 9-to-5. Lecture, tutorial, lab, then straight from the bus to the court. Kit packed this morning. Eat on the 5 PM bus. Bed midnight — tomorrow you sleep in.",
+    deskTue:"Your best day. 2¾ hrs of ExoGuard on a fresh brain, gym, 3 hrs of real studying, then the private lesson at 8. Nothing on campus can compete with today.",
+    uniWed:"Library at 9 — this is the experiment, prove you can work on campus. Then friends, Thermo-fluids at 2, leg day at 7:15. Protect the skim at 9:45.",
+    uniThu:"Lab all morning, write it up while it's fresh, Tennis Armour at 3. Travis gets an hour at 9. Recovery day tomorrow — sleep in.",
+    buildSat:"Speed, gym, 3½ hrs of study, Travis + film it, then the academy. The biggest output day after Tuesday.",
+    examDay:"Exam week. Three revision blocks, past papers not re-reading, light gym to clear the head, HARD STOP at 8:15 PM. Cramming instead of sleeping is a net loss — memory consolidates in deep sleep.",
+    preRest:"Recovery. Weekly review at 10, then the day is yours — sauna, jacuzzi, movie, Barça. This day is WHY the other six work. Zero guilt.",
+    grind:"Full grind day. ExoGuard gets the morning brain, iron at night. Boring and repeatable wins.",
+    tennisday:"Double day: gym in the morning (upper only — the legs belong to the court), tennis at night. 30 serves before the session.",
+    friday:"Weigh-in → deep work → Jumu'ah → private training. The full Friday.",
     ramadan:"Ramadan mode: fasted deep work late morning, nap, gentle iftar, taraweeh, second wind at night. Different rhythm, same standards.",
-    rest:"Recovery day. Recover like it's your job — because this day is why next week works.",
   };
   let base=msgs[type]||"Show up. That's the whole job.";
   const dq=q(DKEY());
-  if((dq.out||0)<10&&new Date().getHours()>=18)base+=` ⚠️ Outreach at ${dq.out||0}/10 — close the gap before shutdown.`;
+  const h=new Date().getHours();
+  if((dq.deep||0)<1&&h>=21)base+=` ⚠️ No deep block logged yet — even 30 minutes counts. Shrink the step.`;
+  const w=uniWeek();
+  if(w>=9&&w<=12)base+=` 🔴 FINALS RAMP — week ${w} of 13. Deep passes are revision now, not new material.`;
+  const dueSoon=(S.uni&&S.uni.dl?S.uni.dl:[]).filter(x=>!x.done).map(x=>({t:x.title,d:Math.ceil((new Date(x.date)-Date.now())/864e5)}))
+    .filter(x=>x.d>=0&&x.d<=3).sort((a,b)=>a.d-b.d);
+  if(dueSoon.length){const x=dueSoon[0];
+    base+=` 📅 ${x.t} due ${x.d===0?'TODAY':(x.d===1?'TOMORROW':'in '+x.d+' days')} — this outranks the Travis block.`;}
   return base;
 }
 function toMins(s){let[t,p]=s.split(' ');let[h,m]=t.split(':').map(Number);if(p==='PM'&&h!==12)h+=12;if(p==='AM'&&h===12)h=0;return h*60+m;}
@@ -1358,7 +1793,7 @@ function renderSched(){
   const dk=DKEY();
   if(!S.checks[dk])S.checks[dk]={};
   const sch=getSch();const ci=getCur(sch);
-  ['auto','grind','tennisday','friday','uniday','unitennis','ramadan','rest'].forEach(t=>{const el=document.getElementById('chip-'+t);if(el)el.classList.toggle('active',S.dt===t);});
+  ['auto','uniSun','uniMon','deskTue','uniWed','uniThu','preRest','buildSat','examDay','grind','tennisday','ramadan'].forEach(t=>{const el=document.getElementById('chip-'+t);if(el)el.classList.toggle('active',S.dt===t);});
   const dirEl=document.getElementById('td-directive');if(dirEl)dirEl.textContent=getDirective();
   const list=document.getElementById('sched');if(!list)return;
   list.innerHTML=sch.map((b,i)=>{
@@ -1379,6 +1814,7 @@ function renderSched(){
 }
 function chk(i){const dk=DKEY();if(!S.checks[dk])S.checks[dk]={};S.checks[dk][i]=!S.checks[dk][i];sv();renderSched();toast(S.checks[dk][i]?'✅ Done!':'↩ Cleared');}
 function setDT(t){S.dt=t;sv();renderSched();}
+
 // ═══════════ QUICK LOG ═══════════
 function renderQuick(){
   const t=qToday();
@@ -1428,13 +1864,13 @@ function getNextAction(){
   const t=q(DKEY());const h=new Date().getHours();
   const sch=getSch();const cur=sch[getCur(sch)];
   const del=S.exoDel[currentWeekMonday()];
-  if(!del||!del.text)return{title:'Define NEXT Monday\'s ExoGuard deliverable',why:'You define it days ahead — that\'s the Monday Contract. 2 minutes in the Exo tab: name what you\'ll bring to the next supervisor meeting. A week without a named deliverable is a week that ships nothing.'};
+  if(!del||!del.text)return{title:'Define Monday\'s ExoGuard deliverable',why:'2 minutes in the Exo tab. A week without a named deliverable is a week that ships nothing. Everything else waits for this.'};
   if((t.deep||0)<2&&h>=8&&h<22)return{title:'ExoGuard deep work block — 50 min minimum',why:`Deep blocks today: ${t.deep||0}/2. Phone in the other room, open the CAD file, timer on. Monday's deliverable: "${del.text}".`};
   if((t.out||0)<10&&h>=10)return{title:`Send ${10-(t.out||0)} more outreach messages`,why:`Outreach: ${t.out||0}/10. You're graded on inputs — replies are not your department. Log each send with the stepper.`};
   const avg=S.scores.length?Math.round(S.scores.slice(-3).reduce((a,b)=>a+b,0)/Math.min(3,S.scores.length)):0;
   if(avg<70&&h>=14&&h<23&&S.scores.length>0)return{title:'Salesforce drill — 45 minutes',why:`Recent mock avg: ${avg}%. Trigger fires at 70×2 — then the exam books itself. One weak topic, wrong-answer notebook open.`};
   if(S.scores.length===0&&h>=14&&h<23)return{title:'Take a Salesforce baseline mock',why:'Zero scores logged. You can\'t aim without a baseline. 60 questions, timed, log the result — even a bad score starts the engine.'};
-  if(!t.train&&h>=17)return{title:'Train — '+(cur&&cur.c==='tennis'?'tennis tonight':'gym session (your split)'),why:'Training not logged today. Sessions are scheduled — go execute, then flip the toggle.'};
+  if(!t.train&&h>=17)return{title:'Train — '+(cur&&cur.c==='tennis'?'tennis tonight':'gym session (full body)'),why:'Training not logged today. Sessions are scheduled — go execute, then flip the toggle.'};
   if(cur)return{title:'On the clock: '+cur.n,why:cur.s+' — the schedule already decided. No decisions needed, just execution.'};
   return{title:'Shutdown ritual',why:'Everything critical is logged. Daily Log, tomorrow\'s ONE thing, phone parks outside the room, bed by 12:00.'};
 }
@@ -1680,7 +2116,9 @@ function exoCurrentPhase(){
   for(const p of EXO_PHASES){if(n>=new Date(p.start)&&n<=new Date(p.end+'T23:59:59'))return p.id;}
   return n<new Date(EXO_PHASES[0].start)?0:EXO_PHASES.length-1;
 }
-let EXO_OPEN={};try{EXO_OPEN=JSON.parse(localStorage.getItem('dawly_exo_open')||'{}');}catch{EXO_OPEN={};}function exoOpenTog(id,o){EXO_OPEN[id]=o;localStorage.setItem('dawly_exo_open',JSON.stringify(EXO_OPEN));}function renderPhases(){
+let EXO_OPEN={};try{EXO_OPEN=JSON.parse(localStorage.getItem('dawly_exo_open')||'{}');}catch(e){EXO_OPEN={};}
+function exoOpenTog(id,o){EXO_OPEN[id]=o;localStorage.setItem('dawly_exo_open',JSON.stringify(EXO_OPEN));}
+function renderPhases(){
   const cur=exoCurrentPhase();
   let allDone=0,allTotal=0;
   const html=EXO_PHASES.map(p=>{
@@ -1693,7 +2131,8 @@ let EXO_OPEN={};try{EXO_OPEN=JSON.parse(localStorage.getItem('dawly_exo_open')||
     const fmt=d=>d.toLocaleDateString('en-GB',{day:'numeric',month:'short'});
     const dleft=Math.ceil((e-new Date())/86400000);
     const badge=isCur?`<span style="font-family:'DM Mono',monospace;font-size:8px;color:${p.color};">● LIVE — ${dleft>=0?dleft+'d left':'overtime'}</span>`:(new Date()>e?'<span style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--muted);">PAST</span>':'<span style="font-family:\'DM Mono\',monospace;font-size:8px;color:var(--muted2);">AHEAD</span>');
-    const so=EXO_OPEN[p.id]!==undefined?EXO_OPEN[p.id]:isCur;return`<details class="cbox" ontoggle="exoOpenTog(${p.id},this.open)"${so?' open':''}${isCur?' style="border-color:'+p.color+';"':''}>
+    const so=EXO_OPEN[p.id]!==undefined?EXO_OPEN[p.id]:isCur;
+    return`<details class="cbox" ontoggle="exoOpenTog(${p.id},this.open)"${so?' open':''}${isCur?' style="border-color:'+p.color+';"':''}>
       <summary><span style="color:${p.color};">${p.name}</span><span style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);margin-left:auto;padding-right:8px;">${done}/${tasks.length}</span>${badge}</summary>
       <div class="cbody">
         <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--muted2);margin-bottom:6px;">${fmt(s)} → ${fmt(e)} · ${p.goal}</div>
@@ -1754,6 +2193,7 @@ function addDrTask(){
 }
 
 // ═══════════ DEADLINES — live countdown ═══════════
+if(!S.deadlines||!Array.isArray(S.deadlines))S.deadlines=[];
 function renderDeadlines(){
   const list=document.getElementById('dl-list');if(!list)return;
   const today=new Date();today.setHours(0,0,0,0);
@@ -1781,109 +2221,627 @@ function addDeadline(){
   renderDeadlines();toast('⏳ Deadline locked in — counting down.');
 }
 function rmDeadline(i){S.deadlines.splice(i,1);sv();renderDeadlines();}
-// ═══════════ HUSTLE ═══════════
-function incomeTotal(){return S.hustle.income.reduce((a,e)=>a+(e.amt||0),0);}
-function incomeMonth(){const n=new Date();const m=n.getMonth(),y=n.getFullYear();return S.hustle.income.reduce((a,e)=>{const d=new Date(e.date);return(d.getMonth()===m&&d.getFullYear()===y)?a+(e.amt||0):a;},0);}
-function fmt$(v){return '$'+(Math.round(v*100)/100).toLocaleString();}
-const HU_ASSETS=[
-  {name:'Payoneer account verified',sub:'do this FIRST — verification takes days'},
-  {name:'Pick your niche (ONE only)',sub:'dentists · barbers · restaurants · plumbers'},
-  {name:'Demo site #1 built + deployed',sub:'Claude Code → GitHub Pages, free'},
-  {name:'Demo site #2 built + deployed',sub:'same niche, different style'},
-  {name:'Demo site #3 built + deployed',sub:'the showpiece'},
-  {name:'Outreach template written',sub:'short · personal · mockup screenshot attached'},
-  {name:'Lead list: 100 businesses',sub:'Google Maps · US/UK cities · no/bad website'},
-  {name:'Upwork profile live',sub:'portfolio linked · SF cert added when passed'},
-  {name:'Fiverr gig live',sub:'"Business website in 72 hours"'},
-  {name:'Care plan one-pager',sub:'$40/mo — attach to every deal'},
+// ═══════════════════════════════════════════════════════
+//  UNIVERSITY — modules, two-pass study, rolling review
+// ═══════════════════════════════════════════════════════
+const MODS={
+ CT:{code:'KH6002ME',n:'Computational Thermo-fluids',cr:20,pill:'ct',hrs:6,
+   room:'B · 211 (lect) / B · 406 (lab)',inst:'Instructor not yet assigned — chase this',
+   sch:'Wed 2:00–4:55 PM lecture · Thu 9:00–12:55 lab',
+   what:'Simplify the differential equations governing heat transfer and fluid flow with reasonable assumptions and boundary conditions to reach analytical solutions — then use CFD to attack the problems that cannot be solved by hand.',
+   learn:['Reducing Navier-Stokes and the energy equation with defensible assumptions','Boundary conditions — and why the wrong one silently ruins a solution','Meshing, mesh-independence studies, convergence, y+','Validating CFD output instead of trusting pretty colour plots','Numerical vs analytical vs experimental — knowing which to believe'],
+   why:'The hardest module you have and the most employable skill in the semester. It also feeds ExoGuard directly — actuator thermal loads, any flow analysis. Nobody crams CFD: week 10 is built on week 3.'},
+ CE:{code:'KH6015ME',n:'Clean Energy',cr:20,pill:'ce',hrs:4,
+   room:'B · 217 (lect + tut) / B · 407 (lab)',inst:'Mennatallah Fouad · Ahmed Sayed Saber · Ossama Abousaima (tut) · Kareem El Safty (lab)',
+   sch:'Mon 9:00–10:55 lecture · 11:00–12:55 tutorial · 2:00–4:55 lab',
+   what:'How current and emerging clean technologies actually work — solar, nuclear, wind, geothermal, bioenergy, hydro — and appraising their environmental, economic and social impacts across different contexts.',
+   learn:['The working principles of each clean generation technology','Heat, power and transportation demand — and what can realistically meet each','The ENERGY TRILEMMA: security vs equity vs sustainability','Appraising technologies in context, not in the abstract','Energy access as a development problem, not just an engineering one'],
+   why:'Heaviest contact hours (7/wk) but the lowest cognitive load — this is breadth and argument, not derivation. The trilemma is the spine: every assessment will hang off it, so learn to argue with it. Do the reading on the bus.'},
+ PD:{code:'KH6000ME',n:'Professional Dev & Project Planning',cr:20,pill:'pd',hrs:2,
+   room:'B · 304',inst:'Sameh F.S. Eid',
+   sch:'Sun 9:00 AM–12:55 PM',
+   what:'Generic professional skills: project-based planning and delivery, sustainability and the environment, ethical practice and professionalism, and how mechanical engineering fits the wider social, legal and physical context.',
+   learn:['Project planning and delivery — scoping, scheduling, risk','Sustainability and environmental responsibility in design','Engineering ethics and professional conduct','Where your specialism sits in the broader engineering landscape','Communicating engineering work to non-engineers'],
+   why:'Looks like the throwaway module. It is the one you EXPLOIT. Use ExoGuard as the project artefact for every single deliverable — Gantt chart, risk register, stakeholder analysis, ethics case. Do the work once, get graded twice. 2 hrs/week if you do this, 6 if you do not.'}
+};
+const RINT=[1,3,7,16,35];
+if(!S.uni)S.uni={};
+if(!S.uni.topics)S.uni.topics=[];
+if(!S.uni.skims)S.uni.skims={};
+if(!S.uni.deep)S.uni.deep={};
+if(!S.uni.wrong)S.uni.wrong=[];
+const PD_PLAN=[
+ {mod:'PD',title:'CW1 — Part 1',date:'2026-09-26',done:false},
+ {mod:'PD',title:'CW1 — Part 2',date:'2026-10-04',done:false},
+ {mod:'PD',title:'CW1 — Part 3 REPORT',date:'2026-10-17',done:false},
+ {mod:'PD',title:'CW1 — Part 3 PRESENTATION',date:'2026-10-18',done:false},
+ {mod:'PD',title:'CW1 — Part 4',date:'2026-10-25',done:false},
+ {mod:'PD',title:'CW2 — Part 1',date:'2026-10-31',done:false},
+ {mod:'PD',title:'CW1 — Part 3 report (as printed wk7 — verify)',date:'2026-11-07',done:false},
+ {mod:'PD',title:'CW1 — Part 3 (as printed wk8 — verify)',date:'2026-11-08',done:false},
+ {mod:'PD',title:'CW2 — REPORT',date:'2026-11-28',done:false},
+ {mod:'PD',title:'CW2 — final',date:'2026-11-29',done:false},
+ {mod:'PD',title:'EXAMS — week 13',date:'2026-12-13',done:false},
 ];
-function renderHustle(){
-  document.getElementById('hu-total').textContent=fmt$(incomeTotal());
-  document.getElementById('hu-month').textContent=fmt$(incomeMonth());
-  document.getElementById('hu-mrr').textContent=fmt$(S.hustle.mrr||0);
-  document.getElementById('hu-clients').textContent=S.hustle.pipe.clients;
-  const tot=incomeTotal();
-  document.getElementById('hu-target-sub').textContent=tot===0?'target: first client ($300–500)':tot<1500?'target: $1k/mo by month 3–4':'target: raise prices + stack MRR';
-  ['sent','replies','calls','clients'].forEach(k=>{document.getElementById('pv-'+k).textContent=S.hustle.pipe[k];});
-  const list=document.getElementById('hu-income-list');
-  list.innerHTML=S.hustle.income.map((e,i)=>{
-    const d=new Date(e.date);
-    return`<div class="inc-row"><span class="inc-amt">${fmt$(e.amt)}</span><span class="inc-src">${e.src}</span><span class="inc-date">${d.getDate()}/${d.getMonth()+1}</span><span class="inc-x" onclick="removeIncome(${i})">✕</span></div>`;
-  }).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">Nothing yet. The first $1 is the hardest — go get it.</div>';
-  const grid=document.getElementById('hu-assets');
-  grid.innerHTML=HU_ASSETS.map((a,i)=>{
-    const done=!!S.hustle.assets['a_'+i];
-    return`<div class="mod-item${done?' done-mod':''}" onclick="togAsset(${i})">
-      <div class="mod-check" style="${done?'background:var(--purple);border-color:var(--purple);':''}">${done?'✓':''}</div>
-      <div class="mod-info"><div class="mod-name">${a.name}</div><div class="mod-pct">${a.sub}</div></div>
-    </div>`;
-  }).join('');
-}
-function togAsset(i){const k='a_'+i;S.hustle.assets[k]=!S.hustle.assets[k];sv();renderHustle();toast(S.hustle.assets[k]?'✅ Asset ready!':'↩ Cleared');}
-function bumpPipe(k,d){S.hustle.pipe[k]=Math.max(0,(S.hustle.pipe[k]||0)+d);sv();renderHustle();if(k==='clients'&&d>0)toast('🏆 CLIENT WON! Log the income + add the win to the ledger.');}
-function addIncome(){
-  const amt=parseFloat(document.getElementById('hu-amt').value);
-  const src=document.getElementById('hu-src').value.trim()||'Unspecified';
-  if(isNaN(amt)||amt<=0)return;
-  S.hustle.income.unshift({amt,src,date:new Date().toISOString()});sv();
-  document.getElementById('hu-amt').value='';document.getElementById('hu-src').value='';
-  renderHustle();
-  toast('💵 '+fmt$(amt)+' logged. More where that came from.');
-}
-function removeIncome(i){S.hustle.income.splice(i,1);sv();renderHustle();}
-function setMRR(){const v=parseFloat(document.getElementById('hu-mrr-in').value);if(isNaN(v)||v<0)return;S.hustle.mrr=v;sv();document.getElementById('hu-mrr-in').value='';renderHustle();toast('🔁 MRR updated — this is the real business.');}
+if(!S.uni.dl)S.uni.dl=[];
+if(!S.uni.pdSeeded){PD_PLAN.forEach(d=>{if(!S.uni.dl.some(x=>x.title===d.title))S.uni.dl.push(Object.assign({},d));});S.uni.pdSeeded=1;}
 
-// ═══════════ SALESFORCE ═══════════
-const SF_MODULES=[
-  {name:'Configuration & Setup',weight:'20%'},
-  {name:'Object Manager & Lightning App Builder',weight:'20%'},
-  {name:'Sales & Marketing Applications',weight:'12%'},
-  {name:'Service & Support Applications',weight:'11%'},
-  {name:'Productivity & Collaboration',weight:'7%'},
-  {name:'Data & Analytics Management',weight:'14%'},
-  {name:'Workflow/Process Automation',weight:'16%'},
-  {name:'Security & Access',weight:'10%'},
-  {name:'Accounts & Contacts',weight:'11%'},
-  {name:'Cases & Solutions',weight:'9%'},
-  {name:'Activities & Chatter',weight:'3%'},
-  {name:'Reports & Dashboards',weight:'13%'},
-  {name:'Mobile Administration',weight:'3%'},
-  {name:'AppExchange & Sandbox',weight:'2%'},
-];
-function sfTriggerFired(){const s=S.scores;return s.length>=2&&s[s.length-1]>=70&&s[s.length-2]>=70;}
-function renderSFPage(){
-  document.getElementById('sf-mocks-done').textContent=S.scores.length;
-  document.getElementById('sf-best').textContent=S.scores.length?Math.max(...S.scores)+'%':'—';
-  const doneMods=Object.values(S.mods).filter(Boolean).length;
-  document.getElementById('sf-mods-done').textContent=doneMods+'/'+SF_MODULES.length;
-  const trig=document.getElementById('sf-trigger');
-  if(sfTriggerFired()){
-    trig.className='callout go fu';
-    trig.innerHTML='<strong>🔥 TRIGGER FIRED — 70%+ twice in a row.</strong> The decision was already made: book the exam TODAY for 10 days from now. Not next week. Today. Then tell the Wins Ledger.';
+function showUniTab(id,btn){
+  document.querySelectorAll('#pg-uni .spanel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#uni-tabs .stab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('uni-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+  renderUni();
+}
+function dueIn(t){
+  if(!t.passes||!t.passes.length)return -99;
+  const iv=RINT[Math.min(t.passes.length-1,RINT.length-1)];
+  const last=new Date(t.passes[t.passes.length-1]);
+  return Math.ceil((last.getTime()+iv*864e5-Date.now())/864e5);
+}
+function renderUni(){
+  const w=uniWeek();
+  const wk=document.getElementById('uni-week');
+  if(wk){
+    if(getSeason()==='PRE-SEASON')wk.textContent='starts in '+daysTo('2026-09-20')+' days';
+    else if(w)wk.textContent='WEEK '+w+' OF 13';
+    else wk.textContent='out of semester';
   }
-  const cont=document.getElementById('sf-bars');
-  if(!S.scores.length){cont.innerHTML='<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">No scores yet — take a mock today and get a baseline.</div>';}
-  else{cont.innerHTML=S.scores.map((s,i)=>`<div class="sf-row"><div class="sf-n">${i+1}</div><div class="sf-bg"><div class="sf-fill" style="width:${s}%;background:${s>=70?'var(--green)':s>=65?'var(--gold)':'var(--red)'}"></div></div><div class="sf-pct" style="color:${s>=70?'var(--green)':s>=65?'var(--gold)':'var(--red)'}">${s}%</div></div>`).join('');}
-  const grid=document.getElementById('module-grid');if(!grid)return;
-  grid.innerHTML=SF_MODULES.map((m,i)=>{
-    const done=!!S.mods['mod_'+i];
-    return`<div class="mod-item${done?' done-mod':''}" onclick="togMod(${i})">
-      <div class="mod-check">${done?'✓':''}</div>
-      <div class="mod-info"><div class="mod-name">${m.name}</div><div class="mod-pct">Exam weight</div></div>
-      <div class="mod-weight">${m.weight}</div>
-    </div>`;
-  }).join('');
+  const f=document.getElementById('uni-fill');if(f)f.style.width=(w?Math.round(w/13*100):0)+'%';
+  const sub=document.getElementById('uni-sub');
+  if(sub){
+    const d=daysTo('2026-12-06');
+    sub.textContent='Semester 1 · 60 credits · '+(d>0?d+' days to finals week (wk 12–13)':'teaching ended 10 Dec');
+  }
+  // modules
+  const ml=document.getElementById('uni-modlist');
+  if(ml)ml.innerHTML=Object.keys(MODS).map(k=>{const m=MODS[k];
+    return`<details class="cbox"><summary><span class="pill ${m.pill}">${k}</span> ${m.n} <span class="hint" style="margin-left:auto;margin-right:8px;">${m.hrs}h/wk</span></summary>
+      <div class="cbody">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);margin-bottom:8px;">${m.code} · ${m.cr} CREDITS · ${m.sch}</div>
+        <div style="margin-bottom:8px;"><strong>Room:</strong> ${m.room}<br><strong>Staff:</strong> ${m.inst}</div>
+        <div style="margin-bottom:9px;">${m.what}</div>
+        <strong>What you'll actually learn:</strong>
+        <ul style="margin:5px 0 9px;padding-left:16px;">${m.learn.map(x=>'<li>'+x+'</li>').join('')}</ul>
+        <div class="callout tip" style="margin:0;"><strong>Study strategy — ${m.hrs} hrs/week.</strong> ${m.why}</div>
+      </div></details>`;}).join('');
+  // two-pass today
+  const dk=DKEY();
+  if(!S.uni.skims[dk])S.uni.skims[dk]={};
+  if(!S.uni.deep[dk])S.uni.deep[dk]={};
+  const mkRow=(kind)=>Object.keys(MODS).map(k=>{
+    const on=!!S.uni[kind][dk][k];
+    return`<div class="mrow${on?' ok':''}"><span class="pill ${MODS[k].pill}">${k}</span><span style="flex:1;">${MODS[k].n}</span><div class="tgl${on?' on':''}" onclick="uniTog('${kind}','${k}',this)"></div></div>`;}).join('');
+  const sr=document.getElementById('uni-skimrow');if(sr)sr.innerHTML=mkRow('skims');
+  const dr=document.getElementById('uni-deeprow');if(dr)dr.innerHTML=mkRow('deep');
+  let sc=0,dc=0;
+  for(let i=0;i<7;i++){const k=dkOffset(i);
+    sc+=Object.values(S.uni.skims[k]||{}).filter(Boolean).length;
+    dc+=Object.values(S.uni.deep[k]||{}).filter(Boolean).length;}
+  const e1=document.getElementById('uni-skimct');if(e1)e1.textContent=sc;
+  const e2=document.getElementById('uni-deepct');if(e2)e2.textContent=dc;
+  const hi=document.getElementById('uni-hist');
+  if(hi){let h='';for(let i=13;i>=0;i--){const k=dkOffset(i);
+    const s=Object.values(S.uni.skims[k]||{}).filter(Boolean).length;
+    const d=Object.values(S.uni.deep[k]||{}).filter(Boolean).length;
+    const cls=d?'ogg':(s?'og':(i===0?'td':''));
+    h+=`<div class="d ${cls}" title="${k}: ${s} skim / ${d} deep"></div>`;}
+    hi.innerHTML='<div class="dot-row">'+h+'</div><div class="hint" style="margin-top:7px;">Bright = deep pass · dim = skim only · empty = nothing touched</div>';}
+  // review queue
+  const sorted=S.uni.topics.slice().sort((a,b)=>dueIn(a)-dueIn(b));
+  const due=sorted.filter(t=>dueIn(t)<=0);
+  const dd=document.getElementById('uni-due');
+  if(dd){
+    if(!S.uni.topics.length)dd.innerHTML='<div class="hint">No topics yet. Add each one as you cover it — takes 5 seconds and it is what stops week 1 evaporating by week 8.</div>';
+    else if(!due.length)dd.innerHTML='<div class="hint">✅ Nothing due. Next up: <strong>'+sorted[0].name+'</strong> in '+dueIn(sorted[0])+' day(s).</div>';
+    else{const t=due[0];const i=S.uni.topics.indexOf(t);
+      dd.innerHTML=`<div style="font-size:15px;font-weight:800;margin-bottom:4px;"><span class="pill ${MODS[t.mod].pill}">${t.mod}</span> ${t.name}</div>
+        <div class="hint" style="margin-bottom:10px;">Pass ${(t.passes||[]).length+1} · ${dueIn(t)<0?Math.abs(dueIn(t))+' days overdue':'due today'} · 10 minutes, front of your next deep session</div>
+        <button class="btn go" onclick="uniReviewed(${i})">✓ REVIEWED — SCHEDULE THE NEXT ONE</button>
+        ${due.length>1?'<div class="hint" style="margin-top:9px;">'+(due.length-1)+' more waiting behind this one.</div>':''}`;}
+  }
+  const tl=document.getElementById('uni-topics');
+  if(tl)tl.innerHTML=sorted.length?sorted.map(t=>{const i=S.uni.topics.indexOf(t);const di=dueIn(t);
+    return`<div class="mrow${di<=0?' due':''}"><span class="pill ${MODS[t.mod].pill}">${t.mod}</span><span style="flex:1;">${t.name}</span><span class="hint">${(t.passes||[]).length} pass${(t.passes||[]).length===1?'':'es'} · ${di<=0?'DUE':'in '+di+'d'}</span><span class="log-x" onclick="uniRmTopic(${i})">✕</span></div>`;}).join(''):'<div class="hint">Nothing yet.</div>';
+  // wrong answers
+  const wl=document.getElementById('uni-wlist');
+  if(wl)wl.innerHTML=S.uni.wrong.length?S.uni.wrong.slice(0,40).map((x,i)=>
+    `<details class="cbox"><summary><span class="pill ${MODS[x.mod].pill}">${x.mod}</span> ${x.q}</summary><div class="cbody"><strong>Why I missed it:</strong> ${x.why}<br><strong>The rule:</strong> ${x.rule}<div class="hint" style="margin-top:7px;">${new Date(x.date).toLocaleDateString()} <span class="log-x" onclick="uniRmWrong(${i})" style="margin-left:8px;">✕ delete</span></div></div></details>`).join(''):'<div class="hint">Empty. Fill it every time you solve questions — this becomes your December revision material.</div>';
+  const wc=document.getElementById('uni-wct');if(wc)wc.textContent='— '+S.uni.wrong.length+' logged';
+  // deadlines
+  const dl=document.getElementById('uni-dllist');
+  if(dl){const items=S.uni.dl.slice().sort((a,b)=>new Date(a.date)-new Date(b.date));
+    dl.innerHTML=items.length?items.map(x=>{const i=S.uni.dl.indexOf(x);const d=Math.ceil((new Date(x.date)-Date.now())/864e5);
+      const urg=d<0?'':(d<=7?' due':'');
+      return`<div class="mrow${x.done?' ok':urg}"><span class="pill ${MODS[x.mod].pill}">${x.mod}</span><span style="flex:1;${x.done?'text-decoration:line-through;opacity:.5;':''}">${x.title}</span><span class="hint">${x.done?'done':(d<0?Math.abs(d)+'d ago':d+' days')}</span><div class="tgl${x.done?' on':''}" onclick="uniTogDl(${i},this)"></div><span class="log-x" onclick="uniRmDl(${i})">✕</span></div>`;}).join(''):'<div class="hint">No deadlines yet. Add each one the moment it is announced — the app warns you at 2 weeks and 1 week out.</div>';}
 }
-function logScore(){
-  const v=parseInt(document.getElementById('sf-in').value);
-  if(isNaN(v)||v<0||v>100)return;
-  S.scores.push(v);sv();
-  document.getElementById('sf-in').value='';
-  renderSFPage();
-  if(sfTriggerFired())toast('🔥 TRIGGER FIRED — book the exam TODAY.');
-  else toast(v>=70?`💪 ${v}% — one more like this and the trigger fires.`:v>=65?`📈 ${v}% — passing zone, push to 70.`:`📚 ${v}% — review every wrong answer now.`);
+function uniTog(kind,k,el){const dk=DKEY();if(!S.uni[kind][dk])S.uni[kind][dk]={};
+  S.uni[kind][dk][k]=!S.uni[kind][dk][k];sv();el.classList.toggle('on',!!S.uni[kind][dk][k]);renderUni();
+  if(S.uni[kind][dk][k])toast(kind==='skims'?'📖 Skim logged — did you write the 3 questions?':'📚 Deep pass logged');}
+function uniAddTopic(){const n=document.getElementById('uni-tname').value.trim();if(!n)return;
+  S.uni.topics.push({mod:document.getElementById('uni-tmod').value,name:n,passes:[new Date().toISOString()]});
+  sv();document.getElementById('uni-tname').value='';renderUni();toast('🔄 In the queue — back in 1 day');}
+function uniReviewed(i){S.uni.topics[i].passes.push(new Date().toISOString());sv();renderUni();
+  toast('✅ Next review in '+RINT[Math.min(S.uni.topics[i].passes.length-1,RINT.length-1)]+' days');}
+function uniRmTopic(i){S.uni.topics.splice(i,1);sv();renderUni();}
+function uniAddWrong(){const q=document.getElementById('uni-wq').value.trim();if(!q)return;
+  S.uni.wrong.unshift({mod:document.getElementById('uni-wmod').value,q:q,
+    why:document.getElementById('uni-wwhy').value.trim()||'—',
+    rule:document.getElementById('uni-wrule').value.trim()||'—',date:new Date().toISOString()});
+  sv();['uni-wq','uni-wwhy','uni-wrule'].forEach(x=>document.getElementById(x).value='');
+  renderUni();toast('❌ Logged — this one is worth 10 right answers');}
+function uniRmWrong(i){S.uni.wrong.splice(i,1);sv();renderUni();}
+function uniAddDl(){const t=document.getElementById('uni-dtitle').value.trim();const d=document.getElementById('uni-ddate').value;
+  if(!t||!d)return;S.uni.dl.push({mod:document.getElementById('uni-dmod').value,title:t,date:d,done:false});
+  sv();document.getElementById('uni-dtitle').value='';document.getElementById('uni-ddate').value='';renderUni();toast('📅 Deadline added');}
+function uniTogDl(i,el){S.uni.dl[i].done=!S.uni.dl[i].done;sv();renderUni();}
+function uniRmDl(i){S.uni.dl.splice(i,1);sv();renderUni();}
+
+// ═══════════════════════════════════════════════════════
+//  TRAVIS — roadmap, failure dataset, budget
+// ═══════════════════════════════════════════════════════
+const TRV=[
+ {id:0,tag:'PHASE 0',n:'Travis Speaks',w:'10 – 30 Sep 2026',s:'2026-09-10',e:'2026-09-30',
+  obj:'The agent shell runs end to end: voice in, model thinks, tool called, voice out. Written once, never rewritten. Everything after this is adding tools to a machine that already runs.',
+  exit:'A five-turn spoken conversation, with at least one correct tool call.',
+  ts:['OLLAMA_MODELS pointed at the 1TB drive — before installing Ollama','Ollama installed; ollama ps confirms the model loaded on the GPU, not the CPU','Python 3.11 installed, venv created at C:\\travis, packages installed','travis.py runs and answers a spoken question out loud','Travis calls the get_time tool unprompted when asked the time','Laptop fans cleaned / repasted; cooling pad in use']},
+ {id:1,tag:'PHASE 1',n:'Travis Sees',w:'1 – 31 Oct 2026',s:'2026-10-01',e:'2026-10-31',
+  obj:'Overhead camera and a local vision model. Travis knows what is on the bench.',
+  exit:'Travis correctly names 8 of 10 components on a normal, messy bench.',
+  ts:['Webcam purchased (1,500–3,500 EGP)','Overhead mount fabricated — rigid, no wobble. Every wobble breaks calibration later','Vision model pulled and answering questions about a still image','look() and scan_desk() registered as tools','Hold-it-to-the-camera identify mode works on a small component','Bench lighting fixed so results are repeatable']},
+ {id:2,tag:'PHASE 2',n:'Travis Knows — the moat',w:'1 Nov – 15 Dec 2026',s:'2026-11-01',e:'2026-12-15',
+  obj:'A local knowledge base so Travis answers real electronics questions with sources — and the failure dataset begins. This phase is the one competitors cannot copy.',
+  exit:'Travis correctly answers 5 real ExoGuard debugging questions, each citing a source.',
+  ts:['Electronics Stack Exchange archive downloaded and cleaned','Arduino / ESP32 / Raspberry Pi documentation and datasheets added','Everything chunked, embedded locally, stored in a local vector database','search_knowledge() returns answers with sources','Failure dataset started: first 100 entries as symptom → cause → fix']},
+ {id:3,tag:'PHASE 3',n:'Travis Shows',w:'16 Dec 2026 – 7 Feb 2027',s:'2026-12-16',e:'2027-02-07',
+  obj:'The projector goes up. Light drawn onto the real bench, landing where it should.',
+  exit:'Say "Travis, highlight the ESP32" — and the light lands on the ESP32.',
+  ts:['Projector purchased — native 1080p, short throw (6,000–15,000 EGP)','Mounted steeply above the bench to limit hand shadow','Checkerboard calibration: camera and projector agree within a few millimetres','highlight() draws a circle on a real component','draw_arrow() and show_text() working','Recalibration takes under 2 minutes if the rig gets bumped']},
+ {id:4,tag:'PHASE 4',n:'Travis Feels, and demo lock',w:'8 – 28 Feb 2027',s:'2027-02-08',e:'2027-02-28',
+  obj:'Hands become input. Then stop adding features and make it boringly reliable — reliability, not features, is what converts a pilot.',
+  exit:'Ten clean runs in a row. Then FREEZE — no new features after 28 February.',
+  ts:['MediaPipe hand tracking running on the live feed','Pinch / drag / tap detected reliably','A projected control panel you can touch with a finger','Expo demo script written — 3 minutes, no dead air','Demo runs 10 times in a row with zero failures','Build-story video cut from the footage']},
+ {id:5,tag:'EXPO',n:'April 2027 — show it, do not pitch it',w:'April 2027',s:'2027-04-01',e:'2027-04-30',
+  obj:'ExoGuard is the headline and makes you credible in the room. Travis sits on the same bench as the system that helped build it. Do not pitch. Do not ask for money. Show it as something you built because you needed it, and let him ask the question.',
+  exit:'A second conversation gets scheduled. That is the only outcome that counts.',
+  ts:['Bench layout planned — ExoGuard and Travis together','Demo rehearsed on-site, in the actual room lighting','One-page pilot proposal printed — one workshop, one school, free','Success metrics ready: time-to-complete, error rate, instructor hours saved','Everything filmed']},
+];
+const TRV_WEEK=['One Travis session on the ExoGuard bench — he learns the task you are already doing','Film whatever you built','Log every failure you hit into the failure dataset','Update the board'];
+const TRV_BUD=[{w:'October',x:'Webcam + fabricated overhead mount',c:'2,000–5,000 EGP'},{w:'Dec / Jan',x:'Projector — native 1080p, short throw',c:'6,000–15,000 EGP'},{w:'Any time',x:'Cooling pad, fan clean and repaste',c:'700–1,700 EGP'},{w:'TOTAL',x:'Spread across four months, never at once',c:'~9,000–22,000 EGP'}];
+let TVT={};try{TVT=JSON.parse(localStorage.getItem('travis_tasks')||'{}');}catch(e){TVT={};}
+let TVOPEN={};try{TVOPEN=JSON.parse(localStorage.getItem('travis_open')||'{}');}catch(e){TVOPEN={};}
+if(!S.travis)S.travis={};
+if(!S.travis.fails)S.travis.fails=[];
+if(!S.travis.week)S.travis.week={};
+function svTv(){localStorage.setItem('travis_tasks',JSON.stringify(TVT));if(typeof pushSync==='function')pushSync();}
+function tvOpenTog(id,o){TVOPEN[id]=o;localStorage.setItem('travis_open',JSON.stringify(TVOPEN));}
+function showTvTab(id,btn){
+  document.querySelectorAll('#pg-travis .spanel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('#tv-tabs .stab').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tv-'+id).classList.add('active');
+  if(btn)btn.classList.add('active');
+  renderTravis();
 }
-function togMod(i){const k='mod_'+i;S.mods[k]=!S.mods[k];sv();renderSFPage();toast(S.mods[k]?'✅ Topic mastered!':'↩ Cleared');}
+function tvCurPhase(){const n=new Date();for(const p of TRV){if(n>=new Date(p.s)&&n<=new Date(p.e))return p.id;}return 0;}
+function renderTravis(){
+  let tot=0,don=0;
+  TRV.forEach(p=>p.ts.forEach((t,i)=>{tot++;if(TVT[p.id+'_'+i])don++;}));
+  const o=document.getElementById('tv-overall');if(o)o.textContent=don+' / '+tot+' complete';
+  const f=document.getElementById('tv-fill');if(f)f.style.width=(tot?Math.round(don/tot*100):0)+'%';
+  const cur=tvCurPhase();
+  const m=document.getElementById('tv-meta');
+  if(m){const p=TRV[cur];const d=Math.ceil((new Date(p.e)-Date.now())/864e5);
+    m.textContent=p.tag+' — '+p.n+' · '+(d>0?d+' days left in this phase':'window closed');}
+  const pl=document.getElementById('tv-phaselist');
+  if(pl)pl.innerHTML=TRV.map(p=>{
+    const dn=p.ts.filter((t,i)=>TVT[p.id+'_'+i]).length;
+    const isCur=p.id===cur;const pct=Math.round(dn/p.ts.length*100);
+    const so=TVOPEN[p.id]!==undefined?TVOPEN[p.id]:isCur;
+    const badge=isCur?'<span class="pill" style="background:rgba(41,212,224,.2);color:var(--cyan);">LIVE</span>':(new Date()>new Date(p.e)?'<span class="pill">PAST</span>':'<span class="pill">AHEAD</span>');
+    return`<details class="cbox" ontoggle="tvOpenTog(${p.id},this.open)"${so?' open':''}${isCur?' style="border-color:var(--cyan);"':''}>
+      <summary>${badge} ${p.n} <span class="hint" style="margin-left:auto;margin-right:8px;">${dn}/${p.ts.length} · ${pct}%</span></summary>
+      <div class="cbody">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--cyan);margin-bottom:8px;">${p.w}</div>
+        <div style="margin-bottom:10px;">${p.obj}</div>
+        ${p.ts.map((t,i)=>{const k=p.id+'_'+i;const on=!!TVT[k];
+          return`<div class="mrow${on?' ok':''}" onclick="tvTog('${k}')" style="cursor:pointer;"><span style="flex:1;${on?'opacity:.5;text-decoration:line-through;':''}">${t}</span><span style="color:${on?'var(--green)':'var(--muted)'};font-weight:800;">${on?'✓':'○'}</span></div>`;}).join('')}
+        <div class="callout tip" style="margin:10px 0 0;"><strong>EXIT CRITERION —</strong> ${p.exit}</div>
+      </div></details>
+      ${p.id===4?'<div class="callout warn"><strong>🔒 MARCH 2027 — TRAVIS FROZEN.</strong> ExoGuard working-prototype deadline. Zero Travis work: no features, no fixes, no "quick" changes.</div>':''}`;}).join('');
+  const wl=document.getElementById('tv-weeklist');
+  if(wl){const mon=currentWeekMonday();
+    wl.innerHTML=TRV_WEEK.map((t,i)=>{const k=mon+'_'+i;const on=!!S.travis.week[k];
+      return`<div class="mrow${on?' ok':''}" onclick="tvTogWeek('${k}')" style="cursor:pointer;"><span style="flex:1;${on?'opacity:.5;text-decoration:line-through;':''}">${t}</span><span style="color:${on?'var(--green)':'var(--muted)'};font-weight:800;">${on?'✓':'○'}</span></div>`;}).join('')
+      +'<div class="hint" style="margin-top:8px;">Resets every Monday.</div>';}
+  const fc=document.getElementById('tv-failct');if(fc)fc.textContent=S.travis.fails.length;
+  const fp=document.getElementById('tv-failpct');if(fp)fp.textContent=Math.min(100,Math.round(S.travis.fails.length/100*100))+'%';
+  const fl=document.getElementById('tv-faillist');
+  if(fl)fl.innerHTML=S.travis.fails.length?S.travis.fails.slice(0,40).map((x,i)=>
+    `<details class="cbox"><summary>${x.s}</summary><div class="cbody"><strong>Cause:</strong> ${x.c}<br><strong>Fix:</strong> ${x.f}<div class="hint" style="margin-top:7px;">${new Date(x.date).toLocaleDateString()} <span class="log-x" onclick="tvRmFail(${i})" style="margin-left:8px;">✕ delete</span></div></div></details>`).join(''):'<div class="hint">Empty. Every ExoGuard debugging session you do is a free entry — log it while you are already there.</div>';
+  const bd=document.getElementById('tv-budget');
+  if(bd)bd.innerHTML=TRV_BUD.map(b=>`<div class="mrow"><span style="flex:0 0 78px;font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);">${b.w}</span><span style="flex:1;">${b.x}</span><span class="hint">${b.c}</span></div>`).join('');
+}
+function tvTog(k){TVT[k]=!TVT[k];svTv();renderTravis();toast(TVT[k]?'✅ Checked off':'↩ Cleared');}
+function tvTogWeek(k){S.travis.week[k]=!S.travis.week[k];sv();renderTravis();}
+function tvAddFail(){const s=document.getElementById('tv-fs').value.trim();if(!s)return;
+  S.travis.fails.unshift({s:s,c:document.getElementById('tv-fc').value.trim()||'—',f:document.getElementById('tv-ff').value.trim()||'—',date:new Date().toISOString()});
+  sv();['tv-fs','tv-fc','tv-ff'].forEach(x=>document.getElementById(x).value='');
+  renderTravis();toast('🧪 '+S.travis.fails.length+' / 100 — the moat grows');}
+function tvRmFail(i){S.travis.fails.splice(i,1);sv();renderTravis();}
+
+// ═══════════════════════════════════════════════════════
+//  BUS — one 30-minute card, then sleep
+// ═══════════════════════════════════════════════════════
+const BUS_DECK=[
+ {id:'es',e:'🇪🇸',n:'Spanish — 30 min',
+  w:'Ten new words written out by hand (notes app is fine), then use each in a sentence you would actually say. Finish by reading them aloud once — quietly, you are on a bus.',
+  why:'Lowest mental load in the deck. Perfect for a 7 AM brain. Language learning rewards frequency over intensity, so 30 min on a bus beats 2 hrs on a Sunday.'},
+ {id:'sf',e:'💻',n:'Salesforce — 30 min',
+  w:'One Trailhead module OR 20 practice questions. Every wrong answer goes in the wrong-answer notebook with the reason, not just the right letter.',
+  why:'Still a goal, no longer a daily obligation. The cert now costs you zero desk time — it lives entirely on this bus.'},
+ {id:'skim',e:'📖',n:'Module skim — 30 min',
+  w:'Loosely read yesterday\'s slides for whichever module you last had. Not deep study — just re-familiarising so the same-day skim tonight goes faster.',
+  why:'Free repetition. You are sitting still anyway and the material is already half in your head.'},
+ {id:'iq',e:'🎾',n:'Tennis IQ — 30 min',
+  w:'Watch one match highlight or a coaching breakdown. Pick ONE thing to try at your next session and note it. Patterns, not shots.',
+  why:'Your practice fixes technique. Nothing else in your week fixes decision-making — and that is what actually loses matches.'},
+ {id:'read',e:'📚',n:'Read — 30 min',
+  w:'A book or long article. Anything. Engineering, business, biography.',
+  why:'The one card with no metric attached. Input with no deliverable is still valuable, and you need at least one of those.'},
+];
+if(!S.bus)S.bus={};
+if(!S.bus.log)S.bus.log={};
+if(!S.bus.es)S.bus.es=[];
+if(!S.bus.pick)S.bus.pick={};
+function busPickFor(dk){
+  if(S.bus.pick[dk])return S.bus.pick[dk];
+  const counts={};BUS_DECK.forEach(c=>counts[c.id]=0);
+  Object.values(S.bus.log).forEach(v=>{if(counts[v]!==undefined)counts[v]++;});
+  let best=BUS_DECK[0].id,lo=Infinity;
+  BUS_DECK.forEach(c=>{if(counts[c.id]<lo){lo=counts[c.id];best=c.id;}});
+  S.bus.pick[dk]=best;sv();return best;
+}
+function renderBus(){
+  const dk=DKEY();const id=busPickFor(dk);const c=BUS_DECK.find(x=>x.id===id)||BUS_DECK[0];
+  const done=S.bus.log[dk];
+  const b=document.getElementById('bus-body');
+  if(b)b.innerHTML=`<div style="font-size:20px;font-weight:800;margin-bottom:7px;">${c.e} ${c.n}</div>
+    <div style="font-size:12px;line-height:1.7;margin-bottom:9px;">${c.w}</div>
+    <div class="callout tip" style="margin:0;"><strong>Why this one:</strong> ${c.why}</div>
+    ${done?'<div class="hint" style="margin-top:9px;color:var(--green);">✅ Done today — sleep earned.</div>':''}`;
+  let st=0;for(let i=0;i<400;i++){if(S.bus.log[dkOffset(i)])st++;else if(i>0)break;}
+  const sk=document.getElementById('bus-streak');if(sk)sk.textContent=st+' day streak';
+  const cnt={};Object.values(S.bus.log).forEach(v=>cnt[v]=(cnt[v]||0)+1);
+  const q=(x,v)=>{const el=document.getElementById(x);if(el)el.textContent=v;};
+  q('bus-n-es',cnt.es||0);q('bus-n-sf',cnt.sf||0);q('bus-n-all',Object.keys(S.bus.log).length);
+  const dk2=document.getElementById('bus-deck');
+  if(dk2)dk2.innerHTML=BUS_DECK.map(x=>`<div class="mrow${x.id===id?' ok':''}"><span>${x.e}</span><span style="flex:1;">${x.n}</span><span class="hint">${cnt[x.id]||0}×</span></div>`).join('');
+  const es=document.getElementById('bus-es');
+  if(es)es.innerHTML=S.bus.es.length?S.bus.es.slice(0,12).map((x,i)=>`<div class="log-row"><span class="log-date">${new Date(x.d).getDate()}/${new Date(x.d).getMonth()+1}</span><span class="log-txt">${x.t}</span><span class="log-x" onclick="busRmEs(${i})">✕</span></div>`).join(''):'<div class="hint">Nothing logged yet. Even three words a day is 1,000 words a year.</div>';
+  const h=document.getElementById('bus-hist');
+  if(h){let s='';for(let i=13;i>=0;i--){const k=dkOffset(i);s+=`<div class="d ${S.bus.log[k]?'ogg':(i===0?'td':'')}" title="${k}: ${S.bus.log[k]||'—'}"></div>`;}
+    h.innerHTML='<div class="dot-row">'+s+'</div>';}
+}
+function busDone(){const dk=DKEY();S.bus.log[dk]=busPickFor(dk);sv();renderBus();toast('✅ Card done — now sleep, that is the plan');}
+function busSwap(){const dk=DKEY();const cur=S.bus.pick[dk];const i=BUS_DECK.findIndex(x=>x.id===cur);
+  S.bus.pick[dk]=BUS_DECK[(i+1)%BUS_DECK.length].id;sv();renderBus();toast('↻ Swapped');}
+function busAddEs(){const el=document.getElementById('bus-esnote');const v=el.value.trim();if(!v)return;
+  S.bus.es.unshift({t:v,d:new Date().toISOString()});sv();el.value='';renderBus();toast('🇪🇸 Guardado');}
+function busRmEs(i){S.bus.es.splice(i,1);sv();renderBus();}
+
+// ═══════════════════════════════════════════════════════
+//  GYM TRAINER — editable split, set logging, overload flags
+// ═══════════════════════════════════════════════════════
+const GY_DEFAULT={
+ // Sunday — heaviest push day, 25 hrs before Monday's academy
+ 0:{n:'Chest + Triceps',ex:[
+   {n:'Dumbbell bench press',s:4,r:12},{n:'Incline machine press',s:4,r:12},
+   {n:'Chest flys',s:4,r:12},{n:'Cable pushdown',s:4,r:12},
+   {n:'Triceps — your pick #1',s:4,r:12},{n:'Triceps — your pick #2',s:4,r:12}]},
+ // Tuesday — lightest day, private lesson 6 hrs later. Forearms moved to Thursday.
+ 2:{n:'Arms — biceps + triceps',ex:[
+   {n:'Barbell / dumbbell curl',s:4,r:12},{n:'Hammer curl',s:4,r:12},
+   {n:'Cable pushdown',s:4,r:12},{n:'Overhead triceps extension',s:4,r:12},
+   {n:'Preacher / incline curl',s:4,r:12}]},
+ // Wednesday — the ONLY slot legs fit. 3 clear days before Saturday's academy.
+ 3:{n:'LEGS',ex:[
+   {n:'Squat (or smith squat)',s:4,r:12},{n:'Romanian deadlift',s:4,r:12},
+   {n:'Leg press',s:4,r:12},{n:'Leg extension',s:4,r:12},
+   {n:'Leg curl',s:4,r:12},{n:'Calf raise',s:4,r:12}]},
+ // Thursday — best possible shoulder slot: 2 full days before you serve
+ 4:{n:'Shoulders (+ forearms)',ex:[
+   {n:'Shoulder press',s:4,r:12},{n:'Lateral raises',s:4,r:12},
+   {n:'Rear-delt fly',s:4,r:12},{n:'Front raise / upright row',s:4,r:12},
+   {n:'Wrist curls',s:4,r:15},{n:'Reverse wrist curls',s:4,r:15}]},
+ // Saturday — pulling only. Academy is 9 hrs later and back work does not touch the serve.
+ 6:{n:'Back + Biceps',ex:[
+   {n:'Lat pulldown',s:4,r:12},{n:'Single-arm seated row',s:4,r:12},
+   {n:'Middle-back machine row',s:4,r:12},{n:'Back extension — bodyweight',s:4,r:12},
+   {n:'Biceps #1 (superset w/ back ext)',s:4,r:12},{n:'Biceps #2 (superset w/ back ext)',s:4,r:12}]},
+};
+const GY_ARMOUR=[
+ {n:'Band / dumbbell external rotations',d:'3 × 15 each arm · slow · this is THE rotator-cuff exercise'},
+ {n:'Face pulls',d:'3 × 20 · pull to the forehead, elbows high'},
+ {n:'Balcony pull-ups',d:'3 sets to 2 reps short of failure'},
+ {n:'Wrist curls + reverse wrist curls',d:'3 × 20 each · your tennis-elbow insurance'},
+ {n:'Farmer holds',d:'3 × 30s heavy · grip = racket control'},
+ {n:'Single-leg balance / ankle hops',d:'3 × 30s each leg · ankle stability, the #1 tennis injury'},
+ {n:'Pallof press (anti-rotation)',d:'3 × 12 each side · the core that actually serves'},
+ {n:'Dead bugs',d:'3 × 12 each side'},
+ {n:'Thoracic rotations + open books',d:'2 × 10 each side · serve mobility'},
+];
+const GY_DAYNAMES=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+if(!S.gym)S.gym={};
+if(!S.gym.split)S.gym.split=JSON.parse(JSON.stringify(GY_DEFAULT));
+if(!S.gym.sess)S.gym.sess={};
+if(!S.gym.armour)S.gym.armour={};
+
+function gyDayFor(d){return S.gym.split[d]?d:null;}
+function gyLastSession(d,beforeKey){
+  const keys=Object.keys(S.gym.sess).filter(k=>S.gym.sess[k].day===d&&k!==beforeKey)
+    .sort((a,b)=>new Date(S.gym.sess[b].ts)-new Date(S.gym.sess[a].ts));
+  return keys.length?S.gym.sess[keys[0]]:null;
+}
+function renderGym(){
+  const sel=document.getElementById('gy-editday');
+  if(sel&&!sel.options.length){
+    sel.innerHTML=Object.keys(S.gym.split).map(d=>`<option value="${d}">${GY_DAYNAMES[d]} — ${S.gym.split[d].n.split('—')[0].trim()}</option>`).join('');
+  }
+  const today=new Date().getDay();
+  const d=gyDayFor(today);
+  const nm=document.getElementById('gy-dayname');
+  const tg=document.getElementById('gy-daytag');
+  const tod=document.getElementById('gy-today');
+  if(d===null){
+    if(nm)nm.textContent=today===5?'🧖 Friday — Recovery Day':'🎾 '+GY_DAYNAMES[today]+' — Tennis Day';
+    if(tg)tg.textContent='NO LIFTING';
+    if(tod)tod.innerHTML='<div class="hint">'+(today===5
+      ?'No gym today and that is the point. Heat therapy repairs the week. Recovery is a training session.'
+      :'Tennis tonight — no lifting. Legs are Wednesday. Log the session in the Tennis tab afterwards.')+'</div>';
+    const mt=document.getElementById('gy-meta');if(mt)mt.textContent='Next lift: '+gyNextLift();
+    const fl=document.getElementById('gy-fill');if(fl)fl.style.width='0%';
+  }else{
+    const day=S.gym.split[d];const dk=DKEY();
+    if(!S.gym.sess[dk])S.gym.sess[dk]={day:d,ts:new Date().toISOString(),sets:{}};
+    const cur=S.gym.sess[dk];
+    const prev=gyLastSession(d,dk);
+    if(nm)nm.textContent='🏋️ '+day.n;
+    if(tg)tg.textContent=GY_DAYNAMES[d].toUpperCase();
+    let totalSets=0,doneSets=0;
+    if(tod)tod.innerHTML=day.ex.map((ex,ei)=>{
+      let rows='';
+      for(let si=0;si<ex.s;si++){
+        totalSets++;
+        const k=ei+'_'+si;const v=cur.sets[k]||{};
+        if(v.w&&v.r)doneSets++;
+        rows+=`<div class="row" style="margin-bottom:4px;">
+          <span class="hint" style="flex:0 0 34px;">set ${si+1}</span>
+          <input class="inp" style="flex:1;" type="number" step="0.5" placeholder="kg" value="${v.w||''}" onchange="gySet(${ei},${si},'w',this.value)">
+          <input class="inp" style="flex:1;" type="number" placeholder="reps" value="${v.r||''}" onchange="gySet(${ei},${si},'r',this.value)">
+        </div>`;
+      }
+      let lastTxt='first time — set the baseline';
+      let flag='';
+      if(prev){
+        const ps=[];for(let si=0;si<ex.s;si++){const v=prev.sets[ei+'_'+si];if(v&&v.w&&v.r)ps.push(v.w+'kg×'+v.r);}
+        if(ps.length){
+          lastTxt='last: '+ps.join(' · ');
+          const allHit=ps.length===ex.s&&Object.keys(prev.sets).filter(k=>k.startsWith(ei+'_')).every(k=>(prev.sets[k].r||0)>=ex.r);
+          if(allHit)flag='<span class="pill" style="background:rgba(46,201,122,.2);color:var(--green);">+2.5 KG TODAY</span>';
+          else{
+            const stall=gyStallCount(d,ei,ex);
+            if(stall>=3)flag='<span class="pill" style="background:rgba(240,85,85,.2);color:#f05555;">STALLED ×'+stall+' — DELOAD 10%</span>';
+          }
+        }
+      }
+      return`<div style="margin-bottom:13px;padding-bottom:11px;border-bottom:1px solid var(--border);">
+        <div style="display:flex;align-items:center;gap:7px;margin-bottom:3px;"><strong style="font-size:12.5px;flex:1;">${ex.n}</strong>${flag}</div>
+        <div class="hint" style="margin-bottom:7px;">target ${ex.s} × ${ex.r} · ${lastTxt}</div>
+        ${rows}</div>`;}).join('');
+    const fl=document.getElementById('gy-fill');if(fl)fl.style.width=(totalSets?Math.round(doneSets/totalSets*100):0)+'%';
+    const mt=document.getElementById('gy-meta');if(mt)mt.textContent=doneSets+' of '+totalSets+' sets logged · rest 60–90s · finish with a 5-min stretch of what you trained';
+  }
+  renderGymEdit();
+  const ar=document.getElementById('gy-armour');
+  if(ar){const dk=DKEY();
+    ar.innerHTML=GY_ARMOUR.map((a,i)=>{const on=!!(S.gym.armour[dk]||{})[i];
+      return`<div class="mrow${on?' ok':''}" onclick="gyArmour(${i})" style="cursor:pointer;"><div style="flex:1;"><div style="font-weight:700;${on?'opacity:.5;text-decoration:line-through;':''}">${a.n}</div><div class="hint">${a.d}</div></div><span style="color:${on?'var(--green)':'var(--muted)'};font-weight:800;">${on?'✓':'○'}</span></div>`;}).join('');}
+  const pg=document.getElementById('gy-prog');
+  if(pg){
+    const keys=Object.keys(S.gym.sess).sort((a,b)=>new Date(S.gym.sess[b].ts)-new Date(S.gym.sess[a].ts)).slice(0,8);
+    pg.innerHTML=keys.length?keys.map(k=>{const s=S.gym.sess[k];const day=S.gym.split[s.day];
+      const logged=Object.values(s.sets).filter(v=>v.w&&v.r).length;
+      const vol=Object.values(s.sets).reduce((a,v)=>a+((+v.w||0)*(+v.r||0)),0);
+      return`<div class="mrow"><span class="hint" style="flex:0 0 46px;">${new Date(s.ts).getDate()}/${new Date(s.ts).getMonth()+1}</span><span style="flex:1;">${day?day.n.split('—')[0].trim():'—'}</span><span class="hint">${logged} sets · ${Math.round(vol).toLocaleString()} kg vol</span></div>`;}).join('')
+      :'<div class="hint">No sessions logged yet. The logger only becomes useful once there is a "last week" to beat — log one full session and it comes alive.</div>';}
+}
+function gyNextLift(){const t=new Date().getDay();for(let i=1;i<=7;i++){const d=(t+i)%7;if(S.gym.split[d])return GY_DAYNAMES[d]+' — '+S.gym.split[d].n.split('—')[0].trim();}return '—';}
+function gyStallCount(d,ei,ex){
+  const keys=Object.keys(S.gym.sess).filter(k=>S.gym.sess[k].day===d)
+    .sort((a,b)=>new Date(S.gym.sess[b].ts)-new Date(S.gym.sess[a].ts)).slice(0,4);
+  let n=0,ref=null;
+  for(const k of keys){const s=S.gym.sess[k];const v=s.sets[ei+'_0'];if(!v||!v.w)continue;
+    if(ref===null){ref=+v.w;n=1;}else if(+v.w===ref)n++;else break;}
+  return n;
+}
+function gySet(ei,si,f,val){const dk=DKEY();const k=ei+'_'+si;
+  if(!S.gym.sess[dk].sets[k])S.gym.sess[dk].sets[k]={};
+  S.gym.sess[dk].sets[k][f]=val===''?null:+val;
+  S.gym.sess[dk].ts=new Date().toISOString();sv();renderGym();}
+function gyArmour(i){const dk=DKEY();if(!S.gym.armour[dk])S.gym.armour[dk]={};
+  S.gym.armour[dk][i]=!S.gym.armour[dk][i];sv();renderGym();}
+function renderGymEdit(){
+  const sel=document.getElementById('gy-editday');const box=document.getElementById('gy-edit');
+  if(!sel||!box)return;
+  const d=sel.value||Object.keys(S.gym.split)[0];const day=S.gym.split[d];if(!day)return;
+  box.innerHTML=`<div class="row" style="margin-bottom:8px;"><input class="inp" value="${day.n}" onchange="gyRename(${d},this.value)" placeholder="Day name"></div>`
+   +day.ex.map((ex,i)=>`<div class="row" style="margin-bottom:5px;">
+      <input class="inp" style="flex:1;" value="${ex.n}" onchange="gyEx(${d},${i},'n',this.value)">
+      <input class="inp" style="flex:0 0 46px;" type="number" value="${ex.s}" onchange="gyEx(${d},${i},'s',this.value)" title="sets">
+      <input class="inp" style="flex:0 0 46px;" type="number" value="${ex.r}" onchange="gyEx(${d},${i},'r',this.value)" title="target reps">
+      <span class="log-x" onclick="gyRmEx(${d},${i})">✕</span></div>`).join('')
+   +'<div class="hint" style="margin-top:7px;">Columns: exercise · sets · target reps</div>';
+}
+function gyRename(d,v){S.gym.split[d].n=v;sv();const sel=document.getElementById('gy-editday');if(sel)sel.innerHTML='';renderGym();}
+function gyEx(d,i,f,v){S.gym.split[d].ex[i][f]=(f==='n')?v:(+v||1);sv();renderGym();}
+function gyRmEx(d,i){S.gym.split[d].ex.splice(i,1);sv();renderGym();}
+function gyAddEx(){const sel=document.getElementById('gy-editday');const d=sel.value;
+  S.gym.split[d].ex.push({n:'New exercise',s:3,r:12});sv();renderGym();toast('Added — rename it');}
+
+// ═══════════════════════════════════════════════════════
+//  ENGINE — uni conditioning, breath-hold progression
+// ═══════════════════════════════════════════════════════
+const EN_SESSIONS=[
+ {d:0,e:'🏃',n:'SUNDAY 2:15 PM — TRACK · Engine',
+  w:['Zone 2 run — 25 min, nasal breathing ONLY (if you have to open your mouth, slow down)','Jump rope — 5 min','Ladder footwork — 10 min','Nasal breath-hold test (log it below, once a week)'],
+  why:'Your aerobic base. This is what gives you calm breathing at 4–4 in the third set.'},
+ {d:4,e:'💪',n:'THURSDAY 3:00 PM — UNI GYM · Tennis Armour',
+  w:['External rotations, face pulls, balcony pull-ups','Wrist + forearm work — tennis-elbow insurance','Single-leg / ankle stability — the #1 tennis injury','Anti-rotation core + thoracic mobility'],
+  why:'Pure injury prevention. Nothing else in your week does this, and it also primes the shoulder for tonight\'s session. Full checklist is in the Gym tab.'},
+ {d:6,e:'🏃',n:'SATURDAY 10:00 AM — SPEED',
+  w:['6 × 20 seconds hard / 90 seconds walk','Treadmill at real top speed, or shuttles on the track','Full warm-up first — this one has actual injury risk cold'],
+  why:'The energy system tennis actually uses: repeated short sprints with incomplete recovery. Lifting does not train this and neither does Zone 2.'},
+];
+if(!S.engine)S.engine={};
+if(!S.engine.bh)S.engine.bh=[];
+if(!S.engine.log)S.engine.log=[];
+if(!S.engine.done)S.engine.done={};
+function renderEngine(){
+  const t=new Date().getDay();const dk=DKEY();
+  const box=document.getElementById('en-sessions');
+  if(box)box.innerHTML=EN_SESSIONS.map((s,i)=>{
+    const today=s.d===t;const on=!!(S.engine.done[dk]||{})[i];
+    return`<details class="cbox"${today?' open style="border-color:var(--cyan);"':''}>
+      <summary>${s.e} ${s.n.split('—')[0].trim()} ${today?'<span class="pill" style="background:rgba(41,212,224,.2);color:var(--cyan);">TODAY</span>':''}<span class="hint" style="margin-left:auto;margin-right:8px;">${on?'✓ done':''}</span></summary>
+      <div class="cbody">
+        <div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--cyan);margin-bottom:8px;">${s.n}</div>
+        <ul style="margin:0 0 9px;padding-left:16px;">${s.w.map(x=>'<li>'+x+'</li>').join('')}</ul>
+        <div class="callout tip" style="margin:0 0 9px;"><strong>Why:</strong> ${s.why}</div>
+        <button class="btn${on?'':' go'}" onclick="enDone(${i})">${on?'↩ Undo':'✓ Session done'}</button>
+      </div></details>`;}).join('');
+  const bh=S.engine.bh;
+  const q=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  q('en-bh-now',bh.length?bh[0].v:'—');
+  q('en-bh-best',bh.length?Math.max(...bh.map(x=>x.v)):'—');
+  const bl=document.getElementById('en-bh-list');
+  if(bl)bl.innerHTML=bh.length?bh.slice(0,8).map((x,i)=>{
+    const prev=bh[i+1];const dv=prev?x.v-prev.v:null;
+    return`<div class="log-row"><span class="log-date">${new Date(x.d).getDate()}/${new Date(x.d).getMonth()+1}</span><span class="log-txt">${x.v} s</span><span class="log-meta" style="color:${dv>0?'var(--green)':(dv<0?'#f05555':'var(--muted)')}">${dv===null?'first':(dv>0?'+'+dv:dv)}</span><span class="log-x" onclick="enRmBH(${i})">✕</span></div>`;}).join('')
+    :'<div class="hint">No tests yet. Do the first one this Sunday — it becomes the baseline everything is measured against.</div>';
+  const el=document.getElementById('en-log');
+  if(el)el.innerHTML=S.engine.log.length?S.engine.log.slice(0,10).map((x,i)=>
+    `<div class="log-row"><span class="log-date">${new Date(x.d).getDate()}/${new Date(x.d).getMonth()+1}</span><span class="log-txt">${x.t}</span><span class="log-x" onclick="enRm(${i})">✕</span></div>`).join('')
+    :'<div class="hint">Nothing logged yet.</div>';
+}
+function enDone(i){const dk=DKEY();if(!S.engine.done[dk])S.engine.done[dk]={};
+  S.engine.done[dk][i]=!S.engine.done[dk][i];sv();renderEngine();
+  if(S.engine.done[dk][i])toast('🏃 Session logged');}
+function enAddBH(){const el=document.getElementById('en-bh-in');const v=parseInt(el.value);
+  if(!v||v<1)return;S.engine.bh.unshift({v:v,d:new Date().toISOString()});sv();el.value='';renderEngine();
+  toast('🫁 '+v+'s logged');}
+function enRmBH(i){S.engine.bh.splice(i,1);sv();renderEngine();}
+function enAdd(){const el=document.getElementById('en-note');const v=el.value.trim();if(!v)return;
+  S.engine.log.unshift({t:v,d:new Date().toISOString()});sv();el.value='';renderEngine();toast('🏃 Logged');}
+function enRm(i){S.engine.log.splice(i,1);sv();renderEngine();}
+
+// ═══════════════════════════════════════════════════════
+//  FUEL — protein, meal timing, supplements, IBS
+// ═══════════════════════════════════════════════════════
+const PROT=[
+ {n:'Eggs ×3',g:19},{n:'Chicken breast',g:35},{n:'Beef / meat portion',g:30},
+ {n:'Fish portion',g:28},{n:'Greek yogurt',g:15},{n:'Milk (large glass)',g:10},
+ {n:'Cheese portion',g:12},{n:'Lentils / beans (foul)',g:14},{n:'Oats bowl',g:8},
+ {n:'Peanut butter (2 tbsp)',g:8},{n:'Bread / rice (large)',g:6},
+];
+const SUPPS=[
+ {t:'Morning · AFTER breakfast',n:'Vitamin D3',ok:true,note:'Correct — fat-soluble, needs food. Best with your fattiest meal.'},
+ {t:'After lunch',n:'Vitamin B12 (methylcobalamin)',ok:true,note:'Fine. Water-soluble, timing barely matters, and methylcobalamin is the good form.'},
+ {t:'After lunch',n:'Vitamin E',ok:null,note:'Timing right (with food) — but worth asking why you take it. Deficiency is rare and large trials found no benefit.'},
+ {t:'WITH dinner',n:'Omega-3',ok:false,note:'MOVE IT. With dinner, not before bed on an empty stomach — it needs dietary fat to absorb, and empty-stomach fish oil causes reflux and fishy burps.'},
+ {t:'Before sleep',n:'Magnesium',ok:false,note:'Timing perfect. FORM is the problem — yours is mostly oxide. Switch to glycinate and log your gut for 3 weeks.'},
+ {t:'Optional · with food',n:'Creatine monohydrate 3–5 g',ok:null,note:'Not currently taken. Most evidence-backed performance supplement there is; helps lifting AND repeated sprints. Start at 3 g given the IBS.'},
+];
+if(!S.fuel)S.fuel={};
+if(!S.fuel.prot)S.fuel.prot={};
+if(!S.fuel.ibs)S.fuel.ibs=[];
+if(!S.fuel.supp)S.fuel.supp={};
+function protTarget(){
+  const w=(S.weights&&S.weights.length)?S.weights[0].kg:null;
+  return w?Math.round(w*1.6):null;
+}
+function protToday(dk){return (S.fuel.prot[dk]||[]).reduce((a,i)=>a+(PROT[i]?PROT[i].g:0),0);}
+function renderFuel2(){
+  const dk=DKEY();const tgt=protTarget();const now=protToday(dk);
+  const q=(id,v)=>{const el=document.getElementById(id);if(el)el.textContent=v;};
+  q('fu-p-now',now+'g');
+  q('fu-p-tgt',tgt?('target '+tgt+'g'):'log a weigh-in to set the target');
+  let sum=0,hits=0,days=0;
+  for(let i=0;i<7;i++){const k=dkOffset(i);const v=protToday(k);if(v>0){sum+=v;days++;if(tgt&&v>=tgt)hits++;}}
+  q('fu-p-avg',days?Math.round(sum/days)+'g':'—');
+  q('fu-p-rate',days?Math.round(hits/days*100)+'%':'—');
+  const ch=document.getElementById('fu-p-chips');
+  if(ch){const sel=S.fuel.prot[dk]||[];
+    ch.innerHTML='<div class="chip-row">'+PROT.map((p,i)=>{
+      const n=sel.filter(x=>x===i).length;
+      return`<div class="chip${n?' active':''}" onclick="fuProt(${i})">${p.n} +${p.g}g${n>1?' ×'+n:''}</div>`;}).join('')
+      +'</div><div class="hint" style="margin-top:8px;">Tap to add · long list is deliberate — pick the closest, precision does not matter. <span class="log-x" onclick="fuProtClear()">✕ reset today</span></div>';}
+  // meal timing
+  const tm=document.getElementById('fu-timing');
+  if(tm){
+    const d=new Date().getDay();const h=new Date().getHours();
+    const TRAIN={0:{t:18.75,n:'Gym — Push (6:45 PM)'},1:{t:19.5,n:'Tennis Academy (7:30 PM)'},
+      2:{t:14,n:'Gym — Pull (2:00 PM)'},3:{t:19.25,n:'Gym — LEG DAY (7:15 PM)'},
+      4:{t:18.75,n:'Gym — Shoulders/Arms (6:45 PM)'},6:{t:10.75,n:'Gym — Chest/Back (10:45 AM)'}};
+    const tr=TRAIN[d];
+    if(!tr)tm.innerHTML='<div class="hint">🧖 Recovery day — no training, no timing rules. Eat when you are hungry.</div>';
+    else{
+      const gap=tr.t-h;
+      let msg,cls;
+      if(gap>3){msg='<strong>'+tr.n+'</strong> is '+Math.round(gap)+' hours away. Plenty of time — normal meals.';cls='tip';}
+      else if(gap>0.75){msg='<strong>'+tr.n+'</strong> in ~'+Math.round(gap*60)+' min. Eat something small NOW if you have not — you have 4 evening sessions that land straight off a bus ride, and empty training is wasted training.';cls='warn';}
+      else if(gap>-0.5){msg='<strong>'+tr.n+'</strong> — now. Too late to eat much; water and go.';cls='tip';}
+      else{msg='<strong>'+tr.n+'</strong> done. Get the big meal in within ~90 minutes.';cls='tip';}
+      tm.innerHTML='<div class="callout '+cls+'" style="margin:0;">'+msg+'</div>'
+        +'<div class="hint" style="margin-top:9px;">IBS guardrails: same meal times daily · nothing big and spicy before training · coffee max 1, before noon · eat slowly on stressful days.</div>';
+    }
+  }
+  const sp=document.getElementById('fu-supps');
+  if(sp)sp.innerHTML=SUPPS.map((s,i)=>{const on=!!(S.fuel.supp[dk]||{})[i];
+    const mark=s.ok===true?'<span class="pill" style="background:rgba(46,201,122,.18);color:var(--green);">CORRECT</span>'
+      :s.ok===false?'<span class="pill" style="background:rgba(240,85,85,.18);color:#f05555;">CHANGE</span>'
+      :'<span class="pill">REVIEW</span>';
+    return`<details class="cbox"><summary><div class="tgl${on?' on':''}" onclick="event.preventDefault();event.stopPropagation();fuSupp(${i},this)"></div> ${s.n} ${mark}</summary>
+      <div class="cbody"><div style="font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);margin-bottom:6px;">${s.t}</div>${s.note}</div></details>`;}).join('');
+  // IBS
+  const ib=S.fuel.ibs;
+  let s7=0,n7=0;for(const x of ib){const age=(Date.now()-new Date(x.d))/864e5;if(age<=7){s7+=x.r;n7++;}}
+  q('fu-ibs-avg',n7?(s7/n7).toFixed(1):'—');
+  q('fu-ibs-bad',ib.filter(x=>(Date.now()-new Date(x.d))/864e5<=30&&x.r<=2).length);
+  const dots=document.getElementById('fu-ibs-dots');
+  if(dots){let h='';
+    for(let i=29;i>=0;i--){const k=dkOffset(i);
+      const e=ib.find(x=>new Date(x.d).toDateString()===k);
+      const cls=!e?(i===0?'td':''):(e.r>=4?'ogg':(e.r===3?'og':'op'));
+      h+=`<div class="d ${cls}" title="${k}${e?': '+e.r+'/5 — '+e.n:''}"></div>`;}
+    dots.innerHTML='<div class="dot-row">'+h+'</div><div class="hint" style="margin-top:7px;">30 days · bright = good gut · faded = bad day</div>';}
+  const il=document.getElementById('fu-ibs-list');
+  if(il)il.innerHTML=ib.length?ib.slice(0,10).map((x,i)=>{
+    const em=['','🤢','😖','😐','🙂','😀'][x.r];
+    return`<div class="log-row"><span class="log-date">${new Date(x.d).getDate()}/${new Date(x.d).getMonth()+1}</span><span class="log-txt">${em} ${x.n}</span><span class="log-x" onclick="fuRmIbs(${i})">✕</span></div>`;}).join('')
+    :'<div class="hint">Start today. Three weeks of this while you trial magnesium glycinate answers the question properly.</div>';
+}
+function fuProt(i){const dk=DKEY();if(!S.fuel.prot[dk])S.fuel.prot[dk]=[];
+  S.fuel.prot[dk].push(i);sv();renderFuel2();
+  const t=protTarget();if(t&&protToday(dk)>=t&&protToday(dk)-PROT[i].g<t)toast('🥩 Protein target hit — that is the day won');}
+function fuProtClear(){const dk=DKEY();S.fuel.prot[dk]=[];sv();renderFuel2();}
+function fuSupp(i,el){const dk=DKEY();if(!S.fuel.supp[dk])S.fuel.supp[dk]={};
+  S.fuel.supp[dk][i]=!S.fuel.supp[dk][i];sv();el.classList.toggle('on',!!S.fuel.supp[dk][i]);}
+function fuAddIbs(){const n=document.getElementById('fu-ibs-n').value.trim();
+  const r=+document.getElementById('fu-ibs-r').value;
+  S.fuel.ibs=S.fuel.ibs.filter(x=>new Date(x.d).toDateString()!==DKEY());
+  S.fuel.ibs.unshift({r:r,n:n||'—',d:new Date().toISOString()});
+  sv();document.getElementById('fu-ibs-n').value='';renderFuel2();toast('🌀 Gut logged');}
+function fuRmIbs(i){S.fuel.ibs.splice(i,1);sv();renderFuel2();}
 
 // ═══════════ ATHLETE ═══════════
 function showAthTab(id,btn){
@@ -1891,18 +2849,17 @@ function showAthTab(id,btn){
   document.querySelectorAll('#ath-tabs .stab').forEach(b=>b.classList.remove('active'));
   document.getElementById('ath-'+id).classList.add('active');
   if(btn)btn.classList.add('active');
+  if(id==='gym')renderGym();
+  if(id==='engine')renderEngine();
+  if(id==='fuel')renderFuel2();
 }
 function renderAth(){
+  renderGym();renderEngine();renderFuel2();
   const tl=document.getElementById('tn-log');
   tl.innerHTML=S.tennisLog.slice(0,10).map((e,i)=>{
     const d=new Date(e.date);
     return`<div class="log-row"><span class="log-date">${d.getDate()}/${d.getMonth()+1}</span><span class="log-txt">${e.goal}</span><span class="log-meta">${'★'.repeat(e.rate||0)}</span><span class="log-x" onclick="rmTennis(${i})">✕</span></div>`;
   }).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">No sessions logged. Next session: set ONE goal before you leave home.</div>';
-  const gl=document.getElementById('gym-log');
-  gl.innerHTML=S.gymLog.slice(0,10).map((e,i)=>{
-    const d=new Date(e.date);
-    return`<div class="log-row"><span class="log-date">${d.getDate()}/${d.getMonth()+1}</span><span class="log-txt">${e.note}</span><span class="log-x" onclick="rmGym(${i})">✕</span></div>`;
-  }).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">No lifts logged. Rule: beat last week by a rep or 2.5 kg.</div>';
   renderFuel();
 }
 function addTennis(){
@@ -1914,14 +2871,7 @@ function addTennis(){
   renderAth();toast('🎾 Session logged.');
 }
 function rmTennis(i){S.tennisLog.splice(i,1);sv();renderAth();}
-function addGym(){
-  const note=document.getElementById('gym-note').value.trim();
-  if(!note)return;
-  S.gymLog.unshift({note,date:new Date().toISOString()});sv();
-  document.getElementById('gym-note').value='';
-  renderAth();toast('🏋️ Logged — beat it next week.');
-}
-function rmGym(i){S.gymLog.splice(i,1);sv();renderAth();}
+
 function renderFuel(){
   const w=S.weights;
   document.getElementById('fu-now').textContent=w.length?w[w.length-1].kg+' kg':'—';
@@ -2045,6 +2995,15 @@ function addWorkoutSession(){
 }
 function removeSession(i){const e=todayHealth();e.sessions.splice(i,1);sv();renderHealth();}
 
+// ═══════════ REVIEW HELPERS ═══════════
+function studyHrs7(){let n=0;for(let i=0;i<7;i++){const k=dkOffset(i);
+  n+=Object.values((S.uni&&S.uni.skims[k])||{}).filter(Boolean).length*0.6;
+  n+=Object.values((S.uni&&S.uni.deep[k])||{}).filter(Boolean).length*1.1;}
+  return Math.round(n)+'h';}
+function travisTot(){let t=0;TRV.forEach(p=>t+=p.ts.length);return t;}
+function travisDone(){let d=0;TRV.forEach(p=>p.ts.forEach((t,i)=>{if(TVT[p.id+'_'+i])d++;}));return d;}
+function uniDueCount(){if(!S.uni||!S.uni.topics)return 0;return S.uni.topics.filter(t=>dueIn(t)<=0).length;}
+
 // ═══════════ REVIEW / KPIs ═══════════
 function sum7(fn){let s=0;for(let i=0;i<7;i++)s+=fn(q(dkOffset(i)))?1:0;return s;}
 function tot7(field){let s=0;for(let i=0;i<7;i++)s+=(q(dkOffset(i))[field]||0);return s;}
@@ -2061,17 +3020,18 @@ function renderReview(){
     {l:'Sleep on time',v:sum7(d=>!!d.sleep)+'/7',c:'c-green'},
     {l:'Fajr',v:sum7(d=>!!d.fajr)+'/7',c:'c-gold'},
     {l:'Deep blocks',v:tot7('deep'),c:'c-blue'},
-    {l:'Outreach sent',v:tot7('out'),c:'c-purple'},
+    {l:'Review queue due',v:uniDueCount(),c:'c-purple'},
     {l:'Training days',v:sum7(d=>!!d.train)+'/7',c:'c-red'},
     {l:'Mock avg (last 3)',v:mockAvg==null?'—':mockAvg+'%',c:'c-blue'},
     {l:'Weight trend',v:wtd,c:'c-gold'},
-    {l:'Income MTD',v:fmt$(incomeMonth()),c:'c-green'},
-    {l:'Recurring MRR',v:fmt$(S.hustle.mrr||0),c:'c-purple'},
+    {l:'Study hrs (7d)',v:studyHrs7(),c:'c-green'},
+    {l:'Travis tasks',v:travisDone()+'/'+travisTot(),c:'c-purple'},
     {l:'Deliverable streak',v:delStreak+'w',c:'c-cyan'},
-    {l:'Clients won',v:S.hustle.pipe.clients,c:'c-green'},
+    {l:'Failure dataset',v:(S.travis&&S.travis.fails?S.travis.fails.length:0)+'/100',c:'c-green'},
     {l:'Wins logged',v:S.wins.length,c:'c-gold'},
   ];
   kg.innerHTML=kpis.map(k=>`<div class="stile"><div class="st-lbl">${k.l}</div><div class="st-val ${k.c}" style="font-size:26px;">${k.v}</div></div>`).join('');
+  // 30-day dots from quick log
   const cats=[
     {id:'sleep',cls:'ogg',fn:d=>!!d.sleep,ct:'ct-sleep'},
     {id:'fajr',cls:'og',fn:d=>!!d.fajr,ct:'ct-fajr'},
@@ -2089,16 +3049,30 @@ function renderReview(){
     document.getElementById('dr-'+c.id).innerHTML=html;
     document.getElementById(c.ct).textContent=n+'/30';
   });
+  // wins
   document.getElementById('wins-list').innerHTML=S.wins.slice(0,15).map((w,i)=>{
     const d=new Date(w.date);
     return`<div class="log-row"><span class="log-date">${d.getDate()}/${d.getMonth()+1}</span><span class="log-txt">🏆 ${w.text}</span><span class="log-x" onclick="rmWin(${i})">✕</span></div>`;
   }).join('')||'<div style="font-size:11px;color:var(--muted);font-family:DM Mono,monospace">Empty ledger. First entry: "Built my OS and started."</div>';
+  // reviews
   document.getElementById('rev-list').innerHTML=S.revLog.slice(0,8).map((r,i)=>{
     const d=new Date(r.date);
     return`<div class="log-row"><span class="log-date">${d.getDate()}/${d.getMonth()+1}</span><span class="log-txt">${r.text}</span><span class="log-x" onclick="rmReview(${i})">✕</span></div>`;
   }).join('');
 }
-function revDotTog(cat,off){const dk=dkOffset(off);if(!S.quick[dk])S.quick[dk]={fajr:false,sleep:false,deep:0,out:0,train:false};const t=S.quick[dk];if(cat==='sleep')t.sleep=!t.sleep;if(cat==='fajr')t.fajr=!t.fajr;if(cat==='deep')t.deep=(t.deep||0)>=2?0:2;if(cat==='out')t.out=(t.out||0)>=10?0:10;if(cat==='train')t.train=!t.train;sv();renderReview();renderStreaks();renderQuick();toast('Day updated');}function addWin(){
+function revDotTog(cat,off){
+  const dk=dkOffset(off);
+  if(!S.quick[dk])S.quick[dk]={fajr:false,sleep:false,deep:0,out:0,train:false};
+  const t=S.quick[dk];
+  if(cat==='sleep')t.sleep=!t.sleep;
+  if(cat==='fajr')t.fajr=!t.fajr;
+  if(cat==='deep')t.deep=(t.deep||0)>=2?0:2;
+  if(cat==='out')t.out=(t.out||0)>=10?0:10;
+  if(cat==='train')t.train=!t.train;
+  sv();renderReview();renderStreaks();renderQuick();
+  toast('Day updated');
+}
+function addWin(){
   const v=document.getElementById('win-in').value.trim();
   if(!v)return;
   S.wins.unshift({text:v,date:new Date().toISOString()});sv();
@@ -2129,7 +3103,7 @@ function schedulePush(){
 async function pushSync(){
   if(!syncConfigured())return;
   try{
-    const payload={ts:S._ts||Date.now(),S:S,EXOT:EXOT,DRT:DRT};
+    const payload={ts:S._ts||Date.now(),S:S,EXOT:EXOT,DRT:DRT,TVT:TVT,EXO_OPEN:EXO_OPEN,TVOPEN:TVOPEN};
     const r=await fetch('https://api.jsonbin.io/v3/b/'+SYNC.binId,{
       method:'PUT',
       headers:{'Content-Type':'application/json','X-Master-Key':SYNC.key},
@@ -2152,6 +3126,9 @@ async function pullSync(manual){
     if(rec&&rec.ts&&rec.S&&rec.ts>(S._ts||0)){
       localStorage.setItem('dawly_os',JSON.stringify(rec.S));
       if(rec.EXOT)localStorage.setItem('exoguard_tasks_v2',JSON.stringify(rec.EXOT));
+      if(rec.TVT)localStorage.setItem('travis_tasks',JSON.stringify(rec.TVT));
+      if(rec.EXO_OPEN)localStorage.setItem('dawly_exo_open',JSON.stringify(rec.EXO_OPEN));
+      if(rec.TVOPEN)localStorage.setItem('travis_open',JSON.stringify(rec.TVOPEN));
       if(rec.DRT)localStorage.setItem('exoguard_dr_tasks',JSON.stringify(rec.DRT));
       location.reload();
     }else{
@@ -2178,7 +3155,7 @@ function renderSyncBox(){
   if(syncConfigured())setSyncStatus('🔗 Connected — syncs automatically on every change.');
 }
 function exportBackup(){
-  const payload={ts:Date.now(),S:S,EXOT:EXOT,DRT:DRT};
+  const payload={ts:Date.now(),S:S,EXOT:EXOT,DRT:DRT,TVT:TVT,EXO_OPEN:EXO_OPEN,TVOPEN:TVOPEN};
   const blob=new Blob([JSON.stringify(payload,null,1)],{type:'application/json'});
   const a=document.createElement('a');
   a.href=URL.createObjectURL(blob);
@@ -2195,6 +3172,9 @@ function importBackup(inp){
       if(!rec.S)throw new Error('bad file');
       localStorage.setItem('dawly_os',JSON.stringify(rec.S));
       if(rec.EXOT)localStorage.setItem('exoguard_tasks_v2',JSON.stringify(rec.EXOT));
+      if(rec.TVT)localStorage.setItem('travis_tasks',JSON.stringify(rec.TVT));
+      if(rec.EXO_OPEN)localStorage.setItem('dawly_exo_open',JSON.stringify(rec.EXO_OPEN));
+      if(rec.TVOPEN)localStorage.setItem('travis_open',JSON.stringify(rec.TVOPEN));
       if(rec.DRT)localStorage.setItem('exoguard_dr_tasks',JSON.stringify(rec.DRT));
       location.reload();
     }catch{toast('⚠️ Invalid backup file.');}
@@ -2214,8 +3194,9 @@ renderSched();
 renderExo();
 renderPhases();
 renderDrTasks();
-renderHustle();
-renderSFPage();
+renderUni();
+renderTravis();
+renderBus();
 renderAth();
 renderHealth();
 renderReview();
