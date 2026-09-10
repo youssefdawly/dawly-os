@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v3.1 · FINAL YEAR · built 10 Sep 2026 -->
+<!-- DAWLY OS v3.2 · FINAL YEAR · built 10 Sep 2026 -->
 <title>DAWLY OS — Personal Operating System</title>
 <meta name="theme-color" content="#070709">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -2300,8 +2300,11 @@ function renderUni(){
   const f=document.getElementById('uni-fill');if(f)f.style.width=(w?Math.round(w/13*100):0)+'%';
   const sub=document.getElementById('uni-sub');
   if(sub){
-    const d=daysTo('2026-12-06');
-    sub.textContent='Semester 1 · 60 credits · '+(d>0?d+' days to finals week (wk 12–13)':'teaching ended 10 Dec');
+    const d=daysTo('2026-12-13');
+    const dt=daysTo('2026-12-10');
+    sub.textContent='Semester 1 · 60 credits · '+(d>0
+      ?d+' days to EXAM WEEK (wk 13, 13–17 Dec)'+(dt>0?' · '+dt+'d of teaching left':'')
+      :(d>-5?'EXAM WEEK — this is what the ramp was for':'semester complete'));
   }
   // modules
   const ml=document.getElementById('uni-modlist');
@@ -2799,9 +2802,9 @@ function renderFuel2(){
   const tm=document.getElementById('fu-timing');
   if(tm){
     const d=new Date().getDay();const h=new Date().getHours();
-    const TRAIN={0:{t:18.75,n:'Gym — Push (6:45 PM)'},1:{t:19.5,n:'Tennis Academy (7:30 PM)'},
-      2:{t:14,n:'Gym — Pull (2:00 PM)'},3:{t:19.25,n:'Gym — LEG DAY (7:15 PM)'},
-      4:{t:18.75,n:'Gym — Shoulders/Arms (6:45 PM)'},6:{t:10.75,n:'Gym — Chest/Back (10:45 AM)'}};
+    const TRAIN={0:{t:18.75,n:'Gym — Chest + Triceps (6:45 PM)'},1:{t:19.5,n:'Tennis Academy (7:30 PM)'},
+      2:{t:14,n:'Gym — Arms (2:00 PM), then Private Lesson (8:00 PM)'},3:{t:19.25,n:'Gym — LEG DAY (7:15 PM)'},
+      4:{t:18.75,n:'Gym — Shoulders + forearms (6:45 PM)'},6:{t:10.75,n:'Gym — Back + Biceps (10:45 AM), Academy (7:30 PM)'}};
     const tr=TRAIN[d];
     if(!tr)tm.innerHTML='<div class="hint">🧖 Recovery day — no training, no timing rules. Eat when you are hungry.</div>';
     else{
