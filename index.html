@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v5.1 · FINAL YEAR · built 10 Sep 2026 -->
+<!-- DAWLY OS v6 · FINAL YEAR · built 10 Sep 2026 -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <title>DAWLY OS — Personal Operating System</title>
@@ -548,6 +548,25 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
 .spark-empty{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);padding:16px 0;text-align:center;}
 .spark-meta{font-family:'DM Mono',monospace;font-size:8.5px;color:var(--muted);margin-top:7px;}
 .spark-meta b{color:var(--text);}
+
+/* ── morning log ── */
+.mcard{background:linear-gradient(160deg,rgba(0,213,255,.09),var(--card-bg) 62%);
+ border:1px solid rgba(0,213,255,.30);border-radius:var(--r2);padding:15px 16px;margin-bottom:9px;}
+.mcard.done{display:flex;align-items:center;gap:10px;cursor:pointer;padding:13px 16px;
+ background:var(--card-bg);border-color:var(--card-br);}
+.mc-tick{color:var(--rec-hi);font-weight:800;font-size:14px;}
+.mc-sum{flex:1;font-size:12px;color:var(--muted2);}
+.mc-score{font-family:'Bebas Neue',sans-serif;font-size:23px;line-height:1;}
+.mc-edit{font-family:'DM Mono',monospace;font-size:8.5px;color:var(--muted);}
+.mc-hd{font-family:'DM Mono',monospace;font-size:9px;letter-spacing:.14em;color:var(--ring-blue);margin-bottom:9px;}
+.mc-opt{color:var(--muted);letter-spacing:.06em;}
+.mc-chips .chip{padding:11px 15px;font-size:13px;font-weight:700;}
+.mc-chips .chip.active{background:var(--ring-blue);border-color:var(--ring-blue);color:#001018;}
+.mc-vitals .inp{flex:1;text-align:center;font-size:15px;padding:11px;}
+.mc-sore-t{margin-top:13px;font-size:11.5px;color:var(--muted2);cursor:pointer;}
+.mc-sore-t b{color:var(--rec-mid);}
+.mc-close{margin-top:12px;text-align:center;padding:10px;border-radius:12px;
+ background:rgba(255,255,255,.06);font-size:12px;font-weight:700;cursor:pointer;}
 </style>
 </head>
 <body>
@@ -595,6 +614,8 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
     <div class="ph-bar" style="margin-top:12px;"><div class="ph-fill" id="cd-dayfill"></div></div>
     <div class="cmd-dayline" id="cd-dayline">—</div>
   </div>
+
+  <div id="cd-morning"></div>
 
   <!-- ░░ THE ONE THING ░░ -->
   <div class="next-card fu">
@@ -1448,6 +1469,7 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
 
   <!-- RECOVERY -->
   <div class="spanel" id="ath-recovery">
+    <div id="rec-morning"></div>
     <div id="rec-hero"></div>
     <div class="mtiles" id="rec-tiles"></div>
 
@@ -1483,29 +1505,9 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
       <div class="sore-grid" id="rec-body"></div>
       <div id="rec-warn" style="margin-top:9px;"></div>
     </div>
-
-    <div class="card">
-      <div class="c-hd">⌚ Apple Health auto-sync</div>
-      <div class="mt-s" style="margin-bottom:9px;">Paste the Health bin keys once. The Shortcut fills them every morning.</div>
-      <div class="row" style="margin-bottom:6px;"><input class="inp" id="hs-bin" placeholder="Health Bin ID"></div>
-      <div class="row" style="margin-bottom:8px;"><input class="inp" id="hs-key" placeholder="X-Master-Key"></div>
-      <div class="row"><button class="btn go" style="flex:1;" onclick="saveHS()">Save + sync</button>
-        <button class="btn" onclick="pullHealth(true)">↻</button></div>
-      <div class="mt-s" id="hs-status" style="margin-top:8px;">Not connected.</div>
-    </div>
-
-    <div class="card">
-      <div class="c-hd">Manual entry — if the watch is off</div>
-      <div class="row">
-        <input class="inp" id="rm-sleep" type="number" step="0.1" placeholder="Sleep h">
-        <input class="inp" id="rm-hrv" type="number" placeholder="HRV">
-        <input class="inp" id="rm-rhr" type="number" placeholder="RHR">
-        <button class="btn go" onclick="recManual()">Log</button>
-      </div>
-    </div>
   </div>
-
 </div>
+
 <div class="pg" id="pg-rev">
   <div class="hero">
     <div class="hero-kicker fu" style="color:var(--gold);">THE BOARDROOM · MEASURED LIFE</div>
@@ -3821,33 +3823,78 @@ function recManual(){
   ['rm-sleep','rm-hrv','rm-rhr'].forEach(x=>{const e=document.getElementById(x);if(e)e.value='';});
   renderRec();toast('Logged');
 }
-// ── pull watch data from the Health bin ──
-async function pullHealth(manual){
-  const st=document.getElementById('hs-status');
-  if(!S.hs.bin||!S.hs.key){if(manual&&st)st.textContent='Paste the Health Bin ID + key first.';return;}
-  try{
-    if(st)st.textContent='Checking…';
-    const r=await fetch('https://api.jsonbin.io/v3/b/'+S.hs.bin+'/latest',{headers:{'X-Master-Key':S.hs.key}});
-    if(!r.ok)throw new Error(r.status);
-    const rec=(await r.json()).record;
-    let n=0;
-    Object.keys(rec||{}).forEach(k=>{
-      if(k==='ts')return;
-      const d=new Date(k);if(isNaN(d))return;
-      const dk=d.toDateString();
-      S.watch[dk]=Object.assign({},S.watch[dk],rec[k]);n++;
-    });
-    sv();renderRec();
-    if(st)st.textContent='✓ '+n+' day(s) synced · '+new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
-  }catch(e){if(st)st.textContent='⚠️ Could not reach the Health bin. Check the keys.';}
+// ═══════════════════════════════════════════════════
+//  MORNING LOG — 2 taps, no keyboard for the main number
+// ═══════════════════════════════════════════════════
+const SLEEP_CHIPS=[5,5.5,6,6.5,7,7.5,8,8.5,9,9.5];
+if(!S.ui)S.ui={};
+
+function mLogged(dk){const w=wd(dk);return w.asleep!=null;}
+function mSleep(h){
+  const dk=DKEY();if(!S.watch[dk])S.watch[dk]={};
+  S.watch[dk].asleep=Math.round(h*60);sv();
+  renderMorning();renderRec();if(typeof renderCmd==='function')renderCmd();
+  toast('😴 '+h+'h logged');
 }
-function saveHS(){
-  S.hs.bin=(document.getElementById('hs-bin').value||'').trim();
-  S.hs.key=(document.getElementById('hs-key').value||'').trim();
-  sv();pullHealth(true);
+function mVital(which,el){
+  const dk=DKEY();if(!S.watch[dk])S.watch[dk]={};
+  const v=parseFloat(el.value);
+  if(!isNaN(v)&&v>0)S.watch[dk][which]=v; else delete S.watch[dk][which];
+  sv();renderRec();if(typeof renderCmd==='function')renderCmd();
 }
+function mSoreOpen(){S.ui.soreOpen=!S.ui.soreOpen;sv();renderMorning();}
+function mEdit(){S.ui.editMorning=!S.ui.editMorning;renderMorning();}
+
+function morningCardHTML(full){
+  const dk=DKEY(), w=wd(dk), done=mLogged(dk);
+  const soreCount=Object.values(S.rec.sore[dk]||{}).filter(v=>v>=1).length;
+
+  // collapsed summary once sleep is in (Command only)
+  if(done&&!full&&!S.ui.editMorning){
+    const R=recovery(dk), V=recVerdict(R.v);
+    return '<div class="mcard done" onclick="mEdit()">'
+      +'<span class="mc-tick">✓</span>'
+      +'<span class="mc-sum">'+(w.asleep/60).toFixed(1).replace('.0','')+'h slept'
+      +(w.hrv?' · HRV '+w.hrv:'')+(w.rhr?' · RHR '+w.rhr:'')
+      +(soreCount?' · '+soreCount+' sore':'')+'</span>'
+      +'<span class="mc-score" style="color:'+V.c+'">'+(R.v==null?'—':R.v)+'</span>'
+      +'<span class="mc-edit">edit</span></div>';
+  }
+
+  const cur=w.asleep!=null?Math.round(w.asleep/60*2)/2:null;
+  let h='<div class="mcard open">';
+  h+='<div class="mc-hd">😴 HOW LONG DID YOU SLEEP?</div>';
+  h+='<div class="chip-row mc-chips">'+SLEEP_CHIPS.map(x=>
+      '<div class="chip'+(cur===x?' active':'')+'" onclick="mSleep('+x+')">'+x+'h</div>').join('')+'</div>';
+
+  h+='<div class="mc-hd" style="margin-top:14px;">⌚ FROM THE WATCH <span class="mc-opt">optional</span></div>';
+  h+='<div class="row mc-vitals">'
+    +'<input class="inp" type="number" inputmode="decimal" placeholder="HRV" value="'+(w.hrv!=null?w.hrv:'')+'" onchange="mVital(\'hrv\',this)">'
+    +'<input class="inp" type="number" inputmode="decimal" placeholder="Resting HR" value="'+(w.rhr!=null?w.rhr:'')+'" onchange="mVital(\'rhr\',this)">'
+    +'</div>';
+
+  const open=S.ui.soreOpen||full;
+  h+='<div class="mc-sore-t" onclick="mSoreOpen()">'
+    +(open?'▾':'▸')+' Anything sore?'+(soreCount?' <b>'+soreCount+'</b>':'')+'</div>';
+  if(open){
+    h+='<div class="sore-grid" style="margin-top:8px;">'+BODYPARTS.map(b=>{
+      const v=(S.rec.sore[dk]||{})[b.id]||0;
+      return'<div class="sore-cell s'+v+'" onclick="recSore(\''+b.id+'\')"><div class="sore-n">'+b.n+'</div><div class="sore-v">'+SORE_LBL[v]+'</div></div>';}).join('')+'</div>';
+  }
+  if(done&&!full)h+='<div class="mc-close" onclick="mEdit()">Done</div>';
+  h+='</div>';
+  return h;
+}
+function renderMorning(){
+  const a=document.getElementById('cd-morning');
+  if(a)a.innerHTML=morningCardHTML(false);
+  const b=document.getElementById('rec-morning');
+  if(b)b.innerHTML=morningCardHTML(true);
+}
+
 function renderRec(){
   const dk=DKEY(),w=wd(dk);
+  try{const rm=document.getElementById('rec-morning');if(rm)rm.innerHTML=morningCardHTML(true);}catch(e){}
   const H=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
   const R=recovery(dk),V=recVerdict(R.v);
 
@@ -3911,8 +3958,7 @@ function renderRec(){
     if(n>=4)warn+='<div class="mrow" style="border-color:var(--rec-lo);"><span style="color:var(--rec-lo);font-weight:700;">⚠️ '+b.n+' sore '+n+'/10 days</span><div class="mt-s">Overuse pattern — drop load on it this week.</div></div>';});
   H('rec-warn',warn);
 
-  const hsv=document.getElementById('hs-bin');
-  if(hsv&&!hsv.value&&S.hs.bin){hsv.value=S.hs.bin;document.getElementById('hs-key').value=S.hs.key;}
+
 }
 
 // ═══════════ ATHLETE ═══════════
@@ -3924,7 +3970,7 @@ function showAthTab(id,btn){
   if(id==='gym')renderGym();
   if(id==='engine')renderEngine();
   if(id==='fuel')renderFuel2();
-  if(id==='recovery'){renderRec();try{pullHealth();}catch(e){}}
+  if(id==='recovery')renderRec();
 }
 function renderAth(){
   renderGym();renderEngine();renderFuel2();try{renderRec();}catch(e){}
@@ -4100,6 +4146,7 @@ function renderCmd(){
   const setH=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
 
   const cr=document.getElementById('cd-rings');if(cr)cr.innerHTML=cmdRings();
+  try{renderMorning();}catch(e){}
   setT('cd-date',now.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}));
   const wk=uniWeek();
   setT('cd-season',getSeason()+(wk?' · WEEK '+wk+'/13':''));
@@ -4423,7 +4470,6 @@ renderUni();
 renderTravis();
 renderBus();
 renderCmd();
-try{pullHealth();}catch(e){}
 renderAth();
 renderHealth();
 renderReview();
