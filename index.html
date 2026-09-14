@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v4.0 · FINAL YEAR · built 10 Sep 2026 -->
+<!-- DAWLY OS v5 · FINAL YEAR · built 10 Sep 2026 -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <title>DAWLY OS — Personal Operating System</title>
@@ -434,6 +434,113 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 .modal-btns{display:flex;gap:8px;}
 .mbtn-cancel{flex:1;padding:9px;background:var(--s3);color:var(--text);border:1px solid var(--border);border-radius:var(--rs);font-family:'Outfit',sans-serif;font-weight:700;font-size:12px;cursor:pointer;}
 .mbtn-save{flex:1;padding:9px;background:var(--blue);color:#fff;border:none;border-radius:var(--rs);font-family:'Outfit',sans-serif;font-weight:800;font-size:12px;cursor:pointer;}
+/* ═══════════════════════════════════════════════════
+   DAWLY OS v5 — design system
+   Whoop data-density + Apple Fitness warmth
+   ═══════════════════════════════════════════════════ */
+:root{
+  --ring-red:#fa114f;      /* move  */
+  --ring-green:#a3f900;    /* exercise */
+  --ring-blue:#00d5ff;     /* stand */
+  --ring-amber:#ffb800;
+  --ring-purple:#bf5af2;
+  --rec-hi:#00e07a;
+  --rec-mid:#ffb800;
+  --rec-lo:#fa114f;
+  --r2:20px;
+  --card-bg:#12131a;
+  --card-br:rgba(255,255,255,.07);
+}
+/* ── tighter global rhythm ── */
+.pg{padding-bottom:96px;}
+.card{background:var(--card-bg);border:1px solid var(--card-br);border-radius:var(--r2);
+  padding:15px 16px;margin-bottom:9px;}
+.sec-ttl{font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--muted2);margin-bottom:11px;display:flex;align-items:center;gap:7px;}
+.c-hd{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.16em;color:var(--muted);
+  margin-bottom:9px;text-transform:uppercase;}
+
+/* ── RING ── */
+.ring{position:relative;display:inline-block;line-height:0;}
+.ring svg{display:block;transform:rotate(-90deg);}
+.ring-c{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;line-height:1;}
+.ring-v{font-family:'Bebas Neue',sans-serif;letter-spacing:1px;}
+.ring-l{font-family:'DM Mono',monospace;color:var(--muted);letter-spacing:.12em;margin-top:2px;}
+
+/* ── HERO metric block ── */
+.hero-metric{background:linear-gradient(155deg,rgba(255,255,255,.05),var(--card-bg) 62%);
+  border:1px solid var(--card-br);border-radius:var(--r2);padding:20px 18px;margin-bottom:9px;
+  display:flex;gap:17px;align-items:center;}
+.hm-r{flex:1;min-width:0;}
+.hm-title{font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:1.5px;line-height:1;margin-bottom:5px;}
+.hm-sub{font-size:11.5px;color:var(--muted2);line-height:1.5;}
+.hm-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;
+  padding:3px 8px;border-radius:20px;margin-bottom:7px;}
+
+/* ── metric tiles (Apple Fitness) ── */
+.mtiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(104px,1fr));gap:8px;margin-bottom:9px;}
+.mtile{background:var(--card-bg);border:1px solid var(--card-br);border-radius:16px;padding:13px 14px;position:relative;overflow:hidden;}
+.mtile::after{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--ring-blue);opacity:.75;}
+.mtile.g::after{background:var(--ring-green);} .mtile.r::after{background:var(--ring-red);}
+.mtile.a::after{background:var(--ring-amber);} .mtile.p::after{background:var(--ring-purple);}
+.mt-l{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;color:var(--muted);text-transform:uppercase;margin-bottom:5px;}
+.mt-v{font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:.92;letter-spacing:.5px;}
+.mt-s{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted2);margin-top:3px;}
+
+/* ── bars & sparklines ── */
+.bar{height:6px;background:rgba(255,255,255,.07);border-radius:4px;overflow:hidden;margin-top:7px;}
+.bar>i{display:block;height:100%;border-radius:4px;transition:width .5s ease;background:var(--ring-blue);}
+.spark{display:flex;align-items:flex-end;gap:3px;height:46px;}
+.spark>i{flex:1;background:var(--ring-blue);border-radius:3px 3px 0 0;min-height:3px;opacity:.85;transition:height .4s;}
+.spark>i.hi{background:var(--rec-hi);} .spark>i.mid{background:var(--rec-mid);} .spark>i.lo{background:var(--rec-lo);}
+.spark-x{display:flex;gap:3px;margin-top:5px;}
+.spark-x>span{flex:1;text-align:center;font-family:'DM Mono',monospace;font-size:7px;color:var(--muted);}
+
+/* ── stage bar (sleep) ── */
+.stages{display:flex;height:26px;border-radius:8px;overflow:hidden;margin:9px 0 7px;}
+.stages>i{height:100%;}
+.stg-deep{background:#3a3fd8;} .stg-rem{background:#00d5ff;}
+.stg-light{background:#6f7ae8;} .stg-awake{background:#4a4f63;}
+.stg-key{display:flex;gap:11px;flex-wrap:wrap;font-family:'DM Mono',monospace;font-size:8px;color:var(--muted2);}
+.stg-key b{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px;vertical-align:-1px;}
+
+/* ── info button replaces walls of text ── */
+.ib{display:inline-flex;align-items:center;justify-content:center;width:17px;height:17px;border-radius:50%;
+  border:1px solid var(--border2);color:var(--muted);font-size:10px;font-family:'DM Mono',monospace;
+  cursor:pointer;flex:none;margin-left:6px;transition:all .15s;}
+.ib:hover{border-color:var(--gold);color:var(--gold);}
+.imodal{position:fixed;inset:0;background:rgba(0,0,0,.82);z-index:9998;display:none;
+  align-items:center;justify-content:center;padding:22px;backdrop-filter:blur(7px);}
+.imodal.on{display:flex;}
+.imodal-c{background:var(--card-bg);border:1px solid var(--card-br);border-radius:var(--r2);
+  padding:20px;max-width:430px;max-height:76vh;overflow-y:auto;font-size:12.5px;line-height:1.75;color:var(--muted2);}
+.imodal-c strong{color:var(--text);}
+.imodal-c h4{margin:0 0 11px;font-size:14px;color:var(--gold);}
+.imodal-x{margin-top:15px;width:100%;padding:11px;border-radius:12px;border:none;
+  background:var(--gold);color:#000;font-weight:800;font-family:'Outfit',sans-serif;font-size:13px;cursor:pointer;}
+
+/* ── chips: bigger tap targets, cleaner ── */
+.chip{padding:8px 14px;border-radius:22px;font-size:11px;font-weight:600;background:var(--card-bg);
+  border:1px solid var(--card-br);cursor:pointer;white-space:nowrap;transition:all .15s;color:var(--muted2);}
+.chip.active{background:var(--gold);color:#000;border-color:var(--gold);font-weight:800;}
+.chip-row{display:flex;gap:6px;flex-wrap:wrap;}
+
+/* ── nav polish ── */
+.bnav{background:rgba(9,9,12,.94);border-top:1px solid var(--card-br);padding:9px 2px 26px;}
+.nb{font-size:7px;gap:3px;}
+.nb .ic{font-size:17px;}
+.nb.active{background:none;color:var(--gold);}
+.nb.active .ic{transform:translateY(-1px);}
+
+/* ── rows ── */
+.mrow{background:var(--card-bg);border:1px solid var(--card-br);border-radius:13px;padding:11px 13px;margin-bottom:6px;}
+.log-row{background:var(--card-bg);border:1px solid var(--card-br);border-radius:12px;}
+details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-radius:16px;}
+.stile{background:var(--card-bg);border:1px solid var(--card-br);border-radius:16px;}
+.inp{background:#0c0d12;border:1px solid var(--card-br);border-radius:12px;}
+.btn{border-radius:12px;background:var(--card-bg);border:1px solid var(--card-br);}
+.addbtn{border-radius:12px;}
+
 </style>
 </head>
 <body>
@@ -469,6 +576,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
   <!-- ░░ HERO — right now ░░ -->
   <div class="id-date fu" id="id-date">--</div>
   <div class="cmd-hero fu">
+    <div id="cd-rings" style="margin-bottom:15px;"></div>
     <div class="cmd-hero-top">
       <div class="cmd-date" id="cd-date">—</div>
       <div class="cmd-season" id="cd-season">—</div>
@@ -804,11 +912,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
     </div>
   </div>
 
-  <div class="callout go fu">
-    <strong>Standing order — Order-Same-Day Rule:</strong> the day your design gets supervisor approval, the component order goes in that evening. Local Cairo suppliers (RAM Electronics / Future Electronics, Nasr City) — no shipping delay excuse exists in Egypt. ESP32, MPU-6050 ×3, 18650 cells + BMS, solenoid, MOSFETs. Design first ✓ — but approval day = order day.
-  </div>
-
-  <!-- current phase -->
+  <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">Standing order — Order-Same-Day Rule: the day your design gets supervisor approval, the compone <span class="ib" onclick="showInfo('auto1')">i</span></div><!-- current phase -->
   <div class="phase-block current-phase fu">
     <div class="phase-head">
       <div><div class="phase-title">Current Phase <span style="font-size:9px;color:var(--muted2);font-weight:400;">(tap to edit)</span></div></div>
@@ -836,15 +940,15 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
   </div>
   <div class="tip-card cy fu">
     <div class="tip-title">📓 Build Journal (5 lines/day)</div>
-    <div class="tip-body">End of every ExoGuard block, write in one note: what I did · what broke · next action. When you return tomorrow you start in 30 seconds instead of 15 minutes of "where was I?" — this is the #1 solo-builder retention tool.</div>
+    <div class="tip-body">End of every ExoGuard block, write in one note: what I did · <span class="ib" onclick="showInfo('tip1')">i</span></div>
   </div>
   <div class="tip-card cy fu">
     <div class="tip-title">🧪 Prototype over polish</div>
-    <div class="tip-body">Phase ladder: CAD approved → parts ordered same day → breadboard test → V1 frame → dataset → AI → V2. Each rung only needs to be good enough to stand on. Perfection at any rung delays every rung above it.</div>
+    <div class="tip-body">Phase ladder: CAD approved → parts ordered same day → breadboard test → V1 frame <span class="ib" onclick="showInfo('tip2')">i</span></div>
   </div>
   <div class="tip-card cy fu">
     <div class="tip-title">🏭 The Mantrac card</div>
-    <div class="tip-body">A factory pilot (even 2 weeks, 5 workers) turns a grad project into a company story: real data, a named customer, a photo at a Caterpillar dealership. Ask for access, not money. Send the request once V1 exists.</div>
+    <div class="tip-body">A factory pilot (even 2 weeks, 5 workers) turns a grad project into a company st <span class="ib" onclick="showInfo('tip3')">i</span></div>
   </div>
   </div><!-- /exec -->
 
@@ -885,7 +989,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
     <div class="tip-card gr"><div class="tip-title">TIEC — 10k–50k EGP grants</div><div class="tip-body">Government fund for student engineering innovation. Apply once a working prototype exists (Phase 3+). Grantee status unlocks credibility everywhere else.</div></div>
     <div class="tip-card gr"><div class="tip-title">Orange Digital Center (Smart Village)</div><div class="tip-body">Free maker space, 3D printing, components. Cuts your 15k EGP budget pressure hard. orangedigitalcenters.com/country/egypt.</div></div>
     <div class="tip-card gr"><div class="tip-title">Siemens Egypt + AWS/GCP credits</div><div class="tip-body">Siemens CSR loves Industry 4.0 projects — LinkedIn outreach. AWS Educate free credits now; Google for Startups ($200k GCP) after GAFI registration.</div></div>
-    <div class="tip-card gr"><div class="tip-title">Sponsorship tiers</div><div class="tip-body">🥉 5,000 EGP: logo on expo poster + acknowledgment. 🥈 15,000: + exclusive demo + pilot access. 🥇 30,000+: + co-branded press release. Send a 1-page brief with one device photo + one dashboard screenshot, on TKH letterhead. Follow up once after 10 days, then move on.</div></div>
+    <div class="tip-card gr"><div class="tip-title">Sponsorship tiers</div><div class="tip-body">🥉 5,000 EGP: logo on expo poster + acknowledgment. <span class="ib" onclick="showInfo('tip4')">i</span></div></div>
   </div>
 </div>
 
@@ -932,10 +1036,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
   </div>
 
   <div class="spanel active" id="uni-mods">
-    <div class="callout tip">
-      <strong>15 hrs/week self-study, weighted 6 / 4 / 2.</strong> Thermo-fluids gets the most because CFD compounds — week 10 is built on week 3. Clean Energy is breadth and argument, not derivation. Professional Dev you exploit: point every deliverable at ExoGuard and do the work once for two grades.
-    </div>
-    <div id="uni-modlist"></div>
+    <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">15 hrs/week self-study, weighted 6 / 4 / 2. <span class="ib" onclick="showInfo('auto2')">i</span></div><div id="uni-modlist"></div>
     <div class="card">
       <div class="c-hd">📍 WHICH LECTURE ARE YOU ON?</div>
       <div id="uni-lect"></div>
@@ -943,10 +1044,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
   </div>
 
   <div class="spanel" id="uni-queue">
-    <div class="callout warn">
-      <strong>This is the hole in your method.</strong> Two passes hold one week. By week 8, week 1 is gone. One old topic at the front of every deep session — 10 minutes. The app picks it so you never decide.
-    </div>
-    <div class="card">
+    <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">This is the hole in your method. <span class="ib" onclick="showInfo('auto3')">i</span></div><div class="card">
       <div class="c-hd">➕ ADD A TOPIC</div>
       <div class="hint" style="margin-bottom:8px;">Add each topic the day you cover it. Intervals: 1 → 3 → 7 → 16 → 35 days.</div>
       <div class="row">
@@ -980,10 +1078,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
   </div>
 
   <div class="spanel" id="uni-dl">
-    <div class="callout warn">
-      <strong>Exams are week 13 — 13–17 December.</strong> The app auto-switches to FINALS RAMP on 15 November: your Tue/Sat deep passes become past papers instead of new material, and Travis/ExoGuard step back. No decision needed from you.
-    </div>
-    <div class="card">
+    <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">Exams are week 13 — 13–17 December. <span class="ib" onclick="showInfo('auto4')">i</span></div><div class="card">
       <div class="c-hd">➕ ADD A DEADLINE</div>
       <div class="row" style="margin-bottom:6px;">
         <select class="inp" id="uni-dmod" style="flex:0 0 100px;">
@@ -1036,10 +1131,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
   </div>
 
   <div class="spanel" id="tv-fail">
-    <div class="callout warn">
-      <strong>This is the moat.</strong> Phase 2 needs 100 entries as symptom → cause → fix. Nobody can copy this because nobody else is logging your bench. Start now, not in November — every ExoGuard debugging session is free data.
-    </div>
-    <div class="grid2">
+    <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">This is the moat. <span class="ib" onclick="showInfo('auto5')">i</span></div><div class="grid2">
       <div class="stile"><div class="st-lbl">Entries</div><div class="st-val c-gold" id="tv-failct">0</div><div class="st-sub">target 100 by 15 Dec</div></div>
       <div class="stile"><div class="st-lbl">Progress</div><div class="st-val c-green" id="tv-failpct">0%</div><div class="st-sub">to the moat</div></div>
     </div>
@@ -1080,11 +1172,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
     <div class="ph-meta">7:05 → 8:45 AM · one card, 30 minutes, then sleep with a clear conscience</div>
   </div>
 
-  <div class="callout tip">
-    <strong>Thirty minutes, one task, no decisions.</strong> The app picks. You do it, tap done, then sleep for the rest of the ride — that nap is part of the plan, not a failure. Sixteen hours a week on that bus; this turns ~2½ of them into progress without costing you a single minute of desk time.
-  </div>
-
-  <div class="card" id="bus-card" style="border-color:rgba(212,168,67,.35);">
+  <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">Thirty minutes, one task, no decisions. <span class="ib" onclick="showInfo('auto6')">i</span></div><div class="card" id="bus-card" style="border-color:rgba(212,168,67,.35);">
     <div class="c-hd">⚡ TODAY'S CARD</div>
     <div id="bus-body"></div>
   </div>
@@ -1139,10 +1227,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 
   <!-- TENNIS -->
   <div class="spanel active" id="ath-tennis">
-    <div class="callout tip">
-      <strong>The two weaknesses, attacked directly:</strong> ① Serve consistency — 30 serves with targets before EVERY session (ask the coach for 10 minutes of court time early; second-serve spin focus). ② Match mentality — one practice match per week minimum + a fixed between-points routine: turn away, breathe, racket strings check, next point only. Confidence follows reps, not talent.
-    </div>
-    <div class="card">
+    <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">The two weaknesses, attacked directly: ① Serve consistency — 30 serves with targets before EVER <span class="ib" onclick="showInfo('auto7')">i</span></div><div class="card">
       <div class="sec-ttl">🎾 Session Log — one goal per session</div>
       <div id="tn-log"></div>
       <div class="inp-row">
@@ -1165,11 +1250,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 
   <!-- GYM -->
   <div class="spanel" id="ath-gym">
-    <div class="callout go">
-      <strong>Your split, kept — 5 days, semester-mapped.</strong> Sun · Tue · Wed · Thu · Sat. <strong>Legs land on Wednesday</strong> — three clear days before Saturday's academy, so your footwork never pays for your squats. Never legs on Mon, Tue or Sat. The exercises below are editable: fix them once to match what you actually do and the logger takes over from there.
-    </div>
-
-    <div class="ph">
+    <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">Your split, kept — 5 days, semester-mapped. <span class="ib" onclick="showInfo('auto8')">i</span></div><div class="ph">
       <div class="ph-top"><div class="ph-t" id="gy-dayname">—</div><div class="ph-s" id="gy-daytag">—</div></div>
       <div class="ph-bar"><div class="ph-fill" id="gy-fill"></div></div>
       <div class="ph-meta" id="gy-meta">—</div>
@@ -1205,10 +1286,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 
   <!-- ENGINE — running · footwork · breathing · stretching -->
   <div class="spanel" id="ath-engine">
-    <div class="callout tip">
-      <strong>The Engine tab exists because tennis matches are won in the third set.</strong> Aerobic base = faster recovery between points, calmer breathing under pressure, sharper footwork when tired. This is the invisible 20% that beats players with prettier forehands.
-    </div>
-    <div class="week-block">
+    <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">The Engine tab exists because tennis matches are won in the third set. <span class="ib" onclick="showInfo('auto9')">i</span></div><div class="week-block">
       <div class="week-title" style="color:var(--cyan);">🏃 Running — 2–3×/week</div>
       <div class="week-focus">never the morning before an evening match/lesson at full intensity</div>
       <div class="week-tasks">
@@ -1273,10 +1351,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 
   <!-- FUEL -->
   <div class="spanel" id="ath-fuel">
-    <div class="callout warn">
-      <strong>The real bottleneck.</strong> 182 cm / ~60 kg — every goal in this OS (serve power, muscle, energy, even focus) is gated by eating. Target: <strong>+0.25–0.5 kg/week → 68–70 kg by next summer.</strong> No supplements — food only, as agreed. IBS rules: regular meal times, eat calm and slow, limit spice and coffee, and remember your gut flares with anxiety — the Overwhelm Protocol protects digestion too.
-    </div>
-    <div class="s2">
+    <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">The real bottleneck. <span class="ib" onclick="showInfo('auto10')">i</span></div><div class="s2">
       <div class="stile"><div class="st-lbl">Current Weight</div><div class="st-val c-gold" id="fu-now">—</div><div class="st-sub">last Friday weigh-in</div></div>
       <div class="stile"><div class="st-lbl">4-Week Trend</div><div class="st-val c-green" id="fu-trend">—</div><div class="st-sub">target +1–2 kg/month</div></div>
     </div>
@@ -1304,13 +1379,8 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
       <div class="ph-bar" style="margin-bottom:5px;"><div class="ph-fill" id="fu-p-fill"></div></div>
       <div class="hint" style="text-align:right;margin-bottom:12px;" id="fu-p-left">—</div>
 
-      <div class="callout tip" style="margin-bottom:11px;">
-        <strong>You asked: "I ate 150g of chicken — what do I write?"</strong><br>
-        You write <strong>150</strong>. Pick the food, type the weight you ate in grams, and the app works out the protein. Chicken is 31g of protein per 100g, so 150g of chicken = <strong>46g of protein</strong>. You never calculate anything.<br>
-        Don't know the weight? Use the quick buttons below — a normal chicken breast is about 150g, an egg is 50g, a plate of foul is about 250g.
-      </div>
-
-      <div class="c-hd">TYPE THE WEIGHT YOU ATE</div>
+      <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">You asked: "I ate 150g of chicken — what do I write?"
+        You write 150. <span class="ib" onclick="showInfo('auto11')">i</span></div><div class="c-hd">TYPE THE WEIGHT YOU ATE</div>
       <div class="row" style="margin-bottom:11px;">
         <select class="inp" id="fu-food" style="flex:2;"></select>
         <input class="inp" id="fu-grams" type="number" placeholder="grams" style="flex:0 0 78px;"
@@ -1338,10 +1408,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 
     <div class="card" style="border-color:rgba(46,201,122,.3);">
       <div class="c-hd">🌿 100% NATURAL — no creatine, no powder</div>
-      <div class="callout tip" style="margin-bottom:10px;">
-        <strong>Creatine is removed.</strong> You and your parents are not comfortable with it, and that is a completely reasonable call — it is your body and there is no version of this where you should be arguing with them about a supplement. Everything below gets you there with food. It is slightly slower and entirely sustainable.
-      </div>
-      <div id="fu-natural"></div>
+      <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">Creatine is removed. <span class="ib" onclick="showInfo('auto12')">i</span></div><div id="fu-natural"></div>
     </div>
 
     <div class="card">
@@ -1352,12 +1419,7 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 
     <div class="card">
       <div class="c-hd">🌀 IBS TRACKER — what it is and why you want it</div>
-      <div class="callout tip" style="margin-bottom:11px;">
-        <strong>In one sentence:</strong> every night you rate how your stomach felt and type what you ate — after about two weeks the app tells you which foods keep showing up on your bad days.<br><br>
-        <strong>Why bother:</strong> IBS triggers are personal. Generic lists tell you to avoid twenty foods; most of them are probably fine for you. This finds <em>your</em> two or three, using your own data, so you stop avoiding food you never needed to avoid.<br><br>
-        <strong>What to do:</strong> tap a face, type what you ate. Five seconds. Do it at the same time each night — the daily log block at 10:45 is the natural slot.
-      </div>
-      <div class="row" style="margin-bottom:8px;">
+      <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">In one sentence: every night you rate how your stomach felt and type what you ate — after about <span class="ib" onclick="showInfo('auto13')">i</span></div><div class="row" style="margin-bottom:8px;">
         <select class="inp" id="fu-ibs-r" style="flex:0 0 120px;">
           <option value="5">😀 Perfect</option><option value="4">🙂 Fine</option>
           <option value="3" selected>😐 Ok-ish</option><option value="2">😖 Bad</option><option value="1">🤢 Very bad</option>
@@ -1379,88 +1441,60 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
 
   <!-- RECOVERY -->
   <div class="spanel" id="ath-recovery">
+    <div id="rec-hero"></div>
+    <div class="mtiles" id="rec-tiles"></div>
 
-    <div class="rec-hero">
-      <div class="rec-ring-wrap" id="rec-ring"></div>
-      <div class="rec-hero-r">
-        <div class="rec-verdict" id="rec-verdict">—</div>
-        <div class="rec-why" id="rec-verdict-why">—</div>
-      </div>
-    </div>
-
-    <div class="grid2">
-      <div class="stile"><div class="st-lbl">7-day load</div><div class="st-val c-blue" id="rec-load" style="font-size:26px;">0</div><div class="st-sub">strain proxy · over 13 = heavy</div></div>
-      <div class="stile"><div class="st-lbl">Sleep debt</div><div class="st-val c-red" id="rec-debt" style="font-size:26px;">0h</div><div class="st-sub">vs 8h × 7 nights</div></div>
+    <div class="card">
+      <div class="c-hd">Score breakdown</div>
+      <div id="rec-break"></div>
     </div>
 
     <div class="card">
-      <div class="c-hd">📊 WHAT MADE THAT SCORE</div>
-      <div id="rec-breakdown"></div>
-      <div class="hint" style="margin-top:9px;">Weighted: sleep hours 40% · soreness 25% · training load 20% · sleep quality 15% · resting HR when you log it.</div>
-    </div>
-
-    <div class="card" style="border-color:rgba(41,212,224,.3);">
-      <div class="c-hd">😴 SLEEP — last night</div>
-      <div class="hint" style="margin-bottom:7px;">How many hours?</div>
-      <div class="chip-row" id="rec-sleep-h" style="margin-bottom:11px;"></div>
-      <div class="hint" style="margin-bottom:7px;">How did it feel?</div>
-      <div class="chip-row" id="rec-sleep-q" style="margin-bottom:11px;"></div>
-      <div class="hint" style="margin-bottom:7px;">What hurt it? (tap all that apply — this is how the app learns your pattern)</div>
-      <div class="chip-row" id="rec-hurt" style="margin-bottom:12px;"></div>
-      <div id="rec-sleep-hist" style="margin-bottom:11px;"></div>
-      <div class="callout tip" style="margin:0;"><strong>🔍 Your pattern:</strong> <span id="rec-sleep-insight">—</span></div>
+      <div class="c-hd">Sleep stages <span id="ib-stages"></span></div>
+      <div id="rec-stages"></div>
     </div>
 
     <div class="card">
-      <div class="c-hd">🩹 SORENESS — tap to cycle none → mild → moderate → bad</div>
-      <div class="hint" style="margin-bottom:10px;">Do this once a day, takes ten seconds. Its real job is catching an overuse injury weeks before it stops you training.</div>
+      <div class="c-hd">Recovery · 14 days</div>
+      <div id="rec-trend-rec"></div>
+    </div>
+    <div class="card">
+      <div class="c-hd">Sleep hours · 14 days</div>
+      <div id="rec-trend-sleep"></div>
+    </div>
+    <div class="card">
+      <div class="c-hd">HRV · 14 days</div>
+      <div id="rec-trend-hrv"></div>
+    </div>
+    <div class="card">
+      <div class="c-hd">Resting HR · 14 days</div>
+      <div id="rec-trend-rhr"></div>
+    </div>
+
+    <div class="card">
+      <div class="c-hd">Soreness — tap to cycle</div>
       <div class="sore-grid" id="rec-body"></div>
-      <div style="margin-top:12px;" id="rec-sorewarn"></div>
+      <div id="rec-warn" style="margin-top:9px;"></div>
     </div>
 
     <div class="card">
-      <div class="c-hd">💓 VITALS — from your watch, if you wear it</div>
-      <div class="hint" style="margin-bottom:9px;">Optional, but resting HR is the single most useful number you can take off a watch. A jump of 5+ bpm above your normal usually means you are under-recovered or getting ill — often a day before you feel it.</div>
+      <div class="c-hd">⌚ Apple Health auto-sync</div>
+      <div class="mt-s" style="margin-bottom:9px;">Paste the Health bin keys once. The Shortcut fills them every morning.</div>
+      <div class="row" style="margin-bottom:6px;"><input class="inp" id="hs-bin" placeholder="Health Bin ID"></div>
+      <div class="row" style="margin-bottom:8px;"><input class="inp" id="hs-key" placeholder="X-Master-Key"></div>
+      <div class="row"><button class="btn go" style="flex:1;" onclick="saveHS()">Save + sync</button>
+        <button class="btn" onclick="pullHealth(true)">↻</button></div>
+      <div class="mt-s" id="hs-status" style="margin-top:8px;">Not connected.</div>
+    </div>
+
+    <div class="card">
+      <div class="c-hd">Manual entry — if the watch is off</div>
       <div class="row">
-        <input class="inp" type="number" id="rec-rhr" placeholder="Resting HR">
-        <input class="inp" type="number" id="rec-hrv" placeholder="HRV (ms)">
-        <button class="btn sm go" onclick="recVitals()">Log</button>
+        <input class="inp" id="rm-sleep" type="number" step="0.1" placeholder="Sleep h">
+        <input class="inp" id="rm-hrv" type="number" placeholder="HRV">
+        <input class="inp" id="rm-rhr" type="number" placeholder="RHR">
+        <button class="btn go" onclick="recManual()">Log</button>
       </div>
-    </div>
-
-    <div class="card" id="rec-friday">
-      <div class="c-hd">🧖 THE FRIDAY PROTOCOL</div>
-      <div class="callout tip" style="margin-bottom:11px;">
-        You already had the sauna and jacuzzi. Here is how to actually use them — order and timing change what you get out of it.
-      </div>
-      <details class="cbox" open><summary>The sequence</summary><div class="cbody">
-        <ul style="margin:0;padding-left:16px;line-height:1.9;">
-          <li><strong>Warm shower first</strong> — 2 min. Going into a hot room cold is uncomfortable and pointless.</li>
-          <li><strong>Sauna 12–15 min.</strong> Leave when it stops being pleasant, not when a timer says so.</li>
-          <li><strong>Cool down 5 min</strong> — cool shower or just sit outside. This contrast is where most of the benefit lives.</li>
-          <li><strong>Repeat 2–3 rounds.</strong> Rounds beat one long brutal session every time.</li>
-          <li><strong>Jacuzzi 10–15 min last</strong> — warm water, relaxed muscles, stretch gently while you are in it.</li>
-          <li><strong>Drink 500ml+ water.</strong> You will have lost a real amount of fluid.</li>
-        </ul></div></details>
-      <details class="cbox"><summary>What heat actually does — and when it doesn't help</summary><div class="cbody">
-        Heat increases blood flow, relaxes muscle tone and feels genuinely good, which matters more than people admit — a recovery day you look forward to is a recovery day you actually take.<br><br>
-        <strong>What it will not do:</strong> remove lactic acid (that is gone within an hour of training anyway) or repair muscle damage. Sleep and food do that.<br><br>
-        <strong>One real caution:</strong> avoid a long hot sauna in the 2 hours right after heavy lifting — there is decent evidence that heavy heat immediately post-training can blunt some of the adaptation. Friday is perfect precisely because it is far from your sessions.
-      </div></details>
-      <details class="cbox"><summary>Stretching — the 10-minute sequence</summary><div class="cbody">
-        Best done warm, straight after the jacuzzi. Hold each, breathe out into it, never bounce.<br><br>
-        Hamstrings 60s/side · hip flexor lunge 60s/side · figure-4 glutes 45s/side · chest doorway 45s ·
-        shoulder cross-body 45s/side · forearm flexor + extensor 30s each · child's pose 60s · thoracic rotations 10/side.
-      </div></details>
-      <details class="cbox"><summary>Napping — how to do it without wrecking the night</summary><div class="cbody">
-        <strong>20 minutes, before 3 PM.</strong> That is the whole rule. Twenty minutes keeps you in light sleep so you wake sharp; 45 minutes drops you into deep sleep and you wake worse than before. After 3 PM it starts eating into your night, and your bedtime is the foundation of the whole system.
-      </div></details>
-    </div>
-
-    <div class="card">
-      <div class="c-hd">📈 7-DAY RECOVERY TREND</div>
-      <div class="tr-hd"><div class="tr-nm">Recovery</div><div class="tr-ct" id="hl-7d-ct"></div></div>
-      <div id="hl-7d-bars"></div>
     </div>
   </div>
 
@@ -1533,15 +1567,15 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
   <div class="section-lbl fu" style="margin-top:14px;">The Failure Map — predicted before it happens</div>
   <div class="tip-card rd fu">
     <div class="tip-title">Failure #1 — The Week-3 Abandonment (probability: highest)</div>
-    <div class="tip-body">History says you abandon systems around week 2–3 when novelty fades and one bad day breaks the chain. <strong>Prevention:</strong> Law 06 + Reset Protocol + Minimum Days. The OS is designed so a bad day costs 2 minutes to recover from, not a restart.</div>
+    <div class="tip-body">History says you abandon systems around week 2–3 when novelty fades and one bad  <span class="ib" onclick="showInfo('tip5')">i</span></div>
   </div>
   <div class="tip-card rd fu">
     <div class="tip-title">Failure #2 — Outreach dies after 10 silent days</div>
-    <div class="tip-body">Zero replies for two weeks is STATISTICALLY NORMAL at your volume — but it will feel like proof it doesn't work. <strong>Prevention:</strong> you're graded on inputs only; the funnel card tells you 100 sent → 1 client is healthy. Re-read it on silent days.</div>
+    <div class="tip-body">Zero replies for two weeks is STATISTICALLY NORMAL at your volume — but it will  <span class="ib" onclick="showInfo('tip6')">i</span></div>
   </div>
   <div class="tip-card rd fu">
     <div class="tip-title">Failure #3 — Final year eats everything (mid-Sept)</div>
-    <div class="tip-body">Campus 5 days/week + ExoGuard + everything else. The temptation: quietly drop outreach and gym. <strong>Prevention:</strong> Uni Day schedule pre-built with protected evening blocks; if truly overloaded, the OS drops SF first, then gym to 2×, NEVER outreach or sleep. That priority order is pre-decided — no negotiating with a tired brain.</div>
+    <div class="tip-body">Campus 5 days/week + ExoGuard + everything else. <span class="ib" onclick="showInfo('tip7')">i</span></div>
   </div>
   <div class="tip-card rd fu">
     <div class="tip-title">Failure #4 — The exam that never gets booked</div>
@@ -1549,11 +1583,11 @@ details.cbox.red{border-color:rgba(240,85,85,.25);}
   </div>
   <div class="tip-card rd fu">
     <div class="tip-title">Failure #5 — The bulk that never happens</div>
-    <div class="tip-body">Eating 3,000 kcal is boring and IBS makes big meals scary, so weight stays 60 kg while training hard. <strong>Prevention:</strong> liquid calories (2×/day), Friday weigh-in ritual, and the 4-week trend tile — if trend is flat for 3 weeks, add one smoothie. Mechanical, not motivational.</div>
+    <div class="tip-body">Eating 3,000 kcal is boring and IBS makes big meals scary, so weight stays 60 kg <span class="ib" onclick="showInfo('tip8')">i</span></div>
   </div>
   <div class="tip-card rd fu">
     <div class="tip-title">Failure #6 — ExoGuard perfectionism (solo builder disease)</div>
-    <div class="tip-body">No teammates = no one to say "that's good enough, ship it." Weeks vanish polishing CAD fillets. <strong>Prevention:</strong> Monday Contract — the supervisor meeting ships whatever exists at 80%. Deliverable streak counter makes shipping the metric, not perfection.</div>
+    <div class="tip-body">No teammates = no one to say "that's good enough, ship it." Weeks vanish polishi <span class="ib" onclick="showInfo('tip9')">i</span></div>
   </div>
 </div>
 
@@ -3604,169 +3638,261 @@ function renderFuel2(){
     :'<div class="hint">Nothing yet — start tonight.</div>';
 }
 
-// ═══════════════════════════════════════════════════════
-//  RECOVERY — Whoop / Apple Watch style, built from what you can measure
-// ═══════════════════════════════════════════════════════
-const BODYPARTS=[
- {id:'shoulder',n:'Shoulder',risk:'The #1 tennis overuse injury. Serving loads the rotator cuff every session.'},
- {id:'elbow',n:'Elbow',risk:'Tennis elbow. Usually grip and wrist strength, not the elbow itself.'},
- {id:'wrist',n:'Wrist / forearm',risk:'Racket grip + heavy pressing. The Thursday forearm work is your insurance.'},
- {id:'lowback',n:'Lower back',risk:'Squats, RDLs and serving. Also the thing ExoGuard exists to protect.'},
- {id:'knee',n:'Knee',risk:'Court changes of direction + leg day. Watch this one closely.'},
- {id:'ankle',n:'Ankle',risk:'Most common acute tennis injury. Single-leg balance work prevents it.'},
- {id:'hamstring',n:'Hamstring',risk:'Sprints and RDLs. Sore is fine; sharp or one-sided is not.'},
- {id:'chest',n:'Chest / upper back',risk:'Normal after pressing days.'},
-];
-const SORE_LBL=['none','mild','moderate','bad'];
-const SLEEP_HURT=['Late tennis finish','Screen before bed','Big meal late','Caffeine after noon',
- 'Stress / overthinking','Noise','Woke in the night','Phone in the room','Gut / IBS','Hot room'];
-
-if(!S.rec)S.rec={};
-if(!S.rec.sleep)S.rec.sleep={};     // dk -> {h, q, hurt:[]}
-if(!S.rec.sore)S.rec.sore={};       // dk -> {part:0-3}
-if(!S.rec.vitals)S.rec.vitals={};   // dk -> {rhr, hrv}
-
-function recSleepDebt(){
-  let debt=0;
-  for(let i=0;i<7;i++){const e=S.rec.sleep[dkOffset(i)];if(e&&e.h)debt+=(8-e.h);}
-  return Math.round(debt*10)/10;
+// ═══════════════════════════════════════════════════
+//  UI KIT — rings, charts, info modals
+// ═══════════════════════════════════════════════════
+function ring(pct,val,label,col,size,sw){
+  size=size||118; sw=sw||11;
+  const r=(size-sw)/2, c=2*Math.PI*r, p=Math.max(0,Math.min(100,pct||0));
+  const vs=Math.round(size*0.30), ls=Math.max(7,Math.round(size*0.072));
+  return '<div class="ring" style="width:'+size+'px;height:'+size+'px;">'
+   +'<svg width="'+size+'" height="'+size+'">'
+   +'<circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+'" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="'+sw+'"/>'
+   +'<circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+'" fill="none" stroke="'+col+'" stroke-width="'+sw+'"'
+   +' stroke-linecap="round" stroke-dasharray="'+c+'" stroke-dashoffset="'+(c-c*p/100)+'"/></svg>'
+   +'<div class="ring-c"><div class="ring-v" style="font-size:'+vs+'px;color:'+col+'">'+val+'</div>'
+   +(label?'<div class="ring-l" style="font-size:'+ls+'px;">'+label+'</div>':'')+'</div></div>';
 }
-function recLoad(){
-  // strain proxy: training sessions in the last 7 days, weighted
-  let n=0;
-  for(let i=0;i<7;i++){const k=dkOffset(i);
-    const q=S.quick[k]||{};if(q.train)n+=1;
-    const g=S.gym&&S.gym.sess&&S.gym.sess[k];
-    if(g)n+=Object.values(g.sets).filter(v=>v.w&&v.r).length/24;
-  }
-  return Math.min(21,Math.round(n*2.1*10)/10);
+function recCol(v){return v==null?'var(--muted)':v>=67?'var(--rec-hi)':v>=34?'var(--rec-mid)':'var(--rec-lo)';}
+function tile(label,val,sub,cls){
+  return '<div class="mtile '+(cls||'')+'"><div class="mt-l">'+label+'</div>'
+   +'<div class="mt-v">'+val+'</div>'+(sub?'<div class="mt-s">'+sub+'</div>':'')+'</div>';
 }
-function recScore(){
-  const dk=DKEY();
-  const sl=S.rec.sleep[dk]||{}, so=S.rec.sore[dk]||{}, vi=S.rec.vitals[dk]||{};
-  const parts=[];let score=0,wt=0;
-  // no verdict until you have logged last night — training load alone must never read as "recovered"
-  if(!sl.h)return{score:null,parts:[],load:recLoad()};
-  // sleep hours (40%)
-  if(sl.h){const s=Math.max(0,Math.min(100,(sl.h/8)*100));score+=s*0.40;wt+=0.40;
-    parts.push(['Sleep hours',Math.round(s),sl.h+'h']);}
-  // sleep quality (15%)
-  if(sl.q){const s=(sl.q/5)*100;score+=s*0.15;wt+=0.15;parts.push(['Sleep quality',Math.round(s),sl.q+'/5']);}
-  // soreness (25%)
-  const vals=Object.values(so);
-  if(vals.length){const avg=vals.reduce((a,b)=>a+b,0)/vals.length;
-    const s=Math.max(0,100-(avg/3)*100);score+=s*0.25;wt+=0.25;
-    parts.push(['Soreness',Math.round(s),vals.filter(v=>v>=2).length+' areas ≥moderate']);}
-  // 7-day load (20%) — too much load drops readiness
-  const L=recLoad();const s2=Math.max(0,100-Math.max(0,L-13)*9);
-  score+=s2*0.20;wt+=0.20;parts.push(['Training load',Math.round(s2),L+' / 21']);
-  // resting HR trend (bonus if logged)
-  if(vi.rhr){
-    const hist=[];for(let i=1;i<15;i++){const v=S.rec.vitals[dkOffset(i)];if(v&&v.rhr)hist.push(v.rhr);}
-    if(hist.length>=3){const base=hist.reduce((a,b)=>a+b,0)/hist.length;
-      const d=vi.rhr-base;const s3=Math.max(0,Math.min(100,100-d*10));
-      score+=s3*0.15;wt+=0.15;
-      parts.push(['Resting HR',Math.round(s3),vi.rhr+' bpm vs '+Math.round(base)+' baseline']);}
-  }
-  return {score:wt?Math.round(score/wt):null,parts:parts,load:L};
-}
-function recVerdict(sc){
-  if(sc===null)return{t:'Log today first',c:'var(--muted)',w:'Fill in sleep and soreness below and this becomes a real number.'};
-  if(sc>=75)return{t:'GO HARD',c:'var(--green)',w:'You are recovered. Push the top set, chase the extra rep, play the long points. This is the day to set a PR.'};
-  if(sc>=55)return{t:'TRAIN NORMAL',c:'var(--gold)',w:'Run the session as written. Do not add volume, do not skip it either.'};
-  if(sc>=38)return{t:'GO LIGHT',c:'#f5a524',w:'Train, but drop the top sets and keep tennis technical rather than competitive. Still showing up — just not digging a deeper hole.'};
-  return{t:'REST',c:'#f05555',w:'Your body is asking. One skipped session costs you nothing; training through this costs you three weeks. Sleep, eat, stretch, come back tomorrow.'};
-}
-function recSetSleep(f,v){
-  const dk=DKEY();if(!S.rec.sleep[dk])S.rec.sleep[dk]={hurt:[]};
-  S.rec.sleep[dk][f]=v;sv();renderRec();
-}
-function recTogHurt(x){
-  const dk=DKEY();if(!S.rec.sleep[dk])S.rec.sleep[dk]={hurt:[]};
-  const h=S.rec.sleep[dk].hurt||[];const i=h.indexOf(x);
-  if(i<0)h.push(x);else h.splice(i,1);
-  S.rec.sleep[dk].hurt=h;sv();renderRec();
-}
-function recSore(p){
-  const dk=DKEY();if(!S.rec.sore[dk])S.rec.sore[dk]={};
-  S.rec.sore[dk][p]=((S.rec.sore[dk][p]||0)+1)%4;sv();renderRec();
-}
-function recVitals(){
-  const dk=DKEY();const r=+document.getElementById('rec-rhr').value,h=+document.getElementById('rec-hrv').value;
-  if(!S.rec.vitals[dk])S.rec.vitals[dk]={};
-  if(r)S.rec.vitals[dk].rhr=r; if(h)S.rec.vitals[dk].hrv=h;
-  sv();document.getElementById('rec-rhr').value='';document.getElementById('rec-hrv').value='';
-  renderRec();toast('💓 Logged');
-}
-function soreWarn(){
-  const out=[];
-  BODYPARTS.forEach(b=>{
-    let n=0;for(let i=0;i<10;i++){const s=S.rec.sore[dkOffset(i)];if(s&&(s[b.id]||0)>=2)n++;}
-    if(n>=4)out.push('<div class="callout warn" style="margin:0 0 7px;"><strong>⚠️ '+b.n+' — sore on '+n+' of the last 10 days.</strong> '+b.risk+' That is not normal soreness any more, that is an overuse pattern. Drop the load on it this week and if it persists, see a physio before it stops you training.</div>');
+function spark(vals,labels,thresh){
+  const max=Math.max(1,...vals.filter(v=>v!=null));
+  let h='<div class="spark">';
+  vals.forEach(v=>{
+    const pct=v==null?0:Math.round(v/max*100);
+    let cls='';
+    if(thresh&&v!=null)cls=v>=thresh[0]?'hi':(v>=thresh[1]?'mid':'lo');
+    h+='<i class="'+cls+'" style="height:'+Math.max(4,pct)+'%;'+(v==null?'opacity:.18;':'')+'"></i>';
   });
-  return out.join('')||'<div class="hint">No overuse patterns. Nothing sore ≥moderate on 4+ of the last 10 days.</div>';
+  h+='</div>';
+  if(labels)h+='<div class="spark-x">'+labels.map(l=>'<span>'+l+'</span>').join('')+'</div>';
+  return h;
 }
-function sleepInsight(){
-  const bad=[],good=[];
-  for(let i=0;i<21;i++){const e=S.rec.sleep[dkOffset(i)];if(!e||!e.h)continue;
-    (e.h<7||(e.q&&e.q<=2)?bad:good).push(e);}
-  if(bad.length+good.length<5)return'Log sleep for a week or so and this box starts naming what actually wrecks your nights.';
-  const c={};bad.forEach(e=>(e.hurt||[]).forEach(x=>c[x]=(c[x]||0)+1));
-  const top=Object.keys(c).sort((a,b)=>c[b]-c[a]).slice(0,3);
-  if(!top.length)return'You have logged '+bad.length+' poor night(s) but tagged no causes. Tick what hurt each night and the pattern will show.';
-  return'Your bad nights keep showing: <strong>'+top.map(x=>x+' ('+c[x]+'×)').join(', ')+'</strong>. Fix the top one first — it is the highest-leverage change available to you right now.';
+
+
+// ── info modal system: long text lives here, not on screen ──
+const INFO={};
+INFO['tip1']={"t": "End of every ExoGuard block, write in one note: ", "b": "<p>End of every ExoGuard block, write in one note: what I did \u00b7 what broke \u00b7 next action. When you return tomorrow you start in 30 seconds instead of 15 minutes of \"where was I?\" \u2014 this is the #1 solo-builder retention tool.</p>"};
+INFO['tip2']={"t": "Phase ladder: CAD approved \u2192 parts ordered same ", "b": "<p>Phase ladder: CAD approved \u2192 parts ordered same day \u2192 breadboard test \u2192 V1 frame \u2192 dataset \u2192 AI \u2192 V2. Each rung only needs to be good enough to stand on. Perfection at any rung delays every rung above it.</p>"};
+INFO['tip3']={"t": "A factory pilot (even 2 weeks, 5 workers) turns ", "b": "<p>A factory pilot (even 2 weeks, 5 workers) turns a grad project into a company story: real data, a named customer, a photo at a Caterpillar dealership. Ask for access, not money. Send the request once V1 exists.</p>"};
+INFO['tip4']={"t": "\ud83e\udd49 5,000 EGP: logo on expo poster + acknowledgmen", "b": "<p>\ud83e\udd49 5,000 EGP: logo on expo poster + acknowledgment. \ud83e\udd48 15,000: + exclusive demo + pilot access. \ud83e\udd47 30,000+: + co-branded press release. Send a 1-page brief with one device photo + one dashboard screenshot, on TKH letterhead. Follow up once after 10 days, then move on.</p>"};
+INFO['tip5']={"t": "Prevention", "b": "<p>History says you abandon systems around week 2\u20133 when novelty fades and one bad day breaks the chain. <strong>Prevention:</strong> Law 06 + Reset Protocol + Minimum Days. The OS is designed so a bad day costs 2 minutes to recover from, not a restart.</p>"};
+INFO['tip6']={"t": "Prevention", "b": "<p>Zero replies for two weeks is STATISTICALLY NORMAL at your volume \u2014 but it will feel like proof it doesn't work. <strong>Prevention:</strong> you're graded on inputs only; the funnel card tells you 100 sent \u2192 1 client is healthy. Re-read it on silent days.</p>"};
+INFO['tip7']={"t": "Prevention", "b": "<p>Campus 5 days/week + ExoGuard + everything else. The temptation: quietly drop outreach and gym. <strong>Prevention:</strong> Uni Day schedule pre-built with protected evening blocks; if truly overloaded, the OS drops SF first, then gym to 2\u00d7, NEVER outreach or sleep. That priority order is pre-decided \u2014 no negotiating with a tired brain.</p>"};
+INFO['tip8']={"t": "Prevention", "b": "<p>Eating 3,000 kcal is boring and IBS makes big meals scary, so weight stays 60 kg while training hard. <strong>Prevention:</strong> liquid calories (2\u00d7/day), Friday weigh-in ritual, and the 4-week trend tile \u2014 if trend is flat for 3 weeks, add one smoothie. Mechanical, not motivational.</p>"};
+INFO['tip9']={"t": "Prevention", "b": "<p>No teammates = no one to say \"that's good enough, ship it.\" Weeks vanish polishing CAD fillets. <strong>Prevention:</strong> Monday Contract \u2014 the supervisor meeting ships whatever exists at 80%. Deliverable streak counter makes shipping the metric, not perfection.</p>"};
+INFO['auto1']={"t": "Standing order \u2014 Order-Same-Day Rule", "b": "<p><strong>Standing order \u2014 Order-Same-Day Rule:</strong> the day your design gets supervisor approval, the component order goes in that evening. Local Cairo suppliers (RAM Electronics / Future Electronics, Nasr City) \u2014 no shipping delay excuse exists in Egypt. ESP32, MPU-6050 \u00d73, 18650 cells + BMS, solenoid, MOSFETs. Design first \u2713 \u2014 but approval day = order day.</p>"};
+INFO['auto2']={"t": "15 hrs/week self-study, weighted 6 / 4 / 2", "b": "<p><strong>15 hrs/week self-study, weighted 6 / 4 / 2.</strong> Thermo-fluids gets the most because CFD compounds \u2014 week 10 is built on week 3. Clean Energy is breadth and argument, not derivation. Professional Dev you exploit: point every deliverable at ExoGuard and do the work once for two grades.</p>"};
+INFO['auto3']={"t": "This is the hole in your method", "b": "<p><strong>This is the hole in your method.</strong> Two passes hold one week. By week 8, week 1 is gone. One old topic at the front of every deep session \u2014 10 minutes. The app picks it so you never decide.</p>"};
+INFO['auto4']={"t": "Exams are week 13 \u2014 13\u201317 December", "b": "<p><strong>Exams are week 13 \u2014 13\u201317 December.</strong> The app auto-switches to FINALS RAMP on 15 November: your Tue/Sat deep passes become past papers instead of new material, and Travis/ExoGuard step back. No decision needed from you.</p>"};
+INFO['auto5']={"t": "This is the moat", "b": "<p><strong>This is the moat.</strong> Phase 2 needs 100 entries as symptom \u2192 cause \u2192 fix. Nobody can copy this because nobody else is logging your bench. Start now, not in November \u2014 every ExoGuard debugging session is free data.</p>"};
+INFO['auto6']={"t": "Thirty minutes, one task, no decisions", "b": "<p><strong>Thirty minutes, one task, no decisions.</strong> The app picks. You do it, tap done, then sleep for the rest of the ride \u2014 that nap is part of the plan, not a failure. Sixteen hours a week on that bus; this turns ~2\u00bd of them into progress without costing you a single minute of desk time.</p>"};
+INFO['auto7']={"t": "The two weaknesses, attacked directly", "b": "<p><strong>The two weaknesses, attacked directly:</strong> \u2460 Serve consistency \u2014 30 serves with targets before EVERY session (ask the coach for 10 minutes of court time early; second-serve spin focus). \u2461 Match mentality \u2014 one practice match per week minimum + a fixed between-points routine: turn away, breathe, racket strings check, next point only. Confidence follows reps, not talent.</p>"};
+INFO['auto8']={"t": "Your split, kept \u2014 5 days, semester-mapped", "b": "<p><strong>Your split, kept \u2014 5 days, semester-mapped.</strong> Sun \u00b7 Tue \u00b7 Wed \u00b7 Thu \u00b7 Sat. <strong>Legs land on Wednesday</strong> \u2014 three clear days before Saturday's academy, so your footwork never pays for your squats. Never legs on Mon, Tue or Sat. The exercises below are editable: fix them once to match what you actually do and the logger takes over from there.</p>"};
+INFO['auto9']={"t": "The Engine tab exists because tennis matches are won in the ", "b": "<p><strong>The Engine tab exists because tennis matches are won in the third set.</strong> Aerobic base = faster recovery between points, calmer breathing under pressure, sharper footwork when tired. This is the invisible 20% that beats players with prettier forehands.</p>"};
+INFO['auto10']={"t": "The real bottleneck", "b": "<p><strong>The real bottleneck.</strong> 182 cm / ~60 kg \u2014 every goal in this OS (serve power, muscle, energy, even focus) is gated by eating. Target: <strong>+0.25\u20130.5 kg/week \u2192 68\u201370 kg by next summer.</strong> No supplements \u2014 food only, as agreed. IBS rules: regular meal times, eat calm and slow, limit spice and coffee, and remember your gut flares with anxiety \u2014 the Overwhelm Protocol protects digestion too.</p>"};
+INFO['auto11']={"t": "You asked: \"I ate 150g of chicken \u2014 what do I write?\"", "b": "<p><strong>You asked: \"I ate 150g of chicken \u2014 what do I write?\"</strong><br>\n        You write <strong>150</strong>. Pick the food, type the weight you ate in grams, and the app works out the protein. Chicken is 31g of protein per 100g, so 150g of chicken = <strong>46g of protein</strong>. You never calculate anything.<br>\n        Don't know the weight? Use the quick buttons below \u2014 a normal chicken breast is about 150g, an egg is 50g, a plate of foul is about 250g.</p>"};
+INFO['auto12']={"t": "Creatine is removed", "b": "<p><strong>Creatine is removed.</strong> You and your parents are not comfortable with it, and that is a completely reasonable call \u2014 it is your body and there is no version of this where you should be arguing with them about a supplement. Everything below gets you there with food. It is slightly slower and entirely sustainable.</p>"};
+INFO['auto13']={"t": "In one sentence", "b": "<p><strong>In one sentence:</strong> every night you rate how your stomach felt and type what you ate \u2014 after about two weeks the app tells you which foods keep showing up on your bad days.</p><p>\n        <strong>Why bother:</strong> IBS triggers are personal. Generic lists tell you to avoid twenty foods; most of them are probably fine for you. This finds <em>your</em> two or three, using your own data, so you stop avoiding food you never needed to avoid.</p><p>\n        <strong>What to do:</strong> tap a face, type what you ate. Five seconds. Do it at the same time each night \u2014 the daily log block at 10:45 is the natural slot.</p>"};
+function ib(key){return '<span class="ib" onclick="showInfo(\''+key+'\')">i</span>';}
+function showInfo(key){
+  const d=INFO[key];if(!d)return;
+  let m=document.getElementById('imodal');
+  if(!m){m=document.createElement('div');m.className='imodal';m.id='imodal';
+    m.onclick=e=>{if(e.target===m)closeInfo();};document.body.appendChild(m);}
+  m.innerHTML='<div class="imodal-c"><h4>'+d.t+'</h4>'+d.b
+    +'<button class="imodal-x" onclick="closeInfo()">Got it</button></div>';
+  m.classList.add('on');
+}
+function closeInfo(){const m=document.getElementById('imodal');if(m)m.classList.remove('on');}
+function hm(ringHTML,tag,tagCol,title,sub){
+  return '<div class="hero-metric">'+ringHTML+'<div class="hm-r">'
+   +(tag?'<div class="hm-tag" style="background:'+tagCol+'22;color:'+tagCol+';">'+tag+'</div>':'')
+   +'<div class="hm-title" style="color:'+(tagCol||'var(--text)')+'">'+title+'</div>'
+   +'<div class="hm-sub">'+sub+'</div></div></div>';
+}
+function fmtHM(mins){if(mins==null)return'—';const h=Math.floor(mins/60),m=Math.round(mins%60);return h+':'+String(m).padStart(2,'0');}
+function fmtClock(iso){if(!iso)return'—';const d=new Date(iso);
+  return d.getHours()+':'+String(d.getMinutes()).padStart(2,'0');}
+
+// ═══════════════════════════════════════════════════
+//  RECOVERY v2 — watch-driven
+// ═══════════════════════════════════════════════════
+// S.watch[dk] = {inBed,asleep,deep,rem,light,awake,bedT,wakeT,hrv,rhr,steps,cals,exMin}
+if(!S.watch)S.watch={};
+if(!S.rec)S.rec={};
+if(!S.rec.sore)S.rec.sore={};
+if(!S.rec.manual)S.rec.manual={};
+if(!S.hs)S.hs={bin:'',key:''};
+
+const BODYPARTS=[
+ {id:'shoulder',n:'Shoulder'},{id:'elbow',n:'Elbow'},{id:'wrist',n:'Wrist'},{id:'lowback',n:'Low back'},
+ {id:'knee',n:'Knee'},{id:'ankle',n:'Ankle'},{id:'hamstring',n:'Hams'},{id:'chest',n:'Chest'}];
+const SORE_LBL=['ok','mild','mod','bad'];
+
+INFO.recscore={t:'How the recovery score works',b:'<p>It blends four things into one number 0&ndash;100:</p><ul><li><strong>HRV vs your baseline (35%)</strong> &mdash; the strongest single signal. Above your 14-day average means recovered.</li><li><strong>Resting HR vs baseline (25%)</strong> &mdash; a jump of 5+ bpm usually means under-recovered or getting ill, often a day before you feel it.</li><li><strong>Sleep performance (25%)</strong> &mdash; hours slept against what you actually needed.</li><li><strong>Soreness (15%)</strong> &mdash; the only part you tap in.</li></ul><p>Green 67+, yellow 34&ndash;66, red under 34. It needs about a week of watch data before the baselines mean anything.</p>'};
+INFO.strain={t:'Strain',b:'<p>A 0&ndash;21 score of how hard your body worked today, built from active calories, exercise minutes and logged sessions. It scales with your size, so it is personal to you.</p><p>Roughly: under 8 is a light day, 10&ndash;14 normal training, 15&ndash;18 hard, 19+ is a day you will feel tomorrow.</p><p>The point is matching strain to recovery: a red recovery with 18 strain is how injuries and illness happen.</p>'};
+INFO.sleepneed={t:'Sleep need',b:'<p>Your baseline need is 8 hours. On top of that the app adds:</p><ul><li><strong>Sleep debt</strong> &mdash; whatever you missed over the last 3 nights, up to 2 extra hours.</li><li><strong>Strain</strong> &mdash; a hard training day adds up to 45 minutes.</li></ul><p>So after a heavy Wednesday leg day on 6 hours sleep, it will ask for more than 8. That number is what the sleep ring is measured against, not a flat 8.</p>'};
+INFO.stages={t:'Sleep stages',b:'<p><strong>Deep</strong> &mdash; physical repair, muscle growth, immune function. Front-loaded in the night, which is why a late bedtime costs you deep sleep specifically. Target roughly 13&ndash;23%.</p><p><strong>REM</strong> &mdash; motor learning and memory. This is where yesterday\'s tennis session actually gets encoded, and where lecture material consolidates. Back-loaded, so cutting the morning short costs REM. Target roughly 20&ndash;25%.</p><p><strong>Light</strong> &mdash; the majority of the night, and normal.</p><p><strong>Awake</strong> &mdash; brief wakings are normal; a lot of them usually means heat, a late big meal, or stress.</p>'};
+INFO.consistency={t:'Sleep consistency',b:'<p>How close your bed and wake times are to the previous days. It is one of the most under-rated levers in sleep &mdash; a regular schedule improves sleep quality even at the same number of hours.</p><p>Your Tuesday and Friday lie-ins will cost consistency points. That is a deliberate trade, not a mistake &mdash; but it is why Monday mornings feel worst.</p>'};
+
+function wd(dk){return S.watch[dk]||{};}
+function baseline(field,days){
+  days=days||14;const v=[];
+  for(let i=1;i<=days;i++){const w=wd(dkOffset(i));if(w[field]!=null)v.push(w[field]);}
+  return v.length>=3?v.reduce((a,b)=>a+b,0)/v.length:null;
+}
+function sleepDebt(){
+  let d=0;for(let i=1;i<=3;i++){const w=wd(dkOffset(i));if(w.asleep!=null)d+=Math.max(0,480-w.asleep);}
+  return Math.min(120,d);
+}
+function strainOf(dk){
+  const w=wd(dk);
+  if(w.cals!=null||w.exMin!=null){
+    const s=Math.min(21,((w.cals||0)/55)+((w.exMin||0)/9));
+    return Math.round(s*10)/10;
+  }
+  const q=S.quick[dk]||{};let n=q.train?9:2;
+  const g=S.gym&&S.gym.sess&&S.gym.sess[dk];
+  if(g)n+=Object.values(g.sets).filter(v=>v.w&&v.r).length/4;
+  return Math.min(21,Math.round(n*10)/10);
+}
+function sleepNeed(dk){
+  return Math.round(480+sleepDebt()+Math.min(45,Math.max(0,(strainOf(dkOffset(1))-10))*6));
+}
+function soreScore(dk){
+  const s=S.rec.sore[dk];if(!s)return null;
+  const v=Object.values(s);if(!v.length)return 100;
+  return Math.max(0,100-(v.reduce((a,b)=>a+b,0)/v.length/3)*100);
+}
+function recovery(dk){
+  const w=wd(dk);const parts=[];let sc=0,wt=0;
+  const hb=baseline('hrv'),rb=baseline('rhr');
+  if(w.hrv!=null&&hb){const s=Math.max(0,Math.min(100,50+((w.hrv-hb)/hb)*180));
+    sc+=s*.35;wt+=.35;parts.push(['HRV',Math.round(s),w.hrv+'ms vs '+Math.round(hb)]);}
+  if(w.rhr!=null&&rb){const s=Math.max(0,Math.min(100,100-(w.rhr-rb)*9));
+    sc+=s*.25;wt+=.25;parts.push(['Resting HR',Math.round(s),w.rhr+' vs '+Math.round(rb)]);}
+  if(w.asleep!=null){const s=Math.min(100,(w.asleep/sleepNeed(dk))*100);
+    sc+=s*.25;wt+=.25;parts.push(['Sleep',Math.round(s),fmtHM(w.asleep)+' / '+fmtHM(sleepNeed(dk))]);}
+  const ss=soreScore(dk);
+  if(ss!=null){sc+=ss*.15;wt+=.15;parts.push(['Soreness',Math.round(ss),
+    Object.values(S.rec.sore[dk]||{}).filter(v=>v>=2).length+' areas']);}
+  if(wt<.2)return{v:null,parts:parts};
+  return{v:Math.round(sc/wt),parts:parts};
+}
+function recVerdict(v){
+  if(v==null)return{t:'NO DATA',c:'var(--muted)',w:'Run the Health shortcut, or tap your soreness below.'};
+  if(v>=67)return{t:'GREEN',c:'var(--rec-hi)',w:'Recovered. Push the top set, play the long points.'};
+  if(v>=34)return{t:'YELLOW',c:'var(--rec-mid)',w:'Train as written. Do not add volume.'};
+  return{t:'RED',c:'var(--rec-lo)',w:'Go light or rest. Training through red is how three-week injuries start.'};
+}
+function recSore(p){const dk=DKEY();if(!S.rec.sore[dk])S.rec.sore[dk]={};
+  S.rec.sore[dk][p]=((S.rec.sore[dk][p]||0)+1)%4;sv();renderRec();}
+function recManual(){
+  const dk=DKEY();const g=id=>{const e=document.getElementById(id);return e&&e.value?+e.value:null;};
+  const h=g('rm-sleep'),hv=g('rm-hrv'),rh=g('rm-rhr');
+  if(!S.watch[dk])S.watch[dk]={};
+  if(h)S.watch[dk].asleep=Math.round(h*60);
+  if(hv)S.watch[dk].hrv=hv; if(rh)S.watch[dk].rhr=rh;
+  S.watch[dk].manual=true;sv();
+  ['rm-sleep','rm-hrv','rm-rhr'].forEach(x=>{const e=document.getElementById(x);if(e)e.value='';});
+  renderRec();toast('Logged');
+}
+// ── pull watch data from the Health bin ──
+async function pullHealth(manual){
+  const st=document.getElementById('hs-status');
+  if(!S.hs.bin||!S.hs.key){if(manual&&st)st.textContent='Paste the Health Bin ID + key first.';return;}
+  try{
+    if(st)st.textContent='Checking…';
+    const r=await fetch('https://api.jsonbin.io/v3/b/'+S.hs.bin+'/latest',{headers:{'X-Master-Key':S.hs.key}});
+    if(!r.ok)throw new Error(r.status);
+    const rec=(await r.json()).record;
+    let n=0;
+    Object.keys(rec||{}).forEach(k=>{
+      if(k==='ts')return;
+      const d=new Date(k);if(isNaN(d))return;
+      const dk=d.toDateString();
+      S.watch[dk]=Object.assign({},S.watch[dk],rec[k]);n++;
+    });
+    sv();renderRec();
+    if(st)st.textContent='✓ '+n+' day(s) synced · '+new Date().toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit'});
+  }catch(e){if(st)st.textContent='⚠️ Could not reach the Health bin. Check the keys.';}
+}
+function saveHS(){
+  S.hs.bin=(document.getElementById('hs-bin').value||'').trim();
+  S.hs.key=(document.getElementById('hs-key').value||'').trim();
+  sv();pullHealth(true);
 }
 function renderRec(){
-  const dk=DKEY();
-  const setT=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
-  const setH=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
-  const R=recScore(), V=recVerdict(R.score);
+  const dk=DKEY(),w=wd(dk);
+  const H=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
+  const R=recovery(dk),V=recVerdict(R.v);
 
-  // ring
-  const pct=R.score===null?0:R.score;
-  const ring=document.getElementById('rec-ring');
-  if(ring){const c=2*Math.PI*52;
-    ring.innerHTML='<svg viewBox="0 0 120 120" style="width:100%;height:auto;">'
-      +'<circle cx="60" cy="60" r="52" fill="none" stroke="var(--border)" stroke-width="9"/>'
-      +'<circle cx="60" cy="60" r="52" fill="none" stroke="'+V.c+'" stroke-width="9" stroke-linecap="round"'
-      +' stroke-dasharray="'+c+'" stroke-dashoffset="'+(c-c*pct/100)+'" transform="rotate(-90 60 60)"/>'
-      +'<text x="60" y="56" text-anchor="middle" fill="'+V.c+'" font-size="30" font-family="Bebas Neue,sans-serif">'+(R.score===null?'—':R.score)+'</text>'
-      +'<text x="60" y="74" text-anchor="middle" fill="var(--muted)" font-size="9" font-family="DM Mono,monospace">RECOVERY</text></svg>';}
-  setT('rec-verdict',V.t);
-  const vd=document.getElementById('rec-verdict');if(vd)vd.style.color=V.c;
-  setT('rec-verdict-why',V.w);
-  setT('rec-load',R.load+' / 21');
-  setT('rec-debt',recSleepDebt()+'h');
+  // hero
+  H('rec-hero',hm(ring(R.v||0,R.v==null?'—':R.v,'RECOVERY',recCol(R.v),126,12),
+    V.t,V.c,V.t==='NO DATA'?'No data yet':V.t+' DAY',V.w+' '+ib('recscore')));
 
-  setH('rec-breakdown',R.parts.length?R.parts.map(p=>
-    '<div class="mrow"><span style="flex:1;">'+p[0]+'</span><span class="hint" style="margin-right:9px;">'+p[2]+'</span>'
-    +'<div class="rec-mini"><div class="rec-mini-f" style="width:'+p[1]+'%;background:'+(p[1]>=70?'var(--green)':p[1]>=45?'var(--gold)':'#f05555')+';"></div></div></div>').join('')
-    :'<div class="hint">Nothing logged today yet.</div>');
+  // top tiles
+  const need=sleepNeed(dk),strain=strainOf(dk),debt=sleepDebt();
+  H('rec-tiles',
+     tile('Sleep','<span style="color:var(--ring-blue)">'+fmtHM(w.asleep)+'</span>',
+       w.asleep!=null?Math.round(w.asleep/need*100)+'% of need':'not synced','')
+    +tile('Need',fmtHM(need),'incl. '+fmtHM(debt)+' debt','p')
+    +tile('Strain',strain,'of 21','r')
+    +tile('HRV',w.hrv!=null?w.hrv:'—',baseline('hrv')?'base '+Math.round(baseline('hrv')):'need 3 days','g')
+    +tile('Rest HR',w.rhr!=null?w.rhr:'—',baseline('rhr')?'base '+Math.round(baseline('rhr')):'need 3 days','a')
+    +tile('Steps',w.steps!=null?(w.steps>999?(w.steps/1000).toFixed(1)+'k':w.steps):'—',w.cals?w.cals+' kcal':'','')
+  );
 
-  // sleep
-  const sl=S.rec.sleep[dk]||{};
-  setH('rec-sleep-h',[5,6,6.5,7,7.5,8,8.5,9,10].map(x=>
-    '<div class="chip'+(sl.h===x?' active':'')+'" onclick="recSetSleep(\'h\','+x+')">'+x+'h</div>').join(''));
-  setH('rec-sleep-q',[1,2,3,4,5].map(x=>
-    '<div class="chip'+(sl.q===x?' active':'')+'" onclick="recSetSleep(\'q\','+x+')">'+['','🤕 awful','😕 poor','😐 ok','🙂 good','😴 great'][x]+'</div>').join(''));
-  setH('rec-hurt',SLEEP_HURT.map(x=>
-    '<div class="chip'+((sl.hurt||[]).includes(x)?' active':'')+'" onclick="recTogHurt(\''+x+'\')">'+x+'</div>').join(''));
-  setH('rec-sleep-insight',sleepInsight());
-  const hist=document.getElementById('rec-sleep-hist');
-  if(hist){let h='';for(let i=13;i>=0;i--){const e=S.rec.sleep[dkOffset(i)];
-    const cls=!e||!e.h?(i===0?'td':''):(e.h>=7.5?'ogg':(e.h>=6.5?'og':'op'));
-    h+='<div class="d '+cls+'" title="'+dkOffset(i)+(e&&e.h?': '+e.h+'h':'')+'"></div>';}
-    hist.innerHTML='<div class="dot-row">'+h+'</div><div class="hint" style="margin-top:6px;">Bright = 7.5h+ · dim = 6.5–7.5h · faded = under 6.5h</div>';}
+  // breakdown
+  H('rec-break',R.parts.length?R.parts.map(p=>
+    '<div class="mrow" style="display:flex;align-items:center;gap:9px;"><span style="flex:1;font-size:11.5px;">'+p[0]+'</span>'
+    +'<span class="mt-s" style="margin:0;">'+p[2]+'</span>'
+    +'<div style="flex:0 0 54px;" class="bar"><i style="width:'+p[1]+'%;background:'+recCol(p[1])+'"></i></div></div>').join('')
+    :'<div class="mt-s">Nothing to score yet.</div>');
+
+  // sleep stages
+  const tot=(w.deep||0)+(w.rem||0)+(w.light||0)+(w.awake||0);
+  if(tot>0){
+    const pc=x=>((x||0)/tot*100).toFixed(1);
+    H('rec-stages',
+      '<div class="stages"><i class="stg-deep" style="width:'+pc(w.deep)+'%"></i>'
+      +'<i class="stg-rem" style="width:'+pc(w.rem)+'%"></i>'
+      +'<i class="stg-light" style="width:'+pc(w.light)+'%"></i>'
+      +'<i class="stg-awake" style="width:'+pc(w.awake)+'%"></i></div>'
+      +'<div class="stg-key"><span><b class="stg-deep"></b>Deep '+fmtHM(w.deep)+' ('+Math.round(pc(w.deep))+'%)</span>'
+      +'<span><b class="stg-rem"></b>REM '+fmtHM(w.rem)+' ('+Math.round(pc(w.rem))+'%)</span>'
+      +'<span><b class="stg-light"></b>Light '+fmtHM(w.light)+'</span>'
+      +'<span><b class="stg-awake"></b>Awake '+fmtHM(w.awake)+'</span></div>'
+      +'<div class="mt-s" style="margin-top:8px;">Bed '+(w.bedT||'—')+' → Wake '+(w.wakeT||'—')+'</div>');
+  } else H('rec-stages','<div class="mt-s">No sleep stages yet — they arrive with the Health shortcut.</div>');
+
+  // trends
+  const days=[],hrvV=[],rhrV=[],recV=[],slpV=[];
+  for(let i=13;i>=0;i--){const k=dkOffset(i),x=wd(k);
+    days.push(['S','M','T','W','T','F','S'][new Date(k).getDay()]);
+    hrvV.push(x.hrv!=null?x.hrv:null); rhrV.push(x.rhr!=null?x.rhr:null);
+    slpV.push(x.asleep!=null?Math.round(x.asleep/60*10)/10:null);
+    recV.push(recovery(k).v);}
+  H('rec-trend-rec',spark(recV,days,[67,34]));
+  H('rec-trend-hrv',spark(hrvV,days));
+  H('rec-trend-rhr',spark(rhrV,days));
+  H('rec-trend-sleep',spark(slpV,days,[7.5,6.5]));
 
   // soreness
   const so=S.rec.sore[dk]||{};
-  setH('rec-body',BODYPARTS.map(b=>{const v=so[b.id]||0;
+  H('rec-body',BODYPARTS.map(b=>{const v=so[b.id]||0;
     return'<div class="sore-cell s'+v+'" onclick="recSore(\''+b.id+'\')"><div class="sore-n">'+b.n+'</div><div class="sore-v">'+SORE_LBL[v]+'</div></div>';}).join(''));
-  setH('rec-sorewarn',soreWarn());
+  let warn='';
+  BODYPARTS.forEach(b=>{let n=0;for(let i=0;i<10;i++){const s=S.rec.sore[dkOffset(i)];if(s&&(s[b.id]||0)>=2)n++;}
+    if(n>=4)warn+='<div class="mrow" style="border-color:var(--rec-lo);"><span style="color:var(--rec-lo);font-weight:700;">⚠️ '+b.n+' sore '+n+'/10 days</span><div class="mt-s">Overuse pattern — drop load on it this week.</div></div>';});
+  H('rec-warn',warn);
 
-  // friday protocol visibility
-  const fp=document.getElementById('rec-friday');
-  if(fp)fp.style.borderColor=new Date().getDay()===5?'var(--gold)':'var(--border)';
+  const hsv=document.getElementById('hs-bin');
+  if(hsv&&!hsv.value&&S.hs.bin){hsv.value=S.hs.bin;document.getElementById('hs-key').value=S.hs.key;}
 }
 
 // ═══════════ ATHLETE ═══════════
@@ -3778,7 +3904,7 @@ function showAthTab(id,btn){
   if(id==='gym')renderGym();
   if(id==='engine')renderEngine();
   if(id==='fuel')renderFuel2();
-  if(id==='recovery')renderRec();
+  if(id==='recovery'){renderRec();try{pullHealth();}catch(e){}}
 }
 function renderAth(){
   renderGym();renderEngine();renderFuel2();try{renderRec();}catch(e){}
@@ -3930,11 +4056,30 @@ function togSupp(id){
   const dk=DKEY();if(!S.suppTaken[dk])S.suppTaken[dk]={};
   S.suppTaken[dk][id]=!S.suppTaken[dk][id];sv();renderCmd();
 }
+// ── Command hero: three rings like Apple Fitness ──
+function cmdRings(){
+  const dk=DKEY(), sch=getSch();
+  const done=Object.values(S.checks[dk]||{}).filter(Boolean).length;
+  const dayPct=Math.round(done/sch.length*100);
+  const R=(typeof recovery==='function')?recovery(dk):{v:null};
+  const tgt=(typeof protTarget==='function')?protTarget():null;
+  const pn=(typeof protToday==='function')?protToday(dk):0;
+  const protPct=tgt?Math.min(100,Math.round(pn/tgt*100)):0;
+  const water=S.water[dk]||0, wPct=Math.round(water/8*100);
+  return '<div style="display:flex;gap:10px;justify-content:space-around;align-items:center;">'
+    +ring(dayPct,dayPct+'%','DAY','var(--ring-red)',88,9)
+    +ring(R.v||0,R.v==null?'—':R.v,'RECOV',recCol(R.v),88,9)
+    +ring(protPct,pn+'g','FUEL','var(--ring-green)',88,9)
+    +ring(wPct,water,'WATER','var(--ring-blue)',88,9)
+    +'</div>';
+}
+
 function renderCmd(){
   const now=new Date(),dk=DKEY();
   const setT=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
   const setH=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
 
+  const cr=document.getElementById('cd-rings');if(cr)cr.innerHTML=cmdRings();
   setT('cd-date',now.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}));
   const wk=uniWeek();
   setT('cd-season',getSeason()+(wk?' · WEEK '+wk+'/13':''));
@@ -3974,7 +4119,7 @@ function renderCmd(){
   // ── water ──
   const w=S.water[dk]||0;
   setT('cd-water',w+' / 8');
-  setH('cd-waterdots',Array.from({length:8},(_,i)=>'<span class="wdot'+(i<w?' on':'')+'"></span>').join(''));
+  setH('cd-waterdots','');
 
   // ── protein ──
   const tgt=(typeof protTarget==='function')?protTarget():null;
@@ -4258,6 +4403,7 @@ renderUni();
 renderTravis();
 renderBus();
 renderCmd();
+try{pullHealth();}catch(e){}
 renderAth();
 renderHealth();
 renderReview();
