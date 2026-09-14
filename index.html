@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v5 · FINAL YEAR · built 10 Sep 2026 -->
+<!-- DAWLY OS v5.1 · FINAL YEAR · built 10 Sep 2026 -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <title>DAWLY OS — Personal Operating System</title>
@@ -541,6 +541,13 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
 .btn{border-radius:12px;background:var(--card-bg);border:1px solid var(--card-br);}
 .addbtn{border-radius:12px;}
 
+
+.spark{align-items:flex-end;gap:4px;height:52px;}
+.spark>i{border-radius:4px 4px 2px 2px;min-height:4px;}
+.spark>i.nil{background:rgba(255,255,255,.10);}
+.spark-empty{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);padding:16px 0;text-align:center;}
+.spark-meta{font-family:'DM Mono',monospace;font-size:8.5px;color:var(--muted);margin-top:7px;}
+.spark-meta b{color:var(--text);}
 </style>
 </head>
 <body>
@@ -1214,7 +1221,7 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
   <div class="hero">
     <div class="hero-kicker fu" style="color:var(--red);">TENNIS · STRENGTH · FUEL · RECOVERY — ONE MACHINE</div>
     <div class="hero-title fu" style="text-shadow:0 0 30px rgba(240,85,85,.15);">ATH<span style="color:var(--red);">LETE.</span></div>
-    <div class="hero-sub fu">Target: national ranking + club team. The path: 3 court sessions, your 5-day split, an aerobic engine, 3,000 calories, daily stretching, and 8 hours of sleep — every week, boring and repeatable.</div>
+    <div class="hero-sub fu">National ranking + club team. <span class="ib" onclick="showInfo('athgoal')">i</span></div>
   </div>
 
   <div class="stabs fu" id="ath-tabs">
@@ -1330,7 +1337,7 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
 
     <div class="card">
       <div class="c-hd">🫁 NASAL BREATHING HOLD — the progression that matters</div>
-      <div class="hint" style="margin-bottom:9px;">Exhale normally, then hold and time it until the FIRST strong urge to breathe (not to failure). Do it once a week, same conditions, seated and rested. It rises as your aerobic base builds — this is the number that predicts third-set calm.</div>
+      <div class="hint" style="margin-bottom:9px;">Once a week, same conditions. <span class="ib" onclick="showInfo('bhold')">i</span></div>
       <div class="grid2">
         <div class="stile"><div class="st-lbl">Latest</div><div class="st-val c-gold" id="en-bh-now" style="font-size:28px;">—</div><div class="st-sub">seconds</div></div>
         <div class="stile"><div class="st-lbl">Best</div><div class="st-val c-green" id="en-bh-best" style="font-size:28px;">—</div><div class="st-sub">seconds</div></div>
@@ -3642,6 +3649,7 @@ function renderFuel2(){
 //  UI KIT — rings, charts, info modals
 // ═══════════════════════════════════════════════════
 function ring(pct,val,label,col,size,sw){
+  if(pct==null||pct===0){col=col==='var(--muted)'?col:col;}
   size=size||118; sw=sw||11;
   const r=(size-sw)/2, c=2*Math.PI*r, p=Math.max(0,Math.min(100,pct||0));
   const vs=Math.round(size*0.30), ls=Math.max(7,Math.round(size*0.072));
@@ -3659,22 +3667,32 @@ function tile(label,val,sub,cls){
    +'<div class="mt-v">'+val+'</div>'+(sub?'<div class="mt-s">'+sub+'</div>':'')+'</div>';
 }
 function spark(vals,labels,thresh){
-  const max=Math.max(1,...vals.filter(v=>v!=null));
+  const nn=vals.filter(v=>v!=null);
+  if(!nn.length)return '<div class="spark-empty">No data yet</div>';
+  let min=Math.min(...nn),max=Math.max(...nn);
+  // give a flat series visible headroom instead of a wall of full-height bars
+  const pad=(max-min)<(max*0.08)?Math.max(1,max*0.12):(max-min)*0.25;
+  min=Math.max(0,min-pad); max=max+pad;
+  const rng=(max-min)||1;
   let h='<div class="spark">';
   vals.forEach(v=>{
-    const pct=v==null?0:Math.round(v/max*100);
+    if(v==null){h+='<i class="nil" style="height:6%"></i>';return;}
+    const pct=Math.round(((v-min)/rng)*100);
     let cls='';
-    if(thresh&&v!=null)cls=v>=thresh[0]?'hi':(v>=thresh[1]?'mid':'lo');
-    h+='<i class="'+cls+'" style="height:'+Math.max(4,pct)+'%;'+(v==null?'opacity:.18;':'')+'"></i>';
+    if(thresh)cls=v>=thresh[0]?'hi':(v>=thresh[1]?'mid':'lo');
+    h+='<i class="'+cls+'" style="height:'+Math.max(8,Math.min(100,pct))+'%" title="'+v+'"></i>';
   });
   h+='</div>';
   if(labels)h+='<div class="spark-x">'+labels.map(l=>'<span>'+l+'</span>').join('')+'</div>';
+  const last=nn[nn.length-1], avg=Math.round(nn.reduce((a,b)=>a+b,0)/nn.length*10)/10;
+  h+='<div class="spark-meta">now <b>'+last+'</b> · avg <b>'+avg+'</b> · low '+Math.min(...nn)+' · high '+Math.max(...nn)+'</div>';
   return h;
 }
 
-
 // ── info modal system: long text lives here, not on screen ──
 const INFO={};
+INFO.bhold={t:'Nasal breath-hold test',b:'<p>Exhale normally, then hold and time it until the FIRST strong urge to breathe &mdash; not to failure.</p><p>Do it once a week under the same conditions: seated, rested, same time of day. It rises as your aerobic base builds, and it is the number that predicts how calm your breathing is at 4&ndash;4 in the third set.</p>'};
+INFO.athgoal={t:'The athlete target',b:'<p>National ranking and a club team place.</p><p>The path is boring and repeatable: 3 court sessions a week, your 5-day split, an aerobic engine, ~3,000 calories, daily stretching, and 8 hours of sleep. Every week. That is the whole method.</p>'};
 INFO['tip1']={"t": "End of every ExoGuard block, write in one note: ", "b": "<p>End of every ExoGuard block, write in one note: what I did \u00b7 what broke \u00b7 next action. When you return tomorrow you start in 30 seconds instead of 15 minutes of \"where was I?\" \u2014 this is the #1 solo-builder retention tool.</p>"};
 INFO['tip2']={"t": "Phase ladder: CAD approved \u2192 parts ordered same ", "b": "<p>Phase ladder: CAD approved \u2192 parts ordered same day \u2192 breadboard test \u2192 V1 frame \u2192 dataset \u2192 AI \u2192 V2. Each rung only needs to be good enough to stand on. Perfection at any rung delays every rung above it.</p>"};
 INFO['tip3']={"t": "A factory pilot (even 2 weeks, 5 workers) turns ", "b": "<p>A factory pilot (even 2 weeks, 5 workers) turns a grad project into a company story: real data, a named customer, a photo at a Caterpillar dealership. Ask for access, not money. Send the request once V1 exists.</p>"};
@@ -3761,7 +3779,9 @@ function strainOf(dk){
   return Math.min(21,Math.round(n*10)/10);
 }
 function sleepNeed(dk){
-  return Math.round(480+sleepDebt()+Math.min(45,Math.max(0,(strainOf(dkOffset(1))-10))*6));
+  // 8h base + a THIRD of recent debt + a small strain bonus, capped at 9h30
+  const n=480+Math.round(sleepDebt()*0.34)+Math.min(30,Math.max(0,(strainOf(dkOffset(1))-12))*5);
+  return Math.min(570,Math.round(n));
 }
 function soreScore(dk){
   const s=S.rec.sore[dk];if(!s)return null;
