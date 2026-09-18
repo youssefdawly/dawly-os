@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v6 · FINAL YEAR · built 10 Sep 2026 -->
+<!-- DAWLY OS v7.1 · FINAL YEAR · WHOOP spec -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <title>DAWLY OS — Personal Operating System</title>
-<meta name="theme-color" content="#070709">
+<meta name="theme-color" content="#101518">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="DAWLY OS">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -567,6 +567,133 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
 .mc-sore-t b{color:var(--rec-mid);}
 .mc-close{margin-top:12px;text-align:center;padding:10px;border-radius:12px;
  background:rgba(255,255,255,.06);font-size:12px;font-weight:700;cursor:pointer;}
+
+/* ── phone-safe gym rows (were overflowing 320px by 97px / 268px) ── */
+.row{flex-wrap:wrap;}
+.row>*{min-width:0;}
+.inp{min-width:0;}
+.setrow{display:grid;grid-template-columns:26px 1fr 1fr;gap:6px;align-items:center;margin-bottom:5px;}
+.sr-n{font-family:'DM Mono',monospace;font-size:9px;color:var(--muted);text-align:center;}
+.sr-i{padding:11px 6px;text-align:center;font-size:15px;min-width:0;width:100%;}
+.setrow.ok .sr-i{border-color:rgba(46,201,122,.35);}
+.exrow{display:grid;grid-template-columns:1fr 44px 44px 18px;gap:5px;align-items:center;margin-bottom:5px;}
+.exrow .inp{padding:9px 7px;font-size:11.5px;min-width:0;width:100%;}
+.exrow .ex-s{text-align:center;padding:9px 2px;}
+.ex-x{text-align:center;}
+.mc-vitals{flex-wrap:nowrap;}
+.mc-vitals .inp{min-width:0;}
+
+/* ═══════════════════════════════════════════════════════════
+   DAWLY OS v7 — built to the WHOOP brand & design spec
+   words: Mulish (Proxima Nova stand-in)
+   numbers: Barlow (DINPro stand-in)
+   colour is semantic. the score always outweighs its label.
+   ═══════════════════════════════════════════════════════════ */
+:root{
+  /* recovery scale — straight from the spec */
+  --rec-hi:#16EC06;      /* 67-100 */
+  --rec-mid:#FFDE00;     /* 34-66  */
+  --rec-lo:#FF0026;      /* 0-33   */
+  --teal:#00F19F;        /* actions, positives, sleep need */
+  --strain:#0093E7;      /* strain & activity only */
+  --sleepc:#7BA1BB;      /* sleep data */
+  --recblue:#67AEE6;     /* recovery data, no judgement */
+  --uni:#FFB020;         /* domain accent — uni */
+  --build:#A78BFA;       /* domain accent — exoguard & travis */
+  /* legacy names remapped onto the spec so every old rule inherits it */
+  --ring-red:#FF0026; --ring-green:#16EC06; --ring-blue:#67AEE6;
+  --ring-amber:#FFDE00; --ring-purple:#A78BFA;
+  --gold:#FFB020; --gold2:#FFC451;
+  --blue:#0093E7; --blue2:#67AEE6;
+  --green:#16EC06; --red:#FF0026; --cyan:#00F19F; --purple:#A78BFA;
+  --bg:#0b0f12; --s1:#141a1e; --s2:#182025; --s3:#1e272c;
+  --text:#ffffff; --muted:#6d8492; --muted2:#8ea4b0;
+  --border:rgba(255,255,255,.08); --border2:rgba(255,255,255,.15);
+  --card-bg:rgba(255,255,255,.035); --card-br:rgba(255,255,255,.08);
+  --r2:14px; --r:12px; --rs:8px;
+}
+body{font-family:'Mulish',sans-serif;
+  background:linear-gradient(180deg,#283339 0%,#101518 46%,#0b0f12 100%);
+  background-attachment:fixed;}
+body::after{display:none!important;}          /* scanline gone */
+.hdr{background:rgba(20,26,30,.92);}
+
+/* ── TYPE: numbers are Barlow, tabular, heavy ── */
+.ring-v,.mt-v,.hm-title,.hero-title,.n,.clk,.streak-pill{
+  font-family:'Barlow',sans-serif!important;font-weight:700!important;
+  font-variant-numeric:tabular-nums;letter-spacing:-.4px!important;}
+
+/* ── TYPE: labels are small, grey, uppercase, 10% tracking ── */
+.mt-l,.c-hd,.hero-kicker,.mc-hd,.ring-l,.season-pill{
+  font-family:'Mulish',sans-serif!important;font-weight:700!important;
+  text-transform:uppercase!important;letter-spacing:.1em!important;
+  color:var(--muted)!important;}
+.sec-ttl{font-family:'Mulish',sans-serif!important;font-weight:700!important;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--muted2);}
+.mt-s,.hm-sub,.spark-x>span{font-family:'Mulish',sans-serif!important;
+  font-weight:600!important;color:var(--muted)!important;letter-spacing:0!important;}
+.hm-tag{font-family:'Mulish',sans-serif!important;font-weight:800!important;
+  text-transform:uppercase;letter-spacing:.1em!important;}
+.logo{font-family:'Mulish',sans-serif!important;font-weight:900;font-size:17px;
+  letter-spacing:3.5px;background:none;-webkit-text-fill-color:#fff;color:#fff;filter:none;}
+.logo-sub{font-family:'Mulish',sans-serif;font-weight:700;letter-spacing:.1em;}
+.modal-inp,.mbtn-cancel,.mbtn-save{font-family:'Mulish',sans-serif!important;}
+
+/* ── the score must always outweigh its label ── */
+.mt-v{font-size:30px;line-height:1;}
+.mt-l{font-size:8.5px;margin-bottom:6px;}
+.mt-s{font-size:10px;margin-top:4px;}
+
+/* ── cards: flatter, less chrome ── */
+.card{background:var(--card-bg);border:1px solid var(--card-br);border-radius:var(--r2);}
+.mtile{background:var(--card-bg);border:1px solid var(--card-br);border-radius:var(--r2);}
+.mtile::after{width:2px;opacity:1;}
+
+/* ═══ HERO SCORE — one number owns the screen ═══ */
+.hero-metric{background:none;border:0;padding:8px 0 2px;margin-bottom:4px;
+  display:flex;flex-direction:column;align-items:center;gap:0;}
+.hm-r{flex:none;width:100%;text-align:center;min-width:0;}
+.hm-tag{display:inline-block;background:none!important;padding:0;margin:14px 0 0;
+  font-size:14px;letter-spacing:.12em!important;}
+.hm-title{display:none;}                       /* verdict lives in the tag now */
+.hm-sub{font-size:13.5px;line-height:1.55;color:var(--muted2)!important;
+  margin:7px auto 0;max-width:280px;}
+.ring-v{letter-spacing:-3px!important;}
+.ring-l{font-size:10px!important;margin-top:8px;}
+
+/* ── bars ── */
+.bar{height:6px;background:rgba(255,255,255,.09);}
+.bar>i{background:var(--recblue);}
+.spark>i{background:var(--recblue);}
+
+/* ── primary action ── */
+.btn-primary,.cta-primary{background:var(--teal);color:#062017;font-weight:900;
+  letter-spacing:.1em;text-transform:uppercase;}
+
+/* ═══ COMMAND — the three scores ═══ */
+.dash3{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
+.d3{position:relative;background:var(--card-bg);border:1px solid var(--card-br);
+  border-radius:var(--r2);padding:13px 8px 11px;text-align:center;overflow:hidden;}
+.d3::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;}
+.d3.b::before{background:var(--rec-hi);} .d3.u::before{background:var(--uni);}
+.d3.k::before{background:var(--build);}
+.d3-v{font-family:'Barlow',sans-serif;font-weight:700;font-size:35px;line-height:1;
+  font-variant-numeric:tabular-nums;letter-spacing:-1.5px;}
+.d3-v sup{font-size:.34em;font-weight:600;letter-spacing:0;vertical-align:super;}
+.d3-k{font-family:'Mulish',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:.11em;
+  text-transform:uppercase;color:var(--muted);margin-top:7px;}
+.d3-s{font-family:'Mulish',sans-serif;font-weight:700;font-size:9px;letter-spacing:.06em;
+  margin-top:3px;text-transform:uppercase;}
+.d3-t{height:2px;background:rgba(255,255,255,.08);margin-top:8px;border-radius:2px;overflow:hidden;}
+.d3-t i{display:block;height:100%;}
+/* flags */
+.flag{display:flex;align-items:center;gap:10px;padding:11px 12px;margin-bottom:6px;
+  background:var(--card-bg);border:1px solid var(--card-br);border-left:2px solid var(--muted);
+  border-radius:var(--r2);}
+.flag.hi{border-left-color:var(--rec-lo);} .flag.md{border-left-color:var(--rec-mid);}
+.flag.ok{border-left-color:var(--rec-hi);}
+.flag .fx{font-size:15px;} .flag .ft{flex:1;font-size:13.5px;font-weight:600;line-height:1.4;}
+.flag .fv{font-family:'Barlow',sans-serif;font-weight:700;font-size:16px;font-variant-numeric:tabular-nums;}
 </style>
 </head>
 <body>
@@ -601,12 +728,16 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
 
   <!-- ░░ HERO — right now ░░ -->
   <div class="id-date fu" id="id-date">--</div>
-  <div class="cmd-hero fu">
-    <div id="cd-rings" style="margin-bottom:15px;"></div>
-    <div class="cmd-hero-top">
-      <div class="cmd-date" id="cd-date">—</div>
-      <div class="cmd-season" id="cd-season">—</div>
-    </div>
+
+  <!-- ░░ THE THREE SCORES — all of life at a glance ░░ -->
+  <div class="cmd-hero-top" style="padding:2px 2px 12px;">
+    <div class="cmd-date" id="cd-date">—</div>
+    <div class="cmd-season" id="cd-season">—</div>
+  </div>
+  <div class="dash3" id="cd-dash3"></div>
+
+  <!-- ░░ RIGHT NOW ░░ -->
+  <div class="cmd-hero fu" style="margin-top:9px;">
     <div class="cmd-now-lbl">▸ RIGHT NOW</div>
     <div class="cmd-now" id="cd-now">—</div>
     <div class="cmd-now-sub" id="cd-nowsub">—</div>
@@ -614,6 +745,7 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
     <div class="ph-bar" style="margin-top:12px;"><div class="ph-fill" id="cd-dayfill"></div></div>
     <div class="cmd-dayline" id="cd-dayline">—</div>
   </div>
+  <div id="cd-rings" style="display:none;"></div>
 
   <div id="cd-morning"></div>
 
@@ -909,6 +1041,7 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
     <div class="hero-sub fu">Smart industrial back exoskeleton with AI injury prevention. You build this alone — so the system supplies the accountability a team would. Every Monday, your supervisor is the deadline.</div>
   </div>
 
+  <div id="exo-hero"></div>
   <div class="stabs fu" id="exo-tabs">
     <div class="stab active" onclick="showExoTab('exec',this)">⚡ Execute</div>
     <div class="stab" onclick="showExoTab('phases',this)">🗺 Phases</div>
@@ -1030,6 +1163,8 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
     <div class="ph-bar"><div class="ph-fill" id="uni-fill"></div></div>
     <div class="ph-meta" id="uni-sub">—</div>
   </div>
+  <div id="uni-hero"></div>
+  <div class="mtiles" id="uni-trio"></div>
 
   <!-- ░░ THE ONLY THING THAT MATTERS: what to study now ░░ -->
   <div class="uni-big fu">
@@ -1130,6 +1265,7 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
     <div class="hero-sub fu">Seven calendar months, six working — March belongs entirely to ExoGuard. Voice, then eyes, then knowledge, then light on the real bench. Built because you needed it, not to pitch it.</div>
   </div>
 
+  <div id="tv-hero"></div>
   <div class="ph">
     <div class="ph-top"><div class="ph-t">🤖 ROADMAP PROGRESS</div><div class="ph-s" id="tv-overall">0 / 0</div></div>
     <div class="ph-bar"><div class="ph-fill" id="tv-fill" style="background:linear-gradient(90deg,var(--cyan),var(--green));"></div></div>
@@ -1475,7 +1611,8 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
 
     <div class="card">
       <div class="c-hd">Score breakdown</div>
-      <div id="rec-break"></div>
+      <div id="rec-workouts"></div>
+    <div id="rec-break"></div>
     </div>
 
     <div class="card">
@@ -1969,10 +2106,10 @@ const SCH={
     {t:'1:00 PM',n:'Lunch',s:'Then gym. Do not skip the food',e:'🍽️',c:'rest'},
     {t:'2:00 PM',n:'GYM — Pull',s:'Unrushed session. No time pressure today',e:'🏋️',c:'gym'},
     {t:'3:30 PM',n:'DEEP STUDY PASS #1 — 3 hrs',s:'Sun + Mon material · REAL notes · solve questions · wrong-answer log · +10 min rolling review',e:'📚',c:'study',law:3},
-    {t:'6:30 PM',n:'Pre-tennis meal',s:'Eat now — you play at 8',e:'🍚',c:'rest'},
-    {t:'7:45 PM',n:'Leave + 30-serve ritual',s:'Arrive early. 30 serves with targets before the coach starts',e:'⚡',c:'gym'},
-    {t:'8:00 PM',n:'PRIVATE LESSON',s:'Bring Monday\'s broken shot. Fix it while it is fresh',e:'🎾',c:'gym',law:1},
-    {t:'10:00 PM',n:'Home · shower · light meal',s:'Nothing heavy this late',e:'🚿',c:'rest'},
+    {t:'6:30 PM',n:'Dinner',s:'No court tonight — private moved to Friday 9 PM',e:'🍚',c:'rest'},
+    {t:'7:30 PM',n:'SHADOW + SERVE BASKET — 40 min',s:'Monday\'s broken shot, dry. Bring it to Friday already half-fixed',e:'⚡',c:'gym'},
+    {t:'8:30 PM',n:'EXOGUARD — second block',s:'Tuesday just got 2 free hours. This is where they go',e:'🦾',c:'study',law:1},
+    {t:'10:00 PM',n:'Wind down · light meal',s:'Nothing heavy this late',e:'🚿',c:'rest'},
     {t:'10:50 PM',n:'Daily log + shutdown',s:'Log the tennis session in the Athlete tab too',e:'📥',c:'rest',law:6},
     {t:'11:15 PM',n:'Sleep',s:'Uni tomorrow · 6:15 wake',e:'🌙',c:'rest',law:5},
   ],
@@ -2053,9 +2190,12 @@ const SCH={
     {t:'12:00 PM',n:'Jummah',s:'',e:'🕌',c:'prayer'},
     {t:'1:00 PM',n:'Lunch with family',s:'Be present. Phone away',e:'🍽️',c:'rest'},
     {t:'2:00 PM',n:'RECOVERY MODE',s:'Sauna · jacuzzi · movie · Barça · family · ZERO GUILT',e:'🧖',c:'rest'},
-    {t:'8:00 PM',n:'Big meal',s:'',e:'🍚',c:'rest'},
-    {t:'11:00 PM',n:'Daily log',s:'Plus the sleep ramp — check tonight\'s target',e:'📥',c:'rest',law:6},
-    {t:'12:00 AM',n:'Sleep',s:'',e:'🌙',c:'rest',law:5},
+    {t:'7:30 PM',n:'Pre-tennis meal — eat EARLY',s:'You play at 9. Nothing heavy after this',e:'🍚',c:'rest'},
+    {t:'8:30 PM',n:'Leave + 30-serve ritual',s:'Arrive early. 30 serves with targets before the coach starts',e:'⚡',c:'gym'},
+    {t:'9:00 PM',n:'PRIVATE LESSON (Untouchable)',s:'TECHNIQUE ONLY — academy is tomorrow. Save the legs',e:'🎾',c:'gym',law:1},
+    {t:'10:30 PM',n:'Home · shower · light meal',s:'Nothing heavy this late',e:'🚿',c:'rest'},
+    {t:'11:15 PM',n:'Daily log + stretch',s:'Log the session. Legs up the wall — academy in 15 hrs',e:'📥',c:'rest',law:6},
+    {t:'11:45 PM',n:'Sleep — protect this one',s:'Back-to-back court days. Sleep is the only thing that carries you',e:'🌙',c:'rest',law:5},
   ]
 };
 // ══════════ PRE-SEASON BRIDGE · 10 → 19 Sep 2026 ══════════
@@ -2122,8 +2262,8 @@ function buildPre(k){
     a.push({t:'7:30 PM',n:'TENNIS ACADEMY',s:'ONE goal per session · log it after',e:'🎾',c:'gym',law:1});
   }
   if(d.tn==='private'){
-    a.push({t:'6:45 PM',n:'Pre-tennis meal + 30-serve ritual',s:'Bring one weakness to fix',e:'⚡',c:'rest'});
-    a.push({t:'8:00 PM',n:'PRIVATE LESSON',s:'The technical fix session',e:'🎾',c:'gym',law:1});
+    a.push({t:'7:30 PM',n:'Pre-tennis meal + 30-serve ritual',s:'Eat early — you play at 9. Bring one weakness to fix',e:'⚡',c:'rest'});
+    a.push({t:'9:00 PM',n:'PRIVATE LESSON',s:'The technical fix session',e:'🎾',c:'gym',law:1});
   }
   a.push({t:d.tn?'9:45 PM':'8:00 PM',n:'Big meal',s:'Protein target — check the Athlete tab',e:'🍚',c:'rest',law:5});
   a.push({t:'10:45 PM',n:'Daily log + 10-min stretch',s:'2 min · phone parks outside the room',e:'📥',c:'rest',law:6});
@@ -2161,15 +2301,15 @@ function getDirective(){
   const msgs={
     uniSun:"Prof Dev 9–1, then the track at 2:15. Real work starts at 9 PM — 75 min of ExoGuard and the same-day skim. That's the whole day.",
     uniMon:"The 9-to-5. Lecture, tutorial, lab, then straight from the bus to the court. Kit packed this morning. Eat on the 5 PM bus. Bed midnight — tomorrow you sleep in.",
-    deskTue:"Your best day. 2¾ hrs of ExoGuard on a fresh brain, gym, 3 hrs of real studying, then the private lesson at 8. Nothing on campus can compete with today.",
+    deskTue:"Your best day. 2¾ hrs of ExoGuard on a fresh brain, gym, 3 hrs of real studying. The private moved to Friday, so tonight you get a second ExoGuard block instead.",
     uniWed:"Library at 9 — this is the experiment, prove you can work on campus. Then friends, Thermo-fluids at 2, leg day at 7:15. Protect the skim at 9:45.",
     uniThu:"Lab all morning, write it up while it's fresh, Tennis Armour at 3. Travis gets an hour at 9. Recovery day tomorrow — sleep in.",
     buildSat:"Speed, gym, 3½ hrs of study, Travis + film it, then the academy. The biggest output day after Tuesday.",
     examDay:"Exam week. Three revision blocks, past papers not re-reading, light gym to clear the head, HARD STOP at 8:15 PM. Cramming instead of sleeping is a net loss — memory consolidates in deep sleep.",
-    preRest:"Recovery. Weekly review at 10, then the day is yours — sauna, jacuzzi, movie, Barça. This day is WHY the other six work. Zero guilt.",
+    preRest:"Recovery until 7:30, then the private at 9. Eat early, technique only — academy is tomorrow morning and you cannot spend the legs twice.",
     grind:"Full grind day. ExoGuard gets the morning brain, iron at night. Boring and repeatable wins.",
     tennisday:"Double day: gym in the morning (upper only — the legs belong to the court), tennis at night. 30 serves before the session.",
-    friday:"Weigh-in → deep work → Jumu'ah → private training. The full Friday.",
+    friday:"Weigh-in → deep work → Jumu'ah → recovery → private at 9 PM. Technique only — academy is tomorrow.",
     ramadan:"Ramadan mode: fasted deep work late morning, nap, gentle iftar, taraweeh, second wind at night. Different rhythm, same standards.",
   };
   let base=msgs[type]||"Show up. That's the whole job.";
@@ -2288,6 +2428,7 @@ function renderNextAction(fromBtn){
 // ═══════════ EXOGUARD ═══════════
 function daysToMonday(){const d=new Date().getDay();return(1-d+7)%7;}
 function renderExo(){
+  try{renderBuildHeroes();}catch(e){}
   const dm=daysToMonday();
   document.getElementById('exo-cd').textContent=dm===0?'TODAY':dm+'d';
   document.getElementById('exo-phase-name').value=S.exoPhaseName;
@@ -2715,6 +2856,102 @@ function studyPlan(){
   out.review=due.slice(0,2);
   return out;
 }
+
+// ═══════════════════════════════════════════════════════════
+//  READINESS — every domain scored 0-100 on the same scale.
+//  Green 67+, yellow 34-66, red under 34. Same everywhere,
+//  so you only ever learn the colours once.
+// ═══════════════════════════════════════════════════════════
+function readyCol(v){return v==null?'var(--muted)':v>=67?'var(--rec-hi)':v>=34?'var(--rec-mid)':'var(--rec-lo)';}
+function readyWord(v){return v==null?'NO DATA':v>=67?'ON TRACK':v>=34?'SLIPPING':'BEHIND';}
+
+// ── UNI: preparedness per module, against exam week ──
+function uniModReady(m){
+  const wk=uniWeek(); if(!wk)return null;
+  // expected study passes by now vs logged
+  let done=0;
+  for(let i=0;i<wk*7;i++){
+    const k=dkOffset(i);
+    if(S.uni.deep[k]&&S.uni.deep[k][m])done+=1;
+    if(S.uni.skims[k]&&S.uni.skims[k][m])done+=0.5;
+  }
+  const expect=Math.max(1,wk*1.5);                     // ~1 deep + 1 skim a week
+  let sc=Math.max(0,Math.min(100,(done/expect)*100));
+  // overdue reviews drag it down
+  const od=(S.uni.topics||[]).filter(t=>t.mod===m&&dueIn(t)<0).length;
+  sc-=od*6;
+  // an unstarted deadline inside 10 days is a hard hit
+  (S.uni.dl||[]).forEach(x=>{
+    if(x.done||x.mod!==m)return;
+    const d=Math.ceil((new Date(x.date)-Date.now())/864e5);
+    if(d>=0&&d<=10)sc-=(11-d)*2.5;
+  });
+  return Math.max(0,Math.min(100,Math.round(sc)));
+}
+function uniReady(){
+  const ms=Object.keys(MODS), tw=ms.reduce((a,m)=>a+(MODS[m].hrs||1),0);
+  let sc=0,n=0;
+  ms.forEach(m=>{const v=uniModReady(m); if(v!=null){sc+=v*(MODS[m].hrs||1);n+=(MODS[m].hrs||1);}});
+  return n?Math.round(sc/n):null;
+}
+
+// ── BUILD: phase completion vs time remaining ──
+function buildReady(store,total,deadline){
+  const done=Object.values(store||{}).filter(Boolean).length;
+  if(!total)return null;
+  const pctDone=done/total*100;
+  const start=new Date('2026-09-01'), end=new Date(deadline), now=new Date();
+  const elapsed=Math.max(0,Math.min(1,(now-start)/(end-start)));
+  const pctShould=elapsed*100;
+  if(pctShould<=0)return 100;
+  return Math.max(0,Math.min(100,Math.round(50+(pctDone-pctShould)*1.6)));
+}
+
+// ── the shared hero: one big number, small grey label ──
+function readyHero(score,label,verdict,line,accent){
+  const col=readyCol(score);
+  const val=score==null?'—':score+'<span style="font-size:.36em;font-weight:600;letter-spacing:0;vertical-align:super;">%</span>';
+  return '<div class="hero-metric">'+ring(score||0,val,label,col,226,13)
+   +'<div class="hm-r"><div class="hm-tag" style="color:'+col+';">'+verdict+'</div>'
+   +'<div class="hm-sub">'+line+'</div></div></div>';
+}
+
+
+// ── build heroes: same ring, same scale, violet accent ──
+function exoTotalTasks(){
+  try{ if(typeof EXO_PHASES!=='undefined'&&EXO_PHASES)
+    return EXO_PHASES.reduce((a,p)=>a+(p.weeks||[]).reduce((b,w)=>b+(w.tasks||[]).length,0),0);}catch(e){}
+  return Object.keys(EXOT).length||0;
+}
+function tvTotalTasks(){
+  try{ if(typeof TRV!=='undefined'&&TRV)
+    return Object.values(TRV).reduce((a,p)=>a+((p.ts||p.tasks||[]).length),0);}catch(e){}
+  return Object.keys(TVT).length||0;
+}
+function renderBuildHeroes(){
+  const setH=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
+  // ExoGuard — expo 1 May 2027
+  const et=exoTotalTasks();
+  if(et){
+    const ed=Object.values(EXOT).filter(Boolean).length;
+    const R=buildReady(EXOT,et,'2027-05-01');
+    setH('exo-hero',readyHero(R,'ON PACE',readyWord(R),
+      ed+' of '+et+' tasks done, '+daysTo('2027-05-01')+' days to expo. '
+      +(R>=67?'Comfortably ahead of the curve.':R>=34?'Pace has drifted. One focused week fixes it.'
+        :'You are behind the burn-down. This is the one to protect.')));
+  }
+  // Travis — expo April 2027
+  const tt=tvTotalTasks();
+  if(tt){
+    const td=Object.values(TVT).filter(Boolean).length;
+    const R=buildReady(TVT,tt,'2027-04-01');
+    setH('tv-hero',readyHero(R,'ON PACE',readyWord(R),
+      td+' of '+tt+' steps done. '
+      +(td===0?'Nothing moving yet. Phase 2 needs no money — start there.'
+        :R>=67?'Ahead of schedule.':'Slipping behind the plan.')));
+  }
+}
+
 function renderUni(){
   const now=new Date(), dk=DKEY(), w=uniWeek(), d=now.getDay();
   const setT=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
@@ -2731,6 +2968,28 @@ function renderUni(){
   setT('uni-sub','Semester 1 · 60 credits · '+(dx>0
     ?dx+' days to EXAM WEEK (wk 13, 13–17 Dec)'+(dt>0?' · '+dt+'d of teaching left':'')
     :(dx>-5?'EXAM WEEK — this is what the ramp was for':'semester complete')));
+
+  // ══ READINESS HERO ══
+  (function(){
+    const R=uniReady();
+    const dx=daysTo('2026-12-13');
+    let worst=null,wv=101;
+    Object.keys(MODS).forEach(m=>{const v=uniModReady(m); if(v!=null&&v<wv){wv=v;worst=m;}});
+    const line = R==null ? 'Semester has not started. This fills in from week 1.'
+      : worst!=null && wv<50 ? MODS[worst].n+' is dragging you down. Everything else is holding.'
+      : R>=67 ? 'Across every module, weighted by hours. You are where you should be.'
+      : 'Across every module, weighted by hours. Pace is slipping — catch it now, not in December.';
+    setH('uni-hero',readyHero(R,'PREPARED',readyWord(R),line));
+    const due=(S.uni.topics||[]).filter(t=>dueIn(t)<=0).length;
+    let nx=null;(S.uni.dl||[]).forEach(x=>{if(x.done)return;
+      const d=Math.ceil((new Date(x.date)-Date.now())/864e5);
+      if(d>=0&&(nx==null||d<nx.d))nx={d:d,t:x.title};});
+    setH('uni-trio',
+       tile('Days to exam','<span class="n">'+(dx>0?dx:0)+'</span>','13 Dec','a')
+      +tile('Next due','<span class="n" style="color:'+(nx&&nx.d<=10?'var(--rec-lo)':'var(--text)')+'">'+(nx?nx.d:'—')+'</span>',nx?nx.t.slice(0,18):'nothing set','r')
+      +tile('Review due','<span class="n" style="color:'+(due?'var(--teal)':'var(--muted)')+'">'+due+'</span>','topics waiting','')
+    );
+  })();
 
   // ══ THE BIG CARD: tonight ══
   const p=studyPlan();
@@ -3294,7 +3553,18 @@ if(!S.gym.split)S.gym.split=JSON.parse(JSON.stringify(GY_DEFAULT));
 if(!S.gym.sess)S.gym.sess={};
 if(!S.gym.armour)S.gym.armour={};
 
-function gyDayFor(d){return S.gym.split[d]?d:null;}
+function gyDayFor(d){
+  const dk=DKEY();
+  if(S.gym.sess[dk]&&S.gym.sess[dk].day!=null&&S.gym.split[S.gym.sess[dk].day])return S.gym.sess[dk].day;
+  return S.gym.split[d]?d:null;
+}
+function gyUseDay(d){
+  const dk=DKEY();
+  if(!S.gym.sess[dk])S.gym.sess[dk]={day:+d,ts:new Date().toISOString(),sets:{}};
+  else S.gym.sess[dk].day=+d;
+  sv();renderGym();toast('Logging '+S.gym.split[d].n.split('—')[0].trim());
+}
+function gyClearDay(){const dk=DKEY();if(S.gym.sess[dk]&&!Object.keys(S.gym.sess[dk].sets).length){delete S.gym.sess[dk];sv();renderGym();}}
 function gyLastSession(d,beforeKey){
   const keys=Object.keys(S.gym.sess).filter(k=>S.gym.sess[k].day===d&&k!==beforeKey)
     .sort((a,b)=>new Date(S.gym.sess[b].ts)-new Date(S.gym.sess[a].ts));
@@ -3313,9 +3583,13 @@ function renderGym(){
   if(d===null){
     if(nm)nm.textContent=today===5?'🧖 Friday — Recovery Day':'🎾 '+GY_DAYNAMES[today]+' — Tennis Day';
     if(tg)tg.textContent='NO LIFTING';
-    if(tod)tod.innerHTML='<div class="hint">'+(today===5
-      ?'No gym today and that is the point. Heat therapy repairs the week. Recovery is a training session.'
-      :'Tennis tonight — no lifting. Legs are Wednesday. Log the session in the Tennis tab afterwards.')+'</div>';
+    if(tod)tod.innerHTML='<div class="mt-s" style="margin-bottom:11px;">'+(today===5
+      ?'Rest day — no lifting planned.'
+      :'Tennis tonight — no lifting planned.')+'</div>'
+      +'<div class="c-hd">TRAINED ANYWAY? PICK A SESSION</div>'
+      +'<div class="chip-row">'+Object.keys(S.gym.split).map(k=>
+        '<div class="chip" onclick="gyUseDay('+k+')">'+S.gym.split[k].n.split('—')[0].trim()+'</div>').join('')
+      +'</div>';
     const mt=document.getElementById('gy-meta');if(mt)mt.textContent='Next lift: '+gyNextLift();
     const fl=document.getElementById('gy-fill');if(fl)fl.style.width='0%';
   }else{
@@ -3332,10 +3606,10 @@ function renderGym(){
         totalSets++;
         const k=ei+'_'+si;const v=cur.sets[k]||{};
         if(v.w&&v.r)doneSets++;
-        rows+=`<div class="row" style="margin-bottom:4px;">
-          <span class="hint" style="flex:0 0 34px;">set ${si+1}</span>
-          <input class="inp" style="flex:1;" type="number" step="0.5" placeholder="kg" value="${v.w||''}" onchange="gySet(${ei},${si},'w',this.value)">
-          <input class="inp" style="flex:1;" type="number" placeholder="reps" value="${v.r||''}" onchange="gySet(${ei},${si},'r',this.value)">
+        rows+=`<div class="setrow${v.w&&v.r?' ok':''}">
+          <span class="sr-n">${si+1}</span>
+          <input class="inp sr-i" type="number" inputmode="decimal" step="0.5" placeholder="kg" value="${v.w||''}" onchange="gySet(${ei},${si},'w',this.value)">
+          <input class="inp sr-i" type="number" inputmode="numeric" placeholder="reps" value="${v.r||''}" onchange="gySet(${ei},${si},'r',this.value)">
         </div>`;
       }
       let lastTxt='first time — set the baseline';
@@ -3357,7 +3631,8 @@ function renderGym(){
         <div class="hint" style="margin-bottom:7px;">target ${ex.s} × ${ex.r} · ${lastTxt}</div>
         ${rows}</div>`;}).join('');
     const fl=document.getElementById('gy-fill');if(fl)fl.style.width=(totalSets?Math.round(doneSets/totalSets*100):0)+'%';
-    const mt=document.getElementById('gy-meta');if(mt)mt.textContent=doneSets+' of '+totalSets+' sets logged · rest 60–90s · finish with a 5-min stretch of what you trained';
+    const mt=document.getElementById('gy-meta');if(mt)mt.textContent=doneSets+' of '+totalSets+' sets logged · rest 60–90s';
+    if(d!==today&&tod)tod.innerHTML='<div class="mt-s" style="margin-bottom:9px;">Logging <b>'+day.n.split('—')[0].trim()+'</b> on a non-'+GY_DAYNAMES[d]+' day. <span class="log-x" onclick="gyClearDay()">✕ undo</span></div>'+tod.innerHTML;
   }
   renderGymEdit();
   const ar=document.getElementById('gy-armour');
@@ -3393,11 +3668,11 @@ function renderGymEdit(){
   if(!sel||!box)return;
   const d=sel.value||Object.keys(S.gym.split)[0];const day=S.gym.split[d];if(!day)return;
   box.innerHTML=`<div class="row" style="margin-bottom:8px;"><input class="inp" value="${day.n}" onchange="gyRename(${d},this.value)" placeholder="Day name"></div>`
-   +day.ex.map((ex,i)=>`<div class="row" style="margin-bottom:5px;">
-      <input class="inp" style="flex:1;" value="${ex.n}" onchange="gyEx(${d},${i},'n',this.value)">
-      <input class="inp" style="flex:0 0 46px;" type="number" value="${ex.s}" onchange="gyEx(${d},${i},'s',this.value)" title="sets">
-      <input class="inp" style="flex:0 0 46px;" type="number" value="${ex.r}" onchange="gyEx(${d},${i},'r',this.value)" title="target reps">
-      <span class="log-x" onclick="gyRmEx(${d},${i})">✕</span></div>`).join('')
+   +day.ex.map((ex,i)=>`<div class="exrow">
+      <input class="inp ex-n" value="${ex.n}" onchange="gyEx(${d},${i},'n',this.value)">
+      <input class="inp ex-s" type="number" inputmode="numeric" value="${ex.s}" onchange="gyEx(${d},${i},'s',this.value)">
+      <input class="inp ex-s" type="number" inputmode="numeric" value="${ex.r}" onchange="gyEx(${d},${i},'r',this.value)">
+      <span class="log-x ex-x" onclick="gyRmEx(${d},${i})">✕</span></div>`).join('')
    +'<div class="hint" style="margin-top:7px;">Columns: exercise · sets · target reps</div>';
 }
 function gyRename(d,v){S.gym.split[d].n=v;sv();const sel=document.getElementById('gy-editday');if(sel)sel.innerHTML='';renderGym();}
@@ -3599,7 +3874,7 @@ function renderFuel2(){
 
   // meal timing
   const TRAIN={0:{t:18.75,n:'Gym — Chest + Triceps (6:45 PM)'},1:{t:19.5,n:'Tennis Academy (7:30 PM)'},
-    2:{t:14,n:'Gym — Arms (2:00 PM), then Private Lesson (8:00 PM)'},3:{t:19.25,n:'Gym — LEG DAY (7:15 PM)'},
+    2:{t:14,n:'Gym — Arms (2:00 PM) · desk evening'},3:{t:19.25,n:'Gym — LEG DAY (7:15 PM)'},5:{t:21,n:'Private Lesson (9:00 PM)'},
     4:{t:18.75,n:'Gym — Shoulders + forearms (6:45 PM)'},6:{t:10.75,n:'Gym — Back + Biceps (10:45 AM), Academy (7:30 PM)'}};
   const tr=TRAIN[now.getDay()];
   const tm=document.getElementById('fu-timing');
@@ -3654,7 +3929,7 @@ function ring(pct,val,label,col,size,sw){
   if(pct==null||pct===0){col=col==='var(--muted)'?col:col;}
   size=size||118; sw=sw||11;
   const r=(size-sw)/2, c=2*Math.PI*r, p=Math.max(0,Math.min(100,pct||0));
-  const vs=Math.round(size*0.30), ls=Math.max(7,Math.round(size*0.072));
+  const vs=Math.round(size*(size>=180?0.37:0.30)), ls=Math.max(8,Math.round(size*0.050));
   return '<div class="ring" style="width:'+size+'px;height:'+size+'px;">'
    +'<svg width="'+size+'" height="'+size+'">'
    +'<circle cx="'+size/2+'" cy="'+size/2+'" r="'+r+'" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="'+sw+'"/>'
@@ -3730,7 +4005,7 @@ function showInfo(key){
 function closeInfo(){const m=document.getElementById('imodal');if(m)m.classList.remove('on');}
 function hm(ringHTML,tag,tagCol,title,sub){
   return '<div class="hero-metric">'+ringHTML+'<div class="hm-r">'
-   +(tag?'<div class="hm-tag" style="background:'+tagCol+'22;color:'+tagCol+';">'+tag+'</div>':'')
+   +(tag?'<div class="hm-tag" style="color:'+tagCol+';">'+tag+'</div>':'')
    +'<div class="hm-title" style="color:'+(tagCol||'var(--text)')+'">'+title+'</div>'
    +'<div class="hm-sub">'+sub+'</div></div></div>';
 }
@@ -3771,6 +4046,11 @@ function sleepDebt(){
 }
 function strainOf(dk){
   const w=wd(dk);
+  // logged sessions (duration + avg HR) are the truth when present
+  if(typeof wkStrain==='function'&&wkStrain(dk)>0){
+    const base=(S.quick&&S.quick[dk]&&S.quick[dk].train)?0:1.5;
+    return Math.min(21,Math.round((trimpToStrain(wkStrain(dk))+base)*10)/10);
+  }
   if(w.cals!=null||w.exMin!=null){
     const s=Math.min(21,((w.cals||0)/55)+((w.exMin||0)/9));
     return Math.round(s*10)/10;
@@ -3790,23 +4070,175 @@ function soreScore(dk){
   const v=Object.values(s);if(!v.length)return 100;
   return Math.max(0,100-(v.reduce((a,b)=>a+b,0)/v.length/3)*100);
 }
-function recovery(dk){
-  const w=wd(dk);const parts=[];let sc=0,wt=0;
-  const hb=baseline('hrv'),rb=baseline('rhr');
-  if(w.hrv!=null&&hb){const s=Math.max(0,Math.min(100,50+((w.hrv-hb)/hb)*180));
-    sc+=s*.35;wt+=.35;parts.push(['HRV',Math.round(s),w.hrv+'ms vs '+Math.round(hb)]);}
-  if(w.rhr!=null&&rb){const s=Math.max(0,Math.min(100,100-(w.rhr-rb)*9));
-    sc+=s*.25;wt+=.25;parts.push(['Resting HR',Math.round(s),w.rhr+' vs '+Math.round(rb)]);}
-  if(w.asleep!=null){const s=Math.min(100,(w.asleep/sleepNeed(dk))*100);
-    sc+=s*.25;wt+=.25;parts.push(['Sleep',Math.round(s),fmtHM(w.asleep)+' / '+fmtHM(sleepNeed(dk))]);}
-  const ss=soreScore(dk);
-  if(ss!=null){sc+=ss*.15;wt+=.15;parts.push(['Soreness',Math.round(ss),
-    Object.values(S.rec.sore[dk]||{}).filter(v=>v>=2).length+' areas']);}
-  if(wt<.2)return{v:null,parts:parts};
-  return{v:Math.round(sc/wt),parts:parts};
+
+// ═══════════════════════════════════════════════════════════
+//  TRAINING LOG — duration + average heart rate
+//  Strain via Banister TRIMP, the standard training-load model.
+//  TRIMP = mins x HRr x 0.64 x e^(1.92 x HRr)     [male]
+//  HRr   = (avgHR - restHR) / (HRmax - restHR)
+// ═══════════════════════════════════════════════════════════
+if(!S.workouts)S.workouts={};
+if(!S.prof)S.prof={};
+if(S.prof.age==null)S.prof.age=21;
+if(S.prof.hrmax==null)S.prof.hrmax=Math.round(211-0.64*S.prof.age);   // Nes et al.
+
+const WK_TYPES=[
+  {id:'tennis', n:'Tennis',   e:'\🎾'},
+  {id:'gym',    n:'Gym',      e:'\🏋️'},
+  {id:'run',    n:'Run',      e:'\🏃'},
+  {id:'cardio', n:'Cardio',   e:'❤️'},
+  {id:'other',  n:'Other',    e:'⚡'}
+];
+
+function restHR(){
+  const b=baseline('rhr'); if(b)return Math.round(b);
+  for(let i=0;i<7;i++){const x=wd(dkOffset(i)); if(x.rhr!=null)return x.rhr;}
+  return 60;
 }
-function recVerdict(v){
-  if(v==null)return{t:'NO DATA',c:'var(--muted)',w:'Run the Health shortcut, or tap your soreness below.'};
+function trimp(mins,avgHR){
+  const rest=restHR(), hrmax=S.prof.hrmax;
+  if(!mins||!avgHR||avgHR<=rest)return 0;
+  const hrr=Math.max(0,Math.min(1,(avgHR-rest)/(hrmax-rest)));
+  return mins*hrr*0.64*Math.exp(1.92*hrr);
+}
+function trimpToStrain(t){ return Math.round(21*(1-Math.exp(-t/90))*10)/10; }
+function hrZone(avgHR){
+  const rest=restHR(), hrr=(avgHR-rest)/(S.prof.hrmax-rest);
+  if(hrr<.35)return{z:1,n:'Recovery',c:'var(--sleepc)'};
+  if(hrr<.55)return{z:2,n:'Easy',c:'var(--recblue)'};
+  if(hrr<.70)return{z:3,n:'Aerobic',c:'var(--rec-hi)'};
+  if(hrr<.85)return{z:4,n:'Threshold',c:'var(--rec-mid)'};
+  return{z:5,n:'Max',c:'var(--rec-lo)'};
+}
+function wkList(dk){return S.workouts[dk]||[];}
+function wkStrain(dk){
+  return wkList(dk).reduce((a,x)=>a+trimp(x.mins,x.avgHR),0);
+}
+function wkAdd(){
+  const g=id=>{const e=document.getElementById(id);return e?e.value:'';};
+  const mins=parseInt(g('wk-mins')), hr=parseInt(g('wk-hr')), ty=g('wk-type')||'tennis';
+  if(!mins||mins<1){toast('Minutes?');return;}
+  const dk=DKEY();
+  if(!S.workouts[dk])S.workouts[dk]=[];
+  S.workouts[dk].push({t:ty,mins:mins,avgHR:hr||null,ts:new Date().toISOString()});
+  ['wk-mins','wk-hr'].forEach(x=>{const e=document.getElementById(x);if(e)e.value='';});
+  sv(); renderRec(); if(typeof renderCmd==='function')renderCmd();
+  const st=hr?trimpToStrain(trimp(mins,hr)):null;
+  toast(st!=null?('Logged · strain +'+st):'Logged · add avg HR for strain');
+}
+function wkDel(i){const dk=DKEY();if(!S.workouts[dk])return;
+  S.workouts[dk].splice(i,1); if(!S.workouts[dk].length)delete S.workouts[dk];
+  sv(); renderRec(); if(typeof renderCmd==='function')renderCmd();}
+
+function wkPanelHTML(){
+  const dk=DKEY(), L=wkList(dk);
+  let h='<div class="card">'
+   +'<div class="c-hd">\🏃 TRAINING TODAY</div>';
+
+  if(L.length){
+    L.forEach((x,i)=>{
+      const ty=WK_TYPES.find(t=>t.id===x.t)||WK_TYPES[4];
+      const st=x.avgHR?trimpToStrain(trimp(x.mins,x.avgHR)):null;
+      const z=x.avgHR?hrZone(x.avgHR):null;
+      h+='<div class="mrow" style="display:flex;align-items:center;gap:10px;">'
+        +'<span style="font-size:17px;">'+ty.e+'</span>'
+        +'<div style="flex:1;min-width:0;">'
+          +'<div style="font-weight:700;font-size:14px;">'+ty.n+' · <span class="n">'+x.mins+'</span> min</div>'
+          +'<div class="mt-s" style="margin:2px 0 0;">'
+            +(x.avgHR?('avg <span class="n">'+x.avgHR+'</span> bpm · <span style="color:'+z.c+'">Z'+z.z+' '+z.n+'</span>')
+                    :'no heart rate — tap to add')
+          +'</div>'
+        +'</div>'
+        +(st!=null?'<span class="n" style="font-size:19px;color:var(--strain);">'+st+'</span>':'')
+        +'<span onclick="wkDel('+i+')" style="color:var(--muted);padding:4px 6px;font-size:15px;">×</span>'
+        +'</div>';
+    });
+    const tot=trimpToStrain(wkStrain(dk));
+    h+='<div class="mrow" style="display:flex;align-items:center;gap:10px;border-top:1px solid var(--border2);">'
+      +'<span style="flex:1;font-weight:700;font-size:13px;">Session strain</span>'
+      +'<span class="n" style="font-size:22px;color:var(--strain);">'+tot+'</span></div>';
+  } else {
+    h+='<div class="mt-s" style="margin-bottom:11px;">Nothing logged yet. Minutes and average heart rate — that is all strain needs.</div>';
+  }
+
+  h+='<div class="row" style="gap:6px;margin-top:10px;">'
+    +'<select class="inp" id="wk-type" style="flex:0 0 96px;">'
+    + WK_TYPES.map(t=>'<option value="'+t.id+'">'+t.e+' '+t.n+'</option>').join('')
+    +'</select>'
+    +'<input class="inp" id="wk-mins" type="number" inputmode="numeric" placeholder="Minutes" style="min-width:0;">'
+    +'<input class="inp" id="wk-hr" type="number" inputmode="numeric" placeholder="Avg HR" style="min-width:0;">'
+    +'<button class="btn sm go" onclick="wkAdd()">Add</button>'
+    +'</div>'
+    +'<div class="mt-s" style="margin-top:8px;">Max HR <span class="n">'+S.prof.hrmax+'</span> · resting <span class="n">'+restHR()+'</span> · zones and strain come from these.</div>'
+    +'</div>';
+  return h;
+}
+
+function recovery(dk){
+  const w=wd(dk), parts=[];
+  const hb=baseline('hrv'), rb=baseline('rhr');
+  let sc=0, wt=0, hasAuto=false;
+
+  // ── HRV ──────────────────────────────────────────────
+  // With 3+ prior days we score against YOUR baseline (accurate).
+  // Before that we score against population reference for a
+  // trained 21-year-old male, so the number still counts on day 1.
+  if(w.hrv!=null){
+    let sv,note;
+    if(hb){ sv=Math.max(0,Math.min(100,50+((w.hrv-hb)/hb)*180));
+            note=w.hrv+'ms vs your '+Math.round(hb)+'ms base'; }
+    else  { sv=Math.max(0,Math.min(100,(w.hrv-20)/60*80+10));
+            note=w.hrv+'ms · reference scale ('+(3-hrvDays())+'d to personal'; note+=')'; }
+    sc+=sv*.35; wt+=.35; hasAuto=true;
+    parts.push(['HRV',Math.round(sv),note]);
+  }
+
+  // ── RESTING HR ───────────────────────────────────────
+  if(w.rhr!=null){
+    let sv,note;
+    if(rb){ sv=Math.max(0,Math.min(100,100-(w.rhr-rb)*9));
+            note=w.rhr+' vs your '+Math.round(rb)+' base'; }
+    else  { sv=Math.max(0,Math.min(100,100-(w.rhr-45)*2.8));
+            note=w.rhr+' bpm · reference scale'; }
+    sc+=sv*.25; wt+=.25; hasAuto=true;
+    parts.push(['Resting HR',Math.round(sv),note]);
+  }
+
+  // ── SLEEP ────────────────────────────────────────────
+  if(w.asleep!=null){
+    const sv=Math.min(100,(w.asleep/sleepNeed(dk))*100);
+    sc+=sv*.25; wt+=.25;
+    parts.push(['Sleep',Math.round(sv),fmtHM(w.asleep)+' / '+fmtHM(sleepNeed(dk))+' need']);
+  }
+
+  // ── SORENESS ─────────────────────────────────────────
+  const ss=soreScore(dk);
+  if(ss!=null){
+    sc+=ss*.15; wt+=.15;
+    parts.push(['Soreness',Math.round(ss),
+      Object.values(S.rec.sore[dk]||{}).filter(v=>v>=2).length+' areas sore']);
+  }
+
+  if(wt<.2) return {v:null,parts:parts,conf:0,missing:['sleep']};
+
+  let v=Math.round(sc/wt);
+
+  // ── CONFIDENCE CAP ───────────────────────────────────
+  // Hours in bed alone cannot tell you whether you are recovered.
+  // Without a heart signal the score is capped and labelled.
+  const missing=[];
+  if(w.hrv==null) missing.push('HRV');
+  if(w.rhr==null) missing.push('resting HR');
+  if(!hasAuto) v=Math.min(v,75);
+  else if(w.hrv==null||w.rhr==null) v=Math.min(v,90);
+
+  const conf = hasAuto ? (w.hrv!=null&&w.rhr!=null ? 1 : 0.7) : 0.4;
+  return {v:v,parts:parts,conf:conf,missing:missing};
+}
+function hrvDays(){let n=0;for(let i=1;i<=14;i++){if(wd(dkOffset(i)).hrv!=null)n++;}return Math.min(3,n);}
+
+function recVerdict(v,conf){
+  if(v==null)return{t:'NO DATA',c:'var(--muted)',w:'Log last night\'s sleep above and this comes alive.'};
   if(v>=67)return{t:'GREEN',c:'var(--rec-hi)',w:'Recovered. Push the top set, play the long points.'};
   if(v>=34)return{t:'YELLOW',c:'var(--rec-mid)',w:'Train as written. Do not add volume.'};
   return{t:'RED',c:'var(--rec-lo)',w:'Go light or rest. Training through red is how three-week injuries start.'};
@@ -3892,27 +4324,65 @@ function renderMorning(){
   if(b)b.innerHTML=morningCardHTML(true);
 }
 
+
+// ── strain, scored against what today's recovery can carry ──
+function strainTarget(rec){
+  if(rec==null)return[8,14];
+  if(rec>=67)return[14,18];
+  if(rec>=34)return[11,14];
+  return[6,10];
+}
+function strainBlock(dk,rec){
+  const st=+strainOf(dk)||0, t=strainTarget(rec);
+  const pct=Math.max(0,Math.min(100,st/21*100));
+  const lo=t[0]/21*100, hi=t[1]/21*100;
+  const inRange = st>=t[0]&&st<=t[1];
+  const over = st>t[1];
+  const col = over?'var(--rec-lo)':(inRange?'var(--teal)':'var(--strain)');
+  return '<div class="card" style="margin-top:4px;">'
+   +'<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:11px;">'
+   +'<span class="c-hd" style="margin:0;">Day Strain</span>'
+   +'<span class="n" style="font-size:21px;color:'+col+'">'+st.toFixed(1)+'</span></div>'
+   +'<div class="bar" style="position:relative;height:7px;margin-top:0;">'
+   +'<i style="position:absolute;left:'+lo+'%;width:'+(hi-lo)+'%;background:rgba(0,241,159,.28);border-radius:0;"></i>'
+   +'<i style="width:'+pct+'%;background:'+col+'"></i></div>'
+   +'<div style="display:flex;justify-content:space-between;margin-top:7px;">'
+   +'<span class="mt-s" style="margin:0;">0</span>'
+   +'<span class="mt-s" style="margin:0;color:var(--teal)!important;">Target '+t[0]+'\u2013'+t[1]+'</span>'
+   +'<span class="mt-s" style="margin:0;">21</span></div>'
+   +'<div class="hm-sub" style="margin:11px 0 0;max-width:none;text-align:left;">'
+   +(rec==null?'Log your sleep and this sets itself.'
+     :over?'You are over what a '+rec+'% recovery can absorb. Every extra point today costs you tomorrow.'
+     :inRange?'Right where you should be for a '+rec+'% recovery.'
+     :'Room to work. Optimal range for a '+rec+'% recovery is '+t[0]+'\u2013'+t[1]+'.')
+   +'</div></div>';
+}
+
 function renderRec(){
   const dk=DKEY(),w=wd(dk);
   try{const rm=document.getElementById('rec-morning');if(rm)rm.innerHTML=morningCardHTML(true);}catch(e){}
   const H=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
   const R=recovery(dk),V=recVerdict(R.v);
 
-  // hero
-  H('rec-hero',hm(ring(R.v||0,R.v==null?'—':R.v,'RECOVERY',recCol(R.v),126,12),
-    V.t,V.c,V.t==='NO DATA'?'No data yet':V.t+' DAY',V.w+' '+ib('recscore')));
+  // hero — one number owns the screen
+  const rvTxt = R.v==null?'\u2014':R.v+'<span style="font-size:.36em;font-weight:600;letter-spacing:0;vertical-align:super;">%</span>';
+  H('rec-hero',hm(ring(R.v||0,rvTxt,'RECOVERY',recCol(R.v),226,13),
+    V.t,V.c,'',V.w+' '+ib('recscore'))
+   +strainBlock(dk,R.v));
 
   // top tiles
   const need=sleepNeed(dk),strain=strainOf(dk),debt=sleepDebt();
   H('rec-tiles',
      tile('Sleep','<span style="color:var(--ring-blue)">'+fmtHM(w.asleep)+'</span>',
-       w.asleep!=null?Math.round(w.asleep/need*100)+'% of need':'not synced','')
+       w.asleep!=null?Math.round(w.asleep/need*100)+'% of need':'log it above','')
     +tile('Need',fmtHM(need),'incl. '+fmtHM(debt)+' debt','p')
     +tile('Strain',strain,'of 21','r')
     +tile('HRV',w.hrv!=null?w.hrv:'—',baseline('hrv')?'base '+Math.round(baseline('hrv')):'need 3 days','g')
     +tile('Rest HR',w.rhr!=null?w.rhr:'—',baseline('rhr')?'base '+Math.round(baseline('rhr')):'need 3 days','a')
     +tile('Steps',w.steps!=null?(w.steps>999?(w.steps/1000).toFixed(1)+'k':w.steps):'—',w.cals?w.cals+' kcal':'','')
   );
+
+  H('rec-workouts',wkPanelHTML());
 
   // breakdown
   H('rec-break',R.parts.length?R.parts.map(p=>
@@ -4140,12 +4610,86 @@ function cmdRings(){
     +'</div>';
 }
 
+
+// ── COMMAND: three scores, one glance ──
+function cmdDash3(){
+  const dk=DKEY();
+  const R=recovery(dk), body=R.v;
+  const uni=(typeof uniReady==='function')?uniReady():null;
+  let build=null;
+  try{
+    const et=exoTotalTasks();
+    const e=et?buildReady(EXOT,et,'2027-05-01'):null;
+    const tt=tvTotalTasks();
+    const t=tt?buildReady(TVT,tt,'2027-04-01'):null;
+    if(e!=null&&t!=null)build=Math.round(e*0.65+t*0.35);   // ExoGuard is the degree
+    else build=(e!=null?e:t);
+  }catch(err){}
+
+  const cell=(cls,v,k,word)=>{
+    const c=readyCol(v);
+    return '<div class="d3 '+cls+'">'
+      +'<div class="d3-v" style="color:'+c+'">'+(v==null?'—':v+'<sup>%</sup>')+'</div>'
+      +'<div class="d3-k">'+k+'</div>'
+      +'<div class="d3-s" style="color:'+c+'">'+word+'</div>'
+      +'<div class="d3-t"><i style="width:'+(v||0)+'%;background:'+c+'"></i></div>'
+      +'</div>';
+  };
+  let uniWord=readyWord(uni);
+  if(uni==null&&getSeason()==='PRE-SEASON'){
+    const d=daysTo('2026-09-20');
+    return cell('b',body,'Body',body==null?'no data':recVerdict(body).t)
+      +'<div class="d3 u"><div class="d3-v" style="color:var(--uni)">'+d+'</div>'
+      +'<div class="d3-k">Uni</div><div class="d3-s" style="color:var(--uni)">days out</div>'
+      +'<div class="d3-t"><i style="width:'+Math.max(4,Math.round((10-d)/10*100))+'%;background:var(--uni)"></i></div></div>'
+      + cell('k',build,'Build',readyWord(build));
+  }
+  return cell('b',body,'Body',body==null?'no data':recVerdict(body).t)
+       + cell('u',uni,'Uni',uniWord)
+       + cell('k',build,'Build',readyWord(build));
+}
+
+// ── COMMAND: what actually needs you, ranked ──
+function cmdFlags(){
+  const dk=DKEY(), now=new Date(), out=[];
+  const R=recovery(dk), w=wd(dk);
+
+  if(w.asleep==null)
+    out.push(['hi','\😴','Sleep not logged — every score below is guessing','']);
+  else if(R.missing&&R.missing.length&&R.v!=null)
+    out.push(['md','❤️','Add '+R.missing.join(' + ')+' — score is capped without a heart signal',R.v+'%']);
+
+  if(R.v!=null&&R.v<34)
+    out.push(['hi','⚠️','Red recovery. Technique only today, no intensity',R.v+'%']);
+
+  const debt=sleepDebt();
+  if(debt>=120) out.push(['md','\📉','Sleep debt building — '+fmtHM(debt)+' over 3 nights',fmtHM(debt)]);
+
+  (S.uni&&S.uni.dl?S.uni.dl:[]).filter(x=>!x.done).forEach(x=>{
+    const d=Math.ceil((new Date(x.date)-now)/864e5);
+    if(d>=0&&d<=7) out.push([d<=2?'hi':'md','\🎓',x.title,d+'d']);
+  });
+
+  const due=(S.uni&&S.uni.topics?S.uni.topics:[]).filter(t=>dueIn(t)<=0).length;
+  if(due) out.push(['md','\🧠',due+' review topic'+(due>1?'s':'')+' due — 10 minutes clears them',due]);
+
+  const st=strainOf(dk), tgt=strainTarget(R.v);
+  if(st>tgt[1]) out.push(['hi','\🔥','Strain '+st+' is past what a '+R.v+'% recovery absorbs',st]);
+
+  if(!out.length) out.push(['ok','✓','Nothing flagged. Run the day as written.','']);
+
+  return out.slice(0,6).map(f=>
+    '<div class="flag '+f[0]+'"><span class="fx">'+f[1]+'</span>'
+    +'<span class="ft">'+f[2]+'</span>'
+    +(f[3]!==''?'<span class="fv">'+f[3]+'</span>':'')+'</div>').join('');
+}
+
 function renderCmd(){
   const now=new Date(),dk=DKEY();
   const setT=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
   const setH=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
 
-  const cr=document.getElementById('cd-rings');if(cr)cr.innerHTML=cmdRings();
+  setH('cd-dash3',cmdDash3());
   try{renderMorning();}catch(e){}
   setT('cd-date',now.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}));
   const wk=uniWeek();
@@ -4181,7 +4725,7 @@ function renderCmd(){
   if(!q.train&&h>=21)al.push(['tip','🏋️ Training not logged yet today.']);
   const tvDone=(typeof travisDone==='function')?travisDone():0;
   if(getSeason()==='PRE-SEASON'&&tvDone===0)al.push(['warn','🤖 Travis Phase 0 — <strong>0 of 6 ticked</strong> and the exit is 30 Sep. Also: order the webcam, Egyptian shipping is slow.']);
-  setH('cd-alerts',al.map(a=>'<div class="callout '+a[0]+'">'+a[1]+'</div>').join(''));
+  setH('cd-alerts',cmdFlags()+al.map(a=>'<div class="callout '+a[0]+'">'+a[1]+'</div>').join(''));
 
   // ── water ──
   const w=S.water[dk]||0;
@@ -4222,7 +4766,7 @@ function renderCmd(){
 
   // ── training ──
   const TR={0:['🏋️ Gym — Chest + Triceps','6:45 PM'],1:['🎾 Tennis Academy','7:30 PM'],
-    2:['🏋️ Gym — Arms','2:00 PM','🎾 Private Lesson','8:00 PM'],3:['🏋️ Gym — LEG DAY','7:15 PM'],
+    2:['🏋️ Gym — Arms','2:00 PM'],3:['🏋️ Gym — LEG DAY','7:15 PM'],5:['🎾 Private Lesson','9:00 PM'],
     4:['🏋️ Gym — Shoulders + forearms','6:45 PM','💪 Uni Gym — Tennis Armour','3:00 PM'],
     5:['🧖 RECOVERY DAY','all day'],6:['🏋️ Gym — Back + Biceps','10:45 AM','🎾 Tennis Academy','7:30 PM']};
   const tr=TR[now.getDay()]||[];let trh='';
