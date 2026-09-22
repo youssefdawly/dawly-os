@@ -3,16 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v7.1 · FINAL YEAR · WHOOP spec -->
+<!-- DAWLY OS v8 · FINAL YEAR · identity restored -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <title>DAWLY OS — Personal Operating System</title>
-<meta name="theme-color" content="#101518">
+<meta name="theme-color" content="#070709">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="DAWLY OS">
-<link href="https://fonts.googleapis.com/css2?family=Mulish:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -583,106 +583,18 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
 .mc-vitals{flex-wrap:nowrap;}
 .mc-vitals .inp{min-width:0;}
 
-/* ═══════════════════════════════════════════════════════════
-   DAWLY OS v7 — built to the WHOOP brand & design spec
-   words: Mulish (Proxima Nova stand-in)
-   numbers: Barlow (DINPro stand-in)
-   colour is semantic. the score always outweighs its label.
-   ═══════════════════════════════════════════════════════════ */
-:root{
-  /* recovery scale — straight from the spec */
-  --rec-hi:#16EC06;      /* 67-100 */
-  --rec-mid:#FFDE00;     /* 34-66  */
-  --rec-lo:#FF0026;      /* 0-33   */
-  --teal:#00F19F;        /* actions, positives, sleep need */
-  --strain:#0093E7;      /* strain & activity only */
-  --sleepc:#7BA1BB;      /* sleep data */
-  --recblue:#67AEE6;     /* recovery data, no judgement */
-  --uni:#FFB020;         /* domain accent — uni */
-  --build:#A78BFA;       /* domain accent — exoguard & travis */
-  /* legacy names remapped onto the spec so every old rule inherits it */
-  --ring-red:#FF0026; --ring-green:#16EC06; --ring-blue:#67AEE6;
-  --ring-amber:#FFDE00; --ring-purple:#A78BFA;
-  --gold:#FFB020; --gold2:#FFC451;
-  --blue:#0093E7; --blue2:#67AEE6;
-  --green:#16EC06; --red:#FF0026; --cyan:#00F19F; --purple:#A78BFA;
-  --bg:#0b0f12; --s1:#141a1e; --s2:#182025; --s3:#1e272c;
-  --text:#ffffff; --muted:#6d8492; --muted2:#8ea4b0;
-  --border:rgba(255,255,255,.08); --border2:rgba(255,255,255,.15);
-  --card-bg:rgba(255,255,255,.035); --card-br:rgba(255,255,255,.08);
-  --r2:14px; --r:12px; --rs:8px;
-}
-body{font-family:'Mulish',sans-serif;
-  background:linear-gradient(180deg,#283339 0%,#101518 46%,#0b0f12 100%);
-  background-attachment:fixed;}
-body::after{display:none!important;}          /* scanline gone */
-.hdr{background:rgba(20,26,30,.92);}
-
-/* ── TYPE: numbers are Barlow, tabular, heavy ── */
-.ring-v,.mt-v,.hm-title,.hero-title,.n,.clk,.streak-pill{
-  font-family:'Barlow',sans-serif!important;font-weight:700!important;
-  font-variant-numeric:tabular-nums;letter-spacing:-.4px!important;}
-
-/* ── TYPE: labels are small, grey, uppercase, 10% tracking ── */
-.mt-l,.c-hd,.hero-kicker,.mc-hd,.ring-l,.season-pill{
-  font-family:'Mulish',sans-serif!important;font-weight:700!important;
-  text-transform:uppercase!important;letter-spacing:.1em!important;
-  color:var(--muted)!important;}
-.sec-ttl{font-family:'Mulish',sans-serif!important;font-weight:700!important;
-  text-transform:uppercase;letter-spacing:.1em;color:var(--muted2);}
-.mt-s,.hm-sub,.spark-x>span{font-family:'Mulish',sans-serif!important;
-  font-weight:600!important;color:var(--muted)!important;letter-spacing:0!important;}
-.hm-tag{font-family:'Mulish',sans-serif!important;font-weight:800!important;
-  text-transform:uppercase;letter-spacing:.1em!important;}
-.logo{font-family:'Mulish',sans-serif!important;font-weight:900;font-size:17px;
-  letter-spacing:3.5px;background:none;-webkit-text-fill-color:#fff;color:#fff;filter:none;}
-.logo-sub{font-family:'Mulish',sans-serif;font-weight:700;letter-spacing:.1em;}
-.modal-inp,.mbtn-cancel,.mbtn-save{font-family:'Mulish',sans-serif!important;}
-
-/* ── the score must always outweigh its label ── */
-.mt-v{font-size:30px;line-height:1;}
-.mt-l{font-size:8.5px;margin-bottom:6px;}
-.mt-s{font-size:10px;margin-top:4px;}
-
-/* ── cards: flatter, less chrome ── */
-.card{background:var(--card-bg);border:1px solid var(--card-br);border-radius:var(--r2);}
-.mtile{background:var(--card-bg);border:1px solid var(--card-br);border-radius:var(--r2);}
-.mtile::after{width:2px;opacity:1;}
-
-/* ═══ HERO SCORE — one number owns the screen ═══ */
-.hero-metric{background:none;border:0;padding:8px 0 2px;margin-bottom:4px;
-  display:flex;flex-direction:column;align-items:center;gap:0;}
-.hm-r{flex:none;width:100%;text-align:center;min-width:0;}
-.hm-tag{display:inline-block;background:none!important;padding:0;margin:14px 0 0;
-  font-size:14px;letter-spacing:.12em!important;}
-.hm-title{display:none;}                       /* verdict lives in the tag now */
-.hm-sub{font-size:13.5px;line-height:1.55;color:var(--muted2)!important;
-  margin:7px auto 0;max-width:280px;}
-.ring-v{letter-spacing:-3px!important;}
-.ring-l{font-size:10px!important;margin-top:8px;}
-
-/* ── bars ── */
-.bar{height:6px;background:rgba(255,255,255,.09);}
-.bar>i{background:var(--recblue);}
-.spark>i{background:var(--recblue);}
-
-/* ── primary action ── */
-.btn-primary,.cta-primary{background:var(--teal);color:#062017;font-weight:900;
-  letter-spacing:.1em;text-transform:uppercase;}
-
 /* ═══ COMMAND — the three scores ═══ */
 .dash3{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;}
 .d3{position:relative;background:var(--card-bg);border:1px solid var(--card-br);
   border-radius:var(--r2);padding:13px 8px 11px;text-align:center;overflow:hidden;}
 .d3::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;}
-.d3.b::before{background:var(--rec-hi);} .d3.u::before{background:var(--uni);}
-.d3.k::before{background:var(--build);}
-.d3-v{font-family:'Barlow',sans-serif;font-weight:700;font-size:35px;line-height:1;
-  font-variant-numeric:tabular-nums;letter-spacing:-1.5px;}
+.d3.b::before{background:var(--rec-hi);} .d3.u::before{background:var(--gold);}
+.d3.k::before{background:var(--purple);}
+.d3-v{font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;letter-spacing:.5px;}
 .d3-v sup{font-size:.34em;font-weight:600;letter-spacing:0;vertical-align:super;}
-.d3-k{font-family:'Mulish',sans-serif;font-weight:700;font-size:8.5px;letter-spacing:.11em;
+.d3-k{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:.12em;
   text-transform:uppercase;color:var(--muted);margin-top:7px;}
-.d3-s{font-family:'Mulish',sans-serif;font-weight:700;font-size:9px;letter-spacing:.06em;
+.d3-s{font-family:'DM Mono',monospace;font-size:8.5px;letter-spacing:.08em;
   margin-top:3px;text-transform:uppercase;}
 .d3-t{height:2px;background:rgba(255,255,255,.08);margin-top:8px;border-radius:2px;overflow:hidden;}
 .d3-t i{display:block;height:100%;}
@@ -693,7 +605,45 @@ body::after{display:none!important;}          /* scanline gone */
 .flag.hi{border-left-color:var(--rec-lo);} .flag.md{border-left-color:var(--rec-mid);}
 .flag.ok{border-left-color:var(--rec-hi);}
 .flag .fx{font-size:15px;} .flag .ft{flex:1;font-size:13.5px;font-weight:600;line-height:1.4;}
-.flag .fv{font-family:'Barlow',sans-serif;font-weight:700;font-size:16px;font-variant-numeric:tabular-nums;}
+.flag .fv{font-family:'Bebas Neue',sans-serif;font-size:18px;letter-spacing:.5px;}
+
+/* ═══════════════════════════════════════════════════
+   IDENTITY — restored from the summer build.
+   This page opens the app. It is a mirror, not a tool.
+   ═══════════════════════════════════════════════════ */
+.id-top{padding:22px 0 0;}
+.daily-quote{background:linear-gradient(135deg,rgba(212,168,67,.1),rgba(212,168,67,.03));
+  border:1px solid rgba(212,168,67,.18);border-radius:var(--r);padding:20px 18px;
+  margin-bottom:18px;position:relative;overflow:hidden;}
+.daily-quote::before{content:'"';position:absolute;top:-14px;left:10px;font-size:90px;
+  color:rgba(212,168,67,.06);font-family:'Bebas Neue',sans-serif;line-height:1;}
+.dq-text{font-size:16px;font-weight:700;line-height:1.45;margin-bottom:9px;position:relative;}
+.dq-author{font-family:'DM Mono',monospace;font-size:9px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;}
+.id-name{font-family:'Bebas Neue',sans-serif;font-size:66px;letter-spacing:2px;line-height:.9;margin-bottom:6px;}
+.id-name .ac{color:var(--gold);}
+.id-sub{font-size:12px;color:var(--muted2);margin-bottom:18px;line-height:1.7;}
+.id-sub strong{color:var(--text);font-weight:700;}
+.id-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:7px;margin-bottom:16px;}
+.id-stat{background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);padding:13px 10px;text-align:center;}
+.id-stat-val{font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1;margin-bottom:2px;}
+.id-stat-lbl{font-family:'DM Mono',monospace;font-size:7px;color:var(--muted2);letter-spacing:1.5px;text-transform:uppercase;}
+.wins-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--r);
+  padding:14px 16px;margin-bottom:18px;cursor:pointer;transition:border-color .2s;}
+.wins-card:hover{border-color:var(--gold);}
+.wc-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.wc-title{font-size:12px;font-weight:700;}
+.wc-pct{font-family:'Bebas Neue',sans-serif;font-size:26px;color:var(--gold);}
+.wc-bar{height:3px;background:var(--border);border-radius:2px;overflow:hidden;}
+.wc-fill{height:100%;background:linear-gradient(90deg,var(--gold),var(--gold2));border-radius:2px;transition:width .5s ease;}
+.wc-sub{font-size:10px;color:var(--muted2);margin-top:7px;font-family:'DM Mono',monospace;}
+.section-lbl{font-family:'DM Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:3px;
+  text-transform:uppercase;margin-bottom:10px;}
+.law{display:flex;gap:13px;background:var(--s1);border:1px solid var(--border);border-radius:var(--rs);
+  padding:13px 15px;margin-bottom:7px;transition:border-color .2s;}
+.law:hover{border-color:var(--border2);}
+.law-n{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);min-width:18px;padding-top:1px;}
+.law-t{font-size:12px;font-weight:700;margin-bottom:1px;}
+.law-d{font-size:10px;color:var(--muted2);line-height:1.6;}
 </style>
 </head>
 <body>
@@ -724,7 +674,52 @@ body::after{display:none!important;}          /* scanline gone */
 <!-- ════════════════════════════════════════
      ① COMMAND — the COO screen
 ════════════════════════════════════════ -->
-<div class="pg active" id="pg-cmd">
+
+<!-- ════════════════════════════════════════
+     ① IDENTITY — the app opens here
+════════════════════════════════════════ -->
+<div class="pg active" id="pg-id">
+  <div class="id-top">
+    <div class="id-date fu" id="id-date2">--</div>
+    <div class="daily-quote fu">
+      <div class="dq-text" id="dq-text">Loading...</div>
+      <div class="dq-author" id="dq-author">—</div>
+    </div>
+    <div class="id-name fu">THE<br><span class="ac">UN</span>STOP<br>PABLE.</div>
+    <div class="id-sub fu"><strong>Mechanical engineer. ExoGuard builder. Tennis competitor. Final year.</strong><br>You're not waiting to feel ready. You start. The confidence comes from the work.</div>
+    <div class="id-stats fu">
+      <div class="id-stat">
+        <div class="id-stat-val" id="is-tasks" style="color:var(--gold)">0/0</div>
+        <div class="id-stat-lbl">Today Done</div>
+      </div>
+      <div class="id-stat">
+        <div class="id-stat-val" id="is-recovery" style="color:var(--green)">—</div>
+        <div class="id-stat-lbl">Recovery</div>
+      </div>
+      <div class="id-stat">
+        <div class="id-stat-val" id="is-exam" style="color:var(--blue)">—</div>
+        <div class="id-stat-lbl">Days to Exams</div>
+      </div>
+      <div class="id-stat">
+        <div class="id-stat-val" id="is-streak" style="color:var(--green)">0</div>
+        <div class="id-stat-lbl">Fajr Streak</div>
+      </div>
+    </div>
+    <div class="wins-card fu" onclick="nav('today',document.querySelectorAll('.nb')[2])">
+      <div class="wc-top"><div class="wc-title">Today's Progress ↗</div><div class="wc-pct" id="wc-pct">0%</div></div>
+      <div class="wc-bar"><div class="wc-fill" id="wc-fill" style="width:0%"></div></div>
+      <div class="wc-sub" id="wc-sub">Tap to see today's schedule →</div>
+    </div>
+    <div class="section-lbl fu">My Laws</div>
+    <div class="law fu"><div class="law-n">01</div><div><div class="law-t">I start before I feel ready.</div><div class="law-d">Confidence is built by doing, not by waiting. Action first. Always.</div></div></div>
+    <div class="law fu"><div class="law-n">02</div><div><div class="law-t">Fajr is the anchor. Every single day.</div><div class="law-d">The day I control my morning is the day I control my life.</div></div></div>
+    <div class="law fu"><div class="law-n">03</div><div><div class="law-t">One thing at a time. Trust the plan.</div><div class="law-d">When it's thermo — only thermo. Stop thinking about the rest.</div></div></div>
+    <div class="law fu"><div class="law-n">04</div><div><div class="law-t">I do hard things when I don't want to.</div><div class="law-d">That's the whole game. Every rep, every problem set, every study hour.</div></div></div>
+    <div class="law fu"><div class="law-n">05</div><div><div class="law-t">I am building something real.</div><div class="law-d">Degree → the foundation. ExoGuard → legacy. Travis → income. Tennis → champion. Body → unbreakable.</div></div></div>
+  </div>
+</div>
+
+<div class="pg" id="pg-cmd">
 
   <!-- ░░ HERO — right now ░░ -->
   <div class="id-date fu" id="id-date">--</div>
@@ -1741,8 +1736,9 @@ body::after{display:none!important;}          /* scanline gone */
 
 <!-- BOTTOM NAV -->
 <nav class="bnav">
-  <button class="nb active" onclick="nav('cmd',this)"><span class="ic">🔥</span>Cmd</button>
-  <button class="nb" onclick="nav('today',this)"><span class="ic">⚡</span>Today</button>
+  <button class="nb active" onclick="nav('id',this)"><span class="ic">⚡</span>Me</button>
+  <button class="nb" onclick="nav('cmd',this)"><span class="ic">🔥</span>Cmd</button>
+  <button class="nb" onclick="nav('today',this)"><span class="ic">📅</span>Today</button>
   <button class="nb" onclick="nav('uni',this)"><span class="ic">🎓</span>Uni</button>
   <button class="nb" onclick="nav('exo',this)"><span class="ic">🦾</span>Exo</button>
   <button class="nb" onclick="nav('travis',this)"><span class="ic">🤖</span>Travis</button>
@@ -2987,7 +2983,7 @@ function renderUni(){
     setH('uni-trio',
        tile('Days to exam','<span class="n">'+(dx>0?dx:0)+'</span>','13 Dec','a')
       +tile('Next due','<span class="n" style="color:'+(nx&&nx.d<=10?'var(--rec-lo)':'var(--text)')+'">'+(nx?nx.d:'—')+'</span>',nx?nx.t.slice(0,18):'nothing set','r')
-      +tile('Review due','<span class="n" style="color:'+(due?'var(--teal)':'var(--muted)')+'">'+due+'</span>','topics waiting','')
+      +tile('Review due','<span class="n" style="color:'+(due?'var(--green)':'var(--muted)')+'">'+due+'</span>','topics waiting','')
     );
   })();
 
@@ -4104,8 +4100,8 @@ function trimp(mins,avgHR){
 function trimpToStrain(t){ return Math.round(21*(1-Math.exp(-t/90))*10)/10; }
 function hrZone(avgHR){
   const rest=restHR(), hrr=(avgHR-rest)/(S.prof.hrmax-rest);
-  if(hrr<.35)return{z:1,n:'Recovery',c:'var(--sleepc)'};
-  if(hrr<.55)return{z:2,n:'Easy',c:'var(--recblue)'};
+  if(hrr<.35)return{z:1,n:'Recovery',c:'var(--blue)'};
+  if(hrr<.55)return{z:2,n:'Easy',c:'var(--blue2)'};
   if(hrr<.70)return{z:3,n:'Aerobic',c:'var(--rec-hi)'};
   if(hrr<.85)return{z:4,n:'Threshold',c:'var(--rec-mid)'};
   return{z:5,n:'Max',c:'var(--rec-lo)'};
@@ -4149,14 +4145,14 @@ function wkPanelHTML(){
                     :'no heart rate — tap to add')
           +'</div>'
         +'</div>'
-        +(st!=null?'<span class="n" style="font-size:19px;color:var(--strain);">'+st+'</span>':'')
+        +(st!=null?'<span class="n" style="font-size:19px;color:var(--cyan);">'+st+'</span>':'')
         +'<span onclick="wkDel('+i+')" style="color:var(--muted);padding:4px 6px;font-size:15px;">×</span>'
         +'</div>';
     });
     const tot=trimpToStrain(wkStrain(dk));
     h+='<div class="mrow" style="display:flex;align-items:center;gap:10px;border-top:1px solid var(--border2);">'
       +'<span style="flex:1;font-weight:700;font-size:13px;">Session strain</span>'
-      +'<span class="n" style="font-size:22px;color:var(--strain);">'+tot+'</span></div>';
+      +'<span class="n" style="font-size:22px;color:var(--cyan);">'+tot+'</span></div>';
   } else {
     h+='<div class="mt-s" style="margin-bottom:11px;">Nothing logged yet. Minutes and average heart rate — that is all strain needs.</div>';
   }
@@ -4338,7 +4334,7 @@ function strainBlock(dk,rec){
   const lo=t[0]/21*100, hi=t[1]/21*100;
   const inRange = st>=t[0]&&st<=t[1];
   const over = st>t[1];
-  const col = over?'var(--rec-lo)':(inRange?'var(--teal)':'var(--strain)');
+  const col = over?'var(--rec-lo)':(inRange?'var(--green)':'var(--cyan)');
   return '<div class="card" style="margin-top:4px;">'
    +'<div style="display:flex;align-items:baseline;justify-content:space-between;margin-bottom:11px;">'
    +'<span class="c-hd" style="margin:0;">Day Strain</span>'
@@ -4348,7 +4344,7 @@ function strainBlock(dk,rec){
    +'<i style="width:'+pct+'%;background:'+col+'"></i></div>'
    +'<div style="display:flex;justify-content:space-between;margin-top:7px;">'
    +'<span class="mt-s" style="margin:0;">0</span>'
-   +'<span class="mt-s" style="margin:0;color:var(--teal)!important;">Target '+t[0]+'\u2013'+t[1]+'</span>'
+   +'<span class="mt-s" style="margin:0;color:var(--green)!important;">Target '+t[0]+'\u2013'+t[1]+'</span>'
    +'<span class="mt-s" style="margin:0;">21</span></div>'
    +'<div class="hm-sub" style="margin:11px 0 0;max-width:none;text-align:left;">'
    +(rec==null?'Log your sleep and this sets itself.'
@@ -4639,9 +4635,9 @@ function cmdDash3(){
   if(uni==null&&getSeason()==='PRE-SEASON'){
     const d=daysTo('2026-09-20');
     return cell('b',body,'Body',body==null?'no data':recVerdict(body).t)
-      +'<div class="d3 u"><div class="d3-v" style="color:var(--uni)">'+d+'</div>'
-      +'<div class="d3-k">Uni</div><div class="d3-s" style="color:var(--uni)">days out</div>'
-      +'<div class="d3-t"><i style="width:'+Math.max(4,Math.round((10-d)/10*100))+'%;background:var(--uni)"></i></div></div>'
+      +'<div class="d3 u"><div class="d3-v" style="color:var(--gold)">'+d+'</div>'
+      +'<div class="d3-k">Uni</div><div class="d3-s" style="color:var(--gold)">days out</div>'
+      +'<div class="d3-t"><i style="width:'+Math.max(4,Math.round((10-d)/10*100))+'%;background:var(--gold)"></i></div></div>'
       + cell('k',build,'Build',readyWord(build));
   }
   return cell('b',body,'Body',body==null?'no data':recVerdict(body).t)
@@ -4684,7 +4680,44 @@ function cmdFlags(){
     +(f[3]!==''?'<span class="fv">'+f[3]+'</span>':'')+'</div>').join('');
 }
 
+
+// ═══════════════════════════════════════════════════
+//  IDENTITY PAGE — restored. The app opens here.
+// ═══════════════════════════════════════════════════
+function renderIdentity(){
+  const T=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  const now=new Date(), dk=DKEY();
+  setQuote();
+  T('id-date2',now.toLocaleDateString('en-GB',{weekday:'long',day:'numeric',month:'long'}).toUpperCase());
+
+  // today's blocks done
+  const sch=getSch();
+  const done=Object.values(S.checks[dk]||{}).filter(Boolean).length;
+  T('is-tasks',done+'/'+sch.length);
+
+  // recovery
+  const R=(typeof recovery==='function')?recovery(dk):{v:null};
+  T('is-recovery',R.v==null?'\u2014':R.v);
+  const rv=document.getElementById('is-recovery');
+  if(rv)rv.style.color=(typeof recCol==='function')?recCol(R.v):'var(--green)';
+
+  // days to exam week
+  const dx=daysTo('2026-12-13');
+  T('is-exam',dx>0?dx:(dx>-5?'NOW':'\u2014'));
+
+  // fajr streak
+  T('is-streak',streakOf(d=>!!d.fajr));
+
+  // today's progress
+  const pct=sch.length?Math.round(done/sch.length*100):0;
+  T('wc-pct',pct+'%');
+  const f=document.getElementById('wc-fill'); if(f)f.style.width=pct+'%';
+  const cur=sch[getCur(sch)];
+  T('wc-sub',cur?('Now: '+cur.n+'  \u2192'):'Tap to see today\'s schedule \u2192');
+}
+
 function renderCmd(){
+  try{renderIdentity();}catch(e){}
   const now=new Date(),dk=DKEY();
   const setT=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
   const setH=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
