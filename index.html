@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v8 · FINAL YEAR · identity restored -->
+<!-- DAWLY OS v9 · FINAL YEAR · real week -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <title>DAWLY OS — Personal Operating System</title>
@@ -1325,50 +1325,6 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
 <!-- ════════════════════════════════════════
      BUS — one 30-minute card, then sleep
 ════════════════════════════════════════ -->
-<div class="pg" id="pg-bus">
-  <div class="ph">
-    <div class="ph-top"><div class="ph-t">🚌 THE BUS SESSION</div><div class="ph-s" id="bus-streak">0 day streak</div></div>
-    <div class="ph-meta">7:05 → 8:45 AM · one card, 30 minutes, then sleep with a clear conscience</div>
-  </div>
-
-  <div class="mt-s" style="margin-bottom:10px;display:flex;align-items:flex-start;">Thirty minutes, one task, no decisions. <span class="ib" onclick="showInfo('auto6')">i</span></div><div class="card" id="bus-card" style="border-color:rgba(212,168,67,.35);">
-    <div class="c-hd">⚡ TODAY'S CARD</div>
-    <div id="bus-body"></div>
-  </div>
-
-  <div class="row" style="margin-bottom:14px;">
-    <button class="btn" onclick="busBack()">←</button>
-    <button class="btn go" style="flex:1;" onclick="busDone()">✓ DONE — NEXT LESSON, NOW SLEEP</button>
-    <button class="btn" onclick="busSwap()">↻</button>
-  </div>
-
-  <div class="grid3">
-    <div class="stile"><div class="st-lbl">Spanish</div><div class="st-val c-gold" id="bus-n-es" style="font-size:20px;">0</div><div class="st-sub">lessons</div></div>
-    <div class="stile"><div class="st-lbl">Salesforce</div><div class="st-val c-blue" id="bus-n-sf" style="font-size:20px;">0</div><div class="st-sub">units</div></div>
-    <div class="stile"><div class="st-lbl">Total</div><div class="st-val c-green" id="bus-n-all" style="font-size:26px;">0</div><div class="st-sub">all cards</div></div>
-  </div>
-
-  <div class="card">
-    <div class="c-hd">📚 THE DECK — jump to any course</div>
-    <div class="hint" style="margin-bottom:10px;">The app picks one each morning by least-used rotation. Tap "open" to override.</div>
-    <div id="bus-deck"></div>
-  </div>
-
-  <div class="card">
-    <div class="c-hd">🇪🇸 SPANISH — WHERE YOU ARE</div>
-    <div id="bus-es"></div>
-    <div class="inp-row"><input class="inp" id="bus-esnote" placeholder="New words / phrases learned today" maxlength="70"><button class="btn sm" onclick="busAddEs()">Save</button></div>
-  </div>
-
-  <div class="card">
-    <div class="c-hd">🕗 LAST 14 DAYS</div>
-    <div id="bus-hist"></div>
-  </div>
-</div>
-
-<!-- ════════════════════════════════════════
-     ⑥ ATHLETE — tennis · gym · fuel · recovery
-════════════════════════════════════════ -->
 <div class="pg" id="pg-ath">
   <div class="hero">
     <div class="hero-kicker fu" style="color:var(--red);">TENNIS · STRENGTH · FUEL · RECOVERY — ONE MACHINE</div>
@@ -1742,7 +1698,6 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
   <button class="nb" onclick="nav('uni',this)"><span class="ic">🎓</span>Uni</button>
   <button class="nb" onclick="nav('exo',this)"><span class="ic">🦾</span>Exo</button>
   <button class="nb" onclick="nav('travis',this)"><span class="ic">🤖</span>Travis</button>
-  <button class="nb" onclick="nav('bus',this)"><span class="ic">🚌</span>Bus</button>
   <button class="nb" onclick="nav('ath',this)"><span class="ic">🎾</span>Athlete</button>
   <button class="nb" onclick="nav('rev',this)"><span class="ic">📊</span>Review</button>
 </nav>
@@ -2058,139 +2013,128 @@ const SCH={
     {t:'6:00 PM',n:'Maghrib + Isha',s:'Pray · gratitude',e:'🕌',c:'prayer'},
     {t:'11:00 PM',n:'Early-ish Sleep',s:'Big week starts tomorrow',e:'🌙',c:'rest',law:5},
   ],
-  // ══════════ FINAL YEAR — SUNDAY (Professional Dev + Push) ══════════
+  // FINAL YEAR - SUNDAY (PD class + 3h campus block)
   uniSun:[
-    {t:'6:15 AM',n:'Wake',s:'Water · 2-min stretch · the ramp starts now',e:'🌅',c:'rest',law:5},
-    {t:'6:25 AM',n:'Quick sandwich',s:'Small and fast — the real food is in the lunchbox',e:'🥪',c:'rest'},
-    {t:'6:45 AM',n:'Leave for the pick-up point',s:'Bag packed last night · lunchbox in',e:'🚗',c:'rest'},
-    {t:'7:05 AM',n:'BUS — one 30-min card, then sleep',s:'Open the Bus tab · do the ONE card · then sleep guilt-free',e:'🚌',c:'study'},
-    {t:'9:00 AM',n:'Professional Dev & Project Planning',s:'Building B · Room 304 · Sameh F.S. Eid · 9:00–12:55',e:'🎓',c:'study',law:1},
-    {t:'1:00 PM',n:'Lunch + friends',s:'Protected. This is the reset, not a waste of time',e:'🍽️',c:'rest'},
-    {t:'2:15 PM',n:'TRACK — Engine',s:'Zone 2 25 min nasal-only · rope 5 min · ladder footwork 10 min',e:'🏃',c:'gym'},
-    {t:'3:15 PM',n:'Friends / reset',s:'Free. You are famous here — enjoy it',e:'👥',c:'rest'},
-    {t:'4:30 PM',n:'Bus home — sleep',s:'Eat the rest of the lunchbox · then out',e:'🚌',c:'rest'},
-    {t:'6:15 PM',n:'Home + quick eat',s:'Small pre-gym feed — never train empty (IBS)',e:'🏠',c:'rest'},
-    {t:'6:45 PM',n:'GYM — Chest + Triceps',s:'Log every set in the Athlete tab · beat last week by one rep',e:'🏋️',c:'gym'},
-    {t:'8:15 PM',n:'Big meal',s:'The largest meal of the day lands here',e:'🍚',c:'rest',law:5},
-    {t:'9:00 PM',n:'ExoGuard — desk block',s:'75 min · phone in the other room · one clear task',e:'🦾',c:'study',law:1},
-    {t:'10:15 PM',n:'Same-day skim — Prof Dev',s:'Read notes → write notes → 3 questions BOOK CLOSED',e:'📖',c:'study',law:3},
-    {t:'10:50 PM',n:'Daily log + shutdown',s:'2 min · 10-min stretch · phone parks outside',e:'📥',c:'rest',law:6},
-    {t:'11:15 PM',n:'Sleep',s:'7 hrs + bus naps · school night',e:'🌙',c:'rest',law:5},
+    {t:'6:00 AM',n:'Wake + Fajr',s:'Pray · skincare · dress · fragrance',e:'🌅',c:'prayer',law:2},
+    {t:'6:35 AM',n:'Small breakfast',s:'Eggs or oats. Real lunch is at uni',e:'🍳',c:'rest'},
+    {t:'7:05 AM',n:'BUS',s:'Sleep. That is the job — no course, no phone',e:'🚌',c:'rest'},
+    {t:'8:20 AM',n:'Arrive — 20 min PD skim',s:'Last week notes only. Walk in knowing where you left off',e:'📖',c:'study'},
+    {t:'9:00 AM',n:'PD CLASS — B·304',s:'Professional Dev & Project Planning · Sameh F.S. Eid',e:'🎓',c:'study',law:1},
+    {t:'1:00 PM',n:'Dhuhr + lunch',s:'Eat properly. The big block is next',e:'🕌',c:'prayer'},
+    {t:'1:40 PM',n:'CAMPUS BLOCK — THERMO · 2h 20m',s:'Bus is not until 4. Hardest module, best brain left. Real notes, solve, log every miss',e:'📚',c:'study',law:1},
+    {t:'4:00 PM',n:'BUS home',s:'Done. Nothing more is owed today',e:'🚌',c:'rest'},
+    {t:'5:45 PM',n:'Home · shower · snack',s:'',e:'🚿',c:'rest'},
+    {t:'6:30 PM',n:'GYM — Chest + Triceps',s:'Bench · incline · flys · pushdown · 2 triceps. Log every set',e:'🏋️',c:'gym'},
+    {t:'8:00 PM',n:'Dinner',s:'Protein target — check the Athlete tab',e:'🍚',c:'rest',law:5},
+    {t:'9:00 PM',n:'FREE — FC27 / 2K27',s:'One hour. Locked in, zero guilt. You earned it at 1:40',e:'🎮',c:'rest'},
+    {t:'10:00 PM',n:'PD skim — 25 min',s:'Today material while warm. Short version only',e:'📖',c:'study'},
+    {t:'10:45 PM',n:'Daily log + stretch',s:'2 min. Phone parks outside the room',e:'📥',c:'rest',law:6},
+    {t:'11:15 PM',n:'Sleep',s:'Monday is the longest day of your week',e:'🌙',c:'rest',law:5},
   ],
-  // ══════════ FINAL YEAR — MONDAY (9-to-5 + Academy) ══════════
+  // FINAL YEAR - MONDAY (Clean Energy all day, home 6:45)
   uniMon:[
-    {t:'6:15 AM',n:'Wake — PACK THE TENNIS KIT',s:'Kit in the bag NOW or you play in jeans',e:'🌅',c:'rest',law:5},
-    {t:'6:25 AM',n:'Quick sandwich',s:'Plus extra food for the 5 PM bus — long day',e:'🥪',c:'rest'},
-    {t:'7:05 AM',n:'BUS — one 30-min card, then sleep',s:'Longest day of the week. Bank the sleep',e:'🚌',c:'study'},
-    {t:'9:00 AM',n:'Clean Energy — LECTURE',s:'Building B · Room 217 · Mennatallah Fouad · 9:00–10:55',e:'🎓',c:'study'},
-    {t:'11:00 AM',n:'Clean Energy — TUTORIAL',s:'Building B · Room 217 · Ossama Abousaima · 11:00–12:55',e:'📐',c:'study'},
-    {t:'1:00 PM',n:'Lunch + friends',s:'You have a 3-hour lab next. Eat properly',e:'🍽️',c:'rest'},
-    {t:'2:00 PM',n:'Clean Energy — LAB',s:'Building B · Room 407 · Kareem El Safty · 2:00–4:55',e:'🔬',c:'study'},
-    {t:'5:00 PM',n:'Bus — eat the packed food',s:'This IS dinner #1. Tennis in 2 hrs',e:'🚌',c:'rest'},
-    {t:'6:30 PM',n:'Point → straight to the academy',s:'Do not go home. Kit is already with you',e:'⚡',c:'gym'},
-    {t:'7:30 PM',n:'TENNIS ACADEMY',s:'ONE goal for the session · between points: turn, breathe, next',e:'🎾',c:'gym',law:1},
-    {t:'9:45 PM',n:'Big meal',s:'Home · shower · eat properly',e:'🍚',c:'rest',law:5},
-    {t:'10:30 PM',n:'Quick skim — Clean Energy',s:'Short version · 25 min · slides only · Tuesday does the real pass',e:'📖',c:'study'},
-    {t:'11:15 PM',n:'Free — no uni tomorrow',s:'Earned. Zero guilt',e:'🎮',c:'rest'},
-    {t:'12:00 AM',n:'Sleep — long one',s:'Wake 9:30. Monday earns it',e:'🌙',c:'rest',law:5},
+    {t:'6:00 AM',n:'Wake + Fajr',s:'Pray · skincare · dress · fragrance',e:'🌅',c:'prayer',law:2},
+    {t:'6:35 AM',n:'Small breakfast',s:'Long day ahead — do not skip this',e:'🍳',c:'rest'},
+    {t:'7:05 AM',n:'BUS',s:'Sleep. Full contact day coming',e:'🚌',c:'rest'},
+    {t:'9:00 AM',n:'CE LECTURE — B·217',s:'Clean Energy. The trilemma is the spine of every assessment',e:'🎓',c:'study',law:1},
+    {t:'11:00 AM',n:'CE TUTORIAL',s:'Ask the question you are embarrassed to ask. That is what tutorials are for',e:'✍️',c:'study'},
+    {t:'1:00 PM',n:'Dhuhr + lunch',s:'Lab in an hour. Eat properly',e:'🕌',c:'prayer'},
+    {t:'2:00 PM',n:'CE LAB — B·407',s:'',e:'🔬',c:'study'},
+    {t:'5:00 PM',n:'BUS home',s:'Late bus today. Nothing heavy is scheduled tonight',e:'🚌',c:'rest'},
+    {t:'6:45 PM',n:'Home · shower · eat',s:'Seven-hour contact day. Be kind to yourself',e:'🚿',c:'rest'},
+    {t:'7:30 PM',n:'GYM — Shoulders',s:'Short session, 45 min. Show up, do the work, leave',e:'🏋️',c:'gym'},
+    {t:'8:45 PM',n:'Dinner',s:'',e:'🍚',c:'rest',law:5},
+    {t:'9:30 PM',n:'CE same-day skim — 30 min',s:'Only today material. Read notes, close book, 3 questions from memory',e:'📖',c:'study'},
+    {t:'10:15 PM',n:'FREE — FC27 / 2K27',s:'45 min. Hard day, real reward',e:'🎮',c:'rest'},
+    {t:'11:00 PM',n:'Daily log',s:'',e:'📥',c:'rest',law:6},
+    {t:'11:30 PM',n:'Sleep',s:'Tomorrow you are home all day. The good one',e:'🌙',c:'rest',law:5},
   ],
-  // ══════════ FINAL YEAR — TUESDAY (Desk Day + Private Lesson) ══════════
+  // FINAL YEAR - TUESDAY (NO CLASS, best day)
   deskTue:[
-    {t:'9:30 AM',n:'Wake — you earned the lie-in',s:'9.5 hrs after the 9-to-5 + court. This is by design',e:'🌅',c:'rest',law:5},
-    {t:'9:50 AM',n:'Breakfast — a real one',s:'No bus today. Eggs, oats, honey, banana',e:'🍳',c:'rest'},
-    {t:'10:15 AM',n:'EXOGUARD DEEP WORK — 2¾ hrs',s:'Hardest CAD task FIRST · phone in another room · best brain of the week',e:'🦾',c:'study',law:1},
-    {t:'1:00 PM',n:'Lunch',s:'Then gym. Do not skip the food',e:'🍽️',c:'rest'},
-    {t:'2:00 PM',n:'GYM — Pull',s:'Unrushed session. No time pressure today',e:'🏋️',c:'gym'},
-    {t:'3:30 PM',n:'DEEP STUDY PASS #1 — 3 hrs',s:'Sun + Mon material · REAL notes · solve questions · wrong-answer log · +10 min rolling review',e:'📚',c:'study',law:3},
-    {t:'6:30 PM',n:'Dinner',s:'No court tonight — private moved to Friday 9 PM',e:'🍚',c:'rest'},
-    {t:'7:30 PM',n:'SHADOW + SERVE BASKET — 40 min',s:'Monday\'s broken shot, dry. Bring it to Friday already half-fixed',e:'⚡',c:'gym'},
-    {t:'8:30 PM',n:'EXOGUARD — second block',s:'Tuesday just got 2 free hours. This is where they go',e:'🦾',c:'study',law:1},
-    {t:'10:00 PM',n:'Wind down · light meal',s:'Nothing heavy this late',e:'🚿',c:'rest'},
-    {t:'10:50 PM',n:'Daily log + shutdown',s:'Log the tennis session in the Athlete tab too',e:'📥',c:'rest',law:6},
-    {t:'11:15 PM',n:'Sleep',s:'Uni tomorrow · 6:15 wake',e:'🌙',c:'rest',law:5},
+    {t:'7:30 AM',n:'Wake — small lie-in',s:'Earned. Still pray Fajr on time',e:'🌅',c:'rest',law:2},
+    {t:'8:00 AM',n:'Real breakfast',s:'No bus today. Eggs, oats, honey, banana',e:'🍳',c:'rest'},
+    {t:'8:45 AM',n:'SOLIDWORKS — 2h',s:'Your professor Drive videos. One lesson, then rebuild the part yourself. This IS ExoGuard',e:'🦾',c:'study',law:1},
+    {t:'11:00 AM',n:'Break — walk, coffee',s:'Away from the screen. 30 min',e:'☕',c:'rest'},
+    {t:'11:30 AM',n:'THERMO DEEP PASS — 2h',s:'Sun + Mon material. Real notes, solve questions, wrong-answer log',e:'📚',c:'study',law:3},
+    {t:'1:30 PM',n:'Dhuhr + lunch',s:'',e:'🕌',c:'prayer'},
+    {t:'2:30 PM',n:'ANSYS COURSE — 1h 30m',s:'innovationspace.ansys.com · free · Credly badge at the end goes on LinkedIn',e:'⚙️',c:'study'},
+    {t:'4:00 PM',n:'Free block',s:'Friends, family, nothing. Unstructured on purpose',e:'🌳',c:'rest'},
+    {t:'5:00 PM',n:'GYM — LEGS',s:'Unrushed. Three clear days before Saturday academy — the only slot that works',e:'🏋️',c:'gym',law:4},
+    {t:'6:45 PM',n:'Dinner',s:'Leg day needs food. Eat properly',e:'🍚',c:'rest',law:5},
+    {t:'7:30 PM',n:'CLEAN ENERGY — 1h 30m',s:'Deep pass. Breadth and argument, not derivation',e:'📚',c:'study'},
+    {t:'9:00 PM',n:'FREE — FC27 / 2K27',s:'90 min. Longest block of the week, and no early wake tomorrow either',e:'🎮',c:'rest'},
+    {t:'10:30 PM',n:'Daily log + stretch',s:'',e:'📥',c:'rest',law:6},
+    {t:'11:15 PM',n:'Sleep',s:'Wednesday is the 5-hour campus block. Arrive sharp',e:'🌙',c:'rest',law:5},
   ],
-  // ══════════ FINAL YEAR — WEDNESDAY (Library + LEG DAY) ══════════
+  // FINAL YEAR - WEDNESDAY (5h campus block, then CT lecture)
   uniWed:[
-    {t:'6:15 AM',n:'Wake',s:'Water · stretch',e:'🌅',c:'rest',law:5},
-    {t:'6:25 AM',n:'Quick sandwich',s:'Lunchbox packed',e:'🥪',c:'rest'},
-    {t:'7:05 AM',n:'BUS — one 30-min card, then sleep',s:'Library block coming — arrive rested',e:'🚌',c:'study'},
-    {t:'9:00 AM',n:'LIBRARY STUDY — 2 hrs',s:'THE EXPERIMENT. Uni work only. If this works you unlock 2 hrs/week',e:'📚',c:'study',law:1},
-    {t:'11:00 AM',n:'Friends / play / reset',s:'Your biggest social window. Use it properly',e:'👥',c:'rest'},
-    {t:'12:00 PM',n:'Lunch + friends',s:'3-hour lecture next. Fuel up',e:'🍽️',c:'rest'},
-    {t:'1:00 PM',n:'Study — continue',s:'Notes, wrong-answer log, or last week\'s Thermo problems',e:'📖',c:'study'},
-    {t:'2:00 PM',n:'Computational Thermo-fluids — LECTURE',s:'Building B · Room 211 · 2:00–4:55 · YOUR HARDEST MODULE',e:'🎓',c:'study',law:1},
-    {t:'5:00 PM',n:'Bus home',s:'Sleep or review',e:'🚌',c:'rest'},
-    {t:'6:45 PM',n:'Home + quick eat',s:'Leg day next. Do NOT train empty',e:'🏠',c:'rest'},
-    {t:'7:15 PM',n:'GYM — 🦵 LEG DAY',s:'3 clear days before Saturday\'s academy. This is the only slot legs fit',e:'🏋️',c:'gym'},
-    {t:'9:00 PM',n:'Big meal',s:'Post-leg-day. Eat like it',e:'🍚',c:'rest',law:5},
-    {t:'9:45 PM',n:'Same-day skim — Thermo-fluids',s:'PROTECT THIS ONE. Read → write → 3 questions BOOK CLOSED. CFD compounds',e:'📖',c:'study',law:3},
-    {t:'10:50 PM',n:'Daily log + shutdown',s:'2 min · stretch · phone out',e:'📥',c:'rest',law:6},
-    {t:'11:15 PM',n:'Sleep',s:'School night',e:'🌙',c:'rest',law:5},
+    {t:'6:00 AM',n:'Wake + Fajr',s:'Pray · skincare · dress · fragrance',e:'🌅',c:'prayer',law:2},
+    {t:'6:35 AM',n:'Small breakfast',s:'Pack a real lunch — you are there until 5',e:'🍳',c:'rest'},
+    {t:'7:05 AM',n:'BUS',s:'Sleep. Biggest work block of the week is coming',e:'🚌',c:'rest'},
+    {t:'8:20 AM',n:'Arrive — coffee, settle',s:'Library or an empty room. Find your spot and keep it',e:'☕',c:'rest'},
+    {t:'8:45 AM',n:'THERMO PRE-READ — 1h',s:'Lecture is at 2 PM today. Walk in already knowing the words',e:'📖',c:'study',law:1},
+    {t:'9:45 AM',n:'SOLIDWORKS — 2h',s:'Second lesson of the week. You are on campus with nothing else to do — use it',e:'🦾',c:'study'},
+    {t:'12:00 PM',n:'Dhuhr + lunch',s:'',e:'🕌',c:'prayer'},
+    {t:'12:45 PM',n:'CLEAN ENERGY — 1h',s:'Reading and argument. Light enough for a full stomach',e:'📚',c:'study'},
+    {t:'2:00 PM',n:'CT LECTURE — B·211',s:'Computational Thermo-fluids. You pre-read this at 8:45 — it will land differently',e:'🎓',c:'study',law:1},
+    {t:'5:00 PM',n:'BUS home',s:'Four hours of real work already done today',e:'🚌',c:'rest'},
+    {t:'6:45 PM',n:'Home · shower · eat',s:'',e:'🚿',c:'rest'},
+    {t:'7:30 PM',n:'GYM — Arms',s:'Short, 45 min. Nothing heroic after an 11-hour day',e:'🏋️',c:'gym'},
+    {t:'8:45 PM',n:'Dinner',s:'',e:'🍚',c:'rest',law:5},
+    {t:'9:30 PM',n:'CT same-day skim — 30 min',s:'Today lecture while warm. Short version only',e:'📖',c:'study'},
+    {t:'10:15 PM',n:'FREE — FC27 / 2K27',s:'45 min',e:'🎮',c:'rest'},
+    {t:'11:00 PM',n:'Daily log',s:'',e:'📥',c:'rest',law:6},
+    {t:'11:30 PM',n:'Sleep',s:'',e:'🌙',c:'rest',law:5},
   ],
-  // ══════════ FINAL YEAR — THURSDAY (Lab + Travis) ══════════
+  // FINAL YEAR - THURSDAY (CT lab + 3h campus block)
   uniThu:[
-    {t:'6:15 AM',n:'Wake',s:'Water · stretch',e:'🌅',c:'rest',law:5},
-    {t:'6:25 AM',n:'Quick sandwich',s:'Lunchbox packed',e:'🥪',c:'rest'},
-    {t:'7:05 AM',n:'BUS — one 30-min card, then sleep',s:'Lab day',e:'🚌',c:'study'},
-    {t:'9:00 AM',n:'Thermo-fluids LAB — slot 1',s:'Building B · Room 406 · 9:00–10:55',e:'🔬',c:'study'},
-    {t:'11:00 AM',n:'Thermo-fluids LAB — slot 2',s:'Building B · Room 406 · 11:00–12:55',e:'🔬',c:'study'},
-    {t:'1:00 PM',n:'Lunch + friends',s:'Protected',e:'🍽️',c:'rest'},
-    {t:'2:00 PM',n:'Lab write-up WHILE FRESH',s:'Shallow work — just transcribe what happened. Saves hours later',e:'✍️',c:'study'},
-    {t:'3:00 PM',n:'UNI GYM — Tennis Armour',s:'Ext. rotations · face pulls · balcony pull-ups · wrist/forearm · ankle · anti-rotation core · t-spine',e:'💪',c:'gym'},
-    {t:'4:30 PM',n:'Bus home — sleep',s:'Finish the lunchbox',e:'🚌',c:'rest'},
-    {t:'6:15 PM',n:'Home + quick eat',s:'Pre-gym feed',e:'🏠',c:'rest'},
-    {t:'6:45 PM',n:'GYM — Shoulders + forearms',s:'Best shoulder slot in the week — 2 full days before you serve on Saturday',e:'🏋️',c:'gym'},
-    {t:'8:15 PM',n:'Big meal',s:'Protein target — check the Athlete tab',e:'🍚',c:'rest',law:5},
-    {t:'9:00 PM',n:'TRAVIS — desk block',s:'60 min · one roadmap checkbox · log any failure to the dataset',e:'🤖',c:'study'},
-    {t:'10:00 PM',n:'Same-day skim — Thermo lab',s:'Read → write → 3 questions BOOK CLOSED',e:'📖',c:'study',law:3},
-    {t:'10:50 PM',n:'Daily log + shutdown',s:'2 min · stretch · phone out',e:'📥',c:'rest',law:6},
-    {t:'11:15 PM',n:'Sleep',s:'Recovery day tomorrow — sleep in',e:'🌙',c:'rest',law:5},
+    {t:'6:00 AM',n:'Wake + Fajr',s:'Pray · skincare · dress · fragrance',e:'🌅',c:'prayer',law:2},
+    {t:'6:35 AM',n:'Small breakfast',s:'',e:'🍳',c:'rest'},
+    {t:'7:05 AM',n:'BUS',s:'Sleep',e:'🚌',c:'rest'},
+    {t:'9:00 AM',n:'CT LAB — B·406',s:'CFD. Write down every setting you did not understand — that list is your study plan',e:'🔬',c:'study',law:1},
+    {t:'1:00 PM',n:'Dhuhr + lunch',s:'',e:'🕌',c:'prayer'},
+    {t:'1:40 PM',n:'CAMPUS BLOCK — ANSYS · 1h 20m',s:'Straight after the CFD lab, while the software is still in your hands',e:'⚙️',c:'study'},
+    {t:'3:00 PM',n:'CAMPUS BLOCK — PD coursework · 1h',s:'The deadline nobody reminds you about. Chip at it every Thursday',e:'📝',c:'study',law:1},
+    {t:'4:00 PM',n:'BUS home',s:'',e:'🚌',c:'rest'},
+    {t:'5:45 PM',n:'Home · shower · snack',s:'',e:'🚿',c:'rest'},
+    {t:'6:30 PM',n:'GYM — Back + Biceps',s:'Lat pulldown · single-arm row · lower back · mid-back machine + biceps superset',e:'🏋️',c:'gym'},
+    {t:'8:00 PM',n:'Dinner',s:'',e:'🍚',c:'rest',law:5},
+    {t:'9:00 PM',n:'FREE — FC27 / 2K27',s:'One hour. Weekend starts tomorrow',e:'🎮',c:'rest'},
+    {t:'10:00 PM',n:'Light review — 20 min',s:'Flashcards only. Nothing new this late',e:'🧠',c:'study'},
+    {t:'10:45 PM',n:'Daily log + stretch',s:'',e:'📥',c:'rest',law:6},
+    {t:'11:15 PM',n:'Sleep',s:'',e:'🌙',c:'rest',law:5},
   ],
-  // ══════════ FINAL YEAR — SATURDAY (Build Day + Academy) ══════════
+  // FINAL YEAR - SATURDAY (ExoGuard morning + academy)
   buildSat:[
-    {t:'9:00 AM',n:'Wake',s:'No bus. No alarm panic',e:'🌅',c:'rest'},
-    {t:'9:20 AM',n:'Breakfast',s:'Real one — two sessions today',e:'🍳',c:'rest',law:5},
-    {t:'10:00 AM',n:'SPEED — intervals',s:'6 × 20s hard / 90s walk · treadmill max-speed or track shuttles',e:'🏃',c:'gym'},
-    {t:'10:45 AM',n:'GYM — Back + Biceps',s:'Pulling only — back work does not touch the serve. Never legs',e:'🏋️',c:'gym'},
-    {t:'12:15 PM',n:'Lunch',s:'Big study block next',e:'🍽️',c:'rest'},
-    {t:'1:00 PM',n:'DEEP STUDY PASS #2 — 3½ hrs',s:'Wed + Thu material · Thermo-fluids heavy · solve questions · wrong-answer log · +10 min rolling review',e:'📚',c:'study',law:3},
-    {t:'4:45 PM',n:'TRAVIS PHASE WORK + FILM IT',s:'90 min · move a roadmap checkbox · film whatever you built',e:'🤖',c:'study',law:1},
-    {t:'6:20 PM',n:'Pre-tennis meal',s:'Academy at 7:30',e:'🍚',c:'rest'},
-    {t:'7:00 PM',n:'30-serve ritual',s:'Targets. Second-serve spin. Before anyone else arrives',e:'⚡',c:'gym'},
-    {t:'7:30 PM',n:'TENNIS ACADEMY',s:'ONE goal · match play · log the session after',e:'🎾',c:'gym',law:1},
-    {t:'9:45 PM',n:'Big meal',s:'Shower first · then eat properly',e:'🍚',c:'rest',law:5},
-    {t:'11:00 PM',n:'Daily log',s:'Log the tennis session + tomorrow is a 6:15 wake',e:'📥',c:'rest',law:6},
-    {t:'11:30 PM',n:'Sleep',s:'Uni tomorrow',e:'🌙',c:'rest',law:5},
+    {t:'9:00 AM',n:'Wake naturally',s:'No alarm. You are owed this',e:'🌅',c:'rest'},
+    {t:'9:30 AM',n:'Breakfast',s:'Unhurried',e:'🍳',c:'rest'},
+    {t:'10:00 AM',n:'EXOGUARD BUILD — 2h 30m',s:'Not a course — the actual project. Hardest task first, phone in another room',e:'🦾',c:'study',law:1},
+    {t:'12:30 PM',n:'Dhuhr + lunch',s:'',e:'🕌',c:'prayer'},
+    {t:'1:30 PM',n:'THERMO DEEP PASS — 2h',s:'Wednesday + Thursday material. Solve questions, log every miss',e:'📚',c:'study',law:3},
+    {t:'3:30 PM',n:'Free block',s:'Recharge before court. Do not train tired on purpose',e:'🌳',c:'rest'},
+    {t:'5:00 PM',n:'Pre-tennis meal',s:'Eat now — you play at 7:30',e:'🍚',c:'rest'},
+    {t:'6:30 PM',n:'Leave + 30-serve ritual',s:'Arrive early. 30 serves with targets before anyone else starts',e:'⚡',c:'gym'},
+    {t:'7:30 PM',n:'TENNIS ACADEMY',s:'ONE goal for the session. Between points: turn, breathe, next',e:'🎾',c:'gym',law:1},
+    {t:'9:45 PM',n:'Home · shower',s:'',e:'🚿',c:'rest'},
+    {t:'10:15 PM',n:'Big meal',s:'Log the session in the Athlete tab — minutes and average HR',e:'🍚',c:'rest',law:5},
+    {t:'11:00 PM',n:'Daily log',s:'',e:'📥',c:'rest',law:6},
+    {t:'11:45 PM',n:'Sleep — long one',s:'Sunday is a 6 AM wake. This is the sleep that pays for it',e:'🌙',c:'rest',law:5},
   ],
-  // ══════════ EXAM WEEK — 13–17 Dec 2026 ══════════
-  examDay:[
-    {t:'7:30 AM',n:'Wake',s:'Same wake time all week. Do not let it drift',e:'🌅',c:'rest',law:5},
-    {t:'8:00 AM',n:'Breakfast',s:'Eat properly — the brain runs on this',e:'🍳',c:'rest'},
-    {t:'8:45 AM',n:'REVISION BLOCK 1 — 2 hrs',s:'Past papers under time pressure. Not re-reading',e:'📚',c:'study',law:1},
-    {t:'11:00 AM',n:'Break + walk',s:'20 min outside. Non-negotiable',e:'🚶',c:'rest'},
-    {t:'11:30 AM',n:'WRONG-ANSWER LOG REVIEW',s:'Your own mistakes are the highest-yield revision material you own',e:'❌',c:'study',law:3},
-    {t:'12:30 PM',n:'Lunch',s:'',e:'🍽️',c:'rest'},
-    {t:'1:30 PM',n:'REVISION BLOCK 2 — 2 hrs',s:'Weakest topic. The one you have been avoiding',e:'📚',c:'study',law:1},
-    {t:'3:45 PM',n:'GYM — keep it light',s:'Maintenance only. Movement clears the head; failure sets do not',e:'🏋️',c:'gym'},
-    {t:'5:15 PM',n:'Big meal',s:'',e:'🍚',c:'rest',law:5},
-    {t:'6:30 PM',n:'REVISION BLOCK 3 — 90 min',s:'Rolling review — everything the queue says is due',e:'🔄',c:'study'},
-    {t:'8:15 PM',n:'STOP. Hard stop.',s:'No cramming past 8:15. Sleep beats one more hour, every time',e:'🛑',c:'rest'},
-    {t:'10:30 PM',n:'Sleep — 9 hrs',s:'Memory consolidates in deep sleep. Cramming instead of sleeping is a net loss',e:'🌙',c:'rest',law:5},
-  ],
-  // ══════════ PRE-SEASON — recovery day (Fri 11 & 18 Sep) ══════════
+  // FINAL YEAR - FRIDAY (recovery + private tennis 9 PM)
   preRest:[
     {t:'9:00 AM',n:'Wake naturally',s:'No alarm. Recovery is a training session',e:'🌅',c:'rest'},
     {t:'9:30 AM',n:'Breakfast',s:'Unhurried',e:'🍳',c:'rest'},
-    {t:'10:00 AM',n:'WEEKLY REVIEW — 20 min',s:'Review tab · score the week · set the ExoGuard deliverable · read the Wins Ledger',e:'📅',c:'rest',law:6},
-    {t:'10:20 AM',n:'Weigh-in',s:'Log it · trend not noise',e:'⚖️',c:'rest'},
+    {t:'10:00 AM',n:'WEEKLY REVIEW — 20 min',s:'Score the week, set next week ExoGuard deliverable, read the Wins Ledger',e:'📅',c:'rest',law:6},
+    {t:'10:20 AM',n:'Weigh-in',s:'Log it. Trend, not noise',e:'⚖️',c:'rest'},
     {t:'12:00 PM',n:'Jummah',s:'',e:'🕌',c:'prayer'},
     {t:'1:00 PM',n:'Lunch with family',s:'Be present. Phone away',e:'🍽️',c:'rest'},
-    {t:'2:00 PM',n:'RECOVERY MODE',s:'Sauna · jacuzzi · movie · Barça · family · ZERO GUILT',e:'🧖',c:'rest'},
+    {t:'2:00 PM',n:'RECOVERY MODE',s:'Sauna · jacuzzi · Barça · family · ZERO GUILT. This day is why the other six work',e:'🧖',c:'rest'},
+    {t:'5:00 PM',n:'FREE — the long one',s:'FC27, 2K27, friends, whatever. No cap today',e:'🎮',c:'rest'},
     {t:'7:30 PM',n:'Pre-tennis meal — eat EARLY',s:'You play at 9. Nothing heavy after this',e:'🍚',c:'rest'},
-    {t:'8:30 PM',n:'Leave + 30-serve ritual',s:'Arrive early. 30 serves with targets before the coach starts',e:'⚡',c:'gym'},
+    {t:'8:30 PM',n:'Leave + 30-serve ritual',s:'Arrive early. Targets before the coach starts',e:'⚡',c:'gym'},
     {t:'9:00 PM',n:'PRIVATE LESSON (Untouchable)',s:'TECHNIQUE ONLY — academy is tomorrow. Save the legs',e:'🎾',c:'gym',law:1},
     {t:'10:30 PM',n:'Home · shower · light meal',s:'Nothing heavy this late',e:'🚿',c:'rest'},
-    {t:'11:15 PM',n:'Daily log + stretch',s:'Log the session. Legs up the wall — academy in 15 hrs',e:'📥',c:'rest',law:6},
+    {t:'11:15 PM',n:'Daily log + stretch',s:'Legs up the wall — academy in 20 hrs',e:'📥',c:'rest',law:6},
     {t:'11:45 PM',n:'Sleep — protect this one',s:'Back-to-back court days. Sleep is the only thing that carries you',e:'🌙',c:'rest',law:5},
   ]
 };
@@ -3448,6 +3392,7 @@ function busPickFor(dk){
   S.bus.pick[dk]=best;sv();return best;
 }
 function renderBus(){
+  if(!document.getElementById('pg-bus'))return;   // Bus tab removed Sep 2026
   const dk=DKEY(), id=busPickFor(dk), C=COURSES[id]||COURSES.es;
   const done=S.bus.log[dk];
   const setH=(x,v)=>{const e=document.getElementById(x);if(e)e.innerHTML=v;};
