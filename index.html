@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v9 · FINAL YEAR · real week -->
+<!-- DAWLY OS v10 · FINAL YEAR · ansys + tennis week -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <title>DAWLY OS — Personal Operating System</title>
@@ -1596,6 +1596,43 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
   </div>
 </div>
 
+
+<!-- ANSYS -->
+<div class="pg" id="pg-ansys">
+  <div class="hero">
+    <div class="hero-kicker fu" style="color:var(--cyan);">SIMULATION SKILL · FREE · BADGE ON LINKEDIN</div>
+    <div class="hero-title fu">AN<span style="color:var(--cyan);">SYS.</span></div>
+    <div class="hero-sub fu">Three phases. Phase 1 is literally your Thermo-fluids syllabus — so this is revision that happens to come with a credential. Phase 2 makes you dangerous in the software. Phase 3 is the FEA that ExoGuard needs.</div>
+  </div>
+
+  <div class="ph">
+    <div class="ph-top"><div class="ph-t">⚙️ OVERALL</div><div class="ph-s" id="an-overall">0 / 0</div></div>
+    <div class="ph-bar"><div class="ph-fill" id="an-fill" style="background:linear-gradient(90deg,var(--cyan),var(--green));"></div></div>
+    <div class="ph-meta" id="an-meta">—</div>
+  </div>
+
+  <div id="an-hero"></div>
+
+  <div class="card fu">
+    <div class="c-hd">▸ START HERE — ONE TIME</div>
+    <div class="mrow"><div style="flex:1;"><div style="font-weight:700;font-size:13px;">1 · Make a free Ansys account</div>
+      <div class="hint">innovationspace.ansys.com — use your university email, it unlocks student access</div></div></div>
+    <div class="mrow"><div style="flex:1;"><div style="font-weight:700;font-size:13px;">2 · Download Ansys Student (free)</div>
+      <div class="hint">ansys.com/academic/students — you need the software to actually do the exercises</div></div></div>
+    <div class="mrow"><div style="flex:1;"><div style="font-weight:700;font-size:13px;">3 · Ask TKH for the full university licence</div>
+      <div class="hint">The student version caps mesh size. Your computer centre almost certainly has the full one</div></div></div>
+    <a class="btn go" style="display:block;text-align:center;margin-top:10px;text-decoration:none;"
+       href="https://innovationspace.ansys.com/courses/" target="_blank" rel="noopener">OPEN ANSYS INNOVATION SPACE ↗</a>
+  </div>
+
+  <div id="an-phases"></div>
+
+  <div class="card fu">
+    <div class="c-hd">▸ ABOUT THE BADGE</div>
+    <div class="hint" style="line-height:1.7;">Every course is free and self-paced. Finishing a whole Learning Track earns a completion badge you can put on LinkedIn and your CV. <b style="color:var(--gold);">Check the badge price on the track page before you count on it</b> — Ansys lists some track badges as a paid add-on even though the courses themselves cost nothing. The knowledge and the software skill are free either way, and those are what actually get you hired.</div>
+  </div>
+</div>
+
 <div class="pg" id="pg-rev">
   <div class="hero">
     <div class="hero-kicker fu" style="color:var(--gold);">THE BOARDROOM · MEASURED LIFE</div>
@@ -1699,6 +1736,7 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
   <button class="nb" onclick="nav('exo',this)"><span class="ic">🦾</span>Exo</button>
   <button class="nb" onclick="nav('travis',this)"><span class="ic">🤖</span>Travis</button>
   <button class="nb" onclick="nav('ath',this)"><span class="ic">🎾</span>Athlete</button>
+  <button class="nb" onclick="nav('ansys',this)"><span class="ic">⚙️</span>Ansys</button>
   <button class="nb" onclick="nav('rev',this)"><span class="ic">📊</span>Review</button>
 </nav>
 
@@ -2024,12 +2062,12 @@ const SCH={
     {t:'1:40 PM',n:'CAMPUS BLOCK — THERMO · 2h 20m',s:'Bus is not until 4. Hardest module, best brain left. Real notes, solve, log every miss',e:'📚',c:'study',law:1},
     {t:'4:00 PM',n:'BUS home',s:'Done. Nothing more is owed today',e:'🚌',c:'rest'},
     {t:'5:45 PM',n:'Home · shower · snack',s:'',e:'🚿',c:'rest'},
-    {t:'6:30 PM',n:'GYM — Chest + Triceps',s:'Bench · incline · flys · pushdown · 2 triceps. Log every set',e:'🏋️',c:'gym'},
-    {t:'8:00 PM',n:'Dinner',s:'Protein target — check the Athlete tab',e:'🍚',c:'rest',law:5},
-    {t:'9:00 PM',n:'FREE — FC27 / 2K27',s:'One hour. Locked in, zero guilt. You earned it at 1:40',e:'🎮',c:'rest'},
-    {t:'10:00 PM',n:'PD skim — 25 min',s:'Today material while warm. Short version only',e:'📖',c:'study'},
-    {t:'10:45 PM',n:'Daily log + stretch',s:'2 min. Phone parks outside the room',e:'📥',c:'rest',law:6},
-    {t:'11:15 PM',n:'Sleep',s:'Monday is the longest day of your week',e:'🌙',c:'rest',law:5},
+    {t:'6:30 PM',n:'Decompress',s:'Shower · eat · lie down. Do NOT go straight to the gym off the bus',e:'🚿',c:'rest'},
+    {t:'7:45 PM',n:'GYM — Chest + Triceps',s:'Bench · incline · flys · pushdown · 2 triceps. You have had 2 hrs to recover',e:'🏋️',c:'gym'},
+    {t:'9:15 PM',n:'Dinner',s:'Protein target — check the Athlete tab',e:'🍚',c:'rest',law:5},
+    {t:'10:00 PM',n:'FREE — FC27 / 2K27',s:'One hour. Locked in, zero guilt',e:'🎮',c:'rest'},
+    {t:'11:00 PM',n:'Daily log + stretch',s:'',e:'📥',c:'rest',law:6},
+    {t:'11:30 PM',n:'Sleep',s:'Monday is academy night — long day, then court',e:'🌙',c:'rest',law:5},
   ],
   // FINAL YEAR - MONDAY (Clean Energy all day, home 6:45)
   uniMon:[
@@ -2042,12 +2080,12 @@ const SCH={
     {t:'2:00 PM',n:'CE LAB — B·407',s:'',e:'🔬',c:'study'},
     {t:'5:00 PM',n:'BUS home',s:'Late bus today. Nothing heavy is scheduled tonight',e:'🚌',c:'rest'},
     {t:'6:45 PM',n:'Home · shower · eat',s:'Seven-hour contact day. Be kind to yourself',e:'🚿',c:'rest'},
-    {t:'7:30 PM',n:'GYM — Shoulders',s:'Short session, 45 min. Show up, do the work, leave',e:'🏋️',c:'gym'},
-    {t:'8:45 PM',n:'Dinner',s:'',e:'🍚',c:'rest',law:5},
-    {t:'9:30 PM',n:'CE same-day skim — 30 min',s:'Only today material. Read notes, close book, 3 questions from memory',e:'📖',c:'study'},
-    {t:'10:15 PM',n:'FREE — FC27 / 2K27',s:'45 min. Hard day, real reward',e:'🎮',c:'rest'},
-    {t:'11:00 PM',n:'Daily log',s:'',e:'📥',c:'rest',law:6},
-    {t:'11:30 PM',n:'Sleep',s:'Tomorrow you are home all day. The good one',e:'🌙',c:'rest',law:5},
+    {t:'6:45 PM',n:'Home · shower · pre-court meal',s:'Light and early. You play at 8',e:'🍚',c:'rest'},
+    {t:'7:30 PM',n:'Leave + 30-serve ritual',s:'Arrive early. Targets before anyone else starts',e:'⚡',c:'gym'},
+    {t:'8:00 PM',n:'TENNIS ACADEMY',s:'ONE goal for the session. Whatever breaks tonight is Thursday\'s private lesson',e:'🎾',c:'gym',law:1},
+    {t:'10:00 PM',n:'Home · shower · big meal',s:'Log the session — minutes and average HR',e:'🍚',c:'rest',law:5},
+    {t:'11:00 PM',n:'Daily log',s:'Write down the ONE thing that broke tonight',e:'📥',c:'rest',law:6},
+    {t:'11:45 PM',n:'Sleep',s:'7-hr contact day plus court. You earned this one',e:'🌙',c:'rest',law:5},
   ],
   // FINAL YEAR - TUESDAY (NO CLASS, best day)
   deskTue:[
@@ -2079,12 +2117,13 @@ const SCH={
     {t:'2:00 PM',n:'CT LECTURE — B·211',s:'Computational Thermo-fluids. You pre-read this at 8:45 — it will land differently',e:'🎓',c:'study',law:1},
     {t:'5:00 PM',n:'BUS home',s:'Four hours of real work already done today',e:'🚌',c:'rest'},
     {t:'6:45 PM',n:'Home · shower · eat',s:'',e:'🚿',c:'rest'},
-    {t:'7:30 PM',n:'GYM — Arms',s:'Short, 45 min. Nothing heroic after an 11-hour day',e:'🏋️',c:'gym'},
-    {t:'8:45 PM',n:'Dinner',s:'',e:'🍚',c:'rest',law:5},
-    {t:'9:30 PM',n:'CT same-day skim — 30 min',s:'Today lecture while warm. Short version only',e:'📖',c:'study'},
-    {t:'10:15 PM',n:'FREE — FC27 / 2K27',s:'45 min',e:'🎮',c:'rest'},
-    {t:'11:00 PM',n:'Daily log',s:'',e:'📥',c:'rest',law:6},
-    {t:'11:30 PM',n:'Sleep',s:'',e:'🌙',c:'rest',law:5},
+    {t:'7:30 PM',n:'Decompress',s:'Shower · eat · sit down. 11-hour day — you are not going straight to the gym',e:'🚿',c:'rest'},
+    {t:'8:15 PM',n:'GYM — Back + Biceps',s:'Lat pulldown · single-arm row · lower back · mid-back + biceps superset',e:'🏋️',c:'gym'},
+    {t:'9:30 PM',n:'Dinner',s:'',e:'🍚',c:'rest',law:5},
+    {t:'10:15 PM',n:'CT same-day skim — 25 min',s:'Today\'s lecture while warm. Short version only',e:'📖',c:'study'},
+    {t:'10:50 PM',n:'FREE — FC27 / 2K27',s:'40 min',e:'🎮',c:'rest'},
+    {t:'11:35 PM',n:'Daily log',s:'',e:'📥',c:'rest',law:6},
+    {t:'11:55 PM',n:'Sleep',s:'',e:'🌙',c:'rest',law:5},
   ],
   // FINAL YEAR - THURSDAY (CT lab + 3h campus block)
   uniThu:[
@@ -2097,12 +2136,13 @@ const SCH={
     {t:'3:00 PM',n:'CAMPUS BLOCK — PD coursework · 1h',s:'The deadline nobody reminds you about. Chip at it every Thursday',e:'📝',c:'study',law:1},
     {t:'4:00 PM',n:'BUS home',s:'',e:'🚌',c:'rest'},
     {t:'5:45 PM',n:'Home · shower · snack',s:'',e:'🚿',c:'rest'},
-    {t:'6:30 PM',n:'GYM — Back + Biceps',s:'Lat pulldown · single-arm row · lower back · mid-back machine + biceps superset',e:'🏋️',c:'gym'},
-    {t:'8:00 PM',n:'Dinner',s:'',e:'🍚',c:'rest',law:5},
-    {t:'9:00 PM',n:'FREE — FC27 / 2K27',s:'One hour. Weekend starts tomorrow',e:'🎮',c:'rest'},
-    {t:'10:00 PM',n:'Light review — 20 min',s:'Flashcards only. Nothing new this late',e:'🧠',c:'study'},
-    {t:'10:45 PM',n:'Daily log + stretch',s:'',e:'📥',c:'rest',law:6},
-    {t:'11:15 PM',n:'Sleep',s:'',e:'🌙',c:'rest',law:5},
+    {t:'6:00 PM',n:'Pre-court meal — early',s:'You play at 8. Nothing heavy after this',e:'🍚',c:'rest'},
+    {t:'7:30 PM',n:'Leave + 30-serve ritual',s:'Bring Monday\'s broken shot. That is the whole session',e:'⚡',c:'gym'},
+    {t:'8:00 PM',n:'PRIVATE LESSON (Untouchable)',s:'Fix what broke on Monday. Saturday is where you test it',e:'🎾',c:'gym',law:1},
+    {t:'9:30 PM',n:'Home · shower · meal',s:'Log the session — minutes and average HR',e:'🍚',c:'rest',law:5},
+    {t:'10:30 PM',n:'FREE — FC27 / 2K27',s:'One hour. Weekend starts tomorrow',e:'🎮',c:'rest'},
+    {t:'11:30 PM',n:'Daily log + stretch',s:'',e:'📥',c:'rest',law:6},
+    {t:'11:55 PM',n:'Sleep',s:'',e:'🌙',c:'rest',law:5},
   ],
   // FINAL YEAR - SATURDAY (ExoGuard morning + academy)
   buildSat:[
@@ -2126,16 +2166,14 @@ const SCH={
     {t:'9:30 AM',n:'Breakfast',s:'Unhurried',e:'🍳',c:'rest'},
     {t:'10:00 AM',n:'WEEKLY REVIEW — 20 min',s:'Score the week, set next week ExoGuard deliverable, read the Wins Ledger',e:'📅',c:'rest',law:6},
     {t:'10:20 AM',n:'Weigh-in',s:'Log it. Trend, not noise',e:'⚖️',c:'rest'},
+    {t:'10:45 AM',n:'GYM — Shoulders + Arms',s:'Light session on a free morning. Fourth and last lift of the week',e:'🏋️',c:'gym'},
     {t:'12:00 PM',n:'Jummah',s:'',e:'🕌',c:'prayer'},
     {t:'1:00 PM',n:'Lunch with family',s:'Be present. Phone away',e:'🍽️',c:'rest'},
     {t:'2:00 PM',n:'RECOVERY MODE',s:'Sauna · jacuzzi · Barça · family · ZERO GUILT. This day is why the other six work',e:'🧖',c:'rest'},
-    {t:'5:00 PM',n:'FREE — the long one',s:'FC27, 2K27, friends, whatever. No cap today',e:'🎮',c:'rest'},
-    {t:'7:30 PM',n:'Pre-tennis meal — eat EARLY',s:'You play at 9. Nothing heavy after this',e:'🍚',c:'rest'},
-    {t:'8:30 PM',n:'Leave + 30-serve ritual',s:'Arrive early. Targets before the coach starts',e:'⚡',c:'gym'},
-    {t:'9:00 PM',n:'PRIVATE LESSON (Untouchable)',s:'TECHNIQUE ONLY — academy is tomorrow. Save the legs',e:'🎾',c:'gym',law:1},
-    {t:'10:30 PM',n:'Home · shower · light meal',s:'Nothing heavy this late',e:'🚿',c:'rest'},
-    {t:'11:15 PM',n:'Daily log + stretch',s:'Legs up the wall — academy in 20 hrs',e:'📥',c:'rest',law:6},
-    {t:'11:45 PM',n:'Sleep — protect this one',s:'Back-to-back court days. Sleep is the only thing that carries you',e:'🌙',c:'rest',law:5},
+    {t:'7:00 PM',n:'Dinner with family',s:'No court tonight. Private moved to Thursday',e:'🍽️',c:'rest',law:5},
+    {t:'8:30 PM',n:'FREE — the long one',s:'FC27, 2K27, friends, film. No cap tonight',e:'🎮',c:'rest'},
+    {t:'11:00 PM',n:'Daily log + stretch',s:'Academy tomorrow evening — legs up the wall',e:'📥',c:'rest',law:6},
+    {t:'11:45 PM',n:'Sleep',s:'',e:'🌙',c:'rest',law:5},
   ]
 };
 // ══════════ PRE-SEASON BRIDGE · 10 → 19 Sep 2026 ══════════
@@ -2369,6 +2407,7 @@ function renderNextAction(fromBtn){
 function daysToMonday(){const d=new Date().getDay();return(1-d+7)%7;}
 function renderExo(){
   try{renderBuildHeroes();}catch(e){}
+  try{renderAnsys();}catch(e){}
   const dm=daysToMonday();
   document.getElementById('exo-cd').textContent=dm===0?'TODAY':dm+'d';
   document.getElementById('exo-phase-name').value=S.exoPhaseName;
@@ -2890,6 +2929,105 @@ function renderBuildHeroes(){
       +(td===0?'Nothing moving yet. Phase 2 needs no money — start there.'
         :R>=67?'Ahead of schedule.':'Slipping behind the plan.')));
   }
+}
+
+
+// ═══════════════════════════════════════════════════════════
+//  ANSYS — three-phase plan, Ansys Innovation Courses (free)
+// ═══════════════════════════════════════════════════════════
+let ANS={};try{ANS=JSON.parse(localStorage.getItem('ansys_done')||'{}');}catch(e){ANS={};}
+function svAns(){localStorage.setItem('ansys_done',JSON.stringify(ANS));
+  S._ts=Date.now();localStorage.setItem('dawly_os',JSON.stringify(S));
+  if(typeof schedulePush==='function')schedulePush();}
+
+const AN_PHASES=[
+ {id:1,n:'Basics of Fluid Dynamics',tag:'PHASE 1',col:'var(--cyan)',
+  why:'This IS your Computational Thermo-fluids module. Courses 4–7 are Navier-Stokes, assumptions and viscous flow — the exact content you sit in December. Do this and you revise CT for free.',
+  pace:'2 sessions a week · Tue + Thu · about 10 weeks',
+  ts:[
+   {id:'a1',n:'What Are Fluids?',s:'Properties of fluids vs solids and gases, types of flow',u:'what-are-fluids/'},
+   {id:'a2',n:'Fluid Statics',s:'Fluids at rest · pressure above and below sea level',u:'fluid-statics/'},
+   {id:'a3',n:'Fluid Kinematics',s:'Motion of fluids · coordinate systems · rotation and visualisation',u:'fluid-kinematics/'},
+   {id:'a4',n:'Governing Equations of Fluids',s:'★ Navier-Stokes · mass, momentum, energy. Your CT exam lives here',u:'governing-equations-of-fluid-dynamics/'},
+   {id:'a5',n:'Dimensional Analysis and Similarity',s:'★ Non-dimensionalising N-S · Reynolds and friends',u:'dimensional-analysis-and-similarity/'},
+   {id:'a6',n:'Simple Approximations of Fluid Flows',s:'★ Incompressible, inviscid — "reasonable assumptions", word for word from your module description',u:'simple-approximations-of-fluid-flows/'},
+   {id:'a7',n:'Viscous Laminar Flows',s:'★ Internal vs external · lift and drag · boundary layers',u:'viscous-laminar-flows/'},
+  ]},
+ {id:2,n:'Hands-on CFD in Fluent',tag:'PHASE 2',col:'var(--gold)',
+  why:'Theory does not get you hired — driving the software does. This is where you stop reading about CFD and start running it. It also carries your Thursday lab.',
+  pace:'1 session a week · Thu after the CFD lab · about 6 weeks',
+  ts:[
+   {id:'b1',n:'Fluent Meshing — Watertight Geometry',s:'The standard industrial meshing workflow. Learn this one properly',u:''},
+   {id:'b2',n:'Mesh independence study',s:'Run the same case at 3 mesh densities. This is a real CV line and a real exam answer',u:''},
+   {id:'b3',n:'Cornell SimCafe Fluids',s:'Guided end-to-end CFD cases with verification',u:''},
+   {id:'b4',n:'Heat Transfer in Fluids',s:'Conjugate heat transfer — straight into ExoGuard actuator thermals',u:''},
+   {id:'b5',n:'Validate one case against hand calculation',s:'Pick a flow you can solve analytically. Prove the CFD agrees. That is the whole skill',u:''},
+  ]},
+ {id:3,n:'Structural FEA for ExoGuard',tag:'PHASE 3',col:'var(--purple)',
+  why:'The exoskeleton has to not break. This phase is the stress analysis that goes in your graduation report — and it is the strongest slide in your expo presentation.',
+  pace:'1 session a week · from January · about 8 weeks',
+  ts:[
+   {id:'c1',n:'Stress Analysis in Ansys Mechanical',s:'Static structural from first principles',u:''},
+   {id:'c2',n:'Foundations in Structural Nonlinearities',s:'Large deflection, contact, plasticity — a worn frame is all three',u:''},
+   {id:'c3',n:'Pre-loaded Bolted Connections',s:'Every joint on your exoskeleton',u:''},
+   {id:'c4',n:'Foundations of Heat Transfer in Structures',s:'Actuator heat into the frame',u:''},
+   {id:'c5',n:'Linear Dynamics using Ansys Mechanical',s:'Modal analysis — does the frame resonate while walking?',u:''},
+   {id:'c6',n:'ExoGuard load case — full FEA run',s:'★ The deliverable. Your own geometry, your own loads, in your report',u:''},
+  ]},
+];
+const AN_BASE='https://innovationspace.ansys.com/courses/courses/';
+
+function anTotal(){return AN_PHASES.reduce((a,p)=>a+p.ts.length,0);}
+function anDone(){return Object.values(ANS).filter(Boolean).length;}
+function anTog(id){ANS[id]=!ANS[id];svAns();renderAnsys();
+  toast(ANS[id]?'✅ Done — one closer to the badge':'↩ Cleared');}
+
+function renderAnsys(){
+  const H=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
+  const T=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
+  const tot=anTotal(), don=anDone(), pct=tot?Math.round(don/tot*100):0;
+  T('an-overall',don+' / '+tot+' done');
+  const f=document.getElementById('an-fill'); if(f)f.style.width=pct+'%';
+
+  // which phase is live
+  let cur=AN_PHASES[0];
+  for(const p of AN_PHASES){ if(p.ts.some(t=>!ANS[t.id])){cur=p;break;} }
+  const curDone=cur.ts.filter(t=>ANS[t.id]).length;
+  T('an-meta',cur.tag+' — '+cur.n+' · '+curDone+'/'+cur.ts.length+' · '+cur.pace);
+
+  // next action hero
+  const next=cur.ts.find(t=>!ANS[t.id]);
+  H('an-hero', next
+    ? '<div class="next-card"><div class="next-kicker">⚙️ NEXT ANSYS SESSION</div>'
+      +'<div class="next-title">'+next.n+'</div>'
+      +'<div class="next-why">'+next.s+'</div>'
+      +(next.u?'<a class="btn go" style="display:block;text-align:center;margin-top:11px;text-decoration:none;" href="'+AN_BASE+next.u+'" target="_blank" rel="noopener">OPEN THE COURSE ↗</a>':'')
+      +'</div>'
+    : '<div class="next-card"><div class="next-kicker">⚙️ ANSYS</div>'
+      +'<div class="next-title">All three phases complete.</div>'
+      +'<div class="next-why">Put the badge on LinkedIn, put the FEA in the ExoGuard report, and put "Ansys Fluent / Mechanical" on your CV. You earned all three.</div></div>');
+
+  // phases
+  H('an-phases', AN_PHASES.map(p=>{
+    const d=p.ts.filter(t=>ANS[t.id]).length, pc=Math.round(d/p.ts.length*100);
+    return '<div class="card fu">'
+      +'<div class="c-hd" style="color:'+p.col+';">'+p.tag+' · '+p.n.toUpperCase()+'</div>'
+      +'<div class="hint" style="line-height:1.65;margin-bottom:9px;">'+p.why+'</div>'
+      +'<div class="ph-bar" style="margin-bottom:4px;"><div class="ph-fill" style="width:'+pc+'%;background:'+p.col+';"></div></div>'
+      +'<div class="mt-s" style="margin-bottom:10px;">'+d+' / '+p.ts.length+' · '+p.pace+'</div>'
+      + p.ts.map(t=>{
+          const on=!!ANS[t.id];
+          return '<div class="mrow'+(on?' ok':'')+'" style="display:flex;align-items:flex-start;gap:10px;">'
+            +'<div class="mod-check" onclick="anTog(\''+t.id+'\')" style="flex:0 0 auto;margin-top:2px;'
+            +(on?'background:'+p.col+';border-color:'+p.col+';color:#000;':'')+'">'+(on?'✓':'')+'</div>'
+            +'<div style="flex:1;min-width:0;">'
+              +'<div style="font-weight:700;font-size:13px;'+(on?'opacity:.55;':'')+'">'+t.n+'</div>'
+              +'<div class="hint" style="line-height:1.55;">'+t.s+'</div>'
+              +(t.u?'<a href="'+AN_BASE+t.u+'" target="_blank" rel="noopener" style="font-family:\'DM Mono\',monospace;font-size:9px;color:'+p.col+';letter-spacing:1px;">OPEN COURSE ↗</a>':'')
+            +'</div></div>';
+        }).join('')
+      +'</div>';
+  }).join(''));
 }
 
 function renderUni(){
