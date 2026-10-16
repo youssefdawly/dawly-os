@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v11 · FINAL YEAR · travis audited -->
+<!-- DAWLY OS v13 · FINAL YEAR · real modules + exo audit -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <title>DAWLY OS — Personal Operating System</title>
@@ -1036,6 +1036,8 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
     <div class="hero-sub fu">Smart industrial back exoskeleton with AI injury prevention. You build this alone — so the system supplies the accountability a team would. Every Monday, your supervisor is the deadline.</div>
   </div>
 
+  <div id="exo-verdict"></div>
+  <div id="exo-sprint"></div>
   <div id="exo-hero"></div>
   <div class="stabs fu" id="exo-tabs">
     <div class="stab active" onclick="showExoTab('exec',this)">⚡ Execute</div>
@@ -1159,6 +1161,9 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
     <div class="ph-meta" id="uni-sub">—</div>
   </div>
   <div id="uni-hero"></div>
+  <div id="uni-campus"></div>
+  <div class="sec-ttl fu" style="margin:16px 0 8px;">📚 YOUR THREE MODULES</div>
+  <div id="uni-modules"></div>
   <div class="mtiles" id="uni-trio"></div>
 
   <!-- ░░ THE ONLY THING THAT MATTERS: what to study now ░░ -->
@@ -2407,7 +2412,143 @@ function renderNextAction(fromBtn){
 
 // ═══════════ EXOGUARD ═══════════
 function daysToMonday(){const d=new Date().getDay();return(1-d+7)%7;}
+
+// ═══════════════════════════════════════════════════════════
+//  EXOGUARD DESIGN SPRINT — 16 → 21 Oct 2026
+//  Supervisor is late-angry. Design must be finished.
+//  Every hour below is real, mapped against the actual week.
+// ═══════════════════════════════════════════════════════════
+const SPRINT={
+  on:true, deadline:'2026-10-21T23:59:00', label:'DESIGN FINISHED',
+  blocks:[
+    {k:'sp_fri', d:'FRI 16', t:'19:00 \u2013 22:30', h:3.5, w:'Tonight',
+     s:'Recovery day, yes. But the cheapest 3.5 hrs you will find this week is the one you were going to spend on the sofa.'},
+    {k:'sp_sat1',d:'SAT 17', t:'10:00 \u2013 12:30', h:2.5, w:'Morning \u2014 already yours',
+     s:'This is already an ExoGuard block in your schedule. Nothing to sacrifice.'},
+    {k:'sp_sat2',d:'SAT 17', t:'13:30 \u2013 16:30', h:3.0, w:'Afternoon \u2014 redirect',
+     s:'Thermo deep pass gives up its slot. One missed thermo week costs less than a failed graduation project.'},
+    {k:'sp_sun', d:'SUN 18', t:'13:40 \u2013 16:00', h:2.3, w:'Campus block',
+     s:'Class ends 12:55, bus is not until 4. You are sitting there anyway \u2014 bring the laptop.'},
+    {k:'sp_mon', d:'MON 19', t:'\u2014',             h:0,   w:'Write it off',
+     s:'Seven hours of contact then academy at 8. Do not plan work you cannot do. Rest is the plan.'},
+    {k:'sp_tue1',d:'TUE 20', t:'08:45 \u2013 16:00', h:6.0, w:'THE BIG ONE',
+     s:'No class at all. SolidWorks, ANSYS and Thermo blocks all redirected. If the design gets finished, it gets finished here.'},
+    {k:'sp_tue2',d:'TUE 20', t:'19:30 \u2013 21:00', h:1.5, w:'Evening \u2014 redirect',
+     s:'Clean Energy gives up its slot.'},
+    {k:'sp_wed', d:'WED 21', t:'08:45 \u2013 14:00', h:5.0, w:'Campus block \u2014 last chance',
+     s:'You arrive 8:20, lecture is not until 2. Five hours. This is the final block before the deadline.'},
+  ],
+  // what still has to be designed — tick what is already done
+  items:[
+    {k:'d_hip', n:'Hip bracket', s:'DONE \u2014 you said so', pre:true},
+    {k:'d_elec',n:'Electronics', s:'DONE \u2014 parts are in hand', pre:true},
+    {k:'d_spine',n:'Spine / back frame', s:'The load path. Everything else hangs off this \u2014 do it first'},
+    {k:'d_harn', n:'Shoulder harness + straps', s:'Where the load reaches the body'},
+    {k:'d_thigh',n:'Thigh cuffs / leg interface', s:'The reaction point. Without it the hip bracket does nothing'},
+    {k:'d_act',  n:'Actuator mounts', s:'Mounting geometry + clearance through the full range of motion'},
+    {k:'d_sens', n:'Sensor placement', s:'IMU positions fixed in CAD, not guessed on the bench later'},
+    {k:'d_house',n:'Electronics housing', s:'You have the parts \u2014 give them somewhere to live'},
+    {k:'d_asm',  n:'Full assembly + interference check', s:'Mate it all. Run the check. This is what catches the expensive mistakes'},
+    {k:'d_bom',  n:'Drawings + BOM', s:'What you actually hand the supervisor'},
+  ]
+};
+let SPR={};try{SPR=JSON.parse(localStorage.getItem('exo_sprint')||'{}');}catch(e){SPR={};}
+function svSpr(){localStorage.setItem('exo_sprint',JSON.stringify(SPR));
+  S._ts=Date.now();localStorage.setItem('dawly_os',JSON.stringify(S));
+  if(typeof schedulePush==='function')schedulePush();}
+function sprTog(k){SPR[k]=!SPR[k];svSpr();renderSprint();
+  toast(SPR[k]?'\u2705 Logged':'\u21a9 Cleared');}
+
+
+// ── ExoGuard: the audit header ──
+function exoVerdict(){
+  const el=document.getElementById('exo-verdict'); if(!el||typeof EXO_META==='undefined')return;
+  const sub=Math.ceil((new Date(EXO_META.submission)-Date.now())/864e5);
+  el.innerHTML='<div class="card">'
+   +'<div class="c-hd">\u25b8 AUDITED '+EXO_META.updated+' \u00b7 SUBMISSION IN '+sub+' DAYS</div>'
+   +'<div style="font-size:13px;font-weight:700;line-height:1.55;margin-bottom:9px;">'+EXO_META.verdict+'</div>'
+   +'<div class="mrow" style="border-color:rgba(240,85,85,.3);"><div style="flex:1;">'
+     +'<div class="hint" style="color:var(--red);font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1.5px;">BIGGEST RISK</div>'
+     +'<div class="hint" style="line-height:1.6;margin-top:3px;">'+EXO_META.risk+'</div></div></div>'
+   +'<div class="mrow" style="border-color:rgba(0,224,122,.3);"><div style="flex:1;">'
+     +'<div class="hint" style="color:var(--green);font-family:\'DM Mono\',monospace;font-size:8px;letter-spacing:1.5px;">MINIMUM VIABLE \u2014 WHAT MUST EXIST TO PASS WELL</div>'
+     +'<div class="hint" style="line-height:1.6;margin-top:3px;">'+EXO_META.mvp+'</div></div></div>'
+   +'<div class="mt-s" style="margin-top:9px;">Submission '+EXO_META.submission+' \u00b7 Expo '+EXO_META.expo+' \u00b7 '+EXO_META.weeklyHours+' hrs/wk assumed</div>'
+   +'</div>';
+}
+
+function renderSprint(){
+  const el=document.getElementById('exo-sprint'); if(!el)return;
+  if(!SPRINT.on){el.innerHTML='';return;}
+  const now=new Date(), dl=new Date(SPRINT.deadline);
+  const msLeft=dl-now;
+  // calendar days, not elapsed hours
+  const d0=new Date(now.getFullYear(),now.getMonth(),now.getDate());
+  const d1=new Date(dl.getFullYear(),dl.getMonth(),dl.getDate());
+  const dLeft=Math.round((d1-d0)/864e5);
+  if(msLeft<0){el.innerHTML='';return;}   // sprint auto-hides once past
+
+  // hours
+  const doneH=SPRINT.blocks.filter(b=>SPR[b.k]).reduce((a,b)=>a+b.h,0);
+  const totH =SPRINT.blocks.reduce((a,b)=>a+b.h,0);
+  const leftH=totH-doneH;
+
+  // design items
+  const items=SPRINT.items;
+  const dn=items.filter(i=>SPR[i.k]||i.pre).length;
+  const pc=Math.round(dn/items.length*100);
+
+  let h='<div class="card" style="border-color:var(--red);background:linear-gradient(160deg,rgba(240,85,85,.08),var(--card-bg) 60%);">'
+   +'<div class="c-hd" style="color:var(--red);">\u25b8 DESIGN SPRINT \u00b7 SUPERVISOR IS WAITING</div>'
+   +'<div style="display:flex;align-items:baseline;gap:10px;margin-bottom:4px;">'
+     +'<span style="font-family:\'Bebas Neue\',sans-serif;font-size:44px;line-height:1;color:var(--red);">'+dLeft+'</span>'
+     +'<span style="flex:1;font-size:12px;font-weight:700;">day'+(dLeft===1?'':'s')+' until the design has to be finished<br>'
+     +'<span class="hint">Deadline Wed 21 Oct \u00b7 '+leftH.toFixed(1)+' working hrs left in the plan</span></span>'
+   +'</div>'
+   +'<div class="ph-bar" style="margin:9px 0 4px;"><div class="ph-fill" style="width:'+pc+'%;background:var(--red);"></div></div>'
+   +'<div class="mt-s">'+dn+' / '+items.length+' design items done</div>'
+   +'</div>';
+
+  // the blocks
+  h+='<div class="card"><div class="c-hd">\u25b8 EVERY HOUR YOU ACTUALLY HAVE \u00b7 '+totH.toFixed(1)+'H</div>';
+  SPRINT.blocks.forEach(b=>{
+    const on=!!SPR[b.k], dead=b.h===0;
+    h+='<div class="mrow'+(on?' ok':'')+'" style="display:flex;align-items:flex-start;gap:10px;'+(dead?'opacity:.55;':'')+'">'
+      +(dead?'<div style="flex:0 0 18px;"></div>'
+            :'<div class="mod-check" onclick="sprTog(\''+b.k+'\')" style="flex:0 0 auto;margin-top:2px;'
+             +(on?'background:var(--green);border-color:var(--green);color:#000;':'')+'">'+(on?'\u2713':'')+'</div>')
+      +'<div style="flex:1;min-width:0;">'
+        +'<div style="font-weight:700;font-size:13px;'+(on?'opacity:.55;':'')+'">'+b.d+' \u00b7 '+b.w
+        +'<span style="color:var(--gold);"> \u00b7 '+b.h+'h</span></div>'
+        +'<div class="hint" style="line-height:1.55;">'+b.t+' \u2014 '+b.s+'</div>'
+      +'</div></div>';
+  });
+  h+='<div class="hint" style="margin-top:10px;line-height:1.65;">'
+   +'<b style="color:var(--gold);">Sacrificed this week:</b> one Thermo deep pass, one Clean Energy block, two SolidWorks lessons, two ANSYS sessions, Friday evening.<br>'
+   +'<b style="color:var(--green);">Protected:</b> both academy nights, Thursday private lesson, and your sleep. You do not fix a late project by breaking yourself.</div>';
+  h+='</div>';
+
+  // what is left to design
+  h+='<div class="card"><div class="c-hd">\u25b8 WHAT STILL HAS TO BE DESIGNED</div>';
+  items.forEach(i=>{
+    const on=!!SPR[i.k]||i.pre;
+    h+='<div class="mrow'+(on?' ok':'')+'" style="display:flex;align-items:flex-start;gap:10px;">'
+      +'<div class="mod-check" '+(i.pre?'':'onclick="sprTog(\''+i.k+'\')"')+' style="flex:0 0 auto;margin-top:2px;'
+      +(on?'background:var(--green);border-color:var(--green);color:#000;':'')+'">'+(on?'\u2713':'')+'</div>'
+      +'<div style="flex:1;min-width:0;">'
+        +'<div style="font-weight:700;font-size:13px;'+(on?'opacity:.55;':'')+'">'+i.n+'</div>'
+        +'<div class="hint" style="line-height:1.55;">'+i.s+'</div>'
+      +'</div></div>';
+  });
+  h+='<div class="hint" style="margin-top:10px;line-height:1.65;">Order matters: <b>spine frame first</b> \u2014 it is the load path and everything mates to it. Assembly and interference check last, and do not skip it.</div>';
+  h+='</div>';
+
+  el.innerHTML=h;
+}
+
 function renderExo(){
+  try{exoVerdict();}catch(e){}
+  try{renderSprint();}catch(e){}
   try{renderBuildHeroes();}catch(e){}
   try{renderAnsys();}catch(e){}
   const dm=daysToMonday();
@@ -2475,166 +2616,110 @@ function showExoTab(id,btn){
 
 // ═══════════ EXOGUARD PHASES (fused from Command Dashboard — same storage, checks carry over) ═══════════
 const EXO_PHASES=[
-  {id:0,name:"Phase 0 — SF Exam Sprint",color:"var(--gold)",start:"2026-06-15",end:"2026-07-06",goal:"Salesforce sprint + ExoGuard reading. (History — done period.)",weeks:[
-    {label:"Weeks 1–3",tasks:[
-      {id:"p0_t1",text:"Complete Trailhead 94% → 100%"},
-      {id:"p0_t2",text:"1 Salesforce mock exam per day"},
-      {id:"p0_t3",text:"Read 1 exoskeleton paper daily (30 min max)"},
-      {id:"p0_t5",text:"Set up Zotero — first 5 papers"},
-      {id:"p0_t7",text:"Submit internship applications"},
-    ]},
-  ]},
-  {id:1,name:"Phase 1 — Research & Requirements",color:"var(--cyan)",start:"2026-07-07",end:"2026-08-03",goal:"20 papers read. Mantrac visit. Supervisor commitment. Formal requirements doc.",weeks:[
-    {label:"Weeks 1–2 — Literature + Foundation",tasks:[
-      {id:"p1_t1",text:"Read 10 papers (passive exoskeletons + AI ergonomics)"},
-      {id:"p1_t2",text:"Build Research Gap Map: existing → gap → ExoGuard fills"},
-      {id:"p1_t3",text:"Zotero library with citation export"},
-      {id:"p1_t1b",text:"Complete system mind map — all 15 subsystems"},
-      {id:"p1_t1c",text:"Competitor comparison: Exia, Apex 2, Paexo, EksoVest, Guardian XO"},
-    ]},
-    {label:"Week 3 — Mantrac Visit",tasks:[
-      {id:"p1_t5",text:"Email Mantrac HSE Manager: factory visit request"},
-      {id:"p1_t6",text:"Observation checklist: lift frequency, weights, postures"},
-      {id:"p1_t7",text:"Interview 5–10 workers — pain points, posture habits"},
-      {id:"p1_t8",text:"Photograph factory floor (with permission)"},
-      {id:"p1_t9",text:"Ask HSE manager: ISO 45001 compliance pain points"},
-    ]},
-    {label:"Week 4 — Supervisor Meeting",tasks:[
-      {id:"p1_t10",text:"Print lit review summary (2 pages, 20 papers)"},
-      {id:"p1_t11",text:"System block diagram: IMU → ESP32 → solenoid → dashboard"},
-      {id:"p1_t12",text:"Sketch semi-active mechanism: spring + solenoid damper at hip"},
-      {id:"p1_t13",text:"Secure supervisor sign-off on design direction"},
-      {id:"p1_t14",text:"Formal requirements doc: 8 key specs with justifications"},
-    ]},
-  ]},
-  {id:2,name:"Phase 2 — CAD Design & Procurement",color:"var(--green)",start:"2026-08-04",end:"2026-09-14",goal:"Full Inventor CAD complete. All components ordered (local Cairo suppliers). Electronics architecture finalized.",weeks:[
-    {label:"Order (day of design approval — local suppliers)",tasks:[
-      {id:"p2_t1",text:"BUY: MPU-6050 (GY-521) ×3 — RAM/Future Electronics"},
-      {id:"p2_t2",text:"BUY: ESP32 DevKit V1 ×2"},
-      {id:"p2_t3",text:"BUY: Li-Ion 18650 (3S1P 2600mAh) + 3S BMS board"},
-      {id:"p2_t4",text:"BUY: Solenoid 12V push-pull ×2 + vibration motor ×3"},
-      {id:"p2_t5",text:"BUY: IRLZ44N MOSFET, 1N4007 diodes, resistors, breadboard"},
-      {id:"p2_t6",text:"Source aluminium extrusion 20×20 + 20×40mm locally"},
-      {id:"p2_t7b",text:"Source torsion springs — 10th of Ramadan manufacturer"},
-    ]},
-    {label:"Electronics Architecture",tasks:[
-      {id:"p2_e1",text:"IMU comparison (MPU-6050 vs MPU-9250 vs BNO055) — document selection"},
-      {id:"p2_e2",text:"ESP32 pin map: GPIO 21/22 I2C · 25 solenoid · 26 vibration"},
-      {id:"p2_e3",text:"Power budget: 218mA avg → 3S 2600mAh ≈ 12hr runtime"},
-      {id:"p2_e4",text:"Wire single MPU-6050 — verify pitch/roll (Wokwi + serial)"},
-      {id:"p2_e5",text:"Dual MPU-6050 (0x68 + 0x69) — trunk flexion = upper − lower"},
-      {id:"p2_e6",text:"Solenoid driver test: GPIO → IRLZ44N → solenoid + flyback diode"},
-    ]},
-    {label:"CAD in Inventor",tasks:[
-      {id:"p2_t7",text:"Human mannequin from GrabCAD (STEP)"},
-      {id:"p2_t8",text:"Skeleton assembly — spine centerline + hip joint"},
-      {id:"p2_t9",text:"Back plate: 20×40mm extrusion, adjustable 400–500mm"},
-      {id:"p2_t10",text:"Bilateral hip brackets — revolute joint at L5/S1"},
-      {id:"p2_t11",text:"Torsion spring cassette: k = 19–32 Nm/rad"},
-      {id:"p2_t12",text:"Solenoid damper mount at hip joint"},
-      {id:"p2_t13",text:"Electronics enclosure 120×80×35mm (PETG, 3D print)"},
-      {id:"p2_t14",text:"Shoulder harness cross-bar (adjustable 340–440mm)"},
-      {id:"p2_t15",text:"Thigh levers 250–300mm + neoprene cuffs"},
-      {id:"p2_t15b",text:"Aesthetic pass — German Bionic sleek industrial look"},
-    ]},
-    {label:"Analysis + Buffer",tasks:[
-      {id:"p2_t16",text:"Static stress analysis (40kg load, 45° flexion)"},
-      {id:"p2_t17",text:"Euler buckling check on spine bar"},
-      {id:"p2_t18",text:"Verify all components arrived + functional"},
-      {id:"p2_t19",text:"Real hardware breadboard: ESP32 + MPU-6050 vs Wokwi results"},
-    ]},
-  ]},
-  {id:3,name:"Phase 3 — V1 Build + Dataset",color:"#ff7b2e",start:"2026-09-15",end:"2026-11-09",goal:"Working V1 prototype. 3,000+ labelled Egyptian worker lift samples.",weeks:[
-    {label:"Weeks 1–3 — V1 Fabrication",tasks:[
-      {id:"p3_t1",text:"Fabricate V1 aluminium frame (university workshop)"},
-      {id:"p3_t2",text:"Assemble solenoid + spring mechanism at hip hinge"},
-      {id:"p3_t3",text:"Complementary filter — stable pitch/roll @100Hz"},
-      {id:"p3_t4",text:"Solenoid trigger latency <10ms (oscilloscope)"},
-      {id:"p3_t5",text:"Wear V1 — document every failure for V2 list"},
-      {id:"p3_t5b",text:"Wi-Fi logging: ESP32 → JSON → laptop"},
-    ]},
-    {label:"Weeks 4–6 — Dataset at Mantrac",tasks:[
-      {id:"p3_t6",text:"Return to Mantrac with sensor rig (2 IMUs on harness)"},
-      {id:"p3_t7",text:"Record 10–15 workers: safe / risky / twisted / fatigue"},
-      {id:"p3_t8",text:"Label every recording (safe/warning/dangerous)"},
-      {id:"p3_t9",text:"Target: 3,000+ labelled samples — the core dataset"},
-    ]},
-    {label:"Weeks 7–8 — Early AI + Buffer",tasks:[
-      {id:"p3_t10",text:"Python env: TensorFlow + Keras + scikit-learn"},
-      {id:"p3_t11",text:"CNN+LSTM in Keras (Conv1D → LSTM → Dense softmax)"},
-      {id:"p3_t12",text:"Train on first 1,000 samples — validate pipeline early"},
-      {id:"p3_t13",text:"Fix all V1 hardware issues — write V2 list"},
-    ]},
-  ]},
-  {id:4,name:"Phase 4 — AI + V2 + Dashboard",color:"var(--purple)",start:"2026-11-10",end:"2027-01-04",goal:"85%+ F1 CNN/LSTM on ESP32. V2 frame. Flask dashboard with ISO 45001 export.",weeks:[
-    {label:"Weeks 1–3 — AI Training + Deploy",tasks:[
-      {id:"p4_t1",text:"Train final CNN/LSTM on full dataset (Colab GPU)"},
-      {id:"p4_t2",text:"Target 85%+ F1 across Safe/Warning/Dangerous"},
-      {id:"p4_t3",text:"Convert TensorFlow → TFLite"},
-      {id:"p4_t3b",text:"Quantize int8 — fits ~400KB"},
-      {id:"p4_t4",text:"Deploy TFLite Micro on ESP32 (C byte array)"},
-      {id:"p4_t5",text:"Benchmark full inference <200ms"},
-      {id:"p4_t6",text:"V2 redesign in Inventor — all V1 lessons"},
-    ]},
-    {label:"Weeks 4–6 — V2 Build + Dashboard",tasks:[
-      {id:"p4_t8",text:"Fabricate V2 — powder-coat/spray finish"},
-      {id:"p4_t9",text:"Mount electronics in ExoGuard housing"},
-      {id:"p4_t10",text:"Clean cable management — messy wires lose expo points"},
-      {id:"p4_t11",text:"Flask backend: ESP32 JSON → SQLite every 5s"},
-      {id:"p4_t12",text:"Chart.js real-time per-worker risk display"},
-      {id:"p4_t13",text:"ReportLab ISO 45001 PDF export — one click"},
-    ]},
-    {label:"Weeks 7–8 — Integration [HIGH RISK]",tasks:[
-      {id:"p4_t14",text:"Full pipeline: wear → classify → solenoid → dashboard"},
-      {id:"p4_t15",text:"50 complete lift cycles without failure"},
-      {id:"p4_t17",text:"End-to-end latency <200ms verified"},
-      {id:"p4_t18",text:"Confusion matrix on held-out test set"},
-      {id:"p4_t19",text:"Battery discharge test under load"},
-      {id:"p4_t20",text:"Comfort rating after 4-hour wear"},
-    ]},
-  ]},
-  {id:5,name:"Phase 5 — Thesis & Documentation",color:"var(--blue)",start:"2027-01-05",end:"2027-02-01",goal:"Complete graduation thesis/report written and reviewed.",weeks:[
-    {label:"Week 1 — Intro + Background",tasks:[
-      {id:"p5_t2",text:"Introduction: injury stats → Egypt gap → 3 contributions"},
-      {id:"p5_t3",text:"Background: 3 themes × 5 papers, end each with ExoGuard's gap"},
-      {id:"p5_t4",text:"Supervisor review of Week 1 draft"},
-    ]},
-    {label:"Week 2 — System Design + Methodology",tasks:[
-      {id:"p5_t5",text:"Design chapter: frame, solenoid, spring torque, materials"},
-      {id:"p5_t6",text:"Methods: IMU placement, filter, dataset description"},
-      {id:"p5_t7",text:"AI chapter: CNN/LSTM architecture + deployment"},
-      {id:"p5_t8",text:"Supervisor reviews every equation"},
-    ]},
-    {label:"Weeks 3–4 — Results + Finish",tasks:[
-      {id:"p5_t9",text:"Results: confusion matrix, F1, latency, battery"},
-      {id:"p5_t10",text:"Cost comparison vs German Bionic + HeroWear"},
-      {id:"p5_t11",text:"Discussion: honest limitations"},
-      {id:"p5_t14",text:"Full grammar + format pass, citations via Zotero"},
-    ]},
-  ]},
-  {id:6,name:"Phase 6 — Expo, Startup & Launch",color:"var(--red)",start:"2027-02-02",end:"2027-04-30",goal:"V3 expo prototype. 30+ pitch rehearsals. Startup registered. Expo 1st place.",weeks:[
-    {label:"Weeks 1–2 — V3 + Startup",tasks:[
-      {id:"p6_t1",text:"V3 expo prototype: professionally finished frame"},
-      {id:"p6_t2",text:"PCB in 3D-printed ExoGuard-branded housing"},
-      {id:"p6_t3",text:"A0 technical poster — professional print"},
-      {id:"p6_t4",text:"Second monitor for live dashboard at expo"},
-      {id:"p6_t5",text:"Register ExoGuard SPC via GAFI (~4,000 EGP)"},
-      {id:"p6_t6",text:"Apply to TIEC development grant"},
-      {id:"p6_t7",text:"Sponsor outreach: Mantrac, Hassan Allam, Orascom, ITIDA"},
-    ]},
-    {label:"Weeks 3–4 — Pitch",tasks:[
-      {id:"p6_t8",text:"3-minute pitch ×30 with stopwatch"},
-      {id:"p6_t9",text:"Film every rehearsal — fix 3 weakest moments weekly"},
-      {id:"p6_t10",text:"30-sec judge demo: wear → bend → live risk score"},
-      {id:"p6_t11",text:"Invite Mantrac HSE Manager (4 weeks ahead)"},
-    ]},
-    {label:"Expo Day (April 2027)",tasks:[
-      {id:"p6_t13",text:"Arrive 90 min early — 5 test cycles"},
-      {id:"p6_t14",text:"Spares: 2 batteries, ESP32, backup demo video"},
-      {id:"p6_t16",text:"Email every interested judge within 24h"},
-    ]},
-  ]},
+ {id:0,name:"Phase 0 \u2014 CAD freeze + drawings",color:"var(--cyan)",start:"2026-10-16",end:"2026-11-08",
+  cost:"0 EGP",blocked:"supervisor",scope:"MUST-HAVE",
+  goal:"Finish the whole mechanical design and produce drawings a workshop can machine from. Manufacturing, springs and the supervisor's confidence all wait on this.",
+  exit:"Supervisor has signed off a dimensioned drawing set covering every part to be made.",
+  weeks:[{label:"16 Oct \u2013 8 Nov",tasks:[
+   {id:"p0_t1",text:"Hip mechanism modelled for both legs, materials applied, 0 interferences (Rev 7)"},
+   {id:"p0_t2",text:"DCR-013 weight reduction rebuilt, full assembly re-checked, 0 interferences"},
+   {id:"p0_t3",text:"Pelvic band, spine bolt ladder and strap tabs modelled to your 6 body measurements, 0 interferences in EXOGUARD_V2"},
+   {id:"p0_t4",text:"A dimensioned manufacturing drawing for every machined part \u2014 shaft, bracket, carrier with steel rim, lever, pawl parts, pelvic band, spine"},
+   {id:"p0_t5",text:"Supervisor has signed DCR-012 and approved the dimensioned drawing set"},
+   {id:"p0_t6",text:"Spring drawings (passive + assist, RH + LH) sent to a spring maker \u2014 written quote and lead time received"},
+  ]}]},
+
+ {id:1,name:"Phase 1 \u2014 Electronics bring-up",color:"var(--blue)",start:"2026-10-16",end:"2026-12-12",
+  cost:"0 \u2013 500 EGP",blocked:"nothing",scope:"MUST-HAVE",
+  goal:"Get every electronic subsystem working on the bench, in parallel with the CAD. It needs no mechanical parts, so there is no reason to wait.",
+  exit:"ESP32 on battery logs both IMUs at 100 Hz and fires the real solenoid on command, with measured latency.",
+  weeks:[{label:"16 Oct \u2013 12 Dec \u00b7 runs alongside the CAD",tasks:[
+   {id:"p1_t1",text:"Both ESP32 boards pass the Stage 1 board-alive test"},
+   {id:"p1_t2",text:"Both IMUs answer on I2C at 0x68 and 0x69 on one bus"},
+   {id:"p1_t3",text:"Live trunk angle from the complementary filter streams on the serial monitor"},
+   {id:"p1_t4",text:"3S battery pack built with BMS, 3 A fuse and switch; rails measure 5.00 V and 3.30 V"},
+   {id:"p1_t5",text:"GPIO25 fires the real solenoid through the MOSFET driver"},
+   {id:"p1_t6",text:"Solenoid engage latency measured over 30 trials and recorded"},
+   {id:"p1_t7",text:"Both IMUs logged at 100 Hz to a CSV on the laptop"},
+  ]}]},
+
+ {id:2,name:"Phase 2 \u2014 Order + manufacture",color:"var(--gold)",start:"2026-11-09",end:"2026-12-12",
+  cost:"3,000 \u2013 7,000 EGP",blocked:"money",scope:"MUST-HAVE",
+  goal:"Turn approved drawings into real parts. Springs and machining have lead times you do not control, so orders must go in before exams.",
+  exit:"Every machined part and all four springs ordered with a confirmed delivery date before 18 Dec.",
+  weeks:[{label:"9 Nov \u2013 12 Dec \u00b7 orders must land before exam week",tasks:[
+   {id:"p2_t1",text:"Four springs ordered \u2014 passive RH + LH, assist RH + LH"},
+   {id:"p2_t2",text:"Machined parts ordered from a workshop with a written delivery date"},
+   {id:"p2_t3",text:"Aluminium and steel stock, dowel pins and fasteners bought"},
+   {id:"p2_t4",text:"BOM spreadsheet updated with real prices, total under 15,000 EGP"},
+   {id:"p2_t5",text:"Supervisor given a written progress update \u2014 meetings every 2 weeks from now on"},
+  ]}]},
+
+ {id:3,name:"PROTECTED \u2014 Exam week",color:"var(--red)",start:"2026-12-13",end:"2026-12-17",
+  cost:"0 EGP",blocked:"nothing",scope:"PROTECTED",
+  goal:"Exams only. No project work, so grades in the other modules do not drop.",
+  exit:"All exams sat. Nothing ExoGuard-shaped attempted \u2014 that IS the success condition.",
+  weeks:[{label:"13 \u2013 17 Dec",tasks:[
+   {id:"p3_t1",text:"No ExoGuard work done this week"},
+  ]}]},
+
+ {id:4,name:"Phase 4 \u2014 Assemble the prototype",color:"var(--purple)",start:"2026-12-18",end:"2027-01-10",
+  cost:"500 \u2013 1,500 EGP",blocked:"parts",scope:"MUST-HAVE",
+  goal:"Build the physical exoskeleton and put the electronics on it, using the higher winter-break hours. Everything after this needs a device on a body.",
+  exit:"You can wear it, bend to 90\u00b0 and stand up, and the ESP32 engages the pawl on command while worn.",
+  weeks:[{label:"18 Dec \u2013 10 Jan \u00b7 winter break, your best hours",tasks:[
+   {id:"p4_t1",text:"Every received part checked against its drawing, deviations logged"},
+   {id:"p4_t2",text:"Both hip modules assembled, rotate 0\u201395\u00b0 by hand without binding"},
+   {id:"p4_t3",text:"Pawl engages the ratchet by hand and holds a hanging test load without slipping"},
+   {id:"p4_t4",text:"Frame, pelvic band and straps fitted, worn 10 minutes with no pressure points"},
+   {id:"p4_t5",text:"Electronics enclosure mounted \u2014 battery, ESP32, both IMUs wired on the body"},
+   {id:"p4_t6",text:"Solenoid engages the pawl from an ESP32 command while worn, 20 out of 20"},
+  ]}]},
+
+ {id:5,name:"Phase 5 \u2014 Dataset + classifier",color:"var(--cyan)",start:"2027-01-11",end:"2027-02-28",
+  cost:"0 \u2013 500 EGP",blocked:"supervisor",scope:"MUST-HAVE",
+  goal:"Collect a small, honest, subject-separated dataset and get the CNN/LSTM onto the ESP32. Report chapters that do not depend on results get drafted in parallel.",
+  exit:"TFLite Micro model on the ESP32 classifies lifts under 200 ms end-to-end, with LOSO accuracy compared against a threshold baseline.",
+  weeks:[{label:"11 Jan \u2013 28 Feb",tasks:[
+   {id:"p5_t1",text:"Ethics / consent approval for human-participant data obtained IN WRITING"},
+   {id:"p5_t2",text:"Lift protocol written \u2014 loads, postures, label rules defined BEFORE any recording"},
+   {id:"p5_t3",text:"At least 10 participants, 40+ labelled lifts each, subject IDs saved"},
+   {id:"p5_t4",text:"Threshold baseline (trunk angle + angular velocity) evaluated leave-one-subject-out"},
+   {id:"p5_t5",text:"CNN/LSTM trained and evaluated LOSO, confusion matrix saved"},
+   {id:"p5_t6",text:"Model converted to TFLite Micro, running on ESP32, end-to-end latency under 200 ms"},
+   {id:"p5_t7",text:"Report chapters 1\u20133 drafted and sent to the supervisor"},
+  ]}]},
+
+ {id:6,name:"MARCH \u2014 full-time test + write",color:"var(--green)",start:"2027-03-01",end:"2027-03-31",
+  cost:"0 \u2013 500 EGP",blocked:"nothing",scope:"PROTECTED",
+  goal:"Full-time ExoGuard month. Close the loop, test it on the body, write up the results. Nothing else is scheduled.",
+  exit:"Final report submission-ready with closed-loop results, and viva slides rehearsed.",
+  weeks:[{label:"1 \u2013 31 Mar \u00b7 nothing else this month",tasks:[
+   {id:"p6_t1",text:"Closed loop works \u2014 a detected dangerous lift engages the clutch automatically while worn"},
+   {id:"p6_t2",text:"Closed-loop test: 50+ lifts, detection rate, false triggers and engage latency recorded"},
+   {id:"p6_t3",text:"Assist torque of both springs measured on the bench vs design values"},
+   {id:"p6_t4",text:"Results, discussion and conclusion written; full report reviewed by supervisor"},
+   {id:"p6_t5",text:"Viva slides done and rehearsed twice out loud with a timer"},
+   {id:"p6_t6",text:"Backup demo video recorded"},
+  ]}]},
+
+ {id:7,name:"Phase 7 \u2014 Expo, dashboard, paper",color:"var(--muted2)",start:"2027-04-01",end:"2027-04-20",
+  cost:"300 \u2013 1,000 EGP",blocked:"nothing",scope:"NICE-TO-HAVE \u2014 cut first",
+  goal:"Extras that raise the ceiling but never threaten the grade. The startup itself is deferred until after graduation.",
+  exit:"You demo the device live at the expo, with a poster and the dashboard running.",
+  weeks:[{label:"1 \u2013 20 Apr \u00b7 submission 1 Apr, expo 20 Apr",tasks:[
+   {id:"p7_t1",text:"Minimal Flask dashboard \u2014 live risk from ESP32, ISO 45001 PDF export in one click"},
+   {id:"p7_t2",text:"A0 poster printed"},
+   {id:"p7_t3",text:"3-minute pitch rehearsed 10 times on video"},
+   {id:"p7_t4",text:"IEEE Access paper draft sent to supervisor for co-author review"},
+   {id:"p7_t5",text:"Startup decision written down as a plan for AFTER graduation"},
+  ]}]},
 ];
+const EXO_META={updated:'2026-10-16',expo:'2027-04-20',submission:'2027-04-01',weeklyHours:10,
+ verdict:'About 15% done with five and a half months left. The hip mechanism design is solid, but nothing is built, measured or tested yet \u2014 so the grade now depends on parts being made by mid-January. The startup waits until after graduation, and the expo is a by-product of a working demo, not a separate goal.',
+ risk:'No working, tested hardware by March. No part is drawn for manufacture or ordered yet \u2014 custom handed springs, machined shaft, carrier and ratchet \u2014 and every result the report and viva need comes after that.',
+ mvp:'A wearable two-hip prototype where the ESP32 reads both IMUs, classifies a lift on-device and engages the clutch \u2014 backed by dimensioned drawings, measured latency, LOSO classifier results on a 10-subject dataset, and a report that explains every design decision.'};
+
 const EXOT=JSON.parse(localStorage.getItem('exoguard_tasks_v2')||'{}');
 const svExo=()=>{localStorage.setItem('exoguard_tasks_v2',JSON.stringify(EXOT));S._ts=Date.now();localStorage.setItem('dawly_os',JSON.stringify(S));schedulePush();};
 function exoCurrentPhase(){
@@ -2818,25 +2903,165 @@ function lectNo(mod){return S.uni.lect[mod]||0;}
 function bumpLect(mod,n){S.uni.lect[mod]=Math.max(0,(S.uni.lect[mod]||0)+n);sv();renderUni();}
 
 // what the two-pass method says to do today
-function studyPlan(){
-  const d=new Date().getDay(), dk=DKEY(), out={skim:[],deep:[],review:[],note:''};
-  const inSem=['FINAL YEAR','FINALS RAMP','EXAM WEEK'].includes(getSeason());
-  if(!inSem){out.note='Semester has not started. Nothing to study yet — the bridge plan is on the Today tab.';return out;}
-  if(getSeason()==='EXAM WEEK'){
-    out.note='EXAM WEEK — no new material. Past papers under timed conditions, then your wrong-answer log.';
-    out.deep=['CT','CE','PD'];
-  } else {
-    // same-day skim = whatever you had in class today
-    out.skim=DAYMOD[d]||[];
-    // deep pass: Tue covers Sun+Mon, Sat covers Wed+Thu
-    if(d===2)out.deep=['PD','CE'];
-    if(d===6)out.deep=['CT'];
-  }
-  // rolling review — what the queue says is due
-  const due=(S.uni.topics||[]).filter(t=>dueIn(t)<=0).sort((a,b)=>dueIn(a)-dueIn(b));
-  out.review=due.slice(0,2);
+
+// ═══════════════════════════════════════════════════════════
+//  REAL TEACHING PLANS — from Moodle, Oct 2026
+//  Semester week 1 = 20 Sep 2026
+// ═══════════════════════════════════════════════════════════
+const MODPLAN={
+ CT:{n:'Computational Thermo-fluids',code:'KH6002ME',col:'var(--cyan)',hrs:6,
+  wk:[
+   {w:1,t:'Introduction to CFD',lab:'Lab 1'},
+   {w:2,t:'Introduction to Fluid Flow',lab:'Lab 2'},
+   {w:3,t:'Pre-Processing Geometry 2D–3D',lab:'Lab 3'},
+   {w:4,t:'Ansys Software Hands-On',lab:'Lab 4',cw:'CW Practice',key:1},
+   {w:5,t:'Boundary Conditions, Turbulence Models & Governing Equations',lab:'Lab 5',key:1},
+   {w:6,t:'Physics & Discretization',lab:'Lab 6'},
+   {w:7,t:'Finite Difference methods',lab:'Lab 7'},
+   {w:8,t:'Ansys Software Hands-On',lab:'Lab 8',key:1},
+   {w:9,t:'Advanced Turbulence and FEA',lab:'Lab 9',cw:'CW DUE',key:1},
+   {w:10,t:'Final Revision — Theoretical Problems'},
+   {w:11,t:'Final software revision'},
+   {w:12,t:'Study Week'},
+   {w:13,t:'FINAL EXAM',key:1},
+  ]},
+ CE:{n:'Clean Energy',code:'KH6015ME',col:'var(--green)',hrs:4,
+  wk:[
+   {w:1,t:'Energy trilemma + project intro & registration',tut:'Cooling load calculations',lab:'Design Builder (1) — case study 1',key:1},
+   {w:2,t:'Energy sources',tut:'Guest speaker',lab:'Design Builder (2) — case study 2'},
+   {w:3,t:'Wind',tut:'Wind problems',lab:'Design Builder (3) + Project guidance'},
+   {w:4,t:'PV panels',tut:'PV problems (1)',lab:'Hands-on experimental — wind'},
+   {w:5,t:'FIELD TRIP — no lecture',tut:'Field Trip',lab:'Field Trip',free:1},
+   {w:6,t:'Solar thermal (1)',tut:'PV problems (2)',lab:'MILESTONE 1 PRESENTATIONS',cw:'Milestone 1',key:1},
+   {w:7,t:'Solar thermal (2)',tut:'Solar thermal problems',lab:'Hands-on experimental — solar thermal'},
+   {w:8,t:'Geothermal + Hydro',tut:'Hydro + geothermal problems',lab:'HOMER 1 — case study 1'},
+   {w:9,t:'Feasibility study',tut:'Feasibility problems',lab:'HOMER 2 — case study 2 + Biomass'},
+   {w:10,t:'Hydrogen + storage',tut:'Storage problems',lab:'Project guidance + HOMER submission',cw:'HOMER sub.',key:1},
+   {w:11,t:'FINAL PRESENTATIONS',tut:'Final presentations',lab:'Final presentations',cw:'Final presentation',key:1},
+   {w:12,t:'Revisions',tut:'Revisions',lab:'Revisions'},
+  ]},
+ PD:{n:'Professional Dev & Project Planning',code:'KH6000ME',col:'var(--gold)',hrs:2,
+  wk:[
+   {w:1,t:'Becoming a professional',cw:'CW1 Part 1 — Sat 26 Sep',key:1},
+   {w:2,t:'Personal branding'},
+   {w:3,t:'Mock interviews',cw:'CW1 Part 2 — Sun 4 Oct',key:1},
+   {w:4,t:'Revision and workplace',cw:'CW1 Part 3 REPORT — Sat 17 Oct',key:1},
+   {w:5,t:'—',cw:'CW1 Part 3 PRESENTATION — Sun 18 Oct',key:1},
+   {w:6,t:'—',cw:'CW1 Part 4 (Sun 25 Oct) + CW2 Part 1 (Sat 31 Oct)',key:1},
+   {w:7,t:'—',cw:'CW1 Part 3 report — Sat 7 Nov',key:1},
+   {w:8,t:'—',cw:'CW1 Part 3 — Sun 8 Nov',key:1},
+   {w:9,t:'—'},
+   {w:10,t:'—',cw:'CW2 report — Sat 28 Nov',key:1},
+   {w:11,t:'—',cw:'CW2 — Sun 29 Nov',key:1},
+   {w:12,t:'—'},
+   {w:13,t:'EXAMS 13–17 Dec',key:1},
+  ]},
+};
+
+// what he has actually studied, per module per week
+if(!S.uni.studied)S.uni.studied={CT:{},CE:{},PD:{}};
+['CT','CE','PD'].forEach(m=>{if(!S.uni.studied[m])S.uni.studied[m]={};});
+// seed once from his own report (16 Oct 2026): CT 3 lectures, CE 1, PD on track
+if(!S.uni.seedOct){
+  [1,2,3].forEach(w=>S.uni.studied.CT[w]=true);
+  S.uni.studied.CE[1]=true;
+  [1,2,3,4].forEach(w=>S.uni.studied.PD[w]=true);
+  S.uni.seedOct=1;
+  // sv() would touch SYNC before it is initialised — persist on the next natural save
+  try{localStorage.setItem('dawly_os',JSON.stringify(S));}catch(e){}
+}
+function modStudyTog(m,w){
+  if(!S.uni.studied[m])S.uni.studied[m]={};
+  S.uni.studied[m][w]=!S.uni.studied[m][w];
+  sv(); renderModules(); renderUni();
+  toast(S.uni.studied[m][w]?'\u2705 '+m+' week '+w+' studied':'\u21a9 Cleared');
+}
+function modDelivered(m){
+  const wk=uniWeek(); if(!wk)return 0;
+  return Math.min(MODPLAN[m].wk.length, wk);
+}
+function modStudiedCount(m){
+  const d=modDelivered(m), st=S.uni.studied[m]||{};
+  let n=0; for(let i=1;i<=d;i++){ if(st[i])n++; }
+  return n;
+}
+function modPct(m){
+  const d=modDelivered(m); if(!d)return null;
+  // only count weeks that actually have content to study
+  const real=MODPLAN[m].wk.filter(x=>x.w<=d&&!x.free).length || d;
+  const st=S.uni.studied[m]||{};
+  let n=0; MODPLAN[m].wk.forEach(x=>{ if(x.w<=d&&!x.free&&st[x.w])n++; });
+  return Math.round(n/real*100);
+}
+function modBehind(m){
+  const d=modDelivered(m), st=S.uni.studied[m]||{}, out=[];
+  MODPLAN[m].wk.forEach(x=>{ if(x.w<=d&&!x.free&&!st[x.w])out.push(x); });
   return out;
 }
+
+function studyPlan(){
+  const d=new Date().getDay(), dk=DKEY();
+  const out={skim:[],deep:[],review:[],note:'',blocks:[],campus:[]};
+  const inSem=['FINAL YEAR','FINALS RAMP','EXAM WEEK'].includes(getSeason());
+
+  if(!inSem){
+    out.note='Semester is not running. Nothing timetabled \u2014 the Today tab has the current plan.';
+    return out;
+  }
+  if(getSeason()==='EXAM WEEK'){
+    out.note='EXAM WEEK \u2014 no new material. Past papers under timed conditions, then your wrong-answer log.';
+    out.deep=['CT','CE','PD'];
+    return out;
+  }
+
+  // ── read today's actual schedule ──────────────────────────
+  const sch=(typeof getSch==='function')?getSch():[];
+  const MODHINT=[
+    [/THERMO|CT LECTURE|CT LAB|CT same-day/i,'CT'],
+    [/CLEAN ENERGY|CE LECTURE|CE LAB|CE TUTORIAL|CE same-day/i,'CE'],
+    [/\bPD\b|PROFESSIONAL/i,'PD']
+  ];
+  // a block is "campus time" if it falls between the morning bus
+  // and the bus home \u2014 i.e. you are physically at uni with nothing on
+  let busOut=null, busHome=null;
+  sch.forEach(x=>{
+    if(!/BUS/i.test(x.n))return;
+    const m=toMins(x.t);
+    if(/home/i.test(x.n))busHome=m; else if(busOut===null)busOut=m;
+  });
+  sch.forEach((x,i)=>{
+    if(x.c!=='study')return;
+    let mod=null;
+    for(const [re,m] of MODHINT){ if(re.test(x.n)){mod=m;break;} }
+    const isClass=/LECTURE|LAB|TUTORIAL|CLASS/i.test(x.n);
+    const mins=toMins(x.t);
+    const onCampus = busOut!==null && busHome!==null && mins>busOut && mins<busHome;
+    const isCampus = !isClass && (onCampus || /CAMPUS BLOCK/i.test(x.n));
+    const b={t:x.t,n:x.n,s:x.s||'',mod:mod,cls:isClass,campus:isCampus,idx:i};
+    out.blocks.push(b);
+    if(isCampus)out.campus.push(b);
+    if(mod){
+      if(/skim|pre-read/i.test(x.n)){ if(out.skim.indexOf(mod)<0)out.skim.push(mod); }
+      else if(!isClass){ if(out.deep.indexOf(mod)<0)out.deep.push(mod); }
+    }
+  });
+
+  // ── rolling review from the queue ─────────────────────────
+  const due=(S.uni.topics||[]).filter(t=>dueIn(t)<=0).sort((a,b)=>dueIn(a)-dueIn(b));
+  out.review=due.slice(0,3);
+
+  // ── never return nothing ──────────────────────────────────
+  if(!out.blocks.length){
+    const dueN=due.length;
+    out.note = dueN
+      ? 'No study block scheduled today \u2014 but '+dueN+' review topic'+(dueN>1?'s are':' is')+' due. Twenty minutes clears them.'
+      : (d===5
+         ? 'Friday is your recovery day \u2014 no study is scheduled and that is deliberate. If you want something light, clear the review queue.'
+         : 'No study block today. Use it on ExoGuard, or clear the review queue.');
+  }
+  return out;
+}
+
 
 // ═══════════════════════════════════════════════════════════
 //  READINESS — every domain scored 0-100 on the same scale.
@@ -2848,25 +3073,17 @@ function readyWord(v){return v==null?'NO DATA':v>=67?'ON TRACK':v>=34?'SLIPPING'
 
 // ── UNI: preparedness per module, against exam week ──
 function uniModReady(m){
-  const wk=uniWeek(); if(!wk)return null;
-  // expected study passes by now vs logged
-  let done=0;
-  for(let i=0;i<wk*7;i++){
-    const k=dkOffset(i);
-    if(S.uni.deep[k]&&S.uni.deep[k][m])done+=1;
-    if(S.uni.skims[k]&&S.uni.skims[k][m])done+=0.5;
-  }
-  const expect=Math.max(1,wk*1.5);                     // ~1 deep + 1 skim a week
-  let sc=Math.max(0,Math.min(100,(done/expect)*100));
-  // overdue reviews drag it down
-  const od=(S.uni.topics||[]).filter(t=>t.mod===m&&dueIn(t)<0).length;
-  sc-=od*6;
-  // an unstarted deadline inside 10 days is a hard hit
+  const wk=uniWeek(); if(!wk||typeof modPct!=='function')return null;
+  let sc=modPct(m); if(sc==null)return null;
+  // an unstarted deadline inside 10 days hurts
   (S.uni.dl||[]).forEach(x=>{
     if(x.done||x.mod!==m)return;
     const d=Math.ceil((new Date(x.date)-Date.now())/864e5);
-    if(d>=0&&d<=10)sc-=(11-d)*2.5;
+    if(d>=0&&d<=10)sc-=(11-d)*2.0;
   });
+  // overdue review topics
+  const od=(S.uni.topics||[]).filter(t=>t.mod===m&&dueIn(t)<0).length;
+  sc-=od*4;
   return Math.max(0,Math.min(100,Math.round(sc)));
 }
 function uniReady(){
@@ -3032,6 +3249,82 @@ function renderAnsys(){
   }).join(''));
 }
 
+
+// ═══════════════════════════════════════════════════════════
+//  PER-MODULE SECTIONS — what we are doing, what you owe
+// ═══════════════════════════════════════════════════════════
+function renderModules(){
+  const el=document.getElementById('uni-modules'); if(!el)return;
+  const wk=uniWeek();
+  if(!wk){el.innerHTML='<div class="card"><div class="mt-s">Out of semester.</div></div>';return;}
+
+  el.innerHTML=['CT','CE','PD'].map(m=>{
+    const M=MODPLAN[m], pct=modPct(m), behind=modBehind(m);
+    const col = pct==null?'var(--muted)':(pct>=80?'var(--green)':pct>=50?'var(--gold)':'var(--red)');
+    const cur = M.wk.find(x=>x.w===wk);
+    const next= M.wk.find(x=>x.w===wk+1);
+
+    let h='<div class="card fu" style="border-color:'+(behind.length?'rgba(240,85,85,.3)':'var(--card-br)')+';">';
+    // header
+    h+='<div style="display:flex;align-items:baseline;gap:9px;margin-bottom:3px;">'
+      +'<span style="font-family:\'Bebas Neue\',sans-serif;font-size:19px;letter-spacing:1px;color:'+M.col+';">'+m+'</span>'
+      +'<span style="flex:1;font-size:12.5px;font-weight:700;">'+M.n+'</span>'
+      +'<span style="font-family:\'Bebas Neue\',sans-serif;font-size:26px;color:'+col+';">'+(pct==null?'\u2014':pct+'%')+'</span>'
+      +'</div>'
+      +'<div class="mt-s" style="margin-bottom:8px;">'+M.code+' \u00b7 '+M.hrs+' hrs/wk target \u00b7 '
+      + modStudiedCount(m)+' of '+modDelivered(m)+' weeks studied</div>'
+      +'<div class="ph-bar" style="margin-bottom:10px;"><div class="ph-fill" style="width:'+(pct||0)+'%;background:'+col+';"></div></div>';
+
+    // behind warning
+    if(behind.length){
+      h+='<div class="mrow" style="border-color:rgba(240,85,85,.35);">'
+        +'<div style="flex:1;"><div style="font-weight:800;font-size:12.5px;color:var(--red);">\u26a0 '+behind.length+' week'+(behind.length>1?'s':'')+' behind</div>'
+        +'<div class="hint">'+behind.map(x=>'Wk '+x.w+' \u2014 '+x.t).join('<br>')+'</div></div></div>';
+    }
+
+    // this week / next week
+    if(cur){
+      h+='<div class="mrow" style="border-color:'+M.col+'55;"><div style="flex:1;">'
+        +'<div class="hint" style="color:'+M.col+';letter-spacing:1.5px;font-family:\'DM Mono\',monospace;font-size:8px;">THIS WEEK \u00b7 WK '+wk+'</div>'
+        +'<div style="font-weight:700;font-size:13px;margin-top:3px;">'+cur.t+'</div>'
+        +(cur.tut?'<div class="hint">Tutorial: '+cur.tut+'</div>':'')
+        +(cur.lab?'<div class="hint">Lab: '+cur.lab+'</div>':'')
+        +(cur.cw?'<div class="hint" style="color:var(--red);font-weight:700;">DUE: '+cur.cw+'</div>':'')
+        +'</div></div>';
+    }
+    if(next){
+      h+='<div class="mrow"><div style="flex:1;">'
+        +'<div class="hint" style="letter-spacing:1.5px;font-family:\'DM Mono\',monospace;font-size:8px;">NEXT \u00b7 WK '+next.w+'</div>'
+        +'<div style="font-weight:700;font-size:12.5px;margin-top:3px;opacity:.8;">'+next.t+'</div>'
+        +(next.cw?'<div class="hint" style="color:var(--gold);">DUE: '+next.cw+'</div>':'')
+        +'</div></div>';
+    }
+
+    // full plan, tickable
+    h+='<div class="c-hd" style="margin:12px 0 7px;">\u25b8 FULL PLAN \u2014 TICK WHAT YOU HAVE STUDIED</div>';
+    h+=M.wk.map(x=>{
+      const st=(S.uni.studied[m]||{})[x.w];
+      const past=x.w<=modDelivered(m);
+      const isNow=x.w===wk;
+      if(x.free) return '<div class="mrow" style="opacity:.5;"><span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--muted);flex:0 0 34px;">W'+x.w+'</span>'
+        +'<div style="flex:1;"><div style="font-size:12px;font-weight:700;">'+x.t+'</div></div></div>';
+      return '<div class="mrow'+(st?' ok':'')+'" style="display:flex;align-items:flex-start;gap:8px;'
+        +(isNow?'border-color:'+M.col+'66;':'')+(past?'':'opacity:.45;')+'">'
+        +'<span style="font-family:\'DM Mono\',monospace;font-size:10px;color:'+(isNow?M.col:'var(--muted)')+';flex:0 0 28px;padding-top:2px;">W'+x.w+'</span>'
+        +(past?'<div class="mod-check" onclick="modStudyTog(\''+m+'\','+x.w+')" style="flex:0 0 auto;margin-top:1px;'
+           +(st?'background:'+M.col+';border-color:'+M.col+';color:#000;':'')+'">'+(st?'\u2713':'')+'</div>'
+          :'<div style="flex:0 0 18px;"></div>')
+        +'<div style="flex:1;min-width:0;">'
+          +'<div style="font-size:12.5px;font-weight:700;'+(st?'opacity:.5;':'')+'">'+x.t+(x.key?' <span style="color:var(--gold);">\u2605</span>':'')+'</div>'
+          +(x.lab?'<div class="hint">'+x.lab+'</div>':'')
+          +(x.cw?'<div class="hint" style="color:var(--red);">'+x.cw+'</div>':'')
+        +'</div></div>';
+    }).join('');
+    h+='</div>';
+    return h;
+  }).join('');
+}
+
 function renderUni(){
   const now=new Date(), dk=DKEY(), w=uniWeek(), d=now.getDay();
   const setT=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
@@ -3071,8 +3364,25 @@ function renderUni(){
     );
   })();
 
-  // ══ THE BIG CARD: tonight ══
+  try{renderModules();}catch(e){}
+
+  // ══ THE BIG CARD: today, straight from the schedule ══
   const p=studyPlan();
+
+  // campus-block banner — the hours he is stuck at uni anyway
+  (function(){
+    const el=document.getElementById('uni-campus'); if(!el)return;
+    if(!p.campus.length){el.innerHTML='';return;}
+    const hrs=p.campus.length;
+    el.innerHTML='<div class="card" style="border-color:rgba(212,168,67,.35);">'
+     +'<div class="c-hd" style="color:var(--gold);">\u25b8 YOU ARE ON CAMPUS WITH NOTHING ON \u00b7 '+hrs+' BLOCK'+(hrs>1?'S':'')+'</div>'
+     +p.campus.map(b=>'<div class="mrow" style="display:flex;gap:9px;">'
+        +'<span style="font-family:\'DM Mono\',monospace;font-size:10px;color:var(--gold);flex:0 0 62px;">'+b.t+'</span>'
+        +'<div style="flex:1;min-width:0;"><div style="font-weight:700;font-size:13px;">'+b.n+'</div>'
+        +'<div class="hint">'+b.s+'</div></div></div>').join('')
+     +'<div class="hint" style="margin-top:9px;">Bus will not leave early. These hours happen whether you use them or not.</div>'
+     +'</div>';
+  })();
   let big='';
   if(p.note&&!p.deep.length&&!p.skim.length){
     big='<div class="uni-big-empty">'+p.note+'</div>';
