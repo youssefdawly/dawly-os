@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v13 · FINAL YEAR · real modules + exo audit -->
+<!-- DAWLY OS v15 · FINAL YEAR · the dream -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <title>DAWLY OS — Personal Operating System</title>
@@ -644,6 +644,37 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
 .law-n{font-family:'DM Mono',monospace;font-size:10px;color:var(--gold);min-width:18px;padding-top:1px;}
 .law-t{font-size:12px;font-weight:700;margin-bottom:1px;}
 .law-d{font-size:10px;color:var(--muted2);line-height:1.6;}
+
+/* ═══ THE BRAIN — today's ranked list ═══ */
+.bt{display:flex;gap:11px;align-items:flex-start;padding:13px 0;border-bottom:1px solid var(--border);}
+.bt:last-child{border-bottom:0;}
+.bt-n{font-family:'Bebas Neue',sans-serif;font-size:21px;line-height:1;flex:0 0 22px;padding-top:2px;}
+.bt-b{flex:1;min-width:0;}
+.bt-t{font-size:14px;font-weight:700;line-height:1.35;}
+.bt-w{font-size:11.5px;color:var(--muted2);line-height:1.5;margin-top:4px;}
+.bt-tag{display:inline-block;font-family:'DM Mono',monospace;font-size:7.5px;letter-spacing:1.2px;
+  padding:2px 6px;border-radius:3px;margin-top:6px;}
+.bt-c{flex:0 0 26px;display:flex;align-items:flex-start;padding-top:2px;}
+.bt.done .bt-t{opacity:.42;text-decoration:line-through;}
+.bt.done .bt-w{opacity:.42;}
+.energy{display:flex;gap:4px;margin-top:7px;}
+.energy i{height:4px;flex:1;border-radius:2px;background:rgba(255,255,255,.1);}
+.energy i.on{background:var(--gold);}
+.barca{background:linear-gradient(135deg,rgba(165,0,68,.18),rgba(0,77,152,.14));
+  border:1px solid rgba(165,0,68,.4);border-radius:var(--r);padding:12px 14px;margin-bottom:9px;}
+
+/* ═══ THE DREAM — his words, above everything ═══ */
+.dream{background:linear-gradient(150deg,rgba(212,168,67,.13),rgba(212,168,67,.03) 55%,transparent);
+  border:1px solid rgba(212,168,67,.3);border-radius:var(--r);padding:19px 17px;margin-bottom:18px;position:relative;overflow:hidden;}
+.dream::after{content:'';position:absolute;right:-30px;top:-30px;width:120px;height:120px;
+  border-radius:50%;background:radial-gradient(circle,rgba(212,168,67,.1),transparent 70%);}
+.dream-k{font-family:'DM Mono',monospace;font-size:8px;letter-spacing:3px;color:var(--gold);
+  text-transform:uppercase;margin-bottom:12px;}
+.dr{display:flex;gap:11px;padding:8px 0;position:relative;}
+.dr-i{flex:0 0 20px;font-size:14px;line-height:1.3;}
+.dr-t{flex:1;font-size:13.5px;font-weight:600;line-height:1.5;color:#f2eee4;}
+.dream-f{font-size:11.5px;color:var(--muted2);line-height:1.6;margin-top:13px;
+  padding-top:12px;border-top:1px solid rgba(212,168,67,.18);}
 </style>
 </head>
 <body>
@@ -710,6 +741,17 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
       <div class="wc-bar"><div class="wc-fill" id="wc-fill" style="width:0%"></div></div>
       <div class="wc-sub" id="wc-sub">Tap to see today's schedule →</div>
     </div>
+    <div class="dream fu">
+      <div class="dream-k">★ The dream — why any of this matters</div>
+      <div class="dr"><span class="dr-i">🤝</span><span class="dr-t">Be successful, and have my parents proud of me</span></div>
+      <div class="dr"><span class="dr-i">💕</span><span class="dr-t">Marry the girl I love and who loves me — and give her the world</span></div>
+      <div class="dr"><span class="dr-i">🦾</span><span class="dr-t">Be a smart engineer who creates things that help people — like Iron Man</span></div>
+      <div class="dr"><span class="dr-i">🏡</span><span class="dr-t">A modern villa with a pool and cars — and travel the world</span></div>
+      <div class="dr"><span class="dr-i">🎾</span><span class="dr-t">Play tennis, and be competitive</span></div>
+      <div class="dr"><span class="dr-i">🏋️</span><span class="dr-t">Build my dream body in the gym</span></div>
+      <div class="dr"><span class="dr-i">🕌</span><span class="dr-t">Be closer to Allah — pray and read Qur'an more and more, and reach Jannah in sha Allah</span></div>
+      <div class="dream-f">None of it arrives on its own. It arrives through today's list — one thermo lecture, one hip bracket, one set, one prayer on time. <b style="color:var(--gold);">Today is the only part of this you control.</b></div>
+    </div>
     <div class="section-lbl fu">My Laws</div>
     <div class="law fu"><div class="law-n">01</div><div><div class="law-t">I start before I feel ready.</div><div class="law-d">Confidence is built by doing, not by waiting. Action first. Always.</div></div></div>
     <div class="law fu"><div class="law-n">02</div><div><div class="law-t">Fajr is the anchor. Every single day.</div><div class="law-d">The day I control my morning is the day I control my life.</div></div></div>
@@ -730,6 +772,7 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
     <div class="cmd-season" id="cd-season">—</div>
   </div>
   <div class="dash3" id="cd-dash3"></div>
+  <div id="cd-brain" style="margin-top:10px;"></div>
 
   <!-- ░░ RIGHT NOW ░░ -->
   <div class="cmd-hero fu" style="margin-top:9px;">
@@ -1339,6 +1382,8 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
     <div class="hero-sub fu">National ranking + club team. <span class="ib" onclick="showInfo('athgoal')">i</span></div>
   </div>
 
+  <div id="ath-today"></div>
+  <div class="sec-ttl fu" style="margin:16px 0 8px;">📖 REFERENCE — the detail lives in here</div>
   <div class="stabs fu" id="ath-tabs">
     <div class="stab active" onclick="showAthTab('tennis',this)">🎾 Tennis</div>
     <div class="stab" onclick="showAthTab('gym',this)">🏋️ Gym</div>
@@ -1641,7 +1686,9 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
 </div>
 
 <div class="pg" id="pg-rev">
-  <div class="hero">
+  
+  <div id="rev-dream"></div>
+<div class="hero">
     <div class="hero-kicker fu" style="color:var(--gold);">THE BOARDROOM · MEASURED LIFE</div>
     <div class="hero-title fu">RE<span style="color:var(--gold);">VIEW.</span></div>
     <div class="hero-sub fu">KPIs auto-computed from your 2-minute daily logs. Sunday: 20-minute weekly review. Month-end: CEO review. Evidence, not feelings.</div>
@@ -2997,6 +3044,208 @@ function modBehind(m){
   const d=modDelivered(m), st=S.uni.studied[m]||{}, out=[];
   MODPLAN[m].wk.forEach(x=>{ if(x.w<=d&&!x.free&&!st[x.w])out.push(x); });
   return out;
+}
+
+
+// ═══════════════════════════════════════════════════════════
+//  THE BRAIN — decides what you do today, and says why.
+//  Energy first: a Monday after academy is not a Tuesday.
+//  Then urgency, then debt, then staleness.
+// ═══════════════════════════════════════════════════════════
+
+// ── BARÇA 2026-27 · dates consistent across ESPN / SI / ticketshop.
+//    Some opponents disagree between sources — verify before travelling.
+const BARCA=[
+ {d:'2026-10-25',o:'Real Madrid',h:1,big:1},{d:'2026-11-01',o:'Alav\u00e9s',h:1},
+ {d:'2026-11-08',o:'Atl\u00e9tico Madrid',h:0},{d:'2026-11-22',o:'Villarreal',h:1},
+ {d:'2026-11-29',o:'Deportivo',h:0},{d:'2026-12-06',o:'Celta Vigo',h:1},
+ {d:'2026-12-13',o:'M\u00e1laga',h:0},{d:'2026-12-20',o:'Real Sociedad',h:1},
+ {d:'2027-01-03',o:'Espanyol',h:0},{d:'2027-01-10',o:'Osasuna',h:0},
+ {d:'2027-01-17',o:'Elche',h:1},{d:'2027-01-24',o:'Alav\u00e9s',h:0},
+ {d:'2027-01-31',o:'Valencia',h:1},{d:'2027-02-07',o:'Atl\u00e9tico Madrid',h:1},
+ {d:'2027-02-14',o:'Villarreal',h:0},{d:'2027-02-21',o:'Levante',h:1},
+ {d:'2027-02-28',o:'Athletic Club',h:0},{d:'2027-03-07',o:'Real Betis',h:1},
+ {d:'2027-03-14',o:'Deportivo',h:1},{d:'2027-03-21',o:'Rayo Vallecano',h:0},
+ {d:'2027-04-04',o:'Sevilla',h:1},{d:'2027-04-11',o:'Racing Santander',h:0},
+ {d:'2027-04-18',o:'Espanyol',h:1},{d:'2027-04-21',o:'Celta Vigo',h:0},
+ {d:'2027-05-02',o:'Osasuna',h:1},{d:'2027-05-09',o:'Real Madrid',h:0,big:1},
+ {d:'2027-05-16',o:'Real Sociedad',h:0},{d:'2027-05-23',o:'M\u00e1laga',h:1},
+ {d:'2027-05-30',o:'Getafe',h:0},
+];
+function barcaOn(dk){const iso=new Date(dk);const y=iso.getFullYear(),m=String(iso.getMonth()+1).padStart(2,'0'),d=String(iso.getDate()).padStart(2,'0');
+  return BARCA.find(x=>x.d===y+'-'+m+'-'+d)||null;}
+function barcaNext(){const t=new Date();t.setHours(0,0,0,0);
+  return BARCA.find(x=>new Date(x.d)>=t)||null;}
+
+// ── ENERGY: what today can actually carry ──────────────────
+// 3 = fresh and free   2 = normal   1 = wrecked
+function dayEnergy(d){
+  // d = getDay(). Built from his real week.
+  const E={
+    0:{am:1,pm:2,n:'Sun \u00b7 class then campus block',note:'Campus block 1:40\u20134:00, home 5:45. Evening has room.'},
+    1:{am:0,pm:1,n:'Mon \u00b7 full day + academy',note:'Seven hours of class then court at 8. Expect almost nothing.'},
+    2:{am:3,pm:3,n:'Tue \u00b7 FREE DAY',note:'No class at all. This is where the hard things go.'},
+    3:{am:3,pm:1,n:'Wed \u00b7 5h campus block, late home',note:'8:45\u20132:00 on campus and fresh. Home 6:45 and finished.'},
+    4:{am:1,pm:2,n:'Thu \u00b7 lab + campus + private tennis',note:'Lab, then campus block, then court at 8.'},
+    5:{am:2,pm:2,n:'Fri \u00b7 recovery day',note:'Free but it is your rest day. Light work only, guilt-free.'},
+    6:{am:3,pm:0,n:'Sat \u00b7 free morning, academy at 7:30',note:'Morning is yours and you are fresh. Evening is court.'},
+  };
+  return E[d]||E[2];
+}
+function dayCapacity(d){const e=dayEnergy(d);return e.am+e.pm;}   // 0..6
+
+// ── MISSED DAYS ────────────────────────────────────────────
+if(!S.missed)S.missed={};
+function markMissed(reason){
+  const dk=DKEY();
+  S.missed[dk]=reason||'off';
+  sv(); renderBrain(); if(typeof renderCmd==='function')renderCmd();
+  toast('Logged \u2014 today is written off. Tomorrow is recalculated.');
+}
+function unmarkMissed(){delete S.missed[DKEY()];sv();renderBrain();toast('Back on.');}
+function missedRecent(){let n=0;for(let i=0;i<7;i++){if(S.missed[dkOffset(i)])n++;}return n;}
+
+// ── TASK POOL ──────────────────────────────────────────────
+// load: 3 heavy / 2 medium / 1 light
+function brainPool(){
+  const out=[], wk=uniWeek();
+
+  // UNI — unstudied weeks, oldest first
+  if(wk){
+    ['CT','CE','PD'].forEach(m=>{
+      const M=MODPLAN[m], behind=modBehind(m);
+      behind.slice(0,2).forEach((x,i)=>{
+        const age=wk-x.w;
+        out.push({
+          id:'uni_'+m+'_'+x.w, proj:m, projN:M.n, col:M.col,
+          t:m+' \u2014 Week '+x.w+': '+x.t,
+          load: m==='CT'?3:(m==='CE'?2:2),
+          urg: 0, debt: Math.min(10,age*2+2), stale: age,
+          why: age>=2 ? age+' weeks behind on this one \u2014 the oldest gap you have'
+             : 'One week behind. Clear it before week '+(wk+1)+' lands on top.'
+        });
+      });
+      // deadlines
+      (S.uni.dl||[]).forEach(dl=>{
+        if(dl.done||dl.mod!==m)return;
+        const dd=Math.ceil((new Date(dl.date)-Date.now())/864e5);
+        if(dd<0||dd>12)return;
+        out.push({id:'dl_'+m+'_'+dl.title, proj:m, projN:M.n, col:M.col,
+          t:m+' \u2014 '+dl.title, load:2,
+          urg: Math.max(0,14-dd), debt:0, stale:0,
+          why: dd===0?'DUE TODAY.':(dd===1?'Due TOMORROW.':'Due in '+dd+' days.')});
+      });
+    });
+  }
+
+  // EXOGUARD — current phase, unchecked
+  try{
+    const now=new Date();
+    const ph=EXO_PHASES.find(p=>new Date(p.s||p.start)<=now&&now<=new Date(p.e||p.end))||EXO_PHASES[0];
+    if(ph && ph.scope!=='PROTECTED'){
+      const ts=ph.weeks.reduce((a,w)=>a.concat(w.tasks),[]).filter(t=>!EXOT[t.id]);
+      ts.slice(0,2).forEach(t=>{
+        const dEnd=Math.ceil((new Date(ph.end)-now)/864e5);
+        out.push({id:'exo_'+t.id, proj:'EXO', projN:'ExoGuard', col:'var(--cyan)',
+          t:'ExoGuard \u2014 '+t.text, load:3,
+          urg: Math.max(0,20-dEnd), debt:6, stale:0,
+          why: ph.name.replace(/^Phase \d+ \u2014 /,'')+' \u00b7 '+(dEnd>0?dEnd+' days left in this phase':'phase window closed')
+               +'. This is your number one priority this year.'});
+      });
+    }
+  }catch(e){}
+
+  // TRAVIS — current phase, unchecked
+  try{
+    const now=new Date();
+    const ph=TRV.find(p=>new Date(p.s)<=now&&now<=new Date(p.e)&&p.scope!=='PROTECTED')||TRV[0];
+    if(ph){
+      ph.ts.forEach((t,i)=>{
+        if(TVT[ph.id+'_'+i])return;
+        out.push({id:'tv_'+ph.id+'_'+i, proj:'TRV', projN:'Travis', col:'var(--purple)',
+          t:'Travis \u2014 '+t, load:2,
+          urg:0, debt:3, stale:2,
+          why:'Free, no hardware needed. '+ph.n+'.'});
+      });
+    }
+  }catch(e){}
+
+  // ANSYS — next course
+  try{
+    let cur=AN_PHASES[0];
+    for(const p of AN_PHASES){ if(p.ts.some(t=>!ANS[t.id])){cur=p;break;} }
+    const nx=cur.ts.find(t=>!ANS[t.id]);
+    if(nx) out.push({id:'an_'+nx.id, proj:'ANSYS', projN:'Ansys', col:'var(--gold)',
+      t:'Ansys \u2014 '+nx.n, load:2, urg:0, debt:2, stale:1,
+      why:'Same material as your Thermo-fluids module, and it ends in a badge for LinkedIn.'});
+  }catch(e){}
+
+  return out;
+}
+
+// ── THE DECISION ───────────────────────────────────────────
+function brainToday(){
+  const d=new Date().getDay(), dk=DKEY();
+  const E=dayEnergy(d), cap=dayCapacity(d);
+  const missed=S.missed[dk];
+  const pool=brainPool();
+
+  // energy ceiling: how heavy a task today can take
+  const maxLoad = E.am>=3 ? 3 : (E.am+E.pm>=3 ? 2 : 1);
+  // how many items
+  let n = cap>=6?5 : cap>=4?4 : cap>=3?3 : cap>=2?2 : 1;
+
+  // hard ceiling: never hand a wrecked evening a heavy task.
+  // urgent things (a deadline inside a few days) always get through.
+  const fits = pool.filter(t=> t.load<=maxLoad || t.urg>=10 );
+  const scored=fits.map(t=>{
+    let sc = t.urg*4 + t.debt*2 + t.stale;
+    if(t.load===maxLoad) sc += 3;            // right-sized for today
+    if(t.load>maxLoad)   sc += 6;            // got through on urgency alone
+    return Object.assign({},t,{score:sc});
+  }).sort((a,b)=>b.score-a.score);
+
+  // keep variety — at most 2 per project
+  const picked=[], seen={};
+  for(const t of scored){
+    if(picked.length>=n)break;
+    seen[t.proj]=(seen[t.proj]||0);
+    if(seen[t.proj]>=2)continue;
+    picked.push(t); seen[t.proj]++;
+  }
+  return {day:E, cap:cap, maxLoad:maxLoad, missed:missed, tasks:picked, pool:pool.length};
+}
+
+// ── DONE / SKIP ────────────────────────────────────────────
+if(!S.brainDone)S.brainDone={};
+function brainTog(id){
+  const dk=DKEY();
+  if(!S.brainDone[dk])S.brainDone[dk]={};
+  const on = S.brainDone[dk][id] = !S.brainDone[dk][id];
+
+  // propagate to the real tracker so you never tick the same thing twice
+  try{
+    if(id.indexOf('uni_')===0){                       // uni_CE_2
+      const p=id.split('_'); const m=p[1], wkn=+p[2];
+      if(!S.uni.studied[m])S.uni.studied[m]={};
+      S.uni.studied[m][wkn]=on;
+    } else if(id.indexOf('dl_')===0){                 // dl_PD_title
+      const title=id.substring(id.indexOf('_',3)+1);
+      (S.uni.dl||[]).forEach(x=>{ if(x.title===title)x.done=on; });
+    } else if(id.indexOf('exo_')===0){
+      EXOT[id.substring(4)]=on; if(typeof svExo==='function')svExo();
+    } else if(id.indexOf('tv_')===0){
+      TVT[id.substring(3)]=on; if(typeof svTv==='function')svTv();
+    } else if(id.indexOf('an_')===0){
+      ANS[id.substring(3)]=on; if(typeof svAns==='function')svAns();
+    }
+  }catch(e){}
+
+  sv(); renderBrain();
+  ['renderUni','renderExo','renderTravis','renderAnsys','renderModules'].forEach(f=>{
+    try{ if(typeof window[f]==='function')window[f](); }catch(e){}
+  });
+  toast(on?'\u2705 Done':'\u21a9 Cleared');
 }
 
 function studyPlan(){
@@ -4908,7 +5157,82 @@ function showAthTab(id,btn){
   if(id==='fuel')renderFuel2();
   if(id==='recovery')renderRec();
 }
+
+// ═══════════════════════════════════════════════════════════
+//  ATHLETE — TODAY. Everything else is reference.
+// ═══════════════════════════════════════════════════════════
+function athToday(){
+  const d=new Date().getDay(), dk=DKEY();
+  const sch=(typeof getSch==='function')?getSch():[];
+  const out={court:null,gym:null,rest:false};
+  sch.forEach(x=>{
+    if(x.c!=='gym')return;
+    if(/ACADEMY|PRIVATE LESSON/i.test(x.n)) out.court={t:x.t,n:x.n,s:x.s||''};
+    else if(/^GYM/i.test(x.n))              out.gym  ={t:x.t,n:x.n,s:x.s||''};
+  });
+  out.rest = !out.court && !out.gym;
+  return out;
+}
+function renderAthToday(){
+  const el=document.getElementById('ath-today'); if(!el)return;
+  const dk=DKEY(), T=athToday(), w=wd(dk);
+  const R=(typeof recovery==='function')?recovery(dk):{v:null};
+  const V=(typeof recVerdict==='function')?recVerdict(R.v):{t:'\u2014',c:'var(--muted)',w:''};
+  const st=(typeof strainOf==='function')?strainOf(dk):0;
+  const tgt=(typeof strainTarget==='function')?strainTarget(R.v):[8,14];
+  const prot=(typeof protToday==='function')?protToday(dk):0;
+  const ptg=(typeof protTarget==='function')?protTarget():null;
+
+  let h='<div class="card fu">';
+  h+='<div class="c-hd">\u25b8 TODAY \u00b7 '+['SUNDAY','MONDAY','TUESDAY','WEDNESDAY','THURSDAY','FRIDAY','SATURDAY'][new Date().getDay()]+'</div>';
+
+  // the session
+  if(T.court){
+    h+='<div style="display:flex;align-items:baseline;gap:9px;">'
+      +'<span style="font-family:\'Bebas Neue\',sans-serif;font-size:24px;color:var(--green);">'+T.court.t+'</span>'
+      +'<span style="flex:1;font-size:15px;font-weight:800;">🎾 '+T.court.n.replace(/ \(Untouchable\)/,'')+'</span></div>'
+      +'<div class="hint" style="margin-top:4px;line-height:1.55;">'+T.court.s+'</div>';
+  }
+  if(T.gym){
+    h+='<div style="display:flex;align-items:baseline;gap:9px;'+(T.court?'margin-top:11px;':'')+'">'
+      +'<span style="font-family:\'Bebas Neue\',sans-serif;font-size:24px;color:var(--gold);">'+T.gym.t+'</span>'
+      +'<span style="flex:1;font-size:15px;font-weight:800;">🏋\ufe0f '+T.gym.n.replace(/^GYM \u2014 /,'')+'</span></div>'
+      +'<div class="hint" style="margin-top:4px;line-height:1.55;">'+T.gym.s+'</div>';
+  }
+  if(T.rest){
+    h+='<div style="font-size:15px;font-weight:800;">🛌 No training today</div>'
+      +'<div class="hint" style="margin-top:4px;line-height:1.55;">Rest is scheduled, not skipped. Eat, sleep, and let the week\'s work land.</div>';
+  }
+
+  // the three numbers that actually decide today
+  h+='<div class="mtiles" style="margin-top:13px;">'
+    + tile('Recovery','<span style="color:'+V.c+'">'+(R.v==null?'\u2014':R.v)+'</span>',V.t,'g')
+    + tile('Strain',st,'target '+tgt[0]+'\u2013'+tgt[1],'r')
+    + tile('Protein',prot+'g',ptg?('of '+ptg+'g'):'set a target','')
+    +'</div>';
+
+  // one honest line
+  let line='';
+  if(R.v==null) line='Log last night\'s sleep and this whole tab starts working.';
+  else if(R.v<34) line='Red recovery. If you train today, technique only \u2014 no intensity, no PBs.';
+  else if(st>tgt[1]) line='You are already past what a '+R.v+'% recovery absorbs. Anything more today is borrowed from tomorrow.';
+  else if(T.court&&T.gym) line='Court and gym on the same day. Do the court session properly \u2014 the gym is the one that gives way.';
+  else line=V.w;
+  h+='<div class="hint" style="margin-top:4px;line-height:1.65;">'+line+'</div>';
+
+  h+='</div>';
+
+  // log strip — the two things he asked for
+  h+='<div class="card fu"><div class="c-hd">\u25b8 LOG IT</div>'
+   + (typeof morningCardHTML==='function'? morningCardHTML(false) : '')
+   + (typeof wkPanelHTML==='function'? wkPanelHTML() : '')
+   + '</div>';
+
+  el.innerHTML=h;
+}
+
 function renderAth(){
+  try{renderAthToday();}catch(e){}
   renderGym();renderEngine();renderFuel2();try{renderRec();}catch(e){}
   const tl=document.getElementById('tn-log');
   tl.innerHTML=S.tennisLog.slice(0,10).map((e,i)=>{
@@ -5186,8 +5510,170 @@ function renderIdentity(){
   T('wc-sub',cur?('Now: '+cur.n+'  \u2192'):'Tap to see today\'s schedule \u2192');
 }
 
+
+// ── THE BRAIN, rendered ────────────────────────────────────
+function renderBrain(){
+  const el=document.getElementById('cd-brain'); if(!el)return;
+  const B=brainToday(), dk=DKEY(), done=S.brainDone[dk]||{};
+  const nowD=new Date();
+
+  let h='';
+
+  // Barça today / next
+  const bToday=barcaOn(dk), bNext=barcaNext();
+  if(bToday){
+    h+='<div class="barca"><div class="c-hd" style="color:#ff5c8a;margin-bottom:5px;">\u26bd '
+      +(bToday.big?'EL CL\u00c1SICO':'BAR\u00c7A')+' TODAY</div>'
+      +'<div style="font-size:15px;font-weight:800;">'+(bToday.h?'Barcelona vs '+bToday.o:bToday.o+' vs Barcelona')+'</div>'
+      +'<div class="hint" style="margin-top:4px;">You do not skip matches. The list below is sized so you do not have to.</div></div>';
+  }
+
+  // missed-day state
+  if(B.missed){
+    h+='<div class="card" style="border-color:var(--border2);">'
+      +'<div class="c-hd">\u25b8 TODAY IS WRITTEN OFF</div>'
+      +'<div style="font-size:13.5px;font-weight:700;">No work expected today. That is a decision, not a failure.</div>'
+      +'<div class="hint" style="margin-top:6px;line-height:1.6;">Everything shifts forward. Nothing is lost and nothing is marked overdue. '
+      +(missedRecent()>=3?'<b style="color:var(--gold);">Third missed day this week though \u2014 worth noticing.</b>':'Come back tomorrow.')+'</div>'
+      +'<div class="row" style="margin-top:10px;"><button class="btn sm" onclick="unmarkMissed()">Actually, I can work</button></div>'
+      +'</div>';
+    el.innerHTML=h; return;
+  }
+
+  // header: what kind of day is this
+  const E=B.day;
+  h+='<div class="card">'
+   +'<div class="c-hd">\u25b8 TODAY \u00b7 '+E.n.toUpperCase()+'</div>'
+   +'<div class="hint" style="line-height:1.6;">'+E.note+'</div>'
+   +'<div class="energy">'+[1,2,3,4,5,6].map(i=>'<i class="'+(i<=B.cap?'on':'')+'"></i>').join('')+'</div>'
+   +'<div class="mt-s" style="margin-top:6px;">Capacity '+B.cap+'/6 \u00b7 '
+   +(B.maxLoad===3?'heavy work fits today':B.maxLoad===2?'medium work only':'light work only')
+   +' \u00b7 '+B.tasks.length+' of '+B.pool+' open items chosen</div>'
+   +'</div>';
+
+  // the list
+  const nDone=B.tasks.filter(t=>done[t.id]).length;
+  h+='<div class="card"><div class="c-hd">\u25b8 DO THESE \u00b7 '+nDone+'/'+B.tasks.length+' DONE</div>';
+  if(!B.tasks.length){
+    h+= B.maxLoad<=1
+      ? '<div style="font-size:14px;font-weight:700;line-height:1.5;">Nothing light enough for tonight.</div>'
+        +'<div class="hint" style="margin-top:6px;line-height:1.65;">Everything still open is heavy work, and you have had a full day plus court. '
+        +'Pushing a CAD session into this evening gets you a bad hour and a worse Tuesday. <b style="color:var(--green);">Rest is the correct move.</b></div>'
+      : '<div class="hint">Nothing open. Either everything is genuinely done, or the plans need updating.</div>';
+  }
+  B.tasks.forEach((t,i)=>{
+    const on=!!done[t.id];
+    const L=t.load===3?['HEAVY','var(--red)']:t.load===2?['MEDIUM','var(--gold)']:['LIGHT','var(--green)'];
+    h+='<div class="bt'+(on?' done':'')+'">'
+      +'<div class="bt-n" style="color:'+(on?'var(--muted)':t.col)+';">'+(i+1)+'</div>'
+      +'<div class="bt-b">'
+        +'<div class="bt-t">'+t.t+'</div>'
+        +'<div class="bt-w">'+t.why+'</div>'
+        +'<span class="bt-tag" style="color:'+L[1]+';border:1px solid '+L[1]+'44;">'+L[0]+'</span>'
+      +'</div>'
+      +'<div class="bt-c"><div class="mod-check" onclick="brainTog(\''+t.id+'\')" style="'
+        +(on?'background:var(--green);border-color:var(--green);color:#000;':'')+'">'+(on?'\u2713':'')+'</div></div>'
+      +'</div>';
+  });
+  h+='</div>';
+
+  // escape hatch
+  h+='<div class="card"><div class="c-hd">\u25b8 NOT TODAY</div>'
+   +'<div class="hint" style="line-height:1.6;margin-bottom:9px;">Out with friends, family thing, ill, or just finished. Tell it \u2014 it recalculates instead of marking you behind.</div>'
+   +'<div class="row" style="gap:6px;flex-wrap:wrap;">'
+   +'<button class="btn sm" onclick="markMissed(\'friends\')">Friends / family</button>'
+   +'<button class="btn sm" onclick="markMissed(\'ill\')">Not well</button>'
+   +'<button class="btn sm" onclick="markMissed(\'off\')">Just not today</button>'
+   +'</div></div>';
+
+  // next match
+  if(bNext&&!bToday){
+    const dd=Math.ceil((new Date(bNext.d)-nowD)/864e5);
+    h+='<div class="mt-s" style="text-align:center;margin-top:10px;">\u26bd '
+      +(bNext.big?'<b style="color:#ff5c8a;">EL CL\u00c1SICO</b> ':'')
+      +(bNext.h?'vs '+bNext.o:'away at '+bNext.o)+' in '+dd+' day'+(dd===1?'':'s')
+      +' \u00b7 fixtures from ESPN/SI, opponents may shift</div>';
+  }
+
+  el.innerHTML=h;
+}
+
+
+// ═══════════════════════════════════════════════════════════
+//  REVIEW — the week measured against the dream, not stats
+// ═══════════════════════════════════════════════════════════
+const DREAM_AXES=[
+ {k:'engineer',i:'🦾',n:'The engineer who builds things that help people',
+  sub:'ExoGuard + Travis + Ansys',
+  get:function(){ let d=0,t=0;
+    try{ EXO_PHASES.forEach(p=>p.weeks.forEach(w=>w.tasks.forEach(x=>{t++;if(EXOT[x.id])d++;}))); }catch(e){}
+    return {d:d,t:t,lbl:d+' / '+t+' ExoGuard tasks done'}; }},
+ {k:'degree',i:'🎓',n:'Successful \u2014 and my parents proud of me',
+  sub:'The degree is the first proof',
+  get:function(){ let d=0,t=0;
+    try{ ['CT','CE','PD'].forEach(m=>{ d+=modStudiedCount(m); t+=modDelivered(m); }); }catch(e){}
+    return {d:d,t:t,lbl:d+' / '+t+' module-weeks studied'}; }},
+ {k:'tennis',i:'🎾',n:'Play tennis, and be competitive',
+  sub:'Academy Mon + Sat, private Thu',
+  get:function(){ let d=0;
+    for(let i=0;i<7;i++){ const k=dkOffset(i); const L=(typeof wkList==='function')?wkList(k):[];
+      if(L.some(x=>x.t==='tennis'))d++; }
+    return {d:d,t:3,lbl:d+' / 3 court sessions this week'}; }},
+ {k:'body',i:'🏋\ufe0f',n:'Build my dream body',
+  sub:'4 lifts a week + protein',
+  get:function(){ let d=0;
+    for(let i=0;i<7;i++){ const k=dkOffset(i); const L=(typeof wkList==='function')?wkList(k):[];
+      if(L.some(x=>x.t==='gym'))d++; }
+    return {d:d,t:4,lbl:d+' / 4 gym sessions this week'}; }},
+ {k:'sleep',i:'🌙',n:'The body that holds all of it up',
+  sub:'Sleep is the one that makes the rest possible',
+  get:function(){ let d=0;
+    for(let i=0;i<7;i++){ const x=wd(dkOffset(i)); if(x.asleep!=null&&x.asleep>=420)d++; }
+    return {d:d,t:7,lbl:d+' / 7 nights at 7h+'}; }},
+ {k:'deen',i:'🕌',n:'Closer to Allah \u2014 Fajr every day',
+  sub:'Your second law',
+  get:function(){ let d=0;
+    for(let i=0;i<7;i++){ const q=(S.quick&&S.quick[dkOffset(i)])||{}; if(q.fajr)d++; }
+    return {d:d,t:7,lbl:d+' / 7 days'}; }},
+];
+function renderDreamReview(){
+  const el=document.getElementById('rev-dream'); if(!el)return;
+  let tot=0,n=0;
+  const rows=DREAM_AXES.map(a=>{
+    let r; try{ r=a.get(); }catch(e){ r={d:0,t:0,lbl:'\u2014'}; }
+    const pc = r.t? Math.round(r.d/r.t*100) : null;
+    if(pc!=null){tot+=pc;n++;}
+    const col = pc==null?'var(--muted)':(pc>=75?'var(--green)':pc>=40?'var(--gold)':'var(--red)');
+    return '<div class="mrow" style="display:flex;align-items:flex-start;gap:10px;">'
+      +'<span style="font-size:16px;flex:0 0 22px;">'+a.i+'</span>'
+      +'<div style="flex:1;min-width:0;">'
+        +'<div style="font-size:13px;font-weight:700;line-height:1.35;">'+a.n+'</div>'
+        +'<div class="hint">'+a.sub+' \u00b7 '+r.lbl+'</div>'
+        +'<div class="ph-bar" style="margin-top:6px;"><div class="ph-fill" style="width:'+(pc||0)+'%;background:'+col+';"></div></div>'
+      +'</div>'
+      +'<span style="font-family:\'Bebas Neue\',sans-serif;font-size:20px;color:'+col+';flex:0 0 36px;text-align:right;">'
+      +(pc==null?'\u2014':pc+'%')+'</span></div>';
+  }).join('');
+  const avg = n? Math.round(tot/n) : 0;
+  const acol = avg>=75?'var(--green)':avg>=40?'var(--gold)':'var(--red)';
+  el.innerHTML='<div class="card fu">'
+   +'<div class="c-hd">\u25b8 THIS WEEK AGAINST THE DREAM</div>'
+   +'<div style="display:flex;align-items:baseline;gap:10px;margin-bottom:11px;">'
+     +'<span style="font-family:\'Bebas Neue\',sans-serif;font-size:42px;line-height:1;color:'+acol+';">'+avg+'%</span>'
+     +'<span style="flex:1;font-size:12px;font-weight:700;line-height:1.4;">of the week you said you wanted<br>'
+     +'<span class="hint">Six things. Not one number \u2014 six.</span></span></div>'
+   +rows
+   +'<div class="hint" style="margin-top:11px;line-height:1.65;">'
+   +(avg>=75?'Strong week. This is what the dream actually looks like from the inside \u2014 unremarkable days, done properly.'
+     :avg>=40?'Mixed week. Pick the lowest bar above and make that one thing the focus of next week. Not all six.'
+     :'Hard week. One bar. Pick the easiest one to move and move only that. Momentum first, breadth later.')
+   +'</div></div>';
+}
+
 function renderCmd(){
+  try{renderDreamReview();}catch(e){}
   try{renderIdentity();}catch(e){}
+  try{renderBrain();}catch(e){}
   const now=new Date(),dk=DKEY();
   const setT=(id,v)=>{const e=document.getElementById(id);if(e)e.textContent=v;};
   const setH=(id,v)=>{const e=document.getElementById(id);if(e)e.innerHTML=v;};
@@ -5341,7 +5827,7 @@ function renderReview(){
     {l:'Deep blocks',v:tot7('deep'),c:'c-blue'},
     {l:'Review queue due',v:uniDueCount(),c:'c-purple'},
     {l:'Training days',v:sum7(d=>!!d.train)+'/7',c:'c-red'},
-    {l:'Mock avg (last 3)',v:mockAvg==null?'—':mockAvg+'%',c:'c-blue'},
+    {l:'Ansys courses done',v:mockAvg==null?'—':mockAvg+'%',c:'c-blue'},
     {l:'Weight trend',v:wtd,c:'c-gold'},
     {l:'Study hrs (7d)',v:studyHrs7(),c:'c-green'},
     {l:'Travis tasks',v:travisDone()+'/'+travisTot(),c:'c-purple'},
