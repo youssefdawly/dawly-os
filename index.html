@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- DAWLY OS v17 · FINAL YEAR · ExoGuard 8h + Travis 3h -->
+<!-- DAWLY OS v18 · FINAL YEAR · auto-only + matches in the day -->
 <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
 <meta name="googlebot" content="noindex, nofollow">
 <title>DAWLY OS — Personal Operating System</title>
@@ -1054,18 +1054,6 @@ details.cbox{background:var(--card-bg);border:1px solid var(--card-br);border-ra
   </div>
   <div class="callout tip fu" id="td-directive" style="margin-bottom:10px;">Loading today's directive…</div>
   <div class="chip-row">
-    <div class="chip active" id="chip-auto" onclick="setDT('auto')">Auto</div>
-    <div class="chip" id="chip-uniSun" onclick="setDT('uniSun')">🎓 Sun · Prof Dev</div>
-    <div class="chip" id="chip-uniMon" onclick="setDT('uniMon')">🎓🎾 Mon · 9-to-5</div>
-    <div class="chip" id="chip-deskTue" onclick="setDT('deskTue')">🔥 Tue · Desk Day</div>
-    <div class="chip" id="chip-uniWed" onclick="setDT('uniWed')">📚 Wed · Library+Legs</div>
-    <div class="chip" id="chip-uniThu" onclick="setDT('uniThu')">🔬 Thu · Lab</div>
-    <div class="chip" id="chip-preRest" onclick="setDT('preRest')">🧖 Recovery</div>
-    <div class="chip" id="chip-buildSat" onclick="setDT('buildSat')">🛠️ Sat · Build</div>
-    <div class="chip" id="chip-examDay" onclick="setDT('examDay')">📝 Exam Week</div>
-    <div class="chip" id="chip-grind" onclick="setDT('grind')">🔥 Grind</div>
-    <div class="chip" id="chip-tennisday" onclick="setDT('tennisday')">🎾 Tennis Day</div>
-    <div class="chip" id="chip-ramadan" onclick="setDT('ramadan')">🌙 Ramadan</div>
   </div>
   <div class="sched" id="sched"></div>
 </div>
@@ -1846,7 +1834,7 @@ const S = JSON.parse(localStorage.getItem('dawly_os') || '{}');
 if(!S.checks)S.checks={};
 if(!S.scores||!Array.isArray(S.scores))S.scores=[];
 if(!S.mods)S.mods={};
-if(!S.dt||!['auto','uniSun','uniMon','deskTue','uniWed','uniThu','preRest','buildSat','examDay','grind','tennisday','ramadan','friday','rest'].includes(S.dt))S.dt='auto';
+S.dt='auto';   // one mode only — DAWLY OS picks the day itself
 if(!S.exoPhaseName)S.exoPhaseName='Phase 2 — CAD Design & Procurement';
 if(!S.exoPhaseDates)S.exoPhaseDates='Design due Monday → order parts same day as approval';
 if(!S.exoFocus||!Array.isArray(S.exoFocus))S.exoFocus=[];
@@ -1968,40 +1956,34 @@ function nav(name,btn){
 // ═══════════ SCHEDULES ═══════════
 const SCH={
   grind:[
-    {t:'4:30 AM',n:'Fajr — then back to bed',s:'Pray · straight back to sleep · the anchor holds',e:'🕌',c:'prayer'},
-    {t:'8:00 AM',n:'Wake + Water + 2-min Stretch',s:'Glass of water · world\'s greatest stretch ×3/side',e:'🌅',c:'rest'},
-    {t:'8:10 AM',n:'Engine Run (Zone 2)',s:'25 min easy pace · nasal breathing only · or jump rope + footwork 10 min',e:'🏃',c:'gym'},
-    {t:'8:45 AM',n:'BIG Breakfast',s:'Eggs, oats, honey, banana · 25% of the bulk lives here',e:'🍳',c:'rest',law:5},
-    {t:'9:15 AM',n:'ExoGuard Deep Work I',s:'2.5 hrs · hardest CAD task first · phone in other room',e:'🦾',c:'study',law:1},
-    {t:'11:45 AM',n:'Walk + Smoothie #1',s:'15 min outside · banana-oats-PB-honey blend',e:'🥤',c:'rest'},
-    {t:'12:15 PM',n:'ExoGuard Deep Work II',s:'90 min · simulation · build journal at the end',e:'🦾',c:'study',law:3},
-    {t:'1:45 PM',n:'Dhuhr + Lunch (double carbs)',s:'Pray · double the rice — easiest +400 kcal in Egypt',e:'🕌',c:'prayer'},
-    {t:'3:00 PM',n:'HUSTLE — Outreach',s:'10 messages · 3 proposals · reply to every lead',e:'💰',c:'hustle',law:4},
-    {t:'4:15 PM',n:'HUSTLE — Build',s:'Demo sites · client work · portfolio',e:'🛠️',c:'hustle'},
-    {t:'5:30 PM',n:'SF Drill',s:'45–60 min · one weak topic or half-mock',e:'💻',c:'study'},
-    {t:'6:45 PM',n:'Maghrib + Dinner',s:'Pray · eat well · you earned it',e:'🕌',c:'prayer'},
-    {t:'7:30 PM',n:'FIFA / Free',s:'Earned downtime · zero guilt',e:'🎮',c:'rest'},
-    {t:'9:00 PM',n:'GYM — Your Split',s:'Sat = Legs day · 4×12 · all sets hit 12 → +2.5kg · end with 5-min stretch',e:'🏋️',c:'gym'},
-    {t:'10:30 PM',n:'Smoothie #2 + Shower',s:'Post-workout fuel · wind down begins',e:'🥤',c:'rest'},
-    {t:'11:30 PM',n:'Shutdown + 10-min Stretch',s:'Nightly routine (Engine tab) · Daily Log · tomorrow\'s ONE thing · phone parks outside',e:'🧘',c:'rest',law:6},
-    {t:'12:00 AM',n:'Sleep',s:'8 hours · non-negotiable',e:'🌙',c:'rest',law:5},
+    {t:'8:30 AM',n:'Wake + Fajr',s:'No class. The whole day is yours — do not waste the morning',e:'🌅',c:'prayer',law:2},
+    {t:'9:00 AM',n:'Real breakfast',s:'Eggs, oats, honey. Fuel for a long build day',e:'🍳',c:'rest'},
+    {t:'9:45 AM',n:'EXOGUARD — 3h',s:'Best brain of the day on the hardest open task. Phone in another room',e:'🦾',c:'study',law:1},
+    {t:'12:45 PM',n:'Dhuhr + lunch',s:'',e:'🕌',c:'prayer'},
+    {t:'1:45 PM',n:'EXOGUARD — second block 2h',s:'Drawings, documentation, report sections. The unglamorous half',e:'🦾',c:'study'},
+    {t:'3:45 PM',n:'Break — off the screen',s:'Walk, coffee, nothing. 45 min',e:'☕',c:'rest'},
+    {t:'4:45 PM',n:'GYM',s:'Whatever the split says. Log every set',e:'🏋️',c:'gym'},
+    {t:'6:30 PM',n:'Dinner',s:'Protein target — check the Athlete tab',e:'🍚',c:'rest',law:5},
+    {t:'7:30 PM',n:'TRAVIS — 1h 30m',s:'Protected. Free work only — nothing here needs money',e:'🤖',c:'study'},
+    {t:'9:00 PM',n:'FREE — FC27 / 2K27',s:'Earned. No cap on a build day',e:'🎮',c:'rest'},
+    {t:'10:30 PM',n:'Daily log + stretch',s:'',e:'📥',c:'rest',law:6},
+    {t:'11:15 PM',n:'Sleep',s:'',e:'🌙',c:'rest',law:5},
+
   ],
   tennisday:[
-    {t:'4:30 AM',n:'Fajr — then back to bed',s:'Pray · straight back to sleep',e:'🕌',c:'prayer'},
-    {t:'8:00 AM',n:'Wake + BIG Breakfast',s:'Double day: gym AM, court PM — fuel accordingly',e:'🌅',c:'rest',law:5},
-    {t:'9:00 AM',n:'GYM (AM) — Your Split',s:'75 min · upper-body day (chest/back/shoulders/arms) · NEVER legs · 5-min stretch after',e:'🏋️',c:'gym'},
-    {t:'10:45 AM',n:'ExoGuard Deep Work',s:'2 hrs · CAD · phone in other room',e:'🦾',c:'study',law:1},
-    {t:'12:45 PM',n:'HUSTLE — Outreach',s:'10 messages before lunch · then it\'s done for the day',e:'💰',c:'hustle',law:4},
-    {t:'1:45 PM',n:'Dhuhr + Lunch (double carbs)',s:'Pray · carb up for tonight',e:'🕌',c:'prayer'},
-    {t:'3:00 PM',n:'SF Drill',s:'45 min · weak topics · wrong-answer notebook',e:'💻',c:'study'},
-    {t:'4:00 PM',n:'HUSTLE — Build',s:'Demo sites · client work · 75 min',e:'🛠️',c:'hustle'},
-    {t:'5:15 PM',n:'Rest + Smoothie #2',s:'Feet up · hydrate hard · double day needs it',e:'🥤',c:'rest'},
-    {t:'6:00 PM',n:'Maghrib + Light Dinner',s:'Pray · light-ish — heavy meals kill court speed',e:'🕌',c:'prayer'},
-    {t:'7:30 PM',n:'Travel + Serve Ritual',s:'Arrive early: 30 serves with targets BEFORE session',e:'⚡',c:'rest'},
-    {t:'8:30 PM',n:'TENNIS (Untouchable)',s:'ONE goal per session · between points: turn, breathe, next',e:'🎾',c:'tennis'},
-    {t:'10:15 PM',n:'Shower + Post-Court Stretch',s:'Shoulders, forearms, hips, calves while warm · dates + yogurt',e:'🧘',c:'rest'},
-    {t:'11:00 PM',n:'Replies Only + Shutdown',s:'20 min lead replies · Daily Log · phone parks outside',e:'📵',c:'rest',law:6},
-    {t:'12:00 AM',n:'Sleep',s:'Double day complete · sleep rebuilds everything',e:'🌙',c:'rest',law:5},
+    {t:'8:30 AM',n:'Wake + Fajr',s:'Court tonight — front-load the work',e:'🌅',c:'prayer',law:2},
+    {t:'9:00 AM',n:'Real breakfast',s:'',e:'🍳',c:'rest'},
+    {t:'9:45 AM',n:'EXOGUARD — 3h',s:'Hardest task first, before the day gets away from you',e:'🦾',c:'study',law:1},
+    {t:'12:45 PM',n:'Dhuhr + lunch',s:'',e:'🕌',c:'prayer'},
+    {t:'1:45 PM',n:'TRAVIS — 1h 30m',s:'Moved to the afternoon because the evening belongs to the court',e:'🤖',c:'study'},
+    {t:'3:15 PM',n:'Rest before court',s:'Do not train tired on purpose',e:'🌳',c:'rest'},
+    {t:'5:00 PM',n:'Pre-tennis meal',s:'Eat now — you play at 7:30',e:'🍚',c:'rest'},
+    {t:'6:30 PM',n:'Leave + 30-serve ritual',s:'Arrive early. Targets before anyone else starts',e:'⚡',c:'gym'},
+    {t:'7:30 PM',n:'TENNIS',s:'ONE goal for the session. Between points: turn, breathe, next',e:'🎾',c:'gym',law:1},
+    {t:'9:45 PM',n:'Home · shower · big meal',s:'Log the session — minutes and average HR',e:'🍚',c:'rest',law:5},
+    {t:'11:00 PM',n:'Daily log',s:'',e:'📥',c:'rest',law:6},
+    {t:'11:45 PM',n:'Sleep',s:'',e:'🌙',c:'rest',law:5},
+
   ],
   friday:[
     {t:'4:30 AM',n:'Fajr — stay up if fresh',s:'Optional golden hour · otherwise back to bed, no guilt',e:'🕌',c:'prayer'},
@@ -2044,20 +2026,23 @@ const SCH={
     {t:'11:30 PM',n:'Sleep',s:'Recovery is the program',e:'🌙',c:'rest',law:5},
   ],
   ramadan:[
-    {t:'3:30 AM',n:'Suhoor + Fajr',s:'Oats, eggs, yogurt, dates, WATER · pray · sleep after',e:'🕌',c:'prayer'},
-    {t:'4:30 AM',n:'Sleep Block',s:'Main sleep · dark room · no phone',e:'🌙',c:'rest',law:5},
-    {t:'10:30 AM',n:'Wake + ExoGuard Deep I',s:'Fasted deep work is elite — 2 hrs before the dip',e:'🦾',c:'study',law:1},
-    {t:'12:45 PM',n:'Dhuhr + Rest',s:'Pray · light admin only',e:'🕌',c:'prayer'},
-    {t:'1:30 PM',n:'HUSTLE — Outreach',s:'10 messages · low energy is fine, sending is sending',e:'💰',c:'hustle',law:4},
-    {t:'2:30 PM',n:'Nap',s:'45 min · the Ramadan secret weapon',e:'😴',c:'rest'},
-    {t:'3:45 PM',n:'SF Drill / Light Study',s:'45 min · easy mode',e:'💻',c:'study'},
-    {t:'5:00 PM',n:'Asr + Qur\'an',s:'Pray · this month is for this too',e:'🕌',c:'prayer'},
-    {t:'6:10 PM',n:'IFTAR + Family',s:'Break fast gently — dates + water first, IBS thanks you',e:'🌙',c:'prayer'},
-    {t:'8:00 PM',n:'Taraweeh',s:'Pray · presence over speed',e:'🕌',c:'prayer'},
-    {t:'9:45 PM',n:'ExoGuard Deep II / Build',s:'90 min · second wind after taraweeh',e:'🦾',c:'study'},
-    {t:'11:15 PM',n:'GYM (light) or Walk',s:'Optional · maintenance mode · hydrate',e:'🏋️',c:'gym'},
-    {t:'12:30 AM',n:'Wind Down + Eat Again',s:'Second meal · prep suhoor · Daily Log',e:'🥤',c:'rest',law:6},
-    {t:'1:15 AM',n:'Sleep until Suhoor',s:'First sleep block',e:'🌙',c:'rest'},
+    {t:'3:45 AM',n:'Suhoor',s:'Eat properly and drink. The whole day runs on this',e:'🍚',c:'rest',law:5},
+    {t:'4:30 AM',n:'Fajr',s:'',e:'🕌',c:'prayer',law:2},
+    {t:'5:00 AM',n:'Qur\'an — 30 min',s:'The quietest half hour of the year. Then back to sleep',e:'📖',c:'rest'},
+    {t:'5:30 AM',n:'Sleep again',s:'This is not laziness — it is how Ramadan works',e:'🌙',c:'rest',law:5},
+    {t:'11:00 AM',n:'Wake',s:'Slow start. No breakfast to rush for',e:'🌅',c:'rest'},
+    {t:'11:30 AM',n:'EXOGUARD — 2h 30m',s:'Fasted and clear-headed. The best work window you get today',e:'🦾',c:'study',law:1},
+    {t:'2:00 PM',n:'Dhuhr',s:'',e:'🕌',c:'prayer'},
+    {t:'2:30 PM',n:'TRAVIS — 1h',s:'Light cognitive load. Keep it moving, do not force it',e:'🤖',c:'study'},
+    {t:'3:30 PM',n:'Rest · conserve',s:'Fasting. Lying down beats pushing through',e:'🛌',c:'rest'},
+    {t:'5:30 PM',n:'Asr + prep iftar',s:'',e:'🕌',c:'prayer'},
+    {t:'6:15 PM',n:'IFTAR',s:'Dates and water first. Then eat properly — do not overdo it',e:'🍚',c:'rest',law:5},
+    {t:'7:30 PM',n:'Maghrib',s:'',e:'🕌',c:'prayer'},
+    {t:'8:30 PM',n:'GYM — light',s:'Post-iftar only. Lower the volume, keep the habit',e:'🏋️',c:'gym'},
+    {t:'10:00 PM',n:'Isha + Taraweeh',s:'',e:'🕌',c:'prayer',law:2},
+    {t:'11:30 PM',n:'Second meal + daily log',s:'',e:'📥',c:'rest',law:6},
+    {t:'12:30 AM',n:'Sleep',s:'Short night, long nap tomorrow. Plan for it',e:'🌙',c:'rest',law:5},
+
   ],
   rest:[
     {t:'9:30 AM',n:'Slow Morning',s:'Wake · shower · big breakfast · slower pace',e:'🌅',c:'rest'},
@@ -2284,16 +2269,47 @@ function getAuto(){
     if(d===1||d===2||d===6)return'tennisday';
     return'grind';
   }
-  if(d===5)return'friday';
+  if(d===5)return'preRest';
   if(d===0)return'preRest';
   if(d===1||d===3)return'tennisday';
   return'grind';
 }
 function getSch(){
-  const _raw=_getSchRaw();
+  let out=_getSchRaw();
+  // the Clean Energy catch-up is temporary — it removes itself once level
   if(typeof ceCaughtUp==='function'&&ceCaughtUp())
-    return _raw.filter(x=>!/CLEAN ENERGY CATCH-UP/.test(x.n)&&!/Back to recovery/.test(x.n));
-  return _raw;
+    out=out.filter(x=>!/CLEAN ENERGY CATCH-UP/.test(x.n)&&!/Back to recovery/.test(x.n));
+  // a Barça match is a real block in the day, not just a note on Command
+  try{
+    const m=(typeof matchOn==='function')?matchOn(DKEY()):null;
+    if(m){
+      const kick=m.t||'22:00';
+      const hh=parseInt(kick.split(':')[0],10), mm=kick.split(':')[1]||'00';
+      const h12=((hh%12)||12)+':'+mm+' '+(hh>=12?'PM':'AM');
+      const who=m.h?('Barcelona vs '+m.o):(m.o+' vs Barcelona');
+      const comp=m.comp==='CHAMPIONS LEAGUE'?('Champions League'+(m.md?' · MD'+m.md:'')):'La Liga';
+      const kickM=toMins(h12), endM=kickM+120;   // ~2 hrs with build-up
+      // anything that was scheduled during the match moves to after the whistle
+      let push=0;
+      out=out.map(x=>{
+        const m=toMins(x.t);
+        if(m>=kickM && m<endM){
+          push+=1;
+          const nm=endM+(push-1)*30;
+          const H=Math.floor(nm/60)%24, M=nm%60;
+          const t2=((H%12)||12)+':'+String(M).padStart(2,'0')+' '+(H>=12?'PM':'AM');
+          return Object.assign({},x,{t:t2,s:(x.s?x.s+' ':'')+'— moved after the match'});
+        }
+        return x;
+      });
+      out=out.concat([{t:h12,n:'⚽ '+who,s:comp+'. Blocked out — you do not skip matches, so the night is sized around it',e:'⚽',c:'rest'}]);
+      // a block after midnight belongs at the END of the day, not the start
+      const dayStart=toMins(out[0].t);
+      const key=x=>{const m=toMins(x.t);return (m<300 && dayStart>=300) ? m+1440 : m;};
+      out.sort((a,b)=>key(a)-key(b));
+    }
+  }catch(e){}
+  return out;
 }
 function _getSchRaw(){
   const t=S.dt==='auto'?getAuto():S.dt;
